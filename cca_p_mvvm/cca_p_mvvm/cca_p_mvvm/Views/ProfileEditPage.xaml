@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="cca_p_mvvm.Views.ProfileEditPage"
+             NavigationPage.HasBackButton="False"
+             NavigationPage.HasNavigationBar="False">
+
+    <StackLayout>
+
+        <StackLayout>
+            <Grid Padding="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Image Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Source="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" HorizontalOptions="Start"/>
+
+                <Label Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="1" Text="{Binding First_Name_Changed_Text_}"/>
+                <Entry Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="1" Text="{Binding First_Name_Changed_Text_, Mode=OneWayToSource}" Placeholder="{Binding First_Name_Placeholder_}"/>
+
+                <Label Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="1" Text="{Binding Last_Name_Changed_Text_}"/>
+                <Entry Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="1" Text="{Binding Last_Name_Changed_Text_, Mode=OneWayToSource}" Placeholder="{Binding Last_Name_Placeholder_}"/>
+
+                <Button Grid.Row="5" Grid.Column="1" Text="{Binding Confirm_Button_}" Command="{Binding Profile_Edit_Confirm_Button_Command_}"/>
+                <Button Grid.Row="5" Grid.Column="2" Text="{Binding Cancel_Button_}" Command="{Binding Profile_Edit_Cancel_Button_Command_}"/>
+
+            </Grid>
+        </StackLayout>
+
+    </StackLayout>
+
+</ContentPage>

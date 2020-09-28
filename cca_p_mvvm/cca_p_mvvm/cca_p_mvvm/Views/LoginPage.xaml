@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="cca_p_mvvm.Views.LoginPage"
+             NavigationPage.HasBackButton="False"
+             NavigationPage.HasNavigationBar="False">
+
+    <StackLayout >
+
+        <Frame BackgroundColor="DarkSlateGray">
+            <Label Text="{Binding Sign_In_Frame_Label_}" FontSize="24" TextColor="White" HorizontalOptions="CenterAndExpand" />
+        </Frame>
+
+        <Label Text="{Binding Username_Entry_Changed_Text_}" FontSize="24" TextColor="Black"/>
+        <Entry Text="{Binding Username_Entry_Changed_Text_, Mode=OneWayToSource}" Placeholder="{Binding Sign_In_Username_Entry_Placeholder_}" ClearButtonVisibility="WhileEditing" Margin="20,20,20,20"/>
+        <Label Text="{Binding Password_Entry_Changed_Text_}" FontSize="24" TextColor="Black"/>
+        <Entry Text="{Binding Password_Entry_Changed_Text_, Mode=OneWayToSource}" Placeholder="{Binding Sign_In_Password_Entry_Placeholder_}" IsPassword="True" ClearButtonVisibility="WhileEditing" Margin="20,20,20,20"/>
+
+        <Button Text="{Binding Sign_In_Login_Button_}" HorizontalOptions="FillAndExpand" Command="{Binding Login_Command_}" Margin="20,20,20,20"/>
+
+        <!--TESTING API-->
+        <StackLayout>
+            <Label Text="{Binding Id_}" FontSize="24"/>
+            <Label Text="{Binding Title_}" FontSize="24"/>
+        </StackLayout>
+
+    </StackLayout>
+
+</ContentPage>

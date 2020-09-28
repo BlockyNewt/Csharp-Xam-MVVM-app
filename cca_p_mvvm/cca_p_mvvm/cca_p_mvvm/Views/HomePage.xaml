@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="cca_p_mvvm.Views.HomePage"
+             NavigationPage.HasBackButton="False"
+             NavigationPage.HasNavigationBar="False">
+
+    <StackLayout>
+        
+        <Frame BackgroundColor="DarkSlateGray">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Text="{Binding Hub_Frame_Label_}" FontSize="24" TextColor="White"  Grid.Column="1" HorizontalOptions="CenterAndExpand"/>
+            <Button Grid.Column="1" HorizontalOptions="End" WidthRequest="40" HeightRequest="40" Command="{Binding Setting_Button_Command_}"/>
+        </Grid>
+    </Frame>
+
+
+
+
+    <!--CHANNEL TAB-->
+    <StackLayout IsVisible="{Binding Channel_Display_}">
+        <Label Text="{Binding Hub_Channel_Label_}" FontSize="16" TextColor="Black"/>
+        <ListView ItemsSource="{Binding Channel_}" SelectedItem="{Binding Selected_Channel_}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="1" Text="{Binding Name_}" FontSize="14" HorizontalOptions="StartAndExpand"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+
+    <!--DM TAB-->
+    <StackLayout IsVisible="{Binding DM_Display_}">
+        <ListView ItemsSource="{Binding Direct_Messages_}" SelectedItem="{Binding Selected_Messages_}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="1" Grid.RowSpan="2" Source="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" HorizontalOptions="StartAndExpand"/>
+                            <Label Grid.Column="2" Text="{Binding First_Name_}" FontSize="14" HorizontalOptions="StartAndExpand"/>
+                            </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+
+
+
+    <!--PROFILE TAB-->
+    <StackLayout IsVisible="{Binding Profile_Display_}">
+        <Grid Padding="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Source="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" HorizontalOptions="Start"/>
+            <Label Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="1"  Text="{Binding user_.First_Name_}"/>
+                <Label Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="1"  Text="{Binding user_.Last_Name_}"/>
+            <Button Grid.Row="3" Grid.Column="1" Text="{Binding Hub_Profile_Edit_Button_}" Command="{Binding Profile_Edit_Button_Command_}"/>
+            <Button Grid.Row="3" Grid.Column="2" Text="{Binding Hub_Profile_Logout_Button_}" Command="{Binding Profile_Logout_Button_Command_}"/>
+        </Grid>
+    </StackLayout>
+
+
+    <!--TAB BUTTONS-->
+    <StackLayout>
+        <Grid Padding="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Text="{Binding Hub_Channel_Button_}" Command="{Binding Channel_Button_Command_}"  Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand"/>
+            <Button Text="{Binding Hub_DM_Button_}" Command="{Binding DM_Button_Command_}" Grid.Column="2" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand"/>
+            <Button Text="{Binding Hub_Profile_Button_}" Command="{Binding Profile_Button_Command_}" Grid.Column="3" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand"/>
+        </Grid>
+    </StackLayout>
+
+    </StackLayout>
+
+</ContentPage>
