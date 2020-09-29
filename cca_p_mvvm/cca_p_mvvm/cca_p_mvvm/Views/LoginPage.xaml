@@ -13,10 +13,10 @@
             <Label Text="{Binding Sign_In_Frame_Label_}" FontSize="24" TextColor="White" HorizontalOptions="CenterAndExpand" />
         </Frame>
 
-        <Label Text="{Binding Username_Entry_Changed_Text_}" FontSize="24" TextColor="Black"/>
-        <Entry Text="{Binding Username_Entry_Changed_Text_, Mode=OneWayToSource}" Placeholder="{Binding Sign_In_Username_Entry_Placeholder_}" ClearButtonVisibility="WhileEditing" Margin="20,20,20,20"/>
-        <Label Text="{Binding Password_Entry_Changed_Text_}" FontSize="24" TextColor="Black"/>
-        <Entry Text="{Binding Password_Entry_Changed_Text_, Mode=OneWayToSource}" Placeholder="{Binding Sign_In_Password_Entry_Placeholder_}" IsPassword="True" ClearButtonVisibility="WhileEditing" Margin="20,20,20,20"/>
+        <!--<Label Text="{Binding Username_Entry_Changed_Text_}" FontSize="24" TextColor="Black"/>-->
+        <Entry Text="{Binding Username_Entry_Changed_Text_, Mode=TwoWay}" Placeholder="{Binding Sign_In_Username_Entry_Placeholder_}" ClearButtonVisibility="WhileEditing" Margin="20,20,20,20"/>
+        <!--<Label Text="{Binding Password_Entry_Changed_Text_}" FontSize="24" TextColor="Black"/>-->
+        <Entry Text="{Binding Password_Entry_Changed_Text_, Mode=TwoWay}" Placeholder="{Binding Sign_In_Password_Entry_Placeholder_}" IsPassword="True" ClearButtonVisibility="WhileEditing" Margin="20,20,20,20"/>
 
         <Button Text="{Binding Sign_In_Login_Button_}" HorizontalOptions="FillAndExpand" Command="{Binding Login_Command_}" Margin="20,20,20,20"/>
 

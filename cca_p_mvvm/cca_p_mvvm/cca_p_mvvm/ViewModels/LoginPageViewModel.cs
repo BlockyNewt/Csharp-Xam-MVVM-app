@@ -24,9 +24,6 @@ namespace cca_p_mvvm.ViewModels
             this.l_Eng_ = new LanguageEnglish();
             this.l_Jap_ = new LanguageJapanese();
 
-            this.english_Selected_ = true;
-            this.japanese_Selected_ = false;
-
             this.user_Credidentials_ = new List<UserViewModel>();
             this.GetUsers();
 
@@ -41,12 +38,17 @@ namespace cca_p_mvvm.ViewModels
         private string sign_In_Username_Entry_Placeholder_;
         private string sign_In_Password_Entry_Placeholder_;
         private string sign_In_Login_Button_;
+        private string sign_In_Login_Error_Title_;
+        private string sign_In_Login_Error_Message_;
+        private string sign_In_Login_Error_Button_;
 
         private string username_Entry_Changed_Text_;
         private string password_Entry_Changed_Text_;
 
-        private bool english_Selected_;
-        private bool japanese_Selected_;
+        private string connection_Error_Title_;
+        private string connection_Error_Message_;
+        private string connection_Error_Button_;
+
 
         //THIS WILL GATHER ALL USER LOGINS AND PASSWORDS FROM THE JSON
         private IList<UserViewModel> user_Credidentials_ { get; set; }
@@ -80,7 +82,7 @@ namespace cca_p_mvvm.ViewModels
         {
             get
             {
-                if (string.IsNullOrEmpty(this.sign_In_Username_Entry_Placeholder_))
+                if (string.IsNullOrEmpty(this.sign_In_Password_Entry_Placeholder_))
                 {
                     return "Empty string";
                 }
@@ -100,7 +102,7 @@ namespace cca_p_mvvm.ViewModels
         {
             get
             {
-                if (string.IsNullOrEmpty(this.sign_In_Password_Entry_Placeholder_))
+                if(string.IsNullOrEmpty(this.sign_In_Username_Entry_Placeholder_))
                 {
                     return "Empty string";
                 }
@@ -135,16 +137,71 @@ namespace cca_p_mvvm.ViewModels
                 this.SetProperty(ref this.sign_In_Login_Button_, value);
             }
         }
+        
+        public string Sign_In_Login_Error_Title_
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(this.sign_In_Login_Error_Title_))
+                {
+                    return "Empty string";
+                }
+
+                return this.sign_In_Login_Error_Title_;
+            }
+
+            set
+            {
+                this.sign_In_Login_Error_Title_ = value;
+                this.OnPropertyChanged("Sign_In_Login_Error_Title_");
+                this.SetProperty(ref this.sign_In_Login_Error_Title_, value);
+            }
+        }
+
+        public string Sign_In_Login_Error_Message_
+        {
+            get
+            {
+                if(string.IsNullOrEmpty(this.sign_In_Login_Error_Message_))
+                {
+                    return "Empty string";
+                }
+
+                return this.sign_In_Login_Error_Message_;
+            }
+
+            set
+            {
+                this.sign_In_Login_Error_Message_ = value;
+                this.OnPropertyChanged("Sign_In_Login_Error_Message_");
+                this.SetProperty(ref this.sign_In_Login_Error_Message_, value);
+            }
+        }
+
+        public string Sign_In_Login_Error_Button_
+        {
+            get
+            {
+                if(string.IsNullOrEmpty(this.sign_In_Login_Error_Button_))
+                {
+                    return "Empty string";
+                }
+
+                return this.sign_In_Login_Error_Button_;
+            }
+
+            set
+            {
+                this.sign_In_Login_Error_Button_ = value;
+                this.OnPropertyChanged("Sign_In_Login_Error_Button_");
+                this.SetProperty(ref this.sign_In_Login_Error_Button_, value);
+            }
+        }
 
         public string Username_Entry_Changed_Text_
         {
             get
             {
-                if (string.IsNullOrEmpty(this.username_Entry_Changed_Text_))
-                {
-                    return "Empty string";
-                }
-
                 return this.username_Entry_Changed_Text_;
             }
 
@@ -160,11 +217,6 @@ namespace cca_p_mvvm.ViewModels
         {
             get
             {
-                if (string.IsNullOrEmpty(this.password_Entry_Changed_Text_))
-                {
-                    return "Empty string";
-                }
-
                 return this.password_Entry_Changed_Text_;
             }
 
@@ -176,35 +228,66 @@ namespace cca_p_mvvm.ViewModels
             }
         }
 
-        public bool English_Selected_
+        public string Connection_Error_Title_
         {
             get
             {
-                return this.english_Selected_;
+                if (string.IsNullOrEmpty(this.connection_Error_Title_))
+                {
+                    return "Empty string";
+                }
+
+                return this.connection_Error_Title_;
             }
 
             set
             {
-                this.english_Selected_ = value;
-                this.OnPropertyChanged("English_Selected_");
-                this.SetProperty(ref this.english_Selected_, value);
+                this.connection_Error_Title_ = value;
+                this.OnPropertyChanged("Connection_Error_Title_");
+                this.SetProperty(ref this.connection_Error_Title_, value);
             }
         }
 
-        public bool Japanese_Selected_
+        public string Connection_Error_Message_
         {
             get
             {
-                return this.japanese_Selected_;
+                if (string.IsNullOrEmpty(this.connection_Error_Message_))
+                {
+                    return "Empty string";
+                }
+
+                return this.connection_Error_Message_;
             }
 
             set
             {
-                this.japanese_Selected_ = value;
-                this.OnPropertyChanged("Japanese_Selected_");
-                this.SetProperty(ref this.japanese_Selected_, value);
+                this.connection_Error_Message_ = value;
+                this.OnPropertyChanged("Connection_Error_Message_");
+                this.SetProperty(ref this.connection_Error_Message_, value);
             }
         }
+
+        private string Connection_Error_Button_
+        {
+            get
+            {
+                if(string.IsNullOrEmpty(this.connection_Error_Button_))
+                {
+                    return "Empty string";
+                }
+
+                return this.Connection_Error_Button_;
+            }
+
+            set
+            {
+                this.connection_Error_Button_ = value;
+                this.OnPropertyChanged("Connection_Error_Button_");
+                this.SetProperty(ref this.connection_Error_Button_, value); 
+            }
+        }
+
 
 
         public IList<UserViewModel> User_Credidentials_
@@ -263,16 +346,29 @@ namespace cca_p_mvvm.ViewModels
                         //PASS ALL THE REQUIRED VARIABLES INTO THE HOME PAGE
                         var p = new NavigationParameters();
 
-                        p.Add("english_Selected_", this.english_Selected_);
-                        p.Add("japanese_Selected_", this.japanese_Selected_);
+                        p.Add("l_Eng_", this.l_Eng_);
+                        p.Add("l_Jap_", this.l_Jap_);
                         p.Add("user_", user);
+
+                        this.Username_Entry_Changed_Text_ = string.Empty;
+                        this.Password_Entry_Changed_Text_ = string.Empty;
 
                         await this.navigation_Service_.NavigateAsync("HomePage", p);
 
-                        this.User_Credidentials_.Clear();
-                        Console.WriteLine("Cleared the creds ");
+                        //MAY WANT TO FIGURE SOMETHING OUT FOR THIS. WE DONT WANT TO KEEP ALL USER CREDIDENTIALS ON THE CLIENT AFTER LOGIN
+                        //this.User_Credidentials_.Clear();
+                        //Console.WriteLine("Cleared the creds ");
+                    }
+                    else
+                    {
+                        await Application.Current.MainPage.DisplayAlert(this.Sign_In_Login_Error_Title_, this.Sign_In_Login_Error_Message_, this.Sign_In_Login_Error_Button_);
                     }
                 }
+            }
+            else
+            {
+                this.Username_Entry_Changed_Text_ = string.Empty;
+                this.Password_Entry_Changed_Text_ = string.Empty;
             }
         }
 
@@ -288,7 +384,7 @@ namespace cca_p_mvvm.ViewModels
             else
             {
                 //IF IT'S NOT CONNECTED THEN IT WILL DISPLAY AN ALERT 
-                Application.Current.MainPage.DisplayAlert("Error", "Could not connect to the internet.", "Close");
+                Application.Current.MainPage.DisplayAlert(this.connection_Error_Title_, this.Connection_Error_Message_, this.connection_Error_Button_);
                 return false;
             }
         }
@@ -296,19 +392,34 @@ namespace cca_p_mvvm.ViewModels
         private void SetLanguage()
         {
             //SET LANGUAGE BASED ON WHICH ONE IS TRUE
-            if(this.english_Selected_)
+            if(this.l_Eng_.Is_English_Selected_)
             {
                 this.Sign_In_Frame_Label_ = this.l_Eng_.Word[ENG_WORD.SIGN_IN_FRAME_LABEL];
                 this.Sign_In_Username_Entry_Placeholder_ = this.l_Eng_.Word[ENG_WORD.SIGN_IN_USERNAME_ENTRY_PLACEHOLDER];
                 this.Sign_In_Password_Entry_Placeholder_ = this.l_Eng_.Word[ENG_WORD.SIGN_IN_PASSWORD_ENTRY_PLACEHOLDER];
                 this.Sign_In_Login_Button_ = this.l_Eng_.Word[ENG_WORD.SIGN_IN_LOGIN_BUTTON];
+                this.Sign_In_Login_Error_Title_ = this.l_Eng_.Word[ENG_WORD.SIGN_IN_LOGIN_ERROR_TITLE];
+                this.Sign_In_Login_Error_Message_ = this.l_Eng_.Word[ENG_WORD.SIGN_IN_LOGIN_ERROR_MESSAGE];
+                this.Sign_In_Login_Error_Button_ = this.l_Eng_.Word[ENG_WORD.SIGN_IN_LOGIN_ERROR_BUTTON];
+
+
+                this.connection_Error_Title_ = this.l_Eng_.Word[ENG_WORD.CONNECTION_ERROR_TITLE];
+                this.connection_Error_Message_ = this.l_Eng_.Word[ENG_WORD.CONNECTION_ERROR_MESSAGE];
+                this.connection_Error_Button_ = this.l_Eng_.Word[ENG_WORD.CONNECTION_ERROR_BUTTON];
             }
-            else if(this.japanese_Selected_)
+            else if(this.l_Jap_.Is_Japanese_Selected_)
             {
                 this.Sign_In_Frame_Label_ = this.l_Jap_.Word[JAP_WORD.SIGN_IN_FRAME_LABEL];
                 this.Sign_In_Username_Entry_Placeholder_ = this.l_Jap_.Word[JAP_WORD.SIGN_IN_USERNAME_ENTRY_PLACEHOLDER];
                 this.Sign_In_Password_Entry_Placeholder_ = this.l_Jap_.Word[JAP_WORD.SIGN_IN_PASSWORD_ENTRY_PLACEHOLDER];
                 this.Sign_In_Login_Button_ = this.l_Jap_.Word[JAP_WORD.SIGN_IN_LOGIN_BUTTON];
+                this.Sign_In_Login_Error_Title_ = this.l_Jap_.Word[JAP_WORD.SIGN_IN_LOGIN_ERROR_TITLE];
+                this.Sign_In_Login_Error_Message_ = this.l_Jap_.Word[JAP_WORD.SIGN_IN_LOGIN_ERROR_MESSAGE];
+                this.Sign_In_Login_Error_Button_ = this.l_Jap_.Word[JAP_WORD.SIGN_IN_LOGIN_ERROR_BUTTON];
+
+                this.connection_Error_Title_ = this.l_Jap_.Word[JAP_WORD.CONNECTION_ERROR_TITLE];
+                this.connection_Error_Message_ = this.l_Jap_.Word[JAP_WORD.CONNECTION_ERROR_MESSAGE];
+                this.connection_Error_Button_ = this.l_Jap_.Word[JAP_WORD.CONNECTION_ERROR_BUTTON];
             }
         }
 
@@ -320,10 +431,16 @@ namespace cca_p_mvvm.ViewModels
         public void OnNavigatedTo(INavigationParameters parameters)
         {
             //WHEN WE LOGOUT IT WILL PASS BACK THESE VARIABLES FROM HOME PAGE
-            this.English_Selected_ = parameters.GetValue<bool>("english_Selected_");
-            this.Japanese_Selected_ = parameters.GetValue<bool>("japanese_Selected_");
+            if(parameters.Count() > 0)
+            {
+                this.l_Eng_ = parameters.GetValue<LanguageEnglish>("l_Eng_");
+                this.l_Jap_ = parameters.GetValue<LanguageJapanese>("l_Jap_");
 
-            this.SetLanguage();
+                this.l_Eng_.Is_English_Selected_ = parameters.GetValue<LanguageEnglish>("l_Eng_").Is_English_Selected_;
+                this.l_Jap_.Is_Japanese_Selected_ = parameters.GetValue<LanguageJapanese>("l_Jap_").Is_Japanese_Selected_;
+
+                this.SetLanguage();
+            }
         }
     }
 }

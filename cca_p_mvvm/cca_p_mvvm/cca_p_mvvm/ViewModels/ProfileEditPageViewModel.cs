@@ -4,6 +4,7 @@ using Prism.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using Xamarin.Forms;
 
 namespace cca_p_mvvm.ViewModels
@@ -19,9 +20,6 @@ namespace cca_p_mvvm.ViewModels
             this.l_Jap_ = new LanguageJapanese();
 
             this.user_ = new UserViewModel();
-
-            this.english_Selected_ = true;
-            this.japanese_Selected_ = false;
 
             this.SetLanguage();
         }
@@ -39,9 +37,6 @@ namespace cca_p_mvvm.ViewModels
         private string alert_Title_;
         private string alert_Message_;
         private string alert_Button_;
-
-        private bool english_Selected_;
-        private bool japanese_Selected_;
 
         public LanguageEnglish l_Eng_ { get; private set; }
         public LanguageJapanese l_Jap_ { get; private set; }
@@ -229,36 +224,6 @@ namespace cca_p_mvvm.ViewModels
             }
         }
 
-        public bool English_Selected_
-        {
-            get
-            {
-                return this.english_Selected_;
-            }
-
-            set
-            {
-                this.english_Selected_ = value;
-                this.OnPropertyChanged("English_Selected_");
-                this.SetProperty(ref this.english_Selected_, value);
-            }
-        }
-
-        public bool Japanese_Selected_
-        {
-            get
-            {
-                return this.japanese_Selected_;
-            }
-
-            set
-            {
-                this.japanese_Selected_ = value;
-                this.OnPropertyChanged("Japanese_Selected_");
-                this.SetProperty(ref this.japanese_Selected_, value);
-            }
-        }
-
 
         private DelegateCommand profile_Edit_Confirm_Button_Command_;
         public DelegateCommand Profile_Edit_Confirm_Button_Command_ => this.profile_Edit_Confirm_Button_Command_ ?? (this.profile_Edit_Confirm_Button_Command_ = new DelegateCommand(this.ProfileEditConfirmButton));
@@ -296,7 +261,7 @@ namespace cca_p_mvvm.ViewModels
         private void SetLanguage()
         {
             //CHECK WHICH LANGUAGE IS CURRENTLY SELECTED AND THEN SET IT BASED ON THAT
-            if(this.english_Selected_)
+            if(this.l_Eng_.Is_English_Selected_)
             {
                 this.Confirm_Button_ = this.l_Eng_.Word[ENG_WORD.PROFILE_EDIT_CONFIRM_BUTTON];
                 this.Cancel_Button_ = this.l_Eng_.Word[ENG_WORD.PROFILE_EDIT_CANCEL_BUTTON];
@@ -304,7 +269,7 @@ namespace cca_p_mvvm.ViewModels
                 this.Alert_Message_ = this.l_Eng_.Word[ENG_WORD.PROFILE_EDIT_ALERT_MESSAGE];
                 this.Alert_Button_ = this.l_Eng_.Word[ENG_WORD.PROFILE_EDIT_ALERT_BUTTON];
             }
-            else if(this.japanese_Selected_)
+            else if(this.l_Jap_.Is_Japanese_Selected_)
             {
                 this.Confirm_Button_ = this.l_Jap_.Word[JAP_WORD.PROFILE_EDIT_CONFIRM_BUTTON];
                 this.Cancel_Button_ = this.l_Jap_.Word[JAP_WORD.PROFILE_EDIT_CANCEL_BUTTON];
@@ -321,18 +286,24 @@ namespace cca_p_mvvm.ViewModels
         public void OnNavigatedTo(INavigationParameters parameters)
         {
             //VALUES BEING PASSED INTO THE SETTING PAGE FROM THE PREVIOUS PAGE
-            this.user_.First_Name_ = parameters.GetValue<UserViewModel>("user_").First_Name_;
-            this.user_.Last_Name_ = parameters.GetValue<UserViewModel>("user_").Last_Name_;
-            this.user_.Username_ = parameters.GetValue<UserViewModel>("user_").Username_;
-            this.user_.Password_ = parameters.GetValue<UserViewModel>("user_").Password_;
+            if(parameters.Count() > 0)
+            {
+                this.user_.First_Name_ = parameters.GetValue<UserViewModel>("user_").First_Name_;
+                this.user_.Last_Name_ = parameters.GetValue<UserViewModel>("user_").Last_Name_;
+                this.user_.Username_ = parameters.GetValue<UserViewModel>("user_").Username_;
+                this.user_.Password_ = parameters.GetValue<UserViewModel>("user_").Password_;
 
-            this.English_Selected_ = parameters.GetValue<bool>("english_Selected_");
-            this.Japanese_Selected_ = parameters.GetValue<bool>("japanese_Selected_");
+                this.l_Eng_ = parameters.GetValue<LanguageEnglish>("l_Eng_");
+                this.l_Jap_ = parameters.GetValue<LanguageJapanese>("l_Jap_");
 
-            this.First_Name_Placeholder_ = this.user_.First_Name_;
-            this.Last_Name_Placeholder_ = this.user_.Last_Name_;
+                this.l_Eng_.Is_English_Selected_ = parameters.GetValue<LanguageEnglish>("l_Eng_").Is_English_Selected_;
+                this.l_Jap_.Is_Japanese_Selected_ = parameters.GetValue<LanguageJapanese>("l_Jap_").Is_Japanese_Selected_;
 
-            this.SetLanguage();
+                this.First_Name_Placeholder_ = this.user_.First_Name_;
+                this.Last_Name_Placeholder_ = this.user_.Last_Name_;
+
+                this.SetLanguage();
+            }
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ImTools;
+using Prism.Mvvm;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -12,6 +14,10 @@ namespace cca_p_mvvm
         SIGN_IN_USERNAME_ENTRY_PLACEHOLDER,
         SIGN_IN_PASSWORD_ENTRY_PLACEHOLDER,
         SIGN_IN_LOGIN_BUTTON,
+        SIGN_IN_LOGIN_ERROR_TITLE,
+        SIGN_IN_LOGIN_ERROR_MESSAGE,
+        SIGN_IN_LOGIN_ERROR_BUTTON,
+        
 
         HUB_FRAME_LABEL,
         HUB_CHANNEL_BUTTON,
@@ -39,16 +45,29 @@ namespace cca_p_mvvm
         PROFILE_EDIT_ALERT_TITLE,
         PROFILE_EDIT_ALERT_MESSAGE,
         PROFILE_EDIT_ALERT_BUTTON,
+
+        CHAT_SEND_BUTTON,
+        CHAT_EDITOR_PLACEHOLDER,
+
+        CONNECTION_ERROR_TITLE,
+        CONNECTION_ERROR_MESSAGE,
+        CONNECTION_ERROR_BUTTON,
+
     }
 
-    public class LanguageJapanese
+    public class LanguageJapanese : BindableBase
     {
         public LanguageJapanese()
         {
+            this.Is_Japanese_Selected_ = false;
+
             this.word_.Add(JAP_WORD.SIGN_IN_FRAME_LABEL, "サインイン");
             this.word_.Add(JAP_WORD.SIGN_IN_USERNAME_ENTRY_PLACEHOLDER, "ユーザーネーム");
             this.word_.Add(JAP_WORD.SIGN_IN_PASSWORD_ENTRY_PLACEHOLDER, "パスワード");
             this.word_.Add(JAP_WORD.SIGN_IN_LOGIN_BUTTON, "ログイン");
+            this.word_.Add(JAP_WORD.SIGN_IN_LOGIN_ERROR_TITLE, "エラー");
+            this.word_.Add(JAP_WORD.SIGN_IN_LOGIN_ERROR_MESSAGE, "ユーザーネームかパスワードが間違いているのでもう一度入力してください。");
+            this.word_.Add(JAP_WORD.SIGN_IN_LOGIN_ERROR_BUTTON, "閉じる");
 
             this.word_.Add(JAP_WORD.HUB_FRAME_LABEL, "コンサイズ");
             this.word_.Add(JAP_WORD.HUB_CHANNEL_BUTTON, "チャンネル");
@@ -74,17 +93,41 @@ namespace cca_p_mvvm
             this.word_.Add(JAP_WORD.PROFILE_EDIT_CONFIRM_BUTTON, "完了");
             this.word_.Add(JAP_WORD.PROFILE_EDIT_CANCEL_BUTTON, "キャンセル");
             this.word_.Add(JAP_WORD.PROFILE_EDIT_ALERT_TITLE, "エラー");
-            this.word_.Add(JAP_WORD.PROFILE_EDIT_ALERT_MESSAGE, "名か姓の字が足りないので完了ことができません。");
+            this.word_.Add(JAP_WORD.PROFILE_EDIT_ALERT_MESSAGE, "名か姓の字が足りないので完了することができません。");
             this.word_.Add(JAP_WORD.PROFILE_EDIT_ALERT_BUTTON, "閉じる");
+
+            this.word_.Add(JAP_WORD.CHAT_EDITOR_PLACEHOLDER, "入力");
+            this.word_.Add(JAP_WORD.CHAT_SEND_BUTTON, "送る");
+
+            this.word_.Add(JAP_WORD.CONNECTION_ERROR_TITLE, "エラー");
+            this.word_.Add(JAP_WORD.CONNECTION_ERROR_MESSAGE, "インターネットを繋がらなかったです。");
+            this.word_.Add(JAP_WORD.CONNECTION_ERROR_BUTTON, "閉じる");
+
         }
 
         private Dictionary<JAP_WORD, string> word_ = new Dictionary<JAP_WORD, string>();
+        private bool is_japanese_Selected_;
 
         public Dictionary<JAP_WORD, string> Word
         {
             get
             {
                 return this.word_;
+            }
+        }
+
+        public bool Is_Japanese_Selected_
+        {
+            get
+            {
+                return this.is_japanese_Selected_;
+            }
+
+            set
+            {
+                this.is_japanese_Selected_ = value;
+                this.OnPropertyChanged("Is_Japanese_Selected_");
+                this.SetProperty(ref this.is_japanese_Selected_, value);
             }
         }
     }

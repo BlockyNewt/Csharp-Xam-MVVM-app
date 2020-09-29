@@ -8,7 +8,6 @@
              NavigationPage.HasNavigationBar="False">
 
     <StackLayout>
-        
         <Frame BackgroundColor="DarkSlateGray">
         <Grid>
             <Grid.RowDefinitions>
@@ -19,7 +18,7 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Label Text="{Binding Hub_Frame_Label_}" FontSize="24" TextColor="White"  Grid.Column="1" HorizontalOptions="CenterAndExpand"/>
+                <Label Grid.Column="1" Grid.ColumnSpan="1" HorizontalOptions="CenterAndExpand" Text="{Binding Hub_Frame_Label_}" FontSize="24" TextColor="White"  />
             <Button Grid.Column="1" HorizontalOptions="End" WidthRequest="40" HeightRequest="40" Command="{Binding Setting_Button_Command_}"/>
         </Grid>
     </Frame>
@@ -53,7 +52,7 @@
 
     <!--DM TAB-->
     <StackLayout IsVisible="{Binding DM_Display_}">
-        <ListView ItemsSource="{Binding Direct_Messages_}" SelectedItem="{Binding Selected_Messages_}">
+        <ListView ItemsSource="{Binding Direct_Messages_}" SelectedItem="{Binding Selected_Messages_}" HasUnevenRows="True">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -61,13 +60,19 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
+                                </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <Image Grid.Column="1" Grid.RowSpan="2" Source="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" HorizontalOptions="StartAndExpand"/>
-                            <Label Grid.Column="2" Text="{Binding First_Name_}" FontSize="14" HorizontalOptions="StartAndExpand"/>
+                                <Image Grid.Column="1" Grid.ColumnSpan="1" Grid.RowSpan="4" Source="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" HeightRequest="75" WidthRequest="75" HorizontalOptions="StartAndExpand"/>
+                                <Label Grid.Column="2" Grid.ColumnSpan="1" Grid.Row="2" Text="{Binding First_Name_}" FontSize="14" HorizontalOptions="StartAndExpand"/>
                             </Grid>
                     </ViewCell>
                 </DataTemplate>
@@ -98,7 +103,7 @@
 
 
     <!--TAB BUTTONS-->
-    <StackLayout>
+    <StackLayout VerticalOptions="EndAndExpand">
         <Grid Padding="5">
             <Grid.RowDefinitions>
                 <RowDefinition Height="70"/>
@@ -108,9 +113,9 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button Text="{Binding Hub_Channel_Button_}" Command="{Binding Channel_Button_Command_}"  Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand"/>
-            <Button Text="{Binding Hub_DM_Button_}" Command="{Binding DM_Button_Command_}" Grid.Column="2" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand"/>
-            <Button Text="{Binding Hub_Profile_Button_}" Command="{Binding Profile_Button_Command_}" Grid.Column="3" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand"/>
+            <Button Text="{Binding Hub_Channel_Button_}" Command="{Binding Channel_Button_Command_}"  Grid.Column="1" HorizontalOptions="FillAndExpand"/>
+            <Button Text="{Binding Hub_DM_Button_}" Command="{Binding DM_Button_Command_}" Grid.Column="2" HorizontalOptions="FillAndExpand"/>
+            <Button Text="{Binding Hub_Profile_Button_}" Command="{Binding Profile_Button_Command_}" Grid.Column="3" HorizontalOptions="FillAndExpand"/>
         </Grid>
     </StackLayout>
 

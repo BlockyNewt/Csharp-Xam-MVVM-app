@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="cca_p_mvvm.Views.ChatPage"
+             NavigationPage.HasBackButton="False"  
+             NavigationPage.HasNavigationBar="False">
+
+    <StackLayout>
+
+        <Frame BackgroundColor="DarkSlateGray">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="1" HorizontalOptions="Start" Command="{Binding Back_Button_Command_}" WidthRequest="40" HeightRequest="40"/>
+                <Label Grid.Column="1" Grid.ColumnSpan="1" Text="{Binding Chat_Frame_Label_}" TextColor="White" HorizontalOptions="Center" FontSize="24"/>
+            </Grid>
+        </Frame>
+
+
+        <ListView ItemsSource="{Binding Messages_List_}" HasUnevenRows="True">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Row="1" Text="{Binding Sender_Name_}"/>
+                            <Label Grid.Row="2" Text="{Binding Message_}" FontSize="16"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        
+        
+        
+        <!--ENTRY FIELD AND SEND BUTTON-->
+        <StackLayout>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Editor Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2" Placeholder="{Binding Chat_Message_Editor_Placeholder_}" Text="{Binding Message_Text_Changed_, Mode=TwoWay}"/>
+                <Button Grid.Column="3" Text="{Binding Chat_Send_Button_}" Command="{Binding Send_Button_Command_}"/>
+            </Grid>
+        </StackLayout>
+
+    </StackLayout>
+  
+</ContentPage>

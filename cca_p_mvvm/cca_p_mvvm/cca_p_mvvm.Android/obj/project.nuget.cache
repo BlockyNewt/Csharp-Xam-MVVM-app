@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "mAAoRL7eXeIfiB450l5UfnWGoEfgR6cNCHKMMHSoZzIC4L/E1cIfeVLnBn7aWyYIZEaDoe34UZ1vj6uW0GfAnA==",
+  "dgSpecHash": "qJsgAuTsX4fFhfOui4SRx1l5Khz1hQV21OGFcjCJ0UYKYOL4NyTZbApEXADsTr0NnrDN81YKV2kycKl+CetKQg==",
   "success": true,
   "projectFilePath": "C:\\Users\\S-03\\Source\\Repos\\BlockyNewt\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm.Android\\cca_p_mvvm.Android.csproj",
   "expectedPackageFiles": [
@@ -50,6 +50,7 @@
     "C:\\Users\\S-03\\.nuget\\packages\\system.threading.timer\\4.0.1\\system.threading.timer.4.0.1.nupkg.sha512",
     "C:\\Users\\S-03\\.nuget\\packages\\system.xml.xmldocument\\4.0.1\\system.xml.xmldocument.4.0.1.nupkg.sha512",
     "C:\\Users\\S-03\\.nuget\\packages\\system.xml.xpath.xmldocument\\4.0.1\\system.xml.xpath.xmldocument.4.0.1.nupkg.sha512",
+    "C:\\Users\\S-03\\.nuget\\packages\\xam.plugins.forms.imagecircle\\3.0.0.5\\xam.plugins.forms.imagecircle.3.0.0.5.nupkg.sha512",
     "C:\\Users\\S-03\\.nuget\\packages\\xamarin.androidx.activity\\1.0.0.1\\xamarin.androidx.activity.1.0.0.1.nupkg.sha512",
     "C:\\Users\\S-03\\.nuget\\packages\\xamarin.androidx.annotation\\1.1.0.1\\xamarin.androidx.annotation.1.1.0.1.nupkg.sha512",
     "C:\\Users\\S-03\\.nuget\\packages\\xamarin.androidx.appcompat\\1.1.0.1\\xamarin.androidx.appcompat.1.1.0.1.nupkg.sha512",

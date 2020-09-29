@@ -597,3 +597,5 @@ C:\Users\S-03\Source\Repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvv
 C:\Users\S-03\Source\Repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\stamp\_GeneratePackageManagerJava.stamp
 C:\Users\S-03\Source\Repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\stamp\_ResolveLibraryProjectImports.stamp
 C:\Users\S-03\Source\Repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\android\assets\Newtonsoft.Json.dll
+C:\Users\S-03\Source\Repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\android\assets\ImageCircle.Forms.Plugin.dll
+C:\Users\S-03\Source\Repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\android\src\crc6436929b8ad3b40f6f\ImageCircleRenderer.java

@@ -24,8 +24,8 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Label Grid.Row="1" Text="{Binding Setting_Language_Label_}"/>
-                <RadioButton Grid.Row="2" Text="{Binding Setting_Radio_ENG_Button_}" IsChecked="{Binding English_Selected_}"/>
-                <RadioButton Grid.Row="3" Text="{Binding Setting_Radio_JAP_Button_}" IsChecked="{Binding Japanese_Selected_}"/>
+                <RadioButton Grid.Row="2" Text="{Binding Setting_Radio_ENG_Button_}" IsChecked="{Binding l_Eng_.Is_English_Selected_}"/>
+                <RadioButton Grid.Row="3" Text="{Binding Setting_Radio_JAP_Button_}" IsChecked="{Binding l_Jap_.Is_Japanese_Selected_}"/>
             </Grid>
         </StackLayout>
 

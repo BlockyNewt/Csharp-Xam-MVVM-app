@@ -9,6 +9,7 @@ public class MonoPackageManager_Resources {
 		"Essential.Interfaces.dll",
 		"FormsViewGroup.dll",
 		"Google.Protobuf.dll",
+		"ImageCircle.Forms.Plugin.dll",
 		"K4os.Compression.LZ4.dll",
 		"K4os.Compression.LZ4.Streams.dll",
 		"K4os.Hash.xxHash.dll",

@@ -17,9 +17,6 @@ namespace cca_p_mvvm.ViewModels
             this.l_Eng_ = new LanguageEnglish();
             this.l_Jap_ = new LanguageJapanese();
 
-            this.english_Selected_ = true;
-            this.japanese_Selected_ = false;
-
             this.SetLanguage();
         }
 
@@ -31,9 +28,6 @@ namespace cca_p_mvvm.ViewModels
         private string setting_Radio_JAP_Button_;
         private string setting_Accept_Button_;
         private string setting_Close_Button_;
-
-        private bool english_Selected_;
-        private bool japanese_Selected_;
 
         public LanguageEnglish l_Eng_ { get; private set; }
         public LanguageJapanese l_Jap_ { get; private set; }
@@ -159,41 +153,12 @@ namespace cca_p_mvvm.ViewModels
             }
         }
 
-        public bool English_Selected_
-        {
-            get
-            {
-                return this.english_Selected_;
-            }
-
-            set
-            {
-                this.english_Selected_ = value;
-                this.OnPropertyChanged("English_Selected_");
-                this.SetProperty(ref this.english_Selected_, value);
-            }
-        }
-
-        public bool Japanese_Selected_
-        {
-            get
-            {
-                return this.japanese_Selected_;
-            }
-
-            set
-            {
-                this.japanese_Selected_ = value;
-                this.OnPropertyChanged("Japanese_Selected_");
-                this.SetProperty(ref this.japanese_Selected_, value);
-            }
-        }
-
 
         private DelegateCommand setting_Accept_Button_Command_;
         public DelegateCommand Setting_Accept_Button_Command_ => this.setting_Accept_Button_Command_ ?? (this.setting_Accept_Button_Command_ = new DelegateCommand(this.SettingAcceptButton));
         private void SettingAcceptButton()
         {
+            
             this.SetLanguage();
         }
 
@@ -203,8 +168,8 @@ namespace cca_p_mvvm.ViewModels
         {
             var p = new NavigationParameters();
 
-            p.Add("english_Selected_", this.english_Selected_);
-            p.Add("japanese_Selected_", this.japanese_Selected_);
+            p.Add("l_Eng_", this.l_Eng_);
+            p.Add("l_Jap_", this.l_Jap_);
 
             await this.navigation_Service_.GoBackAsync(p);
         }
@@ -212,7 +177,7 @@ namespace cca_p_mvvm.ViewModels
 
         private void SetLanguage()
         {
-            if(this.english_Selected_)
+            if(this.l_Eng_.Is_English_Selected_)
             {
                 this.Setting_Frame_Label_ = this.l_Eng_.Word[ENG_WORD.SETTING_FRAME_LABEL];
                 this.Setting_Language_Label_ = this.l_Eng_.Word[ENG_WORD.SETTING_LANGUAGE_LABEL];
@@ -221,7 +186,7 @@ namespace cca_p_mvvm.ViewModels
                 this.Setting_Accept_Button_ = this.l_Eng_.Word[ENG_WORD.SETTING_ACCEPT_BUTTON];
                 this.Setting_Close_Button_ = this.l_Eng_.Word[ENG_WORD.SETTING_CLOSE_BUTTON];
             }
-            else if(this.japanese_Selected_)
+            else if(this.l_Jap_.Is_Japanese_Selected_)
             {
                 this.Setting_Frame_Label_ = this.l_Jap_.Word[JAP_WORD.SETTING_FRAME_LABEL];
                 this.Setting_Language_Label_ = this.l_Jap_.Word[JAP_WORD.SETTING_LANGUAGE_LABEL];
@@ -239,8 +204,22 @@ namespace cca_p_mvvm.ViewModels
 
         public void OnNavigatedTo(INavigationParameters parameters)
         {
-            this.English_Selected_ = parameters.GetValue<bool>("english_Selected_");
-            this.Japanese_Selected_ = parameters.GetValue<bool>("japanese_Selected_");
+            //this.English_Selected_ = parameters.GetValue<bool>("english_Selected_");
+            //this.Japanese_Selected_ = parameters.GetValue<bool>("japanese_Selected_");
+            this.l_Eng_ = parameters.GetValue<LanguageEnglish>("l_Eng_");
+            this.l_Jap_ = parameters.GetValue<LanguageJapanese>("l_Jap_");
+
+            this.l_Eng_.Is_English_Selected_ = parameters.GetValue<LanguageEnglish>("l_Eng_").Is_English_Selected_;
+            this.l_Jap_.Is_Japanese_Selected_ = parameters.GetValue<LanguageJapanese>("l_Jap_").Is_Japanese_Selected_;
+
+            if (this.l_Eng_.Is_English_Selected_)
+            {
+                Console.WriteLine("engisih is selectd");
+            }
+            else if (this.l_Jap_.Is_Japanese_Selected_)
+            {
+                Console.WriteLine("Japanese is seleccted ");
+            }
 
             this.SetLanguage();
         }

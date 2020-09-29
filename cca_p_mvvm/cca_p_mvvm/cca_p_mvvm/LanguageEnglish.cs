@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Prism.Mvvm;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -12,6 +13,9 @@ namespace cca_p_mvvm
         SIGN_IN_USERNAME_ENTRY_PLACEHOLDER,
         SIGN_IN_PASSWORD_ENTRY_PLACEHOLDER,
         SIGN_IN_LOGIN_BUTTON,
+        SIGN_IN_LOGIN_ERROR_TITLE,
+        SIGN_IN_LOGIN_ERROR_MESSAGE,
+        SIGN_IN_LOGIN_ERROR_BUTTON,
 
         HUB_FRAME_LABEL,
         HUB_CHANNEL_BUTTON,
@@ -39,16 +43,29 @@ namespace cca_p_mvvm
         PROFILE_EDIT_ALERT_TITLE,
         PROFILE_EDIT_ALERT_MESSAGE,
         PROFILE_EDIT_ALERT_BUTTON,
+
+        CHAT_SEND_BUTTON,
+        CHAT_EDITOR_PLACEHOLDER,
+
+
+        CONNECTION_ERROR_TITLE,
+        CONNECTION_ERROR_MESSAGE,
+        CONNECTION_ERROR_BUTTON
     }
 
-    public class LanguageEnglish
+    public class LanguageEnglish : BindableBase
     {
         public LanguageEnglish()
         {
+            this.Is_English_Selected_ = true;
+
             this.word_.Add(ENG_WORD.SIGN_IN_FRAME_LABEL, "Sign In");
             this.word_.Add(ENG_WORD.SIGN_IN_USERNAME_ENTRY_PLACEHOLDER, "Username...");
             this.word_.Add(ENG_WORD.SIGN_IN_PASSWORD_ENTRY_PLACEHOLDER, "Password...");
             this.word_.Add(ENG_WORD.SIGN_IN_LOGIN_BUTTON, "Login");
+            this.word_.Add(ENG_WORD.SIGN_IN_LOGIN_ERROR_TITLE, "Error");
+            this.word_.Add(ENG_WORD.SIGN_IN_LOGIN_ERROR_MESSAGE, "Username and or password are incorrect. Please try again.");
+            this.word_.Add(ENG_WORD.SIGN_IN_LOGIN_ERROR_BUTTON, "Close");
 
             this.word_.Add(ENG_WORD.HUB_FRAME_LABEL, "Comsize");
             this.word_.Add(ENG_WORD.HUB_CHANNEL_BUTTON, "Channel");
@@ -76,15 +93,38 @@ namespace cca_p_mvvm
             this.word_.Add(ENG_WORD.PROFILE_EDIT_ALERT_TITLE, "Error");
             this.word_.Add(ENG_WORD.PROFILE_EDIT_ALERT_MESSAGE, "Firstname and or Lastname do not contain enough characters.");
             this.word_.Add(ENG_WORD.PROFILE_EDIT_ALERT_BUTTON, "Close");
+
+            this.Word.Add(ENG_WORD.CHAT_EDITOR_PLACEHOLDER, "Enter text here");
+            this.Word.Add(ENG_WORD.CHAT_SEND_BUTTON, "Send");
+
+            this.word_.Add(ENG_WORD.CONNECTION_ERROR_TITLE, "Error");
+            this.word_.Add(ENG_WORD.CONNECTION_ERROR_MESSAGE, "Could not connect to the internet.");
+            this.word_.Add(ENG_WORD.CONNECTION_ERROR_BUTTON, "Close");
         }
 
         private Dictionary<ENG_WORD, string> word_ = new Dictionary<ENG_WORD, string>();
+        private bool is_English_Selected_;
 
         public Dictionary<ENG_WORD, string> Word
         {
             get
             {
                 return this.word_;
+            }
+        }
+
+        public bool Is_English_Selected_
+        {
+            get
+            {
+                return this.is_English_Selected_;
+            }
+
+            set
+            {
+                this.is_English_Selected_ = value;
+                this.OnPropertyChanged("Is_English_Selected_");
+                this.SetProperty(ref this.is_English_Selected_, value);
             }
         }
     }
