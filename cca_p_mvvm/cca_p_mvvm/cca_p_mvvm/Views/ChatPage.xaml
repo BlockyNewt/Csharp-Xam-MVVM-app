@@ -29,7 +29,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Grid>
+                        <Grid Padding="10">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="*"/>
@@ -38,8 +38,8 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <Label Grid.Row="1" Text="{Binding Sender_Name_}"/>
-                            <Label Grid.Row="2" Text="{Binding Message_}" FontSize="16"/>
+                            <Label Grid.Row="1" Text="{Binding Sender_Name_}" FontSize="20"/>
+                            <Label Padding="5" Grid.Row="2" Text="{Binding Message_}" FontSize="16"/>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>

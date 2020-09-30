@@ -8,6 +8,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+//TESTING FOR NOW
+using System.Net;
+using System.Net.Sockets;
 
 namespace cca_p_mvvm.ViewModels
 {
@@ -24,6 +27,9 @@ namespace cca_p_mvvm.ViewModels
             this.l_Jap_ = new LanguageJapanese();
 
             this.messages_List_ = new ObservableCollection<Message>();
+
+            this.client_Connection_ = new ClientConnection();
+
         }
 
         private readonly INavigationService navigation_Service_;
@@ -31,6 +37,7 @@ namespace cca_p_mvvm.ViewModels
         private　LanguageEnglish l_Eng_ { get; set; }
         private　LanguageJapanese l_Jap_ { get; set; }
         private UserViewModel user_ { get; set; }
+        private ClientConnection client_Connection_ { get; set; }
 
         private IList<Message> messages_List_;
 
@@ -130,6 +137,8 @@ namespace cca_p_mvvm.ViewModels
         {
             //DON'T KNOW IF WE ARE GOING TO WANT TO PASS BACK PARAMETER YET 
 
+            this.client_Connection_.CloseAllConnections();
+
             await this.navigation_Service_.GoBackAsync();
         }
 
@@ -143,9 +152,22 @@ namespace cca_p_mvvm.ViewModels
                 message.Sender_Name_ = this.user_.First_Name_;
                 message.Message_ = this.Message_Text_Changed_;
 
+                Console.WriteLine("MY usernaem: " + this.user_.Username_);
+
+                message.Message_ = this.client_Connection_.SendMessage(this.user_.First_Name_, message.Message_);
+
                 this.Messages_List_.Add(message);
 
                 this.Message_Text_Changed_ = string.Empty;
+
+                //RECIEVE MESSAGE
+                //WILL WANT TO FIX THIS LATER SO IT'S NOT A - B - A TYPE ACTIONS
+                //DON'T WANT TO SEND THE RECEIVE, WE WANT TO RECEIVE ALL THE TIME WITHOUT HAVING TO SEND FIRST
+                Message serverMessage = new Message();
+                serverMessage.Sender_Name_ = "Server";
+                serverMessage.Message_ = this.client_Connection_.ReceiveMessage();
+
+                this.Messages_List_.Add(serverMessage);
             }
             else
             {
@@ -166,6 +188,10 @@ namespace cca_p_mvvm.ViewModels
             if(parameters.Count() > 0)
             {
                 this.user_ = parameters.GetValue<UserViewModel>("user_");
+                this.user_.First_Name_ = parameters.GetValue<UserViewModel>("user_").First_Name_;
+                this.user_.Last_Name_ = parameters.GetValue<UserViewModel>("user_").Last_Name_;
+                this.user_.Username_ = parameters.GetValue<UserViewModel>("user_").Username_;
+                this.user_.Password_ = parameters.GetValue<UserViewModel>("user_").Password_;
 
                 this.l_Eng_ = parameters.GetValue<LanguageEnglish>("l_Eng_");
                 this.l_Jap_ = parameters.GetValue<LanguageJapanese>("l_Jap_");
@@ -176,6 +202,9 @@ namespace cca_p_mvvm.ViewModels
                 this.Chat_Frame_Label_ = parameters.GetValue<string>("frame_Label_");
 
                 this.SetLanguage();
+
+                //CHECK CONNECTION HERE 
+                this.client_Connection_.Connect("192.168.12.7", 45000, this.user_.First_Name_);
             }
         }
 

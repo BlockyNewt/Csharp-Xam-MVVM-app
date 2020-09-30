@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <ApplicationIcon>comsize_Icon - Copy.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>

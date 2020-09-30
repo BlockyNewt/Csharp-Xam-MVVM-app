@@ -11,6 +11,7 @@ using System.Runtime.CompilerServices;
 using DryIoc;
 using Java.Util;
 using System.Collections.ObjectModel;
+using Org.Apache.Http.Cookie.Params;
 
 namespace cca_p_mvvm.ViewModels
 {
@@ -342,6 +343,8 @@ namespace cca_p_mvvm.ViewModels
                         UserViewModel user = new UserViewModel(); 
                         user.First_Name_ = this.User_Credidentials_[i].First_Name_;
                         user.Last_Name_ = this.User_Credidentials_[i].Last_Name_;
+                        user.Username_ = this.User_Credidentials_[i].Username_;
+                        user.Password_ = this.User_Credidentials_[i].Password_;
 
                         //PASS ALL THE REQUIRED VARIABLES INTO THE HOME PAGE
                         var p = new NavigationParameters();
