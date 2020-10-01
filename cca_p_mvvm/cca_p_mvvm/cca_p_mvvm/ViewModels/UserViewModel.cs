@@ -8,10 +8,27 @@ namespace cca_p_mvvm.ViewModels
 {
     public class UserViewModel : BindableBase
     {
+        private int id_;
         private string first_Name_;
         private string last_Name_;
         private string username_;
         private string password_;
+        private string picture_;
+
+        public int ID_
+        {
+            get
+            {
+                return this.id_;
+            }
+
+            set
+            {
+                this.id_ = value;
+                this.OnPropertyChanged("ID_");
+                this.SetProperty(ref this.id_, value);
+            }
+        }
 
         public string First_Name_
         {
@@ -90,6 +107,26 @@ namespace cca_p_mvvm.ViewModels
                 this.password_ = value;
                 this.OnPropertyChanged("Password_");
                 this.SetProperty(ref this.password_, value);
+            }
+        }
+
+        public string Picture_
+        {
+            get
+            {
+                if(string.IsNullOrEmpty(this.picture_))
+                {
+                    return "Empty string";
+                }
+
+                return this.picture_;
+            }
+
+            set
+            {
+                this.picture_ = value;
+                this.OnPropertyChanged("Picture_");
+                this.SetProperty(ref this.picture_, value);
             }
         }
     }

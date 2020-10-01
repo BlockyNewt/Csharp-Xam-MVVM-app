@@ -25,8 +25,8 @@ namespace cca_p_mvvm.ViewModels
             this.l_Eng_ = new LanguageEnglish();
             this.l_Jap_ = new LanguageJapanese();
 
-            this.user_Credidentials_ = new List<UserViewModel>();
-            this.GetUsers();
+            this.client_Connection_ = new ClientConnection();
+            this.client_Connection_.Connect("192.168.12.7", 45000);
 
             this.SetLanguage();
         }
@@ -51,12 +51,11 @@ namespace cca_p_mvvm.ViewModels
         private string connection_Error_Button_;
 
 
-        //THIS WILL GATHER ALL USER LOGINS AND PASSWORDS FROM THE JSON
-        private IList<UserViewModel> user_Credidentials_ { get; set; }
-
         //LANGUAGES
         public LanguageEnglish l_Eng_ { get; private set; }
         public LanguageJapanese l_Jap_ { get; private set; }
+        //CONNECTION TO THE SERVER
+        public ClientConnection client_Connection_ { get; private set; }
 
 
         public string Sign_In_Frame_Label_
@@ -291,41 +290,6 @@ namespace cca_p_mvvm.ViewModels
 
 
 
-        public IList<UserViewModel> User_Credidentials_
-        {
-            get
-            {
-                return this.user_Credidentials_;
-            }
-        }
-
-
-        private async void GetUsers()
-        {
-            //CHECKS CONNECTION AND THEN GRABS ALL THE CREATED USERS INSIDE THE JSON
-            if(this.CheckConnection())
-            {
-                WebServiceClient client = new WebServiceClient();
-                var result = await client.Get<UserViewModel>("https://my-json-server.typicode.com/BlockyNewt/test/users");
-
-                if (result != null)
-                {
-                    for (int i = 0; i < result.Count(); ++i)
-                    {
-                        UserViewModel newUser = new UserViewModel();
-                        newUser.First_Name_ = result[i].First_Name_;
-                        newUser.Last_Name_ = result[i].Last_Name_;
-                        newUser.Username_ = result[i].Username_;
-                        newUser.Password_ = result[i].Password_;
-
-                        this.User_Credidentials_.Add(newUser);
-                    }
-                }
-            }
-        }
-
-
-
 
         private DelegateCommand login_Command_;
         public DelegateCommand Login_Command_ => this.login_Command_ ?? (this.login_Command_ = new DelegateCommand(this.LoggingIn));
@@ -334,38 +298,44 @@ namespace cca_p_mvvm.ViewModels
             //FIRST CHECK CONNECTION
             if (this.CheckConnection())
             {
-                for(int i = 0; i < this.User_Credidentials_.Count(); ++i)
+                if (this.client_Connection_.LoginMessage(this.Username_Entry_Changed_Text_) == this.Password_Entry_Changed_Text_)
                 {
-                    //SECOND LOOP THROUGH ALL THE USER IN THE JSON FILE AND CHECK IF WE HAVE THE CORRECT CREDIDENTIALS
-                    if(this.Username_Entry_Changed_Text_ == this.User_Credidentials_[i].Username_ && this.Password_Entry_Changed_Text_ == this.user_Credidentials_[i].Password_)
-                    {
-                        //THIRD CREATE NEW USER IF THE USERNAME AND PASSWORD WERE CORRECT
-                        UserViewModel user = new UserViewModel(); 
-                        user.First_Name_ = this.User_Credidentials_[i].First_Name_;
-                        user.Last_Name_ = this.User_Credidentials_[i].Last_Name_;
-                        user.Username_ = this.User_Credidentials_[i].Username_;
-                        user.Password_ = this.User_Credidentials_[i].Password_;
+                    Console.Write("Username and password are correct\n");
 
-                        //PASS ALL THE REQUIRED VARIABLES INTO THE HOME PAGE
-                        var p = new NavigationParameters();
+                    //GET USER ID, FIRSTNAME, AND LASTNAME
+                    string[] userInfo = this.client_Connection_.GetUser(this.Password_Entry_Changed_Text_);
 
-                        p.Add("l_Eng_", this.l_Eng_);
-                        p.Add("l_Jap_", this.l_Jap_);
-                        p.Add("user_", user);
+                    UserViewModel user = new UserViewModel();
 
-                        this.Username_Entry_Changed_Text_ = string.Empty;
-                        this.Password_Entry_Changed_Text_ = string.Empty;
+                    //Console.WriteLine("#OUT# ID: " + userInfo[0] + " Name: " + userInfo[1] + " Last: " + userInfo[2]);
 
-                        await this.navigation_Service_.NavigateAsync("HomePage", p);
+                    user.ID_ = Convert.ToInt32(userInfo[0]);
+                    user.First_Name_ = userInfo[1];
+                    user.Last_Name_ = userInfo[2];
+                    user.Picture_ = userInfo[3];
+                    Console.WriteLine("Picture: " + user.Picture_);
 
-                        //MAY WANT TO FIGURE SOMETHING OUT FOR THIS. WE DONT WANT TO KEEP ALL USER CREDIDENTIALS ON THE CLIENT AFTER LOGIN
-                        //this.User_Credidentials_.Clear();
-                        //Console.WriteLine("Cleared the creds ");
-                    }
-                    else
-                    {
-                        await Application.Current.MainPage.DisplayAlert(this.Sign_In_Login_Error_Title_, this.Sign_In_Login_Error_Message_, this.Sign_In_Login_Error_Button_);
-                    }
+
+
+                    //PASS VARIABLES
+                    var p = new NavigationParameters();
+
+                    p.Add("l_Eng_", this.l_Eng_);
+                    p.Add("l_Jap_", this.l_Jap_);
+                    p.Add("user_", user);
+                    p.Add("client_Connection_", this.client_Connection_);
+
+                    //EMPTY THE USERNAME AND PASSWORD CHANGED TEXT STRINGS
+                    this.Username_Entry_Changed_Text_ = string.Empty;
+                    this.Password_Entry_Changed_Text_ = string.Empty;
+
+                    //GOTO NEXT PAGE
+                    await this.navigation_Service_.NavigateAsync("HomePage", p);
+                }
+                else
+                {
+                    Console.WriteLine("Error with login");
+                    await Application.Current.MainPage.DisplayAlert(this.Sign_In_Login_Error_Title_, this.Sign_In_Login_Error_Message_, this.Sign_In_Login_Error_Button_);
                 }
             }
             else

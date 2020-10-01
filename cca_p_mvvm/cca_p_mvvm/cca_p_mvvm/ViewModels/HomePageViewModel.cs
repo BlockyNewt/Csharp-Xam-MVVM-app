@@ -28,11 +28,12 @@ namespace cca_p_mvvm.ViewModels
             this.user_ = new UserViewModel();
 
             this.channel_ = new ObservableCollection<Channel>();
-            this.GetChannels();
+            //this.GetChannels();
 
 
-            this.direct_Message_ = new ObservableCollection<DirectMessage>();
-            this.GetDirectMessages();
+            this.user_Messages_ = new ObservableCollection<UserViewModel>();
+
+            this.client_Connection_ = new ClientConnection();
 
             this.SetLanguage();
         }
@@ -60,12 +61,16 @@ namespace cca_p_mvvm.ViewModels
         private bool profile_Display_;
 
         private IList<Channel> channel_;
-        private IList<DirectMessage> direct_Message_;
+        private IList<UserViewModel> user_Messages_;
 
+        //LANGUAGES
         public LanguageEnglish l_Eng_ { get; private set; }
         public LanguageJapanese l_Jap_ { get; private set; }
         public UserViewModel u_View_Model_ { get; private set; }
+        //LOGGED IN USER
         public UserViewModel user_ { get; private set; }
+        public ClientConnection client_Connection_ { get; private set; }
+
 
         public string Hub_Frame_Label_
         {
@@ -382,63 +387,56 @@ namespace cca_p_mvvm.ViewModels
             }
         }
 
-        public IList<DirectMessage> Direct_Messages_
+        public IList<UserViewModel> User_Messages_
         {
             get
             {
-                return this.direct_Message_;
+                return this.user_Messages_;
             }
 
             set
             {
                 Console.WriteLine("Updateing setter");
-                this.direct_Message_ = value;
+                this.user_Messages_ = value;
 
                 //this.SetProperty(ref this.direct_Message_, value);
-                this.OnPropertyChanged("Direct_Message_");
+                this.OnPropertyChanged("User_Messages_");
             }
         }
         
 
         private async void GetChannels()
         {
-            //COLLECTS ALL CHANNELS FROM JSON FILE
+            string[] allChannels = this.client_Connection_.GetChannels();
 
-            //SHOULD ALSO MAKE A CHECK CONNECTION FOR HOME PAGE AS WELL
-
-            WebServiceClient client = new WebServiceClient();
-            var result = await client.Get<Channel>("https://my-json-server.typicode.com/BlockyNewt/test/channels");
-
-            if(result != null)
+            for(int i = 0; i < allChannels.Length - 1; ++i)
             {
-                for(int i = 0; i < result.Count(); ++i)
-                {
-                    Channel channel = new Channel();
-                    channel.Name_ = result[i].Name_;
+                Channel channel = new Channel();
+                channel.Name_ = allChannels[i];
 
-                    this.Channel_.Add(channel);
-                }
+                this.Channel_.Add(channel);
             }
         }
 
-        private async void GetDirectMessages()
+        private void GetDirectMessages()
         {
-            //COLLECTS ALL DMS
-            
-            //WE WILL WANT TO MAKE USER SPECIFIED DMS LATER BUT FOR NOW THIS WILL DO
-
-            WebServiceClient client = new WebServiceClient();
-            var result = await client.Get<DirectMessage>("https://my-json-server.typicode.com/BlockyNewt/test/direct_messages");
-
-            if(result != null)
+            string[] allUsers = this.client_Connection_.GetAllUsers();
+            Console.WriteLine("My userid: " + this.user_.ID_);
+            for(int i = 0; i < allUsers.Length - 1; ++i)
             {
-                for(int i = 0; i < result.Count(); ++i)
-                {
-                    DirectMessage dm = new DirectMessage();
-                    dm.First_Name_ = result[i].First_Name_;
-                    dm.Last_Name_ = result[i].Last_Name_;
+                string seperatingUsers = allUsers[i];
+                string[] getUserInfo = seperatingUsers.Split(',');
 
-                    this.Direct_Messages_.Add(dm);
+                if (Convert.ToInt32(getUserInfo[0]) != this.user_.ID_)
+                {
+                    UserViewModel user = new UserViewModel();
+                    user.ID_ = Convert.ToInt32(getUserInfo[0]);
+                    user.First_Name_ = getUserInfo[1];
+                    user.Last_Name_ = getUserInfo[2];
+                    user.Picture_ = getUserInfo[3];
+
+
+                    this.User_Messages_.Add(user);
                 }
             }
         }
@@ -479,8 +477,8 @@ namespace cca_p_mvvm.ViewModels
             }
         }
 
-        private DirectMessage selected_Messages_ { get; set; }
-        public DirectMessage Selected_Messages_
+        private UserViewModel selected_Messages_ { get; set; }
+        public UserViewModel Selected_Messages_
         {
             get
             {
@@ -520,7 +518,7 @@ namespace cca_p_mvvm.ViewModels
             }
             else if (action == this.Hub_DM_Event_Delete_)
             {
-                this.Direct_Messages_.Remove(this.selected_Messages_);
+                this.User_Messages_.Remove(this.selected_Messages_);
             }
         }
 
@@ -589,6 +587,7 @@ namespace cca_p_mvvm.ViewModels
             p.Add("user_", this.user_);
             p.Add("l_Eng_", this.l_Eng_);
             p.Add("l_Jap_", this.l_Jap_);
+            p.Add("client_Connection_", this.client_Connection_);
 
             this.navigation_Service_.NavigateAsync("ProfileEditPage", p);
         }
@@ -602,6 +601,8 @@ namespace cca_p_mvvm.ViewModels
 
             p.Add("l_Eng_", this.l_Eng_);
             p.Add("l_Jap_", this.l_Jap_);
+
+            //WILL PROBABLY WANT TO PUT CLOSE ALL CONNECTIONS HERE
 
             await this.navigation_Service_.GoBackAsync(p);
         }
@@ -654,7 +655,7 @@ namespace cca_p_mvvm.ViewModels
 
             //IN ORDER FOR LANGUAGE TO CHANGE YOU MUST CHECK THE COUNT OF PARAMETERS BEING PASSED
 
-            if(parameters.Count == 3)
+            if(parameters.Count == 4)
             {
                 this.l_Eng_ = parameters.GetValue<LanguageEnglish>("l_Eng_");
                 this.l_Jap_ = parameters.GetValue<LanguageJapanese>("l_Jap_");
@@ -662,10 +663,20 @@ namespace cca_p_mvvm.ViewModels
                 this.l_Eng_.Is_English_Selected_ = parameters.GetValue<LanguageEnglish>("l_Eng_").Is_English_Selected_;
                 this.l_Jap_.Is_Japanese_Selected_ = parameters.GetValue<LanguageJapanese>("l_Jap_").Is_Japanese_Selected_;
 
+                this.user_.ID_ = parameters.GetValue<UserViewModel>("user_").ID_;
                 this.user_.First_Name_ = parameters.GetValue<UserViewModel>("user_").First_Name_;
                 this.user_.Last_Name_ = parameters.GetValue<UserViewModel>("user_").Last_Name_;
                 this.user_.Username_ = parameters.GetValue<UserViewModel>("user_").Username_;
                 this.user_.Password_ = parameters.GetValue<UserViewModel>("user_").Password_;
+                this.user_.Picture_ = parameters.GetValue<UserViewModel>("user_").Picture_;
+
+                this.client_Connection_ = parameters.GetValue<ClientConnection>("client_Connection_");
+                this.client_Connection_.Port_ = parameters.GetValue<ClientConnection>("client_Connection_").Port_;
+                this.client_Connection_.Local_Address_ = parameters.GetValue<ClientConnection>("client_Connection_").Local_Address_;
+
+                this.client_Connection_.CheckConnection();
+                this.GetChannels();
+                this.GetDirectMessages();
             }
             if(parameters.Count == 2)
             {

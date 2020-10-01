@@ -29,7 +29,6 @@ namespace cca_p_mvvm.ViewModels
             this.messages_List_ = new ObservableCollection<Message>();
 
             this.client_Connection_ = new ClientConnection();
-
         }
 
         private readonly INavigationService navigation_Service_;
@@ -137,7 +136,7 @@ namespace cca_p_mvvm.ViewModels
         {
             //DON'T KNOW IF WE ARE GOING TO WANT TO PASS BACK PARAMETER YET 
 
-            this.client_Connection_.CloseAllConnections();
+            //this.client_Connection_.CloseAllConnections();
 
             await this.navigation_Service_.GoBackAsync();
         }
@@ -163,11 +162,11 @@ namespace cca_p_mvvm.ViewModels
                 //RECIEVE MESSAGE
                 //WILL WANT TO FIX THIS LATER SO IT'S NOT A - B - A TYPE ACTIONS
                 //DON'T WANT TO SEND THE RECEIVE, WE WANT TO RECEIVE ALL THE TIME WITHOUT HAVING TO SEND FIRST
-                Message serverMessage = new Message();
-                serverMessage.Sender_Name_ = "Server";
-                serverMessage.Message_ = this.client_Connection_.ReceiveMessage();
+                //Message serverMessage = new Message();
+                //serverMessage.Sender_Name_ = "Server";
+                //serverMessage.Message_ = this.client_Connection_.ReceiveMessage();
 
-                this.Messages_List_.Add(serverMessage);
+                //this.Messages_List_.Add(serverMessage);
             }
             else
             {
@@ -188,6 +187,7 @@ namespace cca_p_mvvm.ViewModels
             if(parameters.Count() > 0)
             {
                 this.user_ = parameters.GetValue<UserViewModel>("user_");
+                this.user_.ID_ = parameters.GetValue<UserViewModel>("user_").ID_;
                 this.user_.First_Name_ = parameters.GetValue<UserViewModel>("user_").First_Name_;
                 this.user_.Last_Name_ = parameters.GetValue<UserViewModel>("user_").Last_Name_;
                 this.user_.Username_ = parameters.GetValue<UserViewModel>("user_").Username_;
@@ -204,7 +204,7 @@ namespace cca_p_mvvm.ViewModels
                 this.SetLanguage();
 
                 //CHECK CONNECTION HERE 
-                this.client_Connection_.Connect("192.168.12.7", 45000, this.user_.First_Name_);
+                //this.client_Connection_.Connect("192.168.12.7", 45000, this.user_.First_Name_);
             }
         }
 

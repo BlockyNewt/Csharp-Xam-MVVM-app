@@ -21,6 +21,8 @@ namespace cca_p_mvvm.ViewModels
 
             this.user_ = new UserViewModel();
 
+            this.client_Connection_ = new ClientConnection();
+
             this.SetLanguage();
         }
 
@@ -32,6 +34,8 @@ namespace cca_p_mvvm.ViewModels
         private string first_Name_Changed_Text_;
         private string last_Name_Placeholder_;
         private string last_Name_Changed_Text_;
+        private string picture_Changed_Text_;
+        private string picture_Placeholder_;
         private string confirm_Button_;
         private string cancel_Button_;
         private string alert_Title_;
@@ -41,6 +45,7 @@ namespace cca_p_mvvm.ViewModels
         public LanguageEnglish l_Eng_ { get; private set; }
         public LanguageJapanese l_Jap_ { get; private set; }
         public UserViewModel user_ { get; private set; }
+        public ClientConnection client_Connection_ { get; private set; }
 
 
 
@@ -121,6 +126,46 @@ namespace cca_p_mvvm.ViewModels
                 this.last_Name_Changed_Text_ = value;
                 this.OnPropertyChanged("Last_Name_Changed_Text_");
                 this.SetProperty(ref this.last_Name_Changed_Text_, value);
+            }
+        }
+
+        public string Picture_Changed_Text_
+        {
+            get
+            {
+                if(string.IsNullOrEmpty(this.picture_Changed_Text_))
+                {
+                    return "Empty string";
+                }
+
+                return this.picture_Changed_Text_;
+            }
+
+            set
+            {
+                this.picture_Changed_Text_ = value;
+                this.OnPropertyChanged("Picture_Changed_Text_");
+                this.SetProperty(ref this.picture_Changed_Text_, value);
+            }
+        }
+
+        public string Picture_Placeholder_
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(this.picture_Placeholder_))
+                {
+                    return "Empty string";
+                }
+
+                return this.picture_Placeholder_;
+            }
+
+            set
+            {
+                this.picture_Placeholder_ = value;
+                this.OnPropertyChanged("Picture_Placeholder_");
+                this.SetProperty(ref this.picture_Placeholder_, value);
             }
         }
 
@@ -230,25 +275,30 @@ namespace cca_p_mvvm.ViewModels
         private async void ProfileEditConfirmButton()
         {
             //IF THE CONFIRM BUTTON IS PRESSED THEN THE USERS VALUES WILL CHANGE TO DESIRED VALUES
-            if (!string.IsNullOrEmpty(this.first_Name_Changed_Text_) && !string.IsNullOrEmpty(this.last_Name_Changed_Text_))
-            {
-                Console.WriteLine("Getting into something it shouldn't");
+            Console.WriteLine("Getting into something it shouldn't");
 
+            if (this.First_Name_Changed_Text_.Length > 0)
+            {
                 this.user_.First_Name_ = this.first_Name_Changed_Text_;
-                this.user_.Last_Name_ = this.last_Name_Changed_Text_;
-
-                var p = new NavigationParameters();
-
-                Console.WriteLine("First NAme: " + this.user_.First_Name_);
-                p.Add("user_", this.user_);
-
-                await this.navigation_Service_.GoBackAsync(p);
             }
-            else
+            if (this.Last_Name_Changed_Text_.Length > 0)
             {
-                await Application.Current.MainPage.DisplayAlert(this.Alert_Title_, this.Alert_Message_, this.alert_Button_);
+                this.user_.Last_Name_ = this.last_Name_Changed_Text_;
+            }
+            if (this.Picture_Changed_Text_.Length > 0)
+            {
+                this.user_.Picture_ = this.picture_Changed_Text_;
             }
 
+
+            var p = new NavigationParameters();
+
+            p.Add("user_", this.user_);
+
+            //UPDATE THE VALUE IN THE DATABASE
+            this.client_Connection_.EditUser(this.user_.ID_, this.user_.First_Name_, this.user_.Last_Name_, this.user_.Picture_);
+
+            await this.navigation_Service_.GoBackAsync(p);
         }
 
         private DelegateCommand profile_Edit_Cancel_Button_Command_;
@@ -288,10 +338,12 @@ namespace cca_p_mvvm.ViewModels
             //VALUES BEING PASSED INTO THE SETTING PAGE FROM THE PREVIOUS PAGE
             if(parameters.Count() > 0)
             {
+                this.user_.ID_ = parameters.GetValue<UserViewModel>("user_").ID_;
                 this.user_.First_Name_ = parameters.GetValue<UserViewModel>("user_").First_Name_;
                 this.user_.Last_Name_ = parameters.GetValue<UserViewModel>("user_").Last_Name_;
                 this.user_.Username_ = parameters.GetValue<UserViewModel>("user_").Username_;
                 this.user_.Password_ = parameters.GetValue<UserViewModel>("user_").Password_;
+                this.user_.Picture_ = parameters.GetValue<UserViewModel>("user_").Picture_;
 
                 this.l_Eng_ = parameters.GetValue<LanguageEnglish>("l_Eng_");
                 this.l_Jap_ = parameters.GetValue<LanguageJapanese>("l_Jap_");
@@ -299,8 +351,13 @@ namespace cca_p_mvvm.ViewModels
                 this.l_Eng_.Is_English_Selected_ = parameters.GetValue<LanguageEnglish>("l_Eng_").Is_English_Selected_;
                 this.l_Jap_.Is_Japanese_Selected_ = parameters.GetValue<LanguageJapanese>("l_Jap_").Is_Japanese_Selected_;
 
+                this.client_Connection_ = parameters.GetValue<ClientConnection>("client_Connection_");
+                this.client_Connection_.Port_ = parameters.GetValue<ClientConnection>("client_Connection_").Port_;
+                this.client_Connection_.Local_Address_ = parameters.GetValue<ClientConnection>("client_Connection_").Local_Address_;
+
                 this.First_Name_Placeholder_ = this.user_.First_Name_;
                 this.Last_Name_Placeholder_ = this.user_.Last_Name_;
+                this.Picture_Placeholder_ = this.user_.Picture_;
 
                 this.SetLanguage();
             }

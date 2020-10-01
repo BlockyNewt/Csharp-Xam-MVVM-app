@@ -52,7 +52,7 @@
 
     <!--DM TAB-->
     <StackLayout IsVisible="{Binding DM_Display_}">
-        <ListView ItemsSource="{Binding Direct_Messages_}" SelectedItem="{Binding Selected_Messages_}" HasUnevenRows="True">
+        <ListView ItemsSource="{Binding User_Messages_}" SelectedItem="{Binding Selected_Messages_}" HasUnevenRows="True">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -71,7 +71,7 @@
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                                <Image Grid.Column="1" Grid.ColumnSpan="1" Grid.RowSpan="4" Source="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" HeightRequest="75" WidthRequest="75" HorizontalOptions="StartAndExpand"/>
+                                <Image Grid.Column="1" Grid.ColumnSpan="1" Grid.RowSpan="4" Source="{Binding Picture_}" HeightRequest="75" WidthRequest="75" HorizontalOptions="StartAndExpand"/>
                                 <Label Grid.Column="2" Grid.ColumnSpan="1" Grid.Row="2" Text="{Binding First_Name_}" FontSize="14" HorizontalOptions="StartAndExpand"/>
                             </Grid>
                     </ViewCell>
@@ -93,9 +93,9 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Image Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Source="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" HorizontalOptions="Start"/>
+            <Image Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Source="{Binding user_.Picture_}" HorizontalOptions="Start"/>
             <Label Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="1"  Text="{Binding user_.First_Name_}"/>
-                <Label Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="1"  Text="{Binding user_.Last_Name_}"/>
+            <Label Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="1"  Text="{Binding user_.Last_Name_}"/>
             <Button Grid.Row="3" Grid.Column="1" Text="{Binding Hub_Profile_Edit_Button_}" Command="{Binding Profile_Edit_Button_Command_}"/>
             <Button Grid.Row="3" Grid.Column="2" Text="{Binding Hub_Profile_Logout_Button_}" Command="{Binding Profile_Logout_Button_Command_}"/>
         </Grid>
