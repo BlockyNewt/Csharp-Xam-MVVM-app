@@ -7,7 +7,7 @@
              NavigationPage.HasBackButton="False"
              NavigationPage.HasNavigationBar="False">
 
-    <StackLayout>
+    <StackLayout BackgroundColor="White">
 
         <StackLayout>
             <Grid Padding="10">
@@ -20,18 +20,17 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <Image Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Source="{Binding user_.Picture_}" HorizontalOptions="Start"/>
+                <Image Source="{Binding user_.Picture_}" HorizontalOptions="CenterAndExpand" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="3"/>
 
-                <Label Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="1" Text="{Binding First_Name_Changed_Text_}"/>
-                <Entry Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="1" Text="{Binding First_Name_Changed_Text_, Mode=OneWayToSource}" Placeholder="{Binding First_Name_Placeholder_}"/>
+                <Entry Text="{Binding Picture_Changed_Text_, Mode=OneWayToSource}" Placeholder="{Binding Picture_Placeholder_}" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2"/>
 
-                <Label Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="1" Text="{Binding Last_Name_Changed_Text_}"/>
-                <Entry Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="1" Text="{Binding Last_Name_Changed_Text_, Mode=OneWayToSource}" Placeholder="{Binding Last_Name_Placeholder_}"/>
+                <Entry Text="{Binding First_Name_Changed_Text_, Mode=OneWayToSource}" Placeholder="{Binding First_Name_Placeholder_}" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2"/>
 
-                <Entry Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="1" Text="{Binding Picture_Changed_Text_, Mode=OneWayToSource}" Placeholder="{Binding Picture_Placeholder_}"/>
+                <Entry Text="{Binding Last_Name_Changed_Text_, Mode=OneWayToSource}" Placeholder="{Binding Last_Name_Placeholder_}" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2"/>
 
-                <Button Grid.Row="6" Grid.Column="1" Text="{Binding Confirm_Button_}" Command="{Binding Profile_Edit_Confirm_Button_Command_}"/>
-                <Button Grid.Row="6" Grid.Column="2" Text="{Binding Cancel_Button_}" Command="{Binding Profile_Edit_Cancel_Button_Command_}"/>
+
+                <Button Text="{Binding Confirm_Button_}" Command="{Binding Profile_Edit_Confirm_Button_Command_}" Grid.Row="8" Grid.Column="1"/>
+                <Button Text="{Binding Cancel_Button_}" Command="{Binding Profile_Edit_Cancel_Button_Command_}" Grid.Row="8" Grid.Column="2"/>
 
             </Grid>
         </StackLayout>

@@ -50,6 +50,5 @@ namespace cca_p_mvvm.ViewModels
                 this.SetProperty(ref this.sender_Name_, value);
             }
         }
-       
     }
 }

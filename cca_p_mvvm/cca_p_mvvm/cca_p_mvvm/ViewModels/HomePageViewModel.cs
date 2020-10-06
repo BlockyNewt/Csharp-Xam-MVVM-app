@@ -28,8 +28,6 @@ namespace cca_p_mvvm.ViewModels
             this.user_ = new UserViewModel();
 
             this.channel_ = new ObservableCollection<Channel>();
-            //this.GetChannels();
-
 
             this.user_Messages_ = new ObservableCollection<UserViewModel>();
 
@@ -66,7 +64,10 @@ namespace cca_p_mvvm.ViewModels
         //LANGUAGES
         public LanguageEnglish l_Eng_ { get; private set; }
         public LanguageJapanese l_Jap_ { get; private set; }
+
+        //LOGGED IN USER ON THE CLIENT
         public UserViewModel u_View_Model_ { get; private set; }
+
         //LOGGED IN USER
         public UserViewModel user_ { get; private set; }
         public ClientConnection client_Connection_ { get; private set; }
@@ -405,37 +406,49 @@ namespace cca_p_mvvm.ViewModels
         }
         
 
-        private async void GetChannels()
+        private void GetChannels()
         {
+            //MAKE A STRING THAT WILL GATHER ALL THE CHANNELS INFORMATION FROM THE SERVER
             string[] allChannels = this.client_Connection_.GetChannels();
 
             for(int i = 0; i < allChannels.Length - 1; ++i)
             {
-                Channel channel = new Channel();
-                channel.Name_ = allChannels[i];
+                //SEPERATE EACH CHANNEL SO WE CAN GET THEM INDIVIDUALLY
+                string seperatingChannels = allChannels[i];
+                string[] getChannelInfo = seperatingChannels.Split(',');
 
+                //SET THE DATA FOR THE CHANNEL
+                Channel channel = new Channel();
+                channel.ID_ = Convert.ToInt32(getChannelInfo[0]);
+                channel.Name_ = getChannelInfo[1];
+
+                //ADD INTO LIST
                 this.Channel_.Add(channel);
             }
         }
 
         private void GetDirectMessages()
         {
+            //MAKE A STRING ARRAY THAT WILL GATHER ALL THE USERS INFORMATION FROM THE SERVER
             string[] allUsers = this.client_Connection_.GetAllUsers();
-            Console.WriteLine("My userid: " + this.user_.ID_);
+
             for(int i = 0; i < allUsers.Length - 1; ++i)
             {
+                //SEPERATE EACH USER SO WE CAN GET THEM INDIVIDUALLY
                 string seperatingUsers = allUsers[i];
                 string[] getUserInfo = seperatingUsers.Split(',');
 
+                //IF A USER ID WE PULL FROM THE SERVER IS THE SAME AS THE CURRENTLY LOGGED IN USER IT WILL NOT ADD IT TO THE LIST
                 if (Convert.ToInt32(getUserInfo[0]) != this.user_.ID_)
                 {
+                    //SET DATA FOR THE USER
                     UserViewModel user = new UserViewModel();
                     user.ID_ = Convert.ToInt32(getUserInfo[0]);
                     user.First_Name_ = getUserInfo[1];
                     user.Last_Name_ = getUserInfo[2];
                     user.Picture_ = getUserInfo[3];
 
-
+                    //ADD IT INTO THE LIST
                     this.User_Messages_.Add(user);
                 }
             }
@@ -464,15 +477,19 @@ namespace cca_p_mvvm.ViewModels
             //WHEN A CHANNEL IS CLICKED IT WILL DISPLAY AN ACTION SHEET GIVING YOU OPTIONS ON WHAT YOU CAN DO
             string action = await Application.Current.MainPage.DisplayActionSheet(this.selected_Channel_.Name_, this.Hub_Channel_Event_Cancel_, null, this.Hub_Channel_Event_Enter_);
 
+            //IF YOU CLICK THE ENTER ACTION THEN GO INTO A CHAT ROOM
             if (action == this.Hub_Channel_Event_Enter_)
             {
+                //CREATE PARAMETERS
                 var p = new NavigationParameters();
 
                 p.Add("user_", this.user_);
                 p.Add("l_Eng_", this.l_Eng_);
                 p.Add("l_Jap_", this.l_Jap_);
-                p.Add("frame_Label_", this.selected_Channel_.Name_);
+                p.Add("client_Connection_", this.client_Connection_);
+                p.Add("channel_", this.selected_Channel_);
 
+                //PASS PARAMETERS
                 await this.navigation_Service_.NavigateAsync("ChatPage", p);
             }
         }
@@ -499,25 +516,36 @@ namespace cca_p_mvvm.ViewModels
             //WHEN A DM IS CLICKED IT WILL DISPLAY AN ACTION SHEET GIVING YOU OPTIONS ON WHAT TO DO
             string action = await Application.Current.MainPage.DisplayActionSheet(this.selected_Messages_.First_Name_, this.Hub_DM_Event_Cancel_, null, this.Hub_DM_Event_Chat_, this.Hub_DM_Event_Profile_, this.Hub_DM_Event_Delete_);
 
+            //IF YOU CLICK THE CHAT ACTION, YOU WILL THEN BE BROUGHT TO A CHAT PAGE WITH THE CURRENTLY SELECTED USER
             if (action == this.Hub_DM_Event_Chat_)
             {
-                Console.WriteLine("Entering chat room with: " + this.selected_Messages_.First_Name_);
-
+                //CREATE PARAMETERS
                 var p = new NavigationParameters();
 
                 p.Add("user_", this.user_);
                 p.Add("l_Eng_", this.l_Eng_);
                 p.Add("l_Jap_", this.l_Jap_);
-                p.Add("frame_Label_", this.selected_Messages_.First_Name_);
-                
+                p.Add("client_Connection_", this.client_Connection_);
+                p.Add("target_User_", this.selected_Messages_);
+
+                //PASS PARAMETERS
                 await this.navigation_Service_.NavigateAsync("ChatPage", p);
             }
+            //IF YOU CLICK THE VIEW PROFILE ACTION, THEN IT WILL VIEW THE CURRENTLY SELECTED PROFILE 
             else if (action == this.Hub_DM_Event_Profile_)
             {
-                //VIEW PROFILE
+                //CREATE PARAMETERS
+                var p = new NavigationParameters();
+
+                p.Add("target_User_", this.selected_Messages_);
+
+                //PASS PARAMETERS
+                await this.navigation_Service_.NavigateAsync("ViewUserProfilePage", p);
             }
+            //IF YOU CLICKED THE DELETE ACTION, THEN IT WILL DELETE THE CURRENTLY SELECTED USER
             else if (action == this.Hub_DM_Event_Delete_)
             {
+                //REMOVE CURRENTLY SELECTED USER FROM THE LIST
                 this.User_Messages_.Remove(this.selected_Messages_);
             }
         }
@@ -541,7 +569,7 @@ namespace cca_p_mvvm.ViewModels
         public DelegateCommand DM_Button_Command_ => this.dm_Button_Command_ ?? (this.dm_Button_Command_ = new DelegateCommand(this.DMButton));
         private void DMButton()
         {
-            //IF CLICKED IT WILL DISPLAY DMS
+            //IF CLICKED IT WILL DISPLAY MESSAGES
             if (!this.DM_Display_)
             {
                 this.Channel_Display_ = false;
@@ -568,12 +596,13 @@ namespace cca_p_mvvm.ViewModels
         public DelegateCommand Setting_Button_Command_ => this.setting_Button_Command_ ?? (this.setting_Button_Command_ = new DelegateCommand(this.SettingButton));
         private async void SettingButton()
         {
-            //IF CLICKED IT WILL TAKE YOU TO THE SETTINGS PAGE 
+            //CREATE PARAMETERS
             var p = new NavigationParameters();
 
             p.Add("l_Eng_", this.l_Eng_);
             p.Add("l_Jap_", this.l_Jap_);
 
+            //PASS PARAMETERS
             await this.navigation_Service_.NavigateAsync("SettingPage", p);
         }
 
@@ -581,7 +610,7 @@ namespace cca_p_mvvm.ViewModels
         public DelegateCommand Profile_Edit_Button_Command_ => this.profile_Edit_Button_Command_ ?? (this.profile_Edit_Button_Command_ = new DelegateCommand(this.ProfileEditButton));
         private void ProfileEditButton()
         {
-            //IF CLICKED IT WILL TAKE YOU TO THE PROFILE EDIT PAGE
+            //CREATE PARAMETERS
             var p = new NavigationParameters();
 
             p.Add("user_", this.user_);
@@ -589,6 +618,7 @@ namespace cca_p_mvvm.ViewModels
             p.Add("l_Jap_", this.l_Jap_);
             p.Add("client_Connection_", this.client_Connection_);
 
+            //PASS PARAMETERS
             this.navigation_Service_.NavigateAsync("ProfileEditPage", p);
         }
 
@@ -596,20 +626,22 @@ namespace cca_p_mvvm.ViewModels
         public DelegateCommand Profile_Logout_Button_Command_ => this.profile_Logout_Button_Command_ ?? (this.profile_Logout_Button_Command_ = new DelegateCommand(this.ProfileLogoutButton));
         private async void ProfileLogoutButton()
         {
-            //THIS WILL LOG THE CURRENT USER OUT
+            //CREATE PARAMETERS
             var p = new NavigationParameters();
 
             p.Add("l_Eng_", this.l_Eng_);
             p.Add("l_Jap_", this.l_Jap_);
 
-            //WILL PROBABLY WANT TO PUT CLOSE ALL CONNECTIONS HERE
+            //IF I ADD A SHOW LOGIN FUNCTION, THEN THIS WOULD BE THE PLACE TO SET THE VALUE IN THE DATABASE TO LOGGED OFF
 
+            //PASS PARAMETERS 
             await this.navigation_Service_.GoBackAsync(p);
         }
 
 
         private void SetLanguage()
         {
+            //SET UI VARIABLES BASED ON THE CURRENTLY ACTIVE LANGUAGE
             if(this.l_Eng_.Is_English_Selected_)
             {
                 this.Hub_Frame_Label_ = this.l_Eng_.Word[ENG_WORD.HUB_FRAME_LABEL];
@@ -657,9 +689,6 @@ namespace cca_p_mvvm.ViewModels
 
             if(parameters.Count == 4)
             {
-                this.l_Eng_ = parameters.GetValue<LanguageEnglish>("l_Eng_");
-                this.l_Jap_ = parameters.GetValue<LanguageJapanese>("l_Jap_");
-
                 this.l_Eng_.Is_English_Selected_ = parameters.GetValue<LanguageEnglish>("l_Eng_").Is_English_Selected_;
                 this.l_Jap_.Is_Japanese_Selected_ = parameters.GetValue<LanguageJapanese>("l_Jap_").Is_Japanese_Selected_;
 
@@ -680,21 +709,17 @@ namespace cca_p_mvvm.ViewModels
             }
             if(parameters.Count == 2)
             {
-                this.l_Eng_ = parameters.GetValue<LanguageEnglish>("l_Eng_");
-                this.l_Jap_ = parameters.GetValue<LanguageJapanese>("l_Jap_");
-
                 this.l_Eng_.Is_English_Selected_ = parameters.GetValue<LanguageEnglish>("l_Eng_").Is_English_Selected_;
                 this.l_Jap_.Is_Japanese_Selected_ = parameters.GetValue<LanguageJapanese>("l_Jap_").Is_Japanese_Selected_;
             }
             if (parameters.Count == 1)
             {
-                Console.WriteLine("Count is 0");
                 this.user_.First_Name_ = parameters.GetValue<UserViewModel>("user_").First_Name_;
                 this.user_.Last_Name_ = parameters.GetValue<UserViewModel>("user_").Last_Name_;
                 this.user_.Username_ = parameters.GetValue<UserViewModel>("user_").Username_;
                 this.user_.Password_ = parameters.GetValue<UserViewModel>("user_").Password_;
+                this.user_.Picture_ = parameters.GetValue<UserViewModel>("user_").Picture_;
             }
-            
 
             this.SetLanguage();
         }

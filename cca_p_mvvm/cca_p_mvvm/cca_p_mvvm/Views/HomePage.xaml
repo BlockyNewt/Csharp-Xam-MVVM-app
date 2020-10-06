@@ -7,7 +7,7 @@
              NavigationPage.HasBackButton="False"
              NavigationPage.HasNavigationBar="False">
 
-    <StackLayout>
+    <StackLayout BackgroundColor="White">
         <Frame BackgroundColor="DarkSlateGray">
         <Grid>
             <Grid.RowDefinitions>
@@ -18,8 +18,8 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-                <Label Grid.Column="1" Grid.ColumnSpan="1" HorizontalOptions="CenterAndExpand" Text="{Binding Hub_Frame_Label_}" FontSize="24" TextColor="White"  />
-            <Button Grid.Column="1" HorizontalOptions="End" WidthRequest="40" HeightRequest="40" Command="{Binding Setting_Button_Command_}"/>
+                <Label Text="{Binding Hub_Frame_Label_}" FontSize="28" TextColor="White" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="1" Grid.ColumnSpan="1"/>
+                <ImageButton Source="settings_Icon" BackgroundColor="Transparent" HorizontalOptions="End" WidthRequest="40" HeightRequest="40" Command="{Binding Setting_Button_Command_}" Grid.Column="1"/>
         </Grid>
     </Frame>
 
@@ -28,12 +28,12 @@
 
     <!--CHANNEL TAB-->
     <StackLayout IsVisible="{Binding Channel_Display_}">
-        <Label Text="{Binding Hub_Channel_Label_}" FontSize="16" TextColor="Black"/>
-        <ListView ItemsSource="{Binding Channel_}" SelectedItem="{Binding Selected_Channel_}">
+        <Label Text="{Binding Hub_Channel_Label_}" FontSize="20" TextColor="Black"/>
+        <ListView ItemsSource="{Binding Channel_}" SelectedItem="{Binding Selected_Channel_}" SeparatorColor="Transparent" SeparatorVisibility="None" HasUnevenRows="True">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Grid Padding="10">
+                            <Grid Padding="10" BackgroundColor="White">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="*"/>
@@ -42,7 +42,7 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <Label Grid.Column="1" Text="{Binding Name_}" FontSize="14" HorizontalOptions="StartAndExpand"/>
+                                <Label Text="{Binding Name_}" FontSize="18" HorizontalOptions="StartAndExpand" Grid.Column="1"/>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
@@ -52,11 +52,11 @@
 
     <!--DM TAB-->
     <StackLayout IsVisible="{Binding DM_Display_}">
-        <ListView ItemsSource="{Binding User_Messages_}" SelectedItem="{Binding Selected_Messages_}" HasUnevenRows="True">
+            <ListView ItemsSource="{Binding User_Messages_}" SelectedItem="{Binding Selected_Messages_}" HasUnevenRows="True" SeparatorColor="Black" SeparatorVisibility="None">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Grid Padding="2">
+                            <Grid Padding="2" BackgroundColor="White">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="*"/>
@@ -64,15 +64,9 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                                <Image Grid.Column="1" Grid.ColumnSpan="1" Grid.RowSpan="4" Source="{Binding Picture_}" HeightRequest="75" WidthRequest="75" HorizontalOptions="StartAndExpand"/>
-                                <Label Grid.Column="2" Grid.ColumnSpan="1" Grid.Row="2" Text="{Binding First_Name_}" FontSize="14" HorizontalOptions="StartAndExpand"/>
+                                <Image Source="{Binding Picture_}" HeightRequest="75" WidthRequest="75" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="1" Grid.ColumnSpan="1" Grid.RowSpan="4"/>
+                                <Label Text="{Binding First_Name_}" FontSize="18" HorizontalOptions="StartAndExpand" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="2"/>
                             </Grid>
                     </ViewCell>
                 </DataTemplate>
@@ -93,29 +87,29 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Image Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Source="{Binding user_.Picture_}" HorizontalOptions="Start"/>
-            <Label Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="1"  Text="{Binding user_.First_Name_}"/>
-            <Label Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="1"  Text="{Binding user_.Last_Name_}"/>
-            <Button Grid.Row="3" Grid.Column="1" Text="{Binding Hub_Profile_Edit_Button_}" Command="{Binding Profile_Edit_Button_Command_}"/>
-            <Button Grid.Row="3" Grid.Column="2" Text="{Binding Hub_Profile_Logout_Button_}" Command="{Binding Profile_Logout_Button_Command_}"/>
+                <Image Source="{Binding user_.Picture_}" HorizontalOptions="StartAndExpand" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2"/>
+                <Label Text="{Binding user_.First_Name_}" FontSize="18" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="1"/>
+                <Label Text="{Binding user_.Last_Name_}" FontSize="18" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="1"/>
+                <Button Text="{Binding Hub_Profile_Edit_Button_}" Command="{Binding Profile_Edit_Button_Command_}" Grid.Row="3" Grid.Column="1"/>
+                <Button Text="{Binding Hub_Profile_Logout_Button_}" Command="{Binding Profile_Logout_Button_Command_}" Grid.Row="3" Grid.Column="2"/>
         </Grid>
     </StackLayout>
 
 
     <!--TAB BUTTONS-->
-    <StackLayout VerticalOptions="EndAndExpand">
-        <Grid Padding="5">
+    <StackLayout VerticalOptions="EndAndExpand" BackgroundColor="Transparent">
+        <Grid Padding="2" BackgroundColor="Transparent">
             <Grid.RowDefinitions>
-                <RowDefinition Height="70"/>
+                <RowDefinition Height="75"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button Text="{Binding Hub_Channel_Button_}" Command="{Binding Channel_Button_Command_}"  Grid.Column="1" HorizontalOptions="FillAndExpand"/>
-            <Button Text="{Binding Hub_DM_Button_}" Command="{Binding DM_Button_Command_}" Grid.Column="2" HorizontalOptions="FillAndExpand"/>
-            <Button Text="{Binding Hub_Profile_Button_}" Command="{Binding Profile_Button_Command_}" Grid.Column="3" HorizontalOptions="FillAndExpand"/>
+                <Button Text="{Binding Hub_Channel_Button_}" Command="{Binding Channel_Button_Command_}" HorizontalOptions="FillAndExpand" Grid.Column="1"/>
+                <Button Text="{Binding Hub_DM_Button_}" Command="{Binding DM_Button_Command_}" HorizontalOptions="FillAndExpand" Grid.Column="2"/>
+                <Button Text="{Binding Hub_Profile_Button_}" Command="{Binding Profile_Button_Command_}" HorizontalOptions="FillAndExpand" Grid.Column="3"/>
         </Grid>
     </StackLayout>
 

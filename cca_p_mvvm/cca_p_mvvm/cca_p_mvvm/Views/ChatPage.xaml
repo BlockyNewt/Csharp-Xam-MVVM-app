@@ -19,8 +19,8 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="1" HorizontalOptions="Start" Command="{Binding Back_Button_Command_}" WidthRequest="40" HeightRequest="40"/>
-                <Label Grid.Column="1" Grid.ColumnSpan="1" Text="{Binding Chat_Frame_Label_}" TextColor="White" HorizontalOptions="Center" FontSize="24"/>
+                <ImageButton Source="back_Button" BackgroundColor="Transparent" HorizontalOptions="Start" WidthRequest="40" HeightRequest="40" Command="{Binding Back_Button_Command_}" Grid.Column="1"/>
+                <Label Text="{Binding Chat_Frame_Label_}" TextColor="White" FontSize="24" HorizontalOptions="Center" Grid.Column="1" Grid.ColumnSpan="1"/>
             </Grid>
         </Frame>
 
@@ -38,8 +38,8 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <Label Grid.Row="1" Text="{Binding Sender_Name_}" FontSize="20"/>
-                            <Label Padding="5" Grid.Row="2" Text="{Binding Message_}" FontSize="16"/>
+                            <Label Text="{Binding Sender_Name_}" FontSize="20" Grid.Row="1"/>
+                            <Label Text="{Binding Message_}" FontSize="16" Grid.Row="2" Padding="5"/>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
@@ -59,8 +59,8 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Editor Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2" Placeholder="{Binding Chat_Message_Editor_Placeholder_}" Text="{Binding Message_Text_Changed_, Mode=TwoWay}"/>
-                <Button Grid.Column="3" Text="{Binding Chat_Send_Button_}" Command="{Binding Send_Button_Command_}"/>
+                <Editor Text="{Binding Message_Text_Changed_, Mode=TwoWay}" Placeholder="{Binding Chat_Message_Editor_Placeholder_}" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+                <Button Text="{Binding Chat_Send_Button_}" Command="{Binding Send_Button_Command_}" Grid.Column="3"/>
             </Grid>
         </StackLayout>
 

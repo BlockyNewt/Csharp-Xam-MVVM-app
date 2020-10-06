@@ -50,10 +50,10 @@ namespace cca_p_mvvm.ViewModels
         private string connection_Error_Message_;
         private string connection_Error_Button_;
 
-
         //LANGUAGES
         public LanguageEnglish l_Eng_ { get; private set; }
         public LanguageJapanese l_Jap_ { get; private set; }
+
         //CONNECTION TO THE SERVER
         public ClientConnection client_Connection_ { get; private set; }
 
@@ -289,6 +289,18 @@ namespace cca_p_mvvm.ViewModels
         }
 
 
+        private DelegateCommand setting_Button_Command_;
+        public DelegateCommand Setting_Button_Command_ => this.setting_Button_Command_ ?? (this.setting_Button_Command_ = new DelegateCommand(this.SettingButton));
+        private async void SettingButton()
+        {
+            //IF CLICKED IT WILL TAKE YOU TO THE SETTINGS PAGE 
+            var p = new NavigationParameters();
+
+            p.Add("l_Eng_", this.l_Eng_);
+            p.Add("l_Jap_", this.l_Jap_);
+
+            await this.navigation_Service_.NavigateAsync("SettingPage", p);
+        }
 
 
         private DelegateCommand login_Command_;
@@ -298,48 +310,47 @@ namespace cca_p_mvvm.ViewModels
             //FIRST CHECK CONNECTION
             if (this.CheckConnection())
             {
-                if (this.client_Connection_.LoginMessage(this.Username_Entry_Changed_Text_) == this.Password_Entry_Changed_Text_)
+                //MAKE SURE BOTH USERNAME AND PASSWORD TEXT FIELDS ARE NOT EMPTY OR NULL
+                if(!string.IsNullOrEmpty(this.Username_Entry_Changed_Text_) && !string.IsNullOrEmpty(this.Password_Entry_Changed_Text_))
                 {
-                    Console.Write("Username and password are correct\n");
+                    //SEND LOGIN CREDIDENTIALS TO THE SERVER TO CHECK WITH THE DATABASE
+                    if (this.client_Connection_.LoginMessage(this.Username_Entry_Changed_Text_) == this.Password_Entry_Changed_Text_)
+                    {
+                        //GET USER ID, FIRSTNAME, AND LASTNAME
+                        string[] userInfo = this.client_Connection_.GetUser(this.Password_Entry_Changed_Text_);
 
-                    //GET USER ID, FIRSTNAME, AND LASTNAME
-                    string[] userInfo = this.client_Connection_.GetUser(this.Password_Entry_Changed_Text_);
+                        UserViewModel user = new UserViewModel();
+                        user.ID_ = Convert.ToInt32(userInfo[0]);
+                        user.First_Name_ = userInfo[1];
+                        user.Last_Name_ = userInfo[2];
+                        user.Picture_ = userInfo[3];
+                        Console.WriteLine("Picture: " + user.Picture_);
 
-                    UserViewModel user = new UserViewModel();
+                        //PASS VARIABLES TO NEXT PAGE
+                        var p = new NavigationParameters();
 
-                    //Console.WriteLine("#OUT# ID: " + userInfo[0] + " Name: " + userInfo[1] + " Last: " + userInfo[2]);
+                        p.Add("l_Eng_", this.l_Eng_);
+                        p.Add("l_Jap_", this.l_Jap_);
+                        p.Add("user_", user);
+                        p.Add("client_Connection_", this.client_Connection_);
 
-                    user.ID_ = Convert.ToInt32(userInfo[0]);
-                    user.First_Name_ = userInfo[1];
-                    user.Last_Name_ = userInfo[2];
-                    user.Picture_ = userInfo[3];
-                    Console.WriteLine("Picture: " + user.Picture_);
+                        //RESET USERNAME AND PASSWORD TEXT FIELDS
+                        this.Username_Entry_Changed_Text_ = string.Empty;
+                        this.Password_Entry_Changed_Text_ = string.Empty;
 
-
-
-                    //PASS VARIABLES
-                    var p = new NavigationParameters();
-
-                    p.Add("l_Eng_", this.l_Eng_);
-                    p.Add("l_Jap_", this.l_Jap_);
-                    p.Add("user_", user);
-                    p.Add("client_Connection_", this.client_Connection_);
-
-                    //EMPTY THE USERNAME AND PASSWORD CHANGED TEXT STRINGS
-                    this.Username_Entry_Changed_Text_ = string.Empty;
-                    this.Password_Entry_Changed_Text_ = string.Empty;
-
-                    //GOTO NEXT PAGE
-                    await this.navigation_Service_.NavigateAsync("HomePage", p);
-                }
-                else
-                {
-                    Console.WriteLine("Error with login");
-                    await Application.Current.MainPage.DisplayAlert(this.Sign_In_Login_Error_Title_, this.Sign_In_Login_Error_Message_, this.Sign_In_Login_Error_Button_);
+                        //GOTO NEXT PAGE
+                        await this.navigation_Service_.NavigateAsync("HomePage", p);
+                    }
+                    else
+                    {
+                        //GIVE AN ERROR IF LOGIN CREDIDENTIALS CAME BACK INVALID
+                        await Application.Current.MainPage.DisplayAlert(this.Sign_In_Login_Error_Title_, this.Sign_In_Login_Error_Message_, this.Sign_In_Login_Error_Button_);
+                    }
                 }
             }
             else
             {
+                //RESET USERNAME AND PASSWORD TEXT FIELDS
                 this.Username_Entry_Changed_Text_ = string.Empty;
                 this.Password_Entry_Changed_Text_ = string.Empty;
             }
@@ -347,17 +358,18 @@ namespace cca_p_mvvm.ViewModels
 
         private bool CheckConnection()
         {
-            //CHECK TO SEE IF THE CURRENT CLIENT IS CONNECTED TO THE INTERNET OR WIFI
             var current = Connectivity.NetworkAccess;
 
             if (current == NetworkAccess.Internet)
             {
+                //IF CLIENT IS CONNECTED THEN CONTINUE
                 return true;
             }
             else
             {
                 //IF IT'S NOT CONNECTED THEN IT WILL DISPLAY AN ALERT 
                 Application.Current.MainPage.DisplayAlert(this.connection_Error_Title_, this.Connection_Error_Message_, this.connection_Error_Button_);
+
                 return false;
             }
         }

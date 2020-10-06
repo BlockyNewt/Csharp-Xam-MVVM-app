@@ -32,6 +32,7 @@ namespace cca_p_mvvm
             containerRegistry.RegisterForNavigation<SettingPage, SettingPageViewModel>();
             containerRegistry.RegisterForNavigation<ProfileEditPage, ProfileEditPageViewModel>();
             containerRegistry.RegisterForNavigation<ChatPage, ChatPageViewModel>();
+            containerRegistry.RegisterForNavigation<ViewUserProfilePage, ViewUserProfilePageViewModel>();
         }
     }
 }

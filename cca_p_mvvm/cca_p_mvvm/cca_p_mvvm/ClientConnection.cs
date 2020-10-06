@@ -145,11 +145,6 @@ namespace cca_p_mvvm
 
                     string[] splitAllChannels = allChannels.Split(';');
 
-                    for(int i = 0; i < splitAllChannels.Length; ++i)
-                    {
-                        Console.WriteLine("Channel Name: " + splitAllChannels[i] + "\n");
-                    }
-
                     return splitAllChannels;
                 }
                 else
@@ -201,9 +196,123 @@ namespace cca_p_mvvm
             }
         }
 
+        public string[] GetChannelMessages(int channelID)
+        {
+            string msg = "GET_CHANNEL_MESSAGES;" + Convert.ToString(channelID);
+
+            Byte[] data = System.Text.Encoding.ASCII.GetBytes(msg);
+
+            try
+            {
+                if(this.CheckConnection())
+                {
+                    this.stream_.Write(data, 0, data.Length);
+
+                    string allMessages = this.ReceiveMessage();
+                    if(allMessages != string.Empty)
+                    {
+                        string[] splitAllMessages = allMessages.Split(';');
+                     
+                        return splitAllMessages;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Returning null");
+                        return null;
+                    }
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+
+                return null;
+            }
+        }
+
+        public string[] GetDirectMessages(int senderID, int receiverID)
+        {
+            string msg = "GET_DIRECT_MESSAGES;" + Convert.ToInt32(senderID) + ";" + Convert.ToInt32(receiverID);
+
+            Byte[] data = System.Text.Encoding.ASCII.GetBytes(msg);
+
+            try
+            {
+                if (this.CheckConnection())
+                {
+                    this.stream_.Write(data, 0, data.Length);
+
+                    string allDirectMessages = this.ReceiveMessage();
+
+                    if(allDirectMessages != "EMPTY")
+                    {
+                        string[] splitAllDirectMessages = allDirectMessages.Split(';');
+
+                        return splitAllDirectMessages;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+
+                return null;
+            }
+        }
+
         public void EditUser(int id, string firstName, string lastName, string picture)
         {
             string msg = "EDIT;" + Convert.ToString(id) + ";" + firstName + ";" + lastName + ";" + picture;
+
+            Byte[] data = System.Text.Encoding.ASCII.GetBytes(msg);
+
+            try
+            {
+                if(this.CheckConnection())
+                {
+                    this.stream_.Write(data, 0, data.Length);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+        }
+
+        public void SendChannelMessage(int channelID, string userFirstname, string message)
+        {
+            string msg = "CHANNEL_MESSAGE;" + Convert.ToString(channelID) + ";" + userFirstname + ";" + message;
+
+            Byte[] data = System.Text.Encoding.ASCII.GetBytes(msg);
+
+            try
+            {
+                if(this.CheckConnection())
+                {
+                    this.stream_.Write(data, 0, data.Length);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.Write(e.ToString());
+            }
+        }
+
+        public void SendDirectMessage(int senderID, string senderName, int receiverID, string message)
+        {
+            string msg = "DIRECT_MESSAGE;" + Convert.ToString(senderID) + ";" + senderName + ";" + Convert.ToString(receiverID) + ";" + message;
 
             Byte[] data = System.Text.Encoding.ASCII.GetBytes(msg);
 
@@ -254,8 +363,15 @@ namespace cca_p_mvvm
 
                 //RETURN IT SO WE CAN ADD IT INTO A LIST ON THE CHATPAGEVIEWMODEL
                 responseMessage = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
-
-                return responseMessage;
+                if(responseMessage == "EMPTY")
+                {
+                    Console.WriteLine("Returning empty string ");
+                    return "EMPTY";
+                }
+                else
+                {
+                    return responseMessage;
+                }
             }
             else
             {

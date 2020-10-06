@@ -37,6 +37,9 @@ namespace cca_p_mvvm
         SETTING_RADIO_JAP_BUTTON,
         SETTING_ACCEPT_BUTTON,
         SETTING_CLOSE_BUTTON,
+        SETTING_APP_INFORMATION_LABEL,
+        SETTING_APP_VERSION_,
+
 
         PROFILE_EDIT_CONFIRM_BUTTON,
         PROFILE_EDIT_CANCEL_BUTTON,
@@ -67,9 +70,9 @@ namespace cca_p_mvvm
             this.word_.Add(ENG_WORD.SIGN_IN_LOGIN_ERROR_MESSAGE, "Username and or password are incorrect. Please try again.");
             this.word_.Add(ENG_WORD.SIGN_IN_LOGIN_ERROR_BUTTON, "Close");
 
-            this.word_.Add(ENG_WORD.HUB_FRAME_LABEL, "Comsize");
+            this.word_.Add(ENG_WORD.HUB_FRAME_LABEL, "Comsize Inc");
             this.word_.Add(ENG_WORD.HUB_CHANNEL_BUTTON, "Channel");
-            this.word_.Add(ENG_WORD.HUB_DM_BUTTON, "DM");
+            this.word_.Add(ENG_WORD.HUB_DM_BUTTON, "Messages");
             this.word_.Add(ENG_WORD.HUB_PROFILE_BUTTON, "Profile");
             this.word_.Add(ENG_WORD.HUB_CHANNEL_LABEL, "#Channel");
             this.word_.Add(ENG_WORD.HUB_PROFILE_EDIT_BUTTON, "Edit");
@@ -87,11 +90,13 @@ namespace cca_p_mvvm
             this.word_.Add(ENG_WORD.SETTING_RADIO_JAP_BUTTON, "Japanese");
             this.word_.Add(ENG_WORD.SETTING_ACCEPT_BUTTON, "Accept");
             this.word_.Add(ENG_WORD.SETTING_CLOSE_BUTTON, "Close");
+            this.word_.Add(ENG_WORD.SETTING_APP_INFORMATION_LABEL, "App Information");
+            this.word_.Add(ENG_WORD.SETTING_APP_VERSION_, "Version: ");
 
             this.word_.Add(ENG_WORD.PROFILE_EDIT_CONFIRM_BUTTON, "Confirm");
             this.word_.Add(ENG_WORD.PROFILE_EDIT_CANCEL_BUTTON, "Cancel");
             this.word_.Add(ENG_WORD.PROFILE_EDIT_ALERT_TITLE, "Error");
-            this.word_.Add(ENG_WORD.PROFILE_EDIT_ALERT_MESSAGE, "Firstname and or Lastname do not contain enough characters.");
+            this.word_.Add(ENG_WORD.PROFILE_EDIT_ALERT_MESSAGE, "Values have not been entered for any of the fields.");
             this.word_.Add(ENG_WORD.PROFILE_EDIT_ALERT_BUTTON, "Close");
 
             this.Word.Add(ENG_WORD.CHAT_EDITOR_PLACEHOLDER, "Enter text here");

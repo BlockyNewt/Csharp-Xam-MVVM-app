@@ -19,16 +19,20 @@ namespace cca_p_mvvm.ViewModels
 
             this.SetLanguage();
         }
-
+        //NAVIGATION SERVICES 
         private readonly INavigationService navigation_Service_;
 
+        //UI VARIABLES 
         private string setting_Frame_Label_;
         private string setting_Language_Label_;
         private string setting_Radio_ENG_Button_;
         private string setting_Radio_JAP_Button_;
         private string setting_Accept_Button_;
         private string setting_Close_Button_;
+        private string setting_App_Info_Label_;
+        private string setting_App_Version_;
 
+        //LANGUAGES
         public LanguageEnglish l_Eng_ { get; private set; }
         public LanguageJapanese l_Jap_ { get; private set; }
 
@@ -153,12 +157,53 @@ namespace cca_p_mvvm.ViewModels
             }
         }
 
+        public string Setting_App_Info_Label_
+        {
+            get
+            {
+                if(string.IsNullOrEmpty(this.setting_App_Info_Label_))
+                {
+                    return "Empty string";
+                }
+
+                return setting_App_Info_Label_;
+            }
+
+            set
+            {
+                this.setting_App_Info_Label_ = value;
+                this.OnPropertyChanged("Setting_App_Info_Label_");
+                this.SetProperty(ref this.setting_App_Info_Label_, value);
+            }
+        }
+
+        public string Setting_App_Version_
+        {
+            get
+            {
+                if(string.IsNullOrEmpty(this.setting_App_Version_))
+                {
+                    return "Empty string";
+                }
+
+                return this.setting_App_Version_;
+            }
+
+            set
+            {
+                this.setting_App_Version_ = value;
+                this.OnPropertyChanged("Setting_App_Version_");
+                this.SetProperty(ref this.setting_App_Version_, value);
+            }
+        }
+
+
 
         private DelegateCommand setting_Accept_Button_Command_;
         public DelegateCommand Setting_Accept_Button_Command_ => this.setting_Accept_Button_Command_ ?? (this.setting_Accept_Button_Command_ = new DelegateCommand(this.SettingAcceptButton));
         private void SettingAcceptButton()
         {
-            
+            //CHANGE THE CURRENT LANGUAGE FOR THE PAGE
             this.SetLanguage();
         }
 
@@ -166,17 +211,20 @@ namespace cca_p_mvvm.ViewModels
         public DelegateCommand Setting_Close_Button_Command_ => this.setting_Close_Button_Command_ ?? (this.setting_Close_Button_Command_ = new DelegateCommand(this.SettingCloseButton));
         private async void SettingCloseButton()
         {
+            //CREATE PARAMETERS
             var p = new NavigationParameters();
 
             p.Add("l_Eng_", this.l_Eng_);
             p.Add("l_Jap_", this.l_Jap_);
 
+            //PASS PARAMETERS
             await this.navigation_Service_.GoBackAsync(p);
         }
 
 
         private void SetLanguage()
         {
+            //SET LANGUAGE BASED ON WHICH ONE IS CURRENTLY ACTIVE
             if(this.l_Eng_.Is_English_Selected_)
             {
                 this.Setting_Frame_Label_ = this.l_Eng_.Word[ENG_WORD.SETTING_FRAME_LABEL];
@@ -185,6 +233,8 @@ namespace cca_p_mvvm.ViewModels
                 this.Setting_Radio_JAP_Button_ = this.l_Eng_.Word[ENG_WORD.SETTING_RADIO_JAP_BUTTON];
                 this.Setting_Accept_Button_ = this.l_Eng_.Word[ENG_WORD.SETTING_ACCEPT_BUTTON];
                 this.Setting_Close_Button_ = this.l_Eng_.Word[ENG_WORD.SETTING_CLOSE_BUTTON];
+                this.Setting_App_Info_Label_ = this.l_Eng_.Word[ENG_WORD.SETTING_APP_INFORMATION_LABEL];
+                this.Setting_App_Version_ = this.l_Eng_.Word[ENG_WORD.SETTING_APP_VERSION_] + "1.0.0";
             }
             else if(this.l_Jap_.Is_Japanese_Selected_)
             {
@@ -194,6 +244,8 @@ namespace cca_p_mvvm.ViewModels
                 this.Setting_Radio_JAP_Button_ = this.l_Jap_.Word[JAP_WORD.SETTING_RADIO_JAP_BUTTON];
                 this.Setting_Accept_Button_ = this.l_Jap_.Word[JAP_WORD.SETTING_ACCEPT_BUTTON];
                 this.Setting_Close_Button_ = this.l_Jap_.Word[JAP_WORD.SETTING_CLOSE_BUTTON];
+                this.Setting_App_Info_Label_ = this.l_Jap_.Word[JAP_WORD.SETTING_APP_INFORMATION_LABEL];
+                this.Setting_App_Version_ = this.l_Jap_.Word[JAP_WORD.SETTING_APP_VERSION_] + "1.0.0";
             }
         }
 
@@ -204,22 +256,8 @@ namespace cca_p_mvvm.ViewModels
 
         public void OnNavigatedTo(INavigationParameters parameters)
         {
-            //this.English_Selected_ = parameters.GetValue<bool>("english_Selected_");
-            //this.Japanese_Selected_ = parameters.GetValue<bool>("japanese_Selected_");
-            this.l_Eng_ = parameters.GetValue<LanguageEnglish>("l_Eng_");
-            this.l_Jap_ = parameters.GetValue<LanguageJapanese>("l_Jap_");
-
             this.l_Eng_.Is_English_Selected_ = parameters.GetValue<LanguageEnglish>("l_Eng_").Is_English_Selected_;
             this.l_Jap_.Is_Japanese_Selected_ = parameters.GetValue<LanguageJapanese>("l_Jap_").Is_Japanese_Selected_;
-
-            if (this.l_Eng_.Is_English_Selected_)
-            {
-                Console.WriteLine("engisih is selectd");
-            }
-            else if (this.l_Jap_.Is_Japanese_Selected_)
-            {
-                Console.WriteLine("Japanese is seleccted ");
-            }
 
             this.SetLanguage();
         }

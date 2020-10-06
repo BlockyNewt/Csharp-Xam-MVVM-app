@@ -18,3 +18,4 @@ C:\Users\S-03\Source\Repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvv
 C:\Users\S-03\Source\Repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\obj\Debug\netstandard2.0\Views\ChatPage.xaml.g.cs
 C:\Users\S-03\Source\Repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\obj\Debug\netstandard2.0\cca_p_mvvm.csproj.CoreCompileInputs.cache
 C:\Users\S-03\Source\Repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\obj\Debug\netstandard2.0\XamlC.stamp
+C:\Users\S-03\Source\Repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\obj\Debug\netstandard2.0\Views\ViewUserProfilePage.xaml.g.cs

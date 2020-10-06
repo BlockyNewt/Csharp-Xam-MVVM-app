@@ -7,14 +7,14 @@
              NavigationPage.HasBackButton="False"
              NavigationPage.HasNavigationBar="False">
 
-    <StackLayout>
+    <StackLayout BackgroundColor="White">
 
         <Frame BackgroundColor="DarkSlateGray">
             <Label Text="{Binding Setting_Frame_Label_}" FontSize="24" TextColor="White" HorizontalOptions="CenterAndExpand"/>
         </Frame>
 
         <StackLayout>
-            <Grid>
+            <Grid Padding="2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
@@ -23,26 +23,17 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Label Grid.Row="1" Text="{Binding Setting_Language_Label_}"/>
-                <RadioButton Grid.Row="2" Text="{Binding Setting_Radio_ENG_Button_}" IsChecked="{Binding l_Eng_.Is_English_Selected_}"/>
-                <RadioButton Grid.Row="3" Text="{Binding Setting_Radio_JAP_Button_}" IsChecked="{Binding l_Jap_.Is_Japanese_Selected_}"/>
+                <Label Text="{Binding Setting_Language_Label_}" FontSize="18" Grid.Row="1" Grid.Column="1"/>
+                <RadioButton Text="{Binding Setting_Radio_ENG_Button_}" IsChecked="{Binding l_Eng_.Is_English_Selected_}" Grid.Row="2" Grid.Column="1"/>
+                <RadioButton Text="{Binding Setting_Radio_JAP_Button_}" IsChecked="{Binding l_Jap_.Is_Japanese_Selected_}" Grid.Row="3" Grid.Column="1"/>
+                <Label Text="{Binding Setting_App_Info_Label_}" FontSize="18" Grid.Row="4" Grid.Column="1"/>
+                <Label Text="{Binding Setting_App_Version_}" Grid.Row="5" Grid.Column="1"/>
+
+                <Button Text="{Binding Setting_Accept_Button_}" Command="{Binding Setting_Accept_Button_Command_}" Grid.Row="7" Grid.Column="1"/>
+                <Button Text="{Binding Setting_Close_Button_}" Command="{Binding Setting_Close_Button_Command_}" Grid.Row="7" Grid.Column="2"/>
             </Grid>
         </StackLayout>
 
-        <StackLayout>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Button Grid.Column="1" Text="{Binding Setting_Accept_Button_}" Command="{Binding Setting_Accept_Button_Command_}"/>
-                <Button Grid.Column="2" Text="{Binding Setting_Close_Button_}" Command="{Binding Setting_Close_Button_Command_}"/>
-            </Grid>
-        </StackLayout>
 
     </StackLayout>
 

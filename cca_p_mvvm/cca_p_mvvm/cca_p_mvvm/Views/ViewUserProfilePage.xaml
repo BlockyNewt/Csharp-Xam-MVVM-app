@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="cca_p_mvvm.Views.ViewUserProfilePage"
+             NavigationPage.HasBackButton="False"
+             NavigationPage.HasNavigationBar="False">
+
+
+    <StackLayout>
+
+        <Frame BackgroundColor="DarkSlateGray">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <ImageButton Source="back_Button" BackgroundColor="Transparent" HorizontalOptions="Start" Command="{Binding Back_Button_Command}" WidthRequest="40" HeightRequest="40" Grid.Column="1"/>
+                <Label Text="{Binding target_User_.First_Name_}" TextColor="White" HorizontalOptions="Center" FontSize="24" Grid.Column="1" Grid.ColumnSpan="1"/>
+            </Grid>
+        </Frame>
+
+        <StackLayout>
+            <Grid Padding="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Image Source="{Binding target_User_.Picture_}" Grid.RowSpan="4" HorizontalOptions="CenterAndExpand" Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="1"/>
+                <Label Text="{Binding target_User_.First_Name_}" FontSize="18" HorizontalOptions="CenterAndExpand" Grid.ColumnSpan="1" Grid.Column="1" Grid.Row="6"/>
+                <Label Text="{Binding target_User_.Last_Name_}" FontSize="18" HorizontalOptions="CenterAndExpand" Grid.ColumnSpan="1" Grid.Column="2" Grid.Row="6"/>
+            </Grid>
+        </StackLayout>
+
+
+    </StackLayout>
+</ContentPage>

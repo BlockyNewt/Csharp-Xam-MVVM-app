@@ -42,9 +42,14 @@ namespace cca_p_mvvm.ViewModels
         private string alert_Message_;
         private string alert_Button_;
 
+        //LANGUAGES
         public LanguageEnglish l_Eng_ { get; private set; }
         public LanguageJapanese l_Jap_ { get; private set; }
+
+        //CURRENTLY LOGGED IN USER
         public UserViewModel user_ { get; private set; }
+
+        //CLIENT CONNECTION
         public ClientConnection client_Connection_ { get; private set; }
 
 
@@ -75,7 +80,7 @@ namespace cca_p_mvvm.ViewModels
             {
                 if (string.IsNullOrEmpty(this.first_Name_Changed_Text_))
                 {
-                    return "Empty string";
+                    return string.Empty;
                 }
 
                 return this.first_Name_Changed_Text_;
@@ -115,7 +120,7 @@ namespace cca_p_mvvm.ViewModels
             {
                 if (string.IsNullOrEmpty(this.last_Name_Changed_Text_))
                 {
-                    return "Empty string";
+                    return string.Empty;
                 }
 
                 return this.last_Name_Changed_Text_;
@@ -135,7 +140,7 @@ namespace cca_p_mvvm.ViewModels
             {
                 if(string.IsNullOrEmpty(this.picture_Changed_Text_))
                 {
-                    return "Empty string";
+                    return string.Empty;
                 }
 
                 return this.picture_Changed_Text_;
@@ -270,41 +275,61 @@ namespace cca_p_mvvm.ViewModels
         }
 
 
+
         private DelegateCommand profile_Edit_Confirm_Button_Command_;
         public DelegateCommand Profile_Edit_Confirm_Button_Command_ => this.profile_Edit_Confirm_Button_Command_ ?? (this.profile_Edit_Confirm_Button_Command_ = new DelegateCommand(this.ProfileEditConfirmButton));
         private async void ProfileEditConfirmButton()
         {
-            //IF THE CONFIRM BUTTON IS PRESSED THEN THE USERS VALUES WILL CHANGE TO DESIRED VALUES
-            Console.WriteLine("Getting into something it shouldn't");
-
-            if (this.First_Name_Changed_Text_.Length > 0)
+            //CHECK IF FIRSTNAME, LASTNAME, AND PICTURE FIELD TEXT VALUES ARE NOT NULL OR EMPTY
+            if(!string.IsNullOrEmpty(this.First_Name_Changed_Text_) && !string.IsNullOrEmpty(this.Last_Name_Changed_Text_) && !string.IsNullOrEmpty(this.Picture_Changed_Text_))
             {
-                this.user_.First_Name_ = this.first_Name_Changed_Text_;
+                //IF THE FIRSTNAME TEXT FIELD HAS BEEN CHANGED THEN UPDATE THE USERS FIRSTNAME
+                if (this.First_Name_Changed_Text_.Length > 0)
+                {
+                    this.user_.First_Name_ = this.First_Name_Changed_Text_;
+                }
+                //IF THE LASTNAME TEXT FIELD HAS BEEN CHANGED THEN UPDATE THE USERS LASTNAME
+                if (this.Last_Name_Changed_Text_.Length > 0)
+                {
+                    this.user_.Last_Name_ = this.Last_Name_Changed_Text_;
+                }
+                //IF THE PICTURES TEXT FIELD HAS BEEN CHANGED THEN UPDATE THE USERS PICTURE URL LINK
+                if (this.Picture_Changed_Text_.Length > 0)
+                {
+                    this.user_.Picture_ = this.Picture_Changed_Text_;
+                }
+
+                //CREATE PARAMETERS
+                var p = new NavigationParameters();
+
+                p.Add("user_", this.user_);
+
+                //UPDATE THE USERS VALUES IN THE DATABASE
+                this.client_Connection_.EditUser(this.user_.ID_, this.user_.First_Name_, this.user_.Last_Name_, this.user_.Picture_);
+
+                //PASS PARAMETERS
+                await this.navigation_Service_.GoBackAsync(p);
             }
-            if (this.Last_Name_Changed_Text_.Length > 0)
+            else
             {
-                this.user_.Last_Name_ = this.last_Name_Changed_Text_;
+                //IF ALL 3 TEXT FIELDS ARE NULL OR EMPTY THEN GIVE AN ERROR DEPENDING ON CURRENTLY ACTIVE LANGUAGE
+                if(this.l_Eng_.Is_English_Selected_)
+                {
+                    await Application.Current.MainPage.DisplayAlert(this.l_Eng_.Word[ENG_WORD.PROFILE_EDIT_ALERT_TITLE], this.l_Eng_.Word[ENG_WORD.PROFILE_EDIT_ALERT_MESSAGE], this.l_Eng_.Word[ENG_WORD.PROFILE_EDIT_ALERT_BUTTON]);
+                }
+                else
+                {
+                    await Application.Current.MainPage.DisplayAlert(this.l_Jap_.Word[JAP_WORD.PROFILE_EDIT_ALERT_TITLE], this.l_Jap_.Word[JAP_WORD.PROFILE_EDIT_ALERT_MESSAGE], this.l_Jap_.Word[JAP_WORD.PROFILE_EDIT_ALERT_BUTTON]);
+                }
             }
-            if (this.Picture_Changed_Text_.Length > 0)
-            {
-                this.user_.Picture_ = this.picture_Changed_Text_;
-            }
-
-
-            var p = new NavigationParameters();
-
-            p.Add("user_", this.user_);
-
-            //UPDATE THE VALUE IN THE DATABASE
-            this.client_Connection_.EditUser(this.user_.ID_, this.user_.First_Name_, this.user_.Last_Name_, this.user_.Picture_);
-
-            await this.navigation_Service_.GoBackAsync(p);
+            
         }
 
         private DelegateCommand profile_Edit_Cancel_Button_Command_;
         public DelegateCommand Profile_Edit_Cancel_Button_Command_ => this.profile_Edit_Cancel_Button_Command_ ?? (this.profile_Edit_Cancel_Button_Command_ = new DelegateCommand(this.ProfileEditCancelButton));
         private void ProfileEditCancelButton()
         {
+            //GO BACK TO PREVIOUS PAGE WITHOUT CHANGING ANYTHING 
             this.navigation_Service_.GoBackAsync();
         }
 

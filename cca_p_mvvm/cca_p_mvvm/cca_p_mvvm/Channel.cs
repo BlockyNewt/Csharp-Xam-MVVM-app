@@ -7,6 +7,7 @@ namespace cca_p_mvvm
     public class Channel
     {
         private string name_;
+        private int id_;
 
         public string Name_
         {
@@ -23,6 +24,19 @@ namespace cca_p_mvvm
             set
             {
                 this.name_ = value;
+            }
+        }
+
+        public int ID_
+        {
+            get
+            {
+                return this.id_;
+            }
+
+            set
+            {
+                this.id_ = value;
             }
         }
     }
