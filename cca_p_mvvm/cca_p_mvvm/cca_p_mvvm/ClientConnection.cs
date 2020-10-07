@@ -29,7 +29,6 @@ namespace cca_p_mvvm
                 this.port_ = value;
             }
         }
-
         public IPAddress Local_Address_
         {
             get
@@ -50,7 +49,7 @@ namespace cca_p_mvvm
             this.local_Address_ = IPAddress.Parse(server);
             this.port_ = port;
 
-            string connectedMsg = this.local_Address_ + " has connected.";
+            string connectedMsg = this.local_Address_ + " has connected." + "$";
 
             try
             {
@@ -68,7 +67,7 @@ namespace cca_p_mvvm
                     //SEND THE MESSAGE
                     this.stream_.Write(data, 0, data.Length);
 
-                    
+                    this.ReceiveMessage();
                 }
                 else
                 {
@@ -84,7 +83,7 @@ namespace cca_p_mvvm
 
         public string LoginMessage(string typedUsername)
         {
-            string newMessage = "USERNAME;" + typedUsername;
+            string newMessage = "USERNAME;" + typedUsername + "$";
 
             Byte[] data = System.Text.Encoding.ASCII.GetBytes(newMessage);
 
@@ -102,7 +101,9 @@ namespace cca_p_mvvm
 
         public string[] GetUser(string typedPassword)
         {
-            string newMessage = "PASSWORD;" + typedPassword;
+            string newMessage = "PASSWORD;" + typedPassword + "$";
+
+            Console.WriteLine(typedPassword);
 
             Byte[] data = System.Text.Encoding.ASCII.GetBytes(newMessage);
 
@@ -131,7 +132,7 @@ namespace cca_p_mvvm
 
         public string[] GetChannels()
         {
-            string msg = "CHANNELS;";
+            string msg = "CHANNELS;" + "$";
 
             Byte[] data = System.Text.Encoding.ASCII.GetBytes(msg);
 
@@ -162,7 +163,7 @@ namespace cca_p_mvvm
 
         public string[] GetAllUsers()
         {
-            string msg = "USERS;";
+            string msg = "USERS;" + "$";
 
             Byte[] data = System.Text.Encoding.ASCII.GetBytes(msg);
 
@@ -175,11 +176,6 @@ namespace cca_p_mvvm
                     string allUsers = this.ReceiveMessage();
 
                     string[] splitAllUsers = allUsers.Split(';');
-
-                    for(int i = 0; i < splitAllUsers.Length; ++i)
-                    {
-                        Console.WriteLine("USER: " + splitAllUsers[i] + "\n");
-                    }
 
                     return splitAllUsers;
                 }
@@ -198,7 +194,7 @@ namespace cca_p_mvvm
 
         public string[] GetChannelMessages(int channelID)
         {
-            string msg = "GET_CHANNEL_MESSAGES;" + Convert.ToString(channelID);
+            string msg = "GET_CHANNEL_MESSAGES;" + Convert.ToString(channelID) + "$";
 
             Byte[] data = System.Text.Encoding.ASCII.GetBytes(msg);
 
@@ -209,6 +205,7 @@ namespace cca_p_mvvm
                     this.stream_.Write(data, 0, data.Length);
 
                     string allMessages = this.ReceiveMessage();
+
                     if(allMessages != string.Empty)
                     {
                         string[] splitAllMessages = allMessages.Split(';');
@@ -217,7 +214,6 @@ namespace cca_p_mvvm
                     }
                     else
                     {
-                        Console.WriteLine("Returning null");
                         return null;
                     }
                 }
@@ -236,7 +232,7 @@ namespace cca_p_mvvm
 
         public string[] GetDirectMessages(int senderID, int receiverID)
         {
-            string msg = "GET_DIRECT_MESSAGES;" + Convert.ToInt32(senderID) + ";" + Convert.ToInt32(receiverID);
+            string msg = "GET_DIRECT_MESSAGES;" + Convert.ToInt32(senderID) + ";" + Convert.ToInt32(receiverID) + "$";
 
             Byte[] data = System.Text.Encoding.ASCII.GetBytes(msg);
 
@@ -274,7 +270,7 @@ namespace cca_p_mvvm
 
         public void EditUser(int id, string firstName, string lastName, string picture)
         {
-            string msg = "EDIT;" + Convert.ToString(id) + ";" + firstName + ";" + lastName + ";" + picture;
+            string msg = "EDIT;" + Convert.ToString(id) + ";" + firstName + ";" + lastName + ";" + picture + "$";
 
             Byte[] data = System.Text.Encoding.ASCII.GetBytes(msg);
 
@@ -293,7 +289,7 @@ namespace cca_p_mvvm
 
         public void SendChannelMessage(int channelID, string userFirstname, string message)
         {
-            string msg = "CHANNEL_MESSAGE;" + Convert.ToString(channelID) + ";" + userFirstname + ";" + message;
+            string msg = "CHANNEL_MESSAGE;" + Convert.ToString(channelID) + ";" + userFirstname + ";" + message + "$";
 
             Byte[] data = System.Text.Encoding.ASCII.GetBytes(msg);
 
@@ -312,7 +308,7 @@ namespace cca_p_mvvm
 
         public void SendDirectMessage(int senderID, string senderName, int receiverID, string message)
         {
-            string msg = "DIRECT_MESSAGE;" + Convert.ToString(senderID) + ";" + senderName + ";" + Convert.ToString(receiverID) + ";" + message;
+            string msg = "DIRECT_MESSAGE;" + Convert.ToString(senderID) + ";" + senderName + ";" + Convert.ToString(receiverID) + ";" + message + "$";
 
             Byte[] data = System.Text.Encoding.ASCII.GetBytes(msg);
 
@@ -331,7 +327,7 @@ namespace cca_p_mvvm
 
         public string SendMessage(string firstname, string message)
         {
-            string newMessage = firstname + ": " + message;
+            string newMessage = firstname + ": " + message + "$";
 
             //TRANSLATE THE MESSGE INTO ACII AND THEN STORE IT INTO A BYTE ARRAY
             Byte[] data = System.Text.Encoding.ASCII.GetBytes(newMessage);
@@ -363,13 +359,15 @@ namespace cca_p_mvvm
 
                 //RETURN IT SO WE CAN ADD IT INTO A LIST ON THE CHATPAGEVIEWMODEL
                 responseMessage = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
+
                 if(responseMessage == "EMPTY")
                 {
-                    Console.WriteLine("Returning empty string ");
                     return "EMPTY";
                 }
                 else
                 {
+                    Console.WriteLine(responseMessage);
+
                     return responseMessage;
                 }
             }
@@ -386,8 +384,6 @@ namespace cca_p_mvvm
             //CHECK IF WE ARE CONNECTED
             if (this.client_.Connected)
             {
-                Console.WriteLine("#### STILL CONNECTED ####");
-
                 return true;
             }
             else

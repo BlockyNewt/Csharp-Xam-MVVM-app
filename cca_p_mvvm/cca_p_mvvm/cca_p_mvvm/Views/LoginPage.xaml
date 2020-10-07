@@ -30,15 +30,7 @@
         </StackLayout>
 
 
-        
-
-
-
-        <!--TESTING API--><!--
-        <StackLayout>
-            <Label Text="{Binding Id_}" FontSize="24"/>
-            <Label Text="{Binding Title_}" FontSize="24"/>
-        </StackLayout>-->
+        <ActivityIndicator IsRunning="True" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
 
     </StackLayout>
 

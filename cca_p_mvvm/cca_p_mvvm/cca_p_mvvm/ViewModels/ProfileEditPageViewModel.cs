@@ -281,7 +281,7 @@ namespace cca_p_mvvm.ViewModels
         private async void ProfileEditConfirmButton()
         {
             //CHECK IF FIRSTNAME, LASTNAME, AND PICTURE FIELD TEXT VALUES ARE NOT NULL OR EMPTY
-            if(!string.IsNullOrEmpty(this.First_Name_Changed_Text_) && !string.IsNullOrEmpty(this.Last_Name_Changed_Text_) && !string.IsNullOrEmpty(this.Picture_Changed_Text_))
+            if(!string.IsNullOrEmpty(this.First_Name_Changed_Text_) || !string.IsNullOrEmpty(this.Last_Name_Changed_Text_) || !string.IsNullOrEmpty(this.Picture_Changed_Text_))
             {
                 //IF THE FIRSTNAME TEXT FIELD HAS BEEN CHANGED THEN UPDATE THE USERS FIRSTNAME
                 if (this.First_Name_Changed_Text_.Length > 0)
