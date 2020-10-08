@@ -7,6 +7,7 @@ using Xamarin.Forms;
 using Xamarin.Essentials;
 using Android.Content.PM;
 using Google.Protobuf.WellKnownTypes;
+using System.IO;
 
 namespace cca_p_mvvm
 {
@@ -360,7 +361,11 @@ namespace cca_p_mvvm
                 //RETURN IT SO WE CAN ADD IT INTO A LIST ON THE CHATPAGEVIEWMODEL
                 responseMessage = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
 
-                if(responseMessage == "EMPTY")
+                if (responseMessage == "EMPTY")
+                {
+                    return "EMPTY";
+                }
+                else if (responseMessage == string.Empty)
                 {
                     return "EMPTY";
                 }
@@ -373,7 +378,7 @@ namespace cca_p_mvvm
             }
             else
             {
-                return string.Empty;
+                return "EMPTY";
             }
         }
 

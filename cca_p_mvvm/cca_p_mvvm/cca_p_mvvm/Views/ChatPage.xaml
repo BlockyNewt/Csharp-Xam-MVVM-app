@@ -25,7 +25,7 @@
         </Frame>
 
 
-        <ListView ItemsSource="{Binding Messages_List_}" HasUnevenRows="True">
+        <ListView ItemsSource="{Binding Messages_List_}" HasUnevenRows="True" >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>

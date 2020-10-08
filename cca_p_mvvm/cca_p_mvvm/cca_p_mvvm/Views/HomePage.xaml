@@ -27,33 +27,33 @@
 
 
     <!--CHANNEL TAB-->
-    <StackLayout IsVisible="{Binding Channel_Display_}">
-        <Label Text="{Binding Hub_Channel_Label_}" FontSize="20" TextColor="Black"/>
-        <ListView ItemsSource="{Binding Channel_}" SelectedItem="{Binding Selected_Channel_}" SeparatorColor="Transparent" SeparatorVisibility="None" HasUnevenRows="True">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
+        <StackLayout IsVisible="{Binding Channel_Display_}">
+            <Label Text="{Binding Hub_Channel_Label_}" FontSize="20" TextColor="Black"/>
+            <ListView ItemsSource="{Binding Channel_}" SelectedItem="{Binding Selected_Channel_}" SeparatorColor="Transparent" SeparatorVisibility="None" HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
                             <Grid Padding="10" BackgroundColor="White">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
                                 <Label Text="{Binding Name_}" FontSize="18" HorizontalOptions="StartAndExpand" Grid.Column="1"/>
-                        </Grid>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </StackLayout>
-
-    <!--DM TAB-->
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+        
+        <!--DM TAB-->
     <StackLayout IsVisible="{Binding DM_Display_}">
             <ListView ItemsSource="{Binding User_Messages_}" SelectedItem="{Binding Selected_Messages_}" HasUnevenRows="True" SeparatorColor="Black" SeparatorVisibility="None">
-            <ListView.ItemTemplate>
+            <ListView.ItemTemplate> 
                 <DataTemplate>
                     <ViewCell>
                             <Grid Padding="2" BackgroundColor="White">
