@@ -26,11 +26,13 @@
                 <Entry Text="{Binding Password_Entry_Changed_Text_, Mode=TwoWay}" Placeholder="{Binding Sign_In_Password_Entry_Placeholder_}" Grid.Row="9" Grid.RowSpan="2" Grid.ColumnSpan="2" IsPassword="True" ClearButtonVisibility="WhileEditing" Margin="20,20,20,20"/>
 
                 <Button Text="{Binding Sign_In_Login_Button_}" HorizontalOptions="FillAndExpand" Command="{Binding Login_Command_}" Grid.Row="11" Grid.RowSpan="2" Grid.ColumnSpan="2" Margin="20,20,20,20"/>
+                <Button Text="{Binding Sign_In_Create_Account_Button_}" HorizontalOptions="FillAndExpand" Command="{Binding Create_Account_Button_Command_}" Grid.Row="12" Grid.RowSpan="2" Grid.ColumnSpan="2" Margin="20,20,20,20"/>
             </Grid>
         </StackLayout>
 
 
-        <ActivityIndicator IsRunning="True" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+        <!--WILL ADD LATER-->
+        <!--<ActivityIndicator IsRunning="True" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>-->
 
     </StackLayout>
 

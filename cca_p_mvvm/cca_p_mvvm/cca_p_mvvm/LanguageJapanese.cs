@@ -17,7 +17,24 @@ namespace cca_p_mvvm
         SIGN_IN_LOGIN_ERROR_TITLE,
         SIGN_IN_LOGIN_ERROR_MESSAGE,
         SIGN_IN_LOGIN_ERROR_BUTTON,
-        
+        SIGN_IN_CREATE_ACCOUNT_BUTTON,
+
+        CREATE_ACCOUNT_FIRST_NAME_LABEL,
+        CREATE_ACCOUNT_FIRST_NAME_PLACEHOLDER,
+        CREATE_ACCOUNT_LAST_NAME_LABEL,
+        CREATE_ACCOUNT_LAST_NAME_PLACEHOLDER,
+        CREATE_ACCOUNT_USERNAME_LABEL,
+        CREATE_ACCOUNT_USERNAME_PLACEHOLDER,
+        CREATE_ACCOUNT_PASSWORD_LABEL,
+        CREATE_ACCOUNT_PASSWORD_PLACEHOLDER,
+        CREATE_ACCOUNT_PROFILE_PICTURE_LABEL,
+        CREATE_ACCOUNT_PROFILE_PICTURE_PLACEHOLDER,
+        CREATE_ACCOUNT_CLEAR_BUTTON,
+        CREATE_ACCOUNT_CONFIRM_BUTTON,
+        CREATE_ACCOUNT_CANCEL_BUTTON,
+        CREATE_ACCOUNT_ERROR_TITLE,
+        CREATE_ACCOUNT_ERROR_MESSAGE,
+        CREATE_ACCOUNT_ERROR_BUTTON,
 
         HUB_FRAME_LABEL,
         HUB_CHANNEL_BUTTON,
@@ -70,6 +87,25 @@ namespace cca_p_mvvm
             this.word_.Add(JAP_WORD.SIGN_IN_LOGIN_ERROR_TITLE, "エラー");
             this.word_.Add(JAP_WORD.SIGN_IN_LOGIN_ERROR_MESSAGE, "ユーザーネームかパスワードが間違いているのでもう一度入力してください。");
             this.word_.Add(JAP_WORD.SIGN_IN_LOGIN_ERROR_BUTTON, "閉じる");
+            this.word_.Add(JAP_WORD.SIGN_IN_CREATE_ACCOUNT_BUTTON, "新規アカウント");
+
+            this.word_.Add(JAP_WORD.CREATE_ACCOUNT_FIRST_NAME_LABEL, "名");
+            this.word_.Add(JAP_WORD.CREATE_ACCOUNT_FIRST_NAME_PLACEHOLDER, "名");
+            this.word_.Add(JAP_WORD.CREATE_ACCOUNT_LAST_NAME_LABEL, "氏");
+            this.word_.Add(JAP_WORD.CREATE_ACCOUNT_LAST_NAME_PLACEHOLDER, "氏");
+            this.word_.Add(JAP_WORD.CREATE_ACCOUNT_USERNAME_LABEL, "ユーザーネーム");
+            this.word_.Add(JAP_WORD.CREATE_ACCOUNT_USERNAME_PLACEHOLDER, "ユーザーネーム");
+            this.word_.Add(JAP_WORD.CREATE_ACCOUNT_PASSWORD_LABEL, "パスワード");
+            this.word_.Add(JAP_WORD.CREATE_ACCOUNT_PASSWORD_PLACEHOLDER, "パスワード");
+            this.word_.Add(JAP_WORD.CREATE_ACCOUNT_PROFILE_PICTURE_LABEL, "プロファイルの写真");
+            this.word_.Add(JAP_WORD.CREATE_ACCOUNT_PROFILE_PICTURE_PLACEHOLDER, "ウエブサイトのURL");
+            this.word_.Add(JAP_WORD.CREATE_ACCOUNT_CLEAR_BUTTON, "クリア");
+            this.word_.Add(JAP_WORD.CREATE_ACCOUNT_CONFIRM_BUTTON, "完了");
+            this.word_.Add(JAP_WORD.CREATE_ACCOUNT_CANCEL_BUTTON, "キャンセル");
+            this.word_.Add(JAP_WORD.CREATE_ACCOUNT_ERROR_TITLE, "エラー");
+            this.word_.Add(JAP_WORD.CREATE_ACCOUNT_ERROR_MESSAGE, "パスワードが一緒じゃないのでもう一度を入力してみてください。");
+            this.word_.Add(JAP_WORD.CREATE_ACCOUNT_ERROR_BUTTON, "閉じる");
+
 
             this.word_.Add(JAP_WORD.HUB_FRAME_LABEL, "株式会社コンサイズ");
             this.word_.Add(JAP_WORD.HUB_CHANNEL_BUTTON, "チャンネル");

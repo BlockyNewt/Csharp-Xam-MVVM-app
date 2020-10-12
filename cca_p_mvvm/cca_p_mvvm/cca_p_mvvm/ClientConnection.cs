@@ -6,7 +6,6 @@ using System.Net.Sockets;
 using Xamarin.Forms;
 using Xamarin.Essentials;
 using Android.Content.PM;
-using Google.Protobuf.WellKnownTypes;
 using System.IO;
 
 namespace cca_p_mvvm
@@ -97,6 +96,25 @@ namespace cca_p_mvvm
             else
             {
                 return string.Empty;
+            }
+        }
+
+        public void CreateAccount(string firstname, string lastname, string username, string password, string profilePicture)
+        {
+            try
+            {
+                string msg = "CREATE_ACCOUNT;" + firstname + ";" + lastname + ";" + username + ";" + password + ";" + profilePicture + "$";
+
+                Byte[] data = System.Text.Encoding.ASCII.GetBytes(msg);
+
+                this.stream_.Write(data, 0, data.Length);
+                this.stream_.Flush();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+
+                this.CloseAllConnections();
             }
         }
 
@@ -384,18 +402,18 @@ namespace cca_p_mvvm
 
         public bool CheckConnection()
         {
-            //IM PROBABLY WRONG ON CHECKING THE CONNECTION SINCE IT GIVES AN ERROR EVERY TIME
-
             //CHECK IF WE ARE CONNECTED
             if (this.client_.Connected)
             {
+                Console.WriteLine("CLIENT CONNECTED.");
                 return true;
             }
             else
             {
                 //IF NOT CLOSE ALL CONNECTIONS
-                this.stream_.Close();
-                this.client_.Close();
+                Console.WriteLine("CLIENT COULD NOT CONNECT.");
+
+                this.CloseAllConnections();
 
                 return false;
             }
@@ -404,7 +422,11 @@ namespace cca_p_mvvm
         public void CloseAllConnections()
         {
             //CLOSE ALL CONNECTIONS
+            this.stream_.Flush();
+
+            this.stream_.Dispose();
             this.stream_.Close();
+            this.client_.Dispose();
             this.client_.Close();
         }
     }

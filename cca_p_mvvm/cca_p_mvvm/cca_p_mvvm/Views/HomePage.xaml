@@ -8,7 +8,7 @@
              NavigationPage.HasNavigationBar="False">
 
     <StackLayout BackgroundColor="White">
-        <Frame BackgroundColor="DarkSlateGray">
+    <Frame BackgroundColor="White">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -18,7 +18,7 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-                <Label Text="{Binding Hub_Frame_Label_}" FontSize="28" TextColor="White" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="1" Grid.ColumnSpan="1"/>
+                <Label Text="{Binding Hub_Frame_Label_}" FontSize="28" TextColor="Black" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="1" Grid.ColumnSpan="1"/>
                 <ImageButton Source="settings_Icon" BackgroundColor="Transparent" HorizontalOptions="End" WidthRequest="40" HeightRequest="40" Command="{Binding Setting_Button_Command_}" Grid.Column="1"/>
         </Grid>
     </Frame>
@@ -87,11 +87,11 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-                <Image Source="{Binding user_.Picture_}" HorizontalOptions="StartAndExpand" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2"/>
-                <Label Text="{Binding user_.First_Name_}" FontSize="18" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="1"/>
-                <Label Text="{Binding user_.Last_Name_}" FontSize="18" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="1"/>
-                <Button Text="{Binding Hub_Profile_Edit_Button_}" Command="{Binding Profile_Edit_Button_Command_}" Grid.Row="3" Grid.Column="1"/>
-                <Button Text="{Binding Hub_Profile_Logout_Button_}" Command="{Binding Profile_Logout_Button_Command_}" Grid.Row="3" Grid.Column="2"/>
+                <Image Source="{Binding user_.Picture_}" HorizontalOptions="CenterAndExpand" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="4"/>
+                <Label Text="{Binding user_.First_Name_}" FontSize="18" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2"/>
+                <Label Text="{Binding user_.Last_Name_}" FontSize="18" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2"/>
+                <Button Text="{Binding Hub_Profile_Edit_Button_}" Command="{Binding Profile_Edit_Button_Command_}" Grid.Row="8" Grid.Column="1"/>
+                <Button Text="{Binding Hub_Profile_Logout_Button_}" Command="{Binding Profile_Logout_Button_Command_}" Grid.Row="8" Grid.Column="2"/>
         </Grid>
     </StackLayout>
 

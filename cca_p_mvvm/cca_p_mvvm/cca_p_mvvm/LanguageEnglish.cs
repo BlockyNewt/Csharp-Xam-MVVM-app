@@ -16,6 +16,24 @@ namespace cca_p_mvvm
         SIGN_IN_LOGIN_ERROR_TITLE,
         SIGN_IN_LOGIN_ERROR_MESSAGE,
         SIGN_IN_LOGIN_ERROR_BUTTON,
+        SIGN_IN_CREATE_ACCOUNT_BUTTON,
+
+        CREATE_ACCOUNT_FIRST_NAME_LABEL,
+        CREATE_ACCOUNT_FIRST_NAME_PLACEHOLDER,
+        CREATE_ACCOUNT_LAST_NAME_LABEL,
+        CREATE_ACCOUNT_LAST_NAME_PLACEHOLDER,
+        CREATE_ACCOUNT_USERNAME_LABEL,
+        CREATE_ACCOUNT_USERNAME_PLACEHOLDER,
+        CREATE_ACCOUNT_PASSWORD_LABEL,
+        CREATE_ACCOUNT_PASSWORD_PLACEHOLDER,
+        CREATE_ACCOUNT_PROFILE_PICTURE_LABEL,
+        CREATE_ACCOUNT_PROFILE_PICTURE_PLACEHOLDER,
+        CREATE_ACCOUNT_CLEAR_BUTTON,
+        CREATE_ACCOUNT_CONFIRM_BUTTON,
+        CREATE_ACCOUNT_CANCEL_BUTTON,
+        CREATE_ACCOUNT_ERROR_TITLE,
+        CREATE_ACCOUNT_ERROR_MESSAGE,
+        CREATE_ACCOUNT_ERROR_BUTTON,
 
         HUB_FRAME_LABEL,
         HUB_CHANNEL_BUTTON,
@@ -69,6 +87,24 @@ namespace cca_p_mvvm
             this.word_.Add(ENG_WORD.SIGN_IN_LOGIN_ERROR_TITLE, "Error");
             this.word_.Add(ENG_WORD.SIGN_IN_LOGIN_ERROR_MESSAGE, "Username and or password are incorrect. Please try again.");
             this.word_.Add(ENG_WORD.SIGN_IN_LOGIN_ERROR_BUTTON, "Close");
+            this.word_.Add(ENG_WORD.SIGN_IN_CREATE_ACCOUNT_BUTTON, "Create account");
+
+            this.word_.Add(ENG_WORD.CREATE_ACCOUNT_FIRST_NAME_LABEL, "Firstname");
+            this.word_.Add(ENG_WORD.CREATE_ACCOUNT_FIRST_NAME_PLACEHOLDER, "Firstname...");
+            this.word_.Add(ENG_WORD.CREATE_ACCOUNT_LAST_NAME_LABEL, "Lastname");
+            this.word_.Add(ENG_WORD.CREATE_ACCOUNT_LAST_NAME_PLACEHOLDER, "Lastname...");
+            this.word_.Add(ENG_WORD.CREATE_ACCOUNT_USERNAME_LABEL, "Username");
+            this.word_.Add(ENG_WORD.CREATE_ACCOUNT_USERNAME_PLACEHOLDER, "Username...");
+            this.word_.Add(ENG_WORD.CREATE_ACCOUNT_PASSWORD_LABEL, "Password");
+            this.word_.Add(ENG_WORD.CREATE_ACCOUNT_PASSWORD_PLACEHOLDER, "Password...");
+            this.word_.Add(ENG_WORD.CREATE_ACCOUNT_PROFILE_PICTURE_LABEL, "Profile Picture");
+            this.word_.Add(ENG_WORD.CREATE_ACCOUNT_PROFILE_PICTURE_PLACEHOLDER, "URL...");
+            this.word_.Add(ENG_WORD.CREATE_ACCOUNT_CLEAR_BUTTON, "Clear");
+            this.word_.Add(ENG_WORD.CREATE_ACCOUNT_CONFIRM_BUTTON, "Confirm");
+            this.word_.Add(ENG_WORD.CREATE_ACCOUNT_CANCEL_BUTTON, "Cancel");
+            this.word_.Add(ENG_WORD.CREATE_ACCOUNT_ERROR_TITLE, "Error");
+            this.word_.Add(ENG_WORD.CREATE_ACCOUNT_ERROR_MESSAGE, "Passwords do not match. Please re - enter and try again.");
+            this.word_.Add(ENG_WORD.CREATE_ACCOUNT_ERROR_BUTTON, "Close");
 
             this.word_.Add(ENG_WORD.HUB_FRAME_LABEL, "Comsize Inc");
             this.word_.Add(ENG_WORD.HUB_CHANNEL_BUTTON, "Channel");

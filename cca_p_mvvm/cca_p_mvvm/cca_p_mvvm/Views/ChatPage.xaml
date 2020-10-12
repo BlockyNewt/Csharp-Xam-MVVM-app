@@ -9,7 +9,7 @@
 
     <StackLayout>
 
-        <Frame BackgroundColor="DarkSlateGray">
+        <Frame BackgroundColor="White">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -20,12 +20,12 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <ImageButton Source="back_Button" BackgroundColor="Transparent" HorizontalOptions="Start" WidthRequest="40" HeightRequest="40" Command="{Binding Back_Button_Command_}" Grid.Column="1"/>
-                <Label Text="{Binding Chat_Frame_Label_}" TextColor="White" FontSize="24" HorizontalOptions="Center" Grid.Column="1" Grid.ColumnSpan="1"/>
+                <Label Text="{Binding Chat_Frame_Label_}" TextColor="Black" FontSize="24" HorizontalOptions="Center" Grid.Column="1" Grid.ColumnSpan="1"/>
             </Grid>
         </Frame>
 
 
-        <ListView ItemsSource="{Binding Messages_List_}" HasUnevenRows="True" >
+        <ListView ItemsSource="{Binding Messages_List_}" HasUnevenRows="True">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
