@@ -33,6 +33,8 @@ namespace cca_p_mvvm.ViewModels
 
             this.client_Connection_ = new ClientConnection();
 
+            this.color_Scheme_ = new ColorScheme();
+
             this.SetLanguage();
         }
 
@@ -72,6 +74,9 @@ namespace cca_p_mvvm.ViewModels
         public UserViewModel user_ { get; private set; }
         public ClientConnection client_Connection_ { get; private set; }
 
+        //COLOR-SCHEMES
+        public ColorScheme color_Scheme_ { get; private set; }
+
 
         public string Hub_Frame_Label_
         {
@@ -87,9 +92,8 @@ namespace cca_p_mvvm.ViewModels
 
             set
             {
-                this.hub_Frame_Label_ = value;
-                this.OnPropertyChanged("Hub_Frame_Label_");
                 this.SetProperty(ref this.hub_Frame_Label_, value);
+                this.RaisePropertyChanged("Hub_Frame_Label_");
             }
         }
 
@@ -107,9 +111,8 @@ namespace cca_p_mvvm.ViewModels
 
             set
             {
-                this.hub_Channel_Button_ = value;
-                this.RaisePropertyChanged("Hub_Channel_Button_");
                 this.SetProperty(ref this.hub_Channel_Button_, value);
+                this.RaisePropertyChanged("Hub_Channel_Button_");
             }
         }
 
@@ -127,9 +130,8 @@ namespace cca_p_mvvm.ViewModels
 
             set
             {
-                this.hub_DM_Button_ = value;
-                this.OnPropertyChanged("Hub_DM_Button_");
                 this.SetProperty(ref this.hub_DM_Button_, value);
+                this.RaisePropertyChanged("Hub_DM_Button_");
             }
         }
 
@@ -147,9 +149,8 @@ namespace cca_p_mvvm.ViewModels
 
             set
             {
-                this.hub_Profile_Button_ = value;
-                this.OnPropertyChanged("Hub_Profile_Button_");
                 this.SetProperty(ref this.hub_Profile_Button_, value);
+                this.RaisePropertyChanged("Hub_Profile_Button_");
             }
         }
 
@@ -167,9 +168,8 @@ namespace cca_p_mvvm.ViewModels
 
             set
             {
-                this.hub_Channel_Label_ = value;
-                this.OnPropertyChanged("Hub_Channel_Label_");
                 this.SetProperty(ref this.hub_Channel_Button_, value);
+                this.RaisePropertyChanged("Hub_Channel_Label_");
             }
         }
 
@@ -187,9 +187,8 @@ namespace cca_p_mvvm.ViewModels
 
             set
             {
-                this.hub_Profile_Edit_Button_ = value;
-                this.OnPropertyChanged("Hub_Profile_Edit_Button_");
                 this.SetProperty(ref this.hub_Profile_Edit_Button_, value);
+                this.RaisePropertyChanged("Hub_Profile_Edit_Button_");
             }
         }
 
@@ -207,9 +206,8 @@ namespace cca_p_mvvm.ViewModels
 
             set
             {
-                this.hub_Profile_Logout_Button_ = value;
-                this.OnPropertyChanged("Hub_Profile_Logout_Button_");
                 this.SetProperty(ref this.hub_Profile_Logout_Button_, value);
+                this.RaisePropertyChanged("Hub_Profile_Logout_Button_");
             }
         }
 
@@ -227,9 +225,8 @@ namespace cca_p_mvvm.ViewModels
 
             set
             {
-                this.hub_DM_Event_Chat_ = value;
-                this.OnPropertyChanged("Hub_DM_Event_Chat_");
                 this.SetProperty(ref this.hub_DM_Event_Chat_, value);
+                this.RaisePropertyChanged("Hub_DM_Event_Chat_");
             }
         }
 
@@ -247,9 +244,8 @@ namespace cca_p_mvvm.ViewModels
 
             set
             {
-                this.hub_DM_Event_Profile_ = value;
-                this.OnPropertyChanged("Hub_DM_Event_Profile_");
                 this.SetProperty(ref this.hub_DM_Event_Profile_, value);
+                this.RaisePropertyChanged("Hub_DM_Event_Profile_");
             }
         }
 
@@ -267,9 +263,8 @@ namespace cca_p_mvvm.ViewModels
 
             set
             {
-                this.hub_DM_Event_Delete_ = value;
-                this.OnPropertyChanged("Hub_DM_Event_Delete_");
                 this.SetProperty(ref this.hub_DM_Event_Delete_, value);
+                this.RaisePropertyChanged("Hub_DM_Event_Delete_");
             }
         }
 
@@ -287,9 +282,8 @@ namespace cca_p_mvvm.ViewModels
 
             set
             {
-                this.hub_DM_Event_Cancel_ = value;
-                this.OnPropertyChanged("Hub_DM_Event_Cancel_");
                 this.SetProperty(ref this.hub_DM_Event_Cancel_, value);
+                this.RaisePropertyChanged("Hub_DM_Event_Cancel_");
             }
         }
 
@@ -307,9 +301,8 @@ namespace cca_p_mvvm.ViewModels
 
             set
             {
-                this.hub_Channel_Event_Enter_ = value;
-                this.OnPropertyChanged("Hub_Channel_Event_Enter_");
                 this.SetProperty(ref this.hub_Channel_Event_Enter_, value);
+                this.RaisePropertyChanged("Hub_Channel_Event_Enter_");
             }
         }
 
@@ -327,9 +320,8 @@ namespace cca_p_mvvm.ViewModels
 
             set
             {
-                this.hub_Channel_Event_Cancel_ = value;
-                this.OnPropertyChanged("Hub_Channel_Event_Cancel_");
                 this.SetProperty(ref this.hub_Channel_Event_Cancel_, value);
+                this.RaisePropertyChanged("Hub_Channel_Event_Cancel_");
             }
         }
 
@@ -342,9 +334,8 @@ namespace cca_p_mvvm.ViewModels
 
             set
             {
-                this.channel_Display_ = value;
-                this.OnPropertyChanged("Channel_Display_");
                 this.SetProperty(ref this.channel_Display_, value);
+                this.RaisePropertyChanged("Channel_Display_");
             }
         }
 
@@ -357,9 +348,8 @@ namespace cca_p_mvvm.ViewModels
 
             set
             {
-                this.dm_Display_ = value;
-                this.OnPropertyChanged("DM_Display_");
                 this.SetProperty(ref this.dm_Display_, value);
+                this.RaisePropertyChanged("DM_Display_");
             }
         }
 
@@ -372,9 +362,8 @@ namespace cca_p_mvvm.ViewModels
 
             set
             {
-                this.profile_Display_ = value;
-                this.OnPropertyChanged("Profile_Display_");
                 this.SetProperty(ref this.profile_Display_, value);
+                this.RaisePropertyChanged("Profile_Display_");
             }
         }
 
@@ -601,6 +590,7 @@ namespace cca_p_mvvm.ViewModels
 
             p.Add("l_Eng_", this.l_Eng_);
             p.Add("l_Jap_", this.l_Jap_);
+            p.Add("color_Scheme_", this.color_Scheme_);
 
             //PASS PARAMETERS
             await this.navigation_Service_.NavigateAsync("SettingPage", p);
@@ -617,6 +607,7 @@ namespace cca_p_mvvm.ViewModels
             p.Add("l_Eng_", this.l_Eng_);
             p.Add("l_Jap_", this.l_Jap_);
             p.Add("client_Connection_", this.client_Connection_);
+            p.Add("color_Scheme_", this.color_Scheme_);
 
             //PASS PARAMETERS
             this.navigation_Service_.NavigateAsync("ProfileEditPage", p);
@@ -631,6 +622,7 @@ namespace cca_p_mvvm.ViewModels
 
             p.Add("l_Eng_", this.l_Eng_);
             p.Add("l_Jap_", this.l_Jap_);
+            p.Add("color_Scheme_", this.color_Scheme_);
 
             //IF I ADD A SHOW LOGIN FUNCTION, THEN THIS WOULD BE THE PLACE TO SET THE VALUE IN THE DATABASE TO LOGGED OFF
 
@@ -689,7 +681,8 @@ namespace cca_p_mvvm.ViewModels
 
             //IN ORDER FOR LANGUAGE TO CHANGE YOU MUST CHECK THE COUNT OF PARAMETERS BEING PASSED
 
-            if(parameters.Count == 4)
+            //COMING FROM LOGIN PAGE
+            if(parameters.Count == 5)
             {
                 this.l_Eng_.Is_English_Selected_ = parameters.GetValue<LanguageEnglish>("l_Eng_").Is_English_Selected_;
                 this.l_Jap_.Is_Japanese_Selected_ = parameters.GetValue<LanguageJapanese>("l_Jap_").Is_Japanese_Selected_;
@@ -705,15 +698,23 @@ namespace cca_p_mvvm.ViewModels
                 this.client_Connection_.Port_ = parameters.GetValue<ClientConnection>("client_Connection_").Port_;
                 this.client_Connection_.Local_Address_ = parameters.GetValue<ClientConnection>("client_Connection_").Local_Address_;
 
+                this.color_Scheme_.Is_Light_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Light_Selected_;
+                this.color_Scheme_.Is_Dark_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Dark_Selected_;
+
                 this.client_Connection_.CheckConnection();
                 this.GetChannels();
                 this.GetDirectMessages();
             }
-            if(parameters.Count == 2)
+            //COMING FROM SETTINGS
+            if(parameters.Count == 3)
             {
                 this.l_Eng_.Is_English_Selected_ = parameters.GetValue<LanguageEnglish>("l_Eng_").Is_English_Selected_;
                 this.l_Jap_.Is_Japanese_Selected_ = parameters.GetValue<LanguageJapanese>("l_Jap_").Is_Japanese_Selected_;
+
+                this.color_Scheme_.Is_Light_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Light_Selected_;
+                this.color_Scheme_.Is_Dark_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Dark_Selected_;
             }
+            //DON'T KNOW
             if (parameters.Count == 1)
             {
                 this.user_.First_Name_ = parameters.GetValue<UserViewModel>("user_").First_Name_;
@@ -724,6 +725,7 @@ namespace cca_p_mvvm.ViewModels
             }
 
             this.SetLanguage();
+            this.color_Scheme_.SetColors();
         }
     }
 }

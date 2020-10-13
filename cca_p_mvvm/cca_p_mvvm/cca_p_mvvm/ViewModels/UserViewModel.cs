@@ -44,9 +44,8 @@ namespace cca_p_mvvm.ViewModels
 
             set
             {
-                this.first_Name_ = value;
-                this.OnPropertyChanged("First_Name_");
                 this.SetProperty(ref this.first_Name_, value);
+                this.RaisePropertyChanged("First_Name_");
             }
         }
 
@@ -64,9 +63,8 @@ namespace cca_p_mvvm.ViewModels
 
             set
             {
-                this.last_Name_ = value;
-                this.OnPropertyChanged("Last_Name_");
                 this.SetProperty(ref this.last_Name_, value);
+                this.RaisePropertyChanged("Last_Name_");
             }
         }
 
@@ -84,9 +82,8 @@ namespace cca_p_mvvm.ViewModels
 
             set
             {
-                this.username_ = value;
-                this.OnPropertyChanged("Username_");
                 this.SetProperty(ref this.username_, value);
+                this.RaisePropertyChanged("Username_");
             }
         }
 
@@ -104,9 +101,8 @@ namespace cca_p_mvvm.ViewModels
 
             set
             {
-                this.password_ = value;
-                this.OnPropertyChanged("Password_");
                 this.SetProperty(ref this.password_, value);
+                this.RaisePropertyChanged("Password_");
             }
         }
 
@@ -124,9 +120,8 @@ namespace cca_p_mvvm.ViewModels
 
             set
             {
-                this.picture_ = value;
-                this.OnPropertyChanged("Picture_");
                 this.SetProperty(ref this.picture_, value);
+                this.RaisePropertyChanged("Picture_");
             }
         }
     }

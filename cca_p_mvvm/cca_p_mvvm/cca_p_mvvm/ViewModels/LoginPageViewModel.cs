@@ -29,6 +29,8 @@ namespace cca_p_mvvm.ViewModels
 
             this.user_ = new UserViewModel();
 
+            this.color_Scheme_ = new ColorScheme();
+
             this.SetLanguage();
         }
 
@@ -62,6 +64,9 @@ namespace cca_p_mvvm.ViewModels
         //CLIENT USER
         public UserViewModel user_ { get; private set; }
 
+        //COLOR-SCHEMES
+        public ColorScheme color_Scheme_ { get; private set; }
+
 
         public string Sign_In_Frame_Label_
         {
@@ -77,9 +82,8 @@ namespace cca_p_mvvm.ViewModels
 
             set
             {
-                this.sign_In_Frame_Label_ = value;
-                this.OnPropertyChanged("Sign_In_Frame_Label_");
                 this.SetProperty(ref this.sign_In_Frame_Label_, value);
+                this.RaisePropertyChanged("Sign_In_Frame_Label_");
             }
         }
 
@@ -97,9 +101,8 @@ namespace cca_p_mvvm.ViewModels
 
             set
             {
-                this.sign_In_Username_Entry_Placeholder_ = value;
-                this.OnPropertyChanged("Sign_In_Username_Entry_Placeholder_");
                 this.SetProperty(ref this.sign_In_Username_Entry_Placeholder_, value);
+                this.RaisePropertyChanged("Sign_In_Username_Entry_Placeholder_");
             }
         }
 
@@ -117,9 +120,8 @@ namespace cca_p_mvvm.ViewModels
 
             set
             {
-                this.sign_In_Password_Entry_Placeholder_ = value;
-                this.OnPropertyChanged("Sign_In_Password_Entry_Placeholder_");
                 this.SetProperty(ref this.sign_In_Password_Entry_Placeholder_, value);
+                this.RaisePropertyChanged("Sign_In_Password_Entry_Placeholder_");
             }
         }
 
@@ -137,9 +139,8 @@ namespace cca_p_mvvm.ViewModels
 
             set
             {
-                this.sign_In_Login_Button_ = value;
-                this.OnPropertyChanged("Sign_In_Login_Button_");
                 this.SetProperty(ref this.sign_In_Login_Button_, value);
+                this.RaisePropertyChanged("Sign_In_Login_Button_");
             }
         }
         
@@ -157,9 +158,8 @@ namespace cca_p_mvvm.ViewModels
 
             set
             {
-                this.sign_In_Login_Error_Title_ = value;
-                this.OnPropertyChanged("Sign_In_Login_Error_Title_");
                 this.SetProperty(ref this.sign_In_Login_Error_Title_, value);
+                this.RaisePropertyChanged("Sign_In_Login_Error_Title_");
             }
         }
 
@@ -177,9 +177,8 @@ namespace cca_p_mvvm.ViewModels
 
             set
             {
-                this.sign_In_Login_Error_Message_ = value;
-                this.OnPropertyChanged("Sign_In_Login_Error_Message_");
                 this.SetProperty(ref this.sign_In_Login_Error_Message_, value);
+                this.RaisePropertyChanged("Sign_In_Login_Error_Message_");
             }
         }
 
@@ -197,9 +196,8 @@ namespace cca_p_mvvm.ViewModels
 
             set
             {
-                this.sign_In_Login_Error_Button_ = value;
-                this.OnPropertyChanged("Sign_In_Login_Error_Button_");
                 this.SetProperty(ref this.sign_In_Login_Error_Button_, value);
+                this.RaisePropertyChanged("Sign_In_Login_Error_Button_");
             }
         }
 
@@ -217,9 +215,8 @@ namespace cca_p_mvvm.ViewModels
 
             set
             {
-                this.sign_In_Create_Account_Button_ = value;
-                this.OnPropertyChanged("Sign_In_Create_Account_Button_");
                 this.SetProperty(ref this.sign_In_Create_Account_Button_, value);
+                this.RaisePropertyChanged("Sign_In_Create_Account_Button_");
             }
         }
 
@@ -232,9 +229,8 @@ namespace cca_p_mvvm.ViewModels
 
             set
             {
-                this.username_Entry_Changed_Text_ = value;
-                this.OnPropertyChanged("Username_Entry_Changed_Text_");
                 this.SetProperty(ref this.username_Entry_Changed_Text_, value);
+                this.RaisePropertyChanged("Username_Entry_Changed_Text_");
             }
         }
 
@@ -247,9 +243,8 @@ namespace cca_p_mvvm.ViewModels
 
             set
             {
-                this.password_Entry_Changed_Text_ = value;
-                this.OnPropertyChanged("Password_Entry_Changed_Text_");
                 this.SetProperty(ref this.password_Entry_Changed_Text_, value);
+                this.RaisePropertyChanged("Password_Entry_Changed_Text_");
             }
         }
 
@@ -267,9 +262,8 @@ namespace cca_p_mvvm.ViewModels
 
             set
             {
-                this.connection_Error_Title_ = value;
-                this.OnPropertyChanged("Connection_Error_Title_");
                 this.SetProperty(ref this.connection_Error_Title_, value);
+                this.RaisePropertyChanged("Connection_Error_Title_");
             }
         }
 
@@ -287,9 +281,8 @@ namespace cca_p_mvvm.ViewModels
 
             set
             {
-                this.connection_Error_Message_ = value;
-                this.OnPropertyChanged("Connection_Error_Message_");
                 this.SetProperty(ref this.connection_Error_Message_, value);
+                this.RaisePropertyChanged("Connection_Error_Message_");
             }
         }
 
@@ -307,9 +300,8 @@ namespace cca_p_mvvm.ViewModels
 
             set
             {
-                this.connection_Error_Button_ = value;
-                this.OnPropertyChanged("Connection_Error_Button_");
-                this.SetProperty(ref this.connection_Error_Button_, value); 
+                this.SetProperty(ref this.connection_Error_Button_, value);
+                this.RaisePropertyChanged("Connection_Error_Button_");
             }
         }
 
@@ -325,6 +317,7 @@ namespace cca_p_mvvm.ViewModels
 
             p.Add("l_Eng_", this.l_Eng_);
             p.Add("l_Jap_", this.l_Jap_);
+            p.Add("color_Scheme_", this.color_Scheme_);
 
             await this.navigation_Service_.NavigateAsync("SettingPage", p);
         }
@@ -365,6 +358,7 @@ namespace cca_p_mvvm.ViewModels
                             p.Add("l_Jap_", this.l_Jap_);
                             p.Add("user_", user_);
                             p.Add("client_Connection_", this.client_Connection_);
+                            p.Add("color_Scheme_", this.color_Scheme_);
 
                             //RESET USERNAME AND PASSWORD TEXT FIELDS
                             this.Username_Entry_Changed_Text_ = string.Empty;
@@ -397,6 +391,7 @@ namespace cca_p_mvvm.ViewModels
             p.Add("l_Eng_", this.l_Eng_);
             p.Add("l_Jap_", this.l_Jap_);
             p.Add("client_Connection_", this.client_Connection_);
+            p.Add("color_Scheme_", this.color_Scheme_);
 
             //PUSH TO PAGE
             await this.navigation_Service_.NavigateAsync("CreateAccountPage", p);
@@ -413,12 +408,15 @@ namespace cca_p_mvvm.ViewModels
         public void OnNavigatedTo(INavigationParameters parameters)
         {
             //WHEN WE LOGOUT IT WILL PASS BACK THESE VARIABLES FROM HOME PAGE
-            if(parameters.Count() == 2)
+            if(parameters.Count() == 3)
             {
                 this.l_Eng_.Is_English_Selected_ = parameters.GetValue<LanguageEnglish>("l_Eng_").Is_English_Selected_;
                 this.l_Jap_.Is_Japanese_Selected_ = parameters.GetValue<LanguageJapanese>("l_Jap_").Is_Japanese_Selected_;
+                
+                this.color_Scheme_.Is_Light_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Light_Selected_;
+                this.color_Scheme_.Is_Dark_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Dark_Selected_;
             }
-            else if(parameters.Count() == 4)
+            else if(parameters.Count() == 5)
             {
                 this.l_Eng_.Is_English_Selected_ = parameters.GetValue<LanguageEnglish>("l_Eng_").Is_English_Selected_;
                 this.l_Jap_.Is_Japanese_Selected_ = parameters.GetValue<LanguageJapanese>("l_Jap_").Is_Japanese_Selected_;
@@ -431,9 +429,13 @@ namespace cca_p_mvvm.ViewModels
                 this.user_.Username_ = parameters.GetValue<UserViewModel>("user_").Username_;
                 this.user_.Password_ = parameters.GetValue<UserViewModel>("user_").Password_;
                 this.user_.Picture_ = parameters.GetValue<UserViewModel>("user_").Picture_;
+
+                this.color_Scheme_.Is_Light_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Light_Selected_;
+                this.color_Scheme_.Is_Dark_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Dark_Selected_;
             }
 
             this.SetLanguage();
+            this.color_Scheme_.SetColors();
         }
 
 

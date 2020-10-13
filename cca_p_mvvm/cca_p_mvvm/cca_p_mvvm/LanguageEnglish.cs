@@ -163,9 +163,8 @@ namespace cca_p_mvvm
 
             set
             {
-                this.is_English_Selected_ = value;
-                this.OnPropertyChanged("Is_English_Selected_");
                 this.SetProperty(ref this.is_English_Selected_, value);
+                this.RaisePropertyChanged("Is_English_Selected_");
             }
         }
     }

@@ -165,9 +165,8 @@ namespace cca_p_mvvm
 
             set
             {
-                this.is_japanese_Selected_ = value;
-                this.OnPropertyChanged("Is_Japanese_Selected_");
                 this.SetProperty(ref this.is_japanese_Selected_, value);
+                this.RaisePropertyChanged("Is_Japanese_Selected_");
             }
         }
     }

@@ -25,9 +25,8 @@ namespace cca_p_mvvm.ViewModels
 
             set
             {
-                this.message_ = value;
-                this.OnPropertyChanged("Message_");
                 this.SetProperty(ref this.message_, value);
+                this.RaisePropertyChanged("Message_");
             }
         }
 

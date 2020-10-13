@@ -7,10 +7,10 @@
              NavigationPage.HasBackButton="False"
              NavigationPage.HasNavigationBar="False">
 
-    <StackLayout BackgroundColor="White">
+    <StackLayout BackgroundColor="{Binding color_Scheme_.Setting_Background_}">
 
-        <Frame BackgroundColor="DarkSlateGray">
-            <Label Text="{Binding Setting_Frame_Label_}" FontSize="24" TextColor="White" HorizontalOptions="CenterAndExpand"/>
+        <Frame BackgroundColor="{Binding color_Scheme_.Setting_Background_}">
+            <Label Text="{Binding Setting_Frame_Label_}" TextColor="{Binding color_Scheme_.Setting_Text_}" FontSize="24" HorizontalOptions="CenterAndExpand"/>
         </Frame>
 
         <StackLayout>
@@ -23,14 +23,20 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Label Text="{Binding Setting_Language_Label_}" FontSize="18" Grid.Row="1" Grid.Column="1"/>
-                <RadioButton Text="{Binding Setting_Radio_ENG_Button_}" IsChecked="{Binding l_Eng_.Is_English_Selected_}" Grid.Row="2" Grid.Column="1"/>
-                <RadioButton Text="{Binding Setting_Radio_JAP_Button_}" IsChecked="{Binding l_Jap_.Is_Japanese_Selected_}" Grid.Row="3" Grid.Column="1"/>
-                <Label Text="{Binding Setting_App_Info_Label_}" FontSize="18" Grid.Row="4" Grid.Column="1"/>
-                <Label Text="{Binding Setting_App_Version_}" Grid.Row="5" Grid.Column="1"/>
+                <Label Text="{Binding Setting_Language_Label_}" TextColor="{Binding color_Scheme_.Setting_Text_}" FontSize="18" Grid.Row="1" Grid.Column="1"/>
+                <RadioButton Text="{Binding Setting_Radio_ENG_Button_}" TextColor="{Binding color_Scheme_.Setting_Text_}" GroupName="language" IsChecked="{Binding l_Eng_.Is_English_Selected_}" Grid.Row="2" Grid.Column="1"/>
+                <RadioButton Text="{Binding Setting_Radio_JAP_Button_}" TextColor="{Binding color_Scheme_.Setting_Text_}" GroupName="language" IsChecked="{Binding l_Jap_.Is_Japanese_Selected_}" Grid.Row="3" Grid.Column="1"/>
 
-                <Button Text="{Binding Setting_Accept_Button_}" Command="{Binding Setting_Accept_Button_Command_}" Grid.Row="7" Grid.Column="1"/>
-                <Button Text="{Binding Setting_Close_Button_}" Command="{Binding Setting_Close_Button_Command_}" Grid.Row="7" Grid.Column="2"/>
+                <Label Text="Color-schemes" TextColor="{Binding color_Scheme_.Setting_Text_}" FontSize="18" Grid.Column="1" Grid.Row="4"/>
+                <RadioButton Text="Light" IsChecked="{Binding color_Scheme_.Is_Light_Selected_}" TextColor="{Binding color_Scheme_.Setting_Text_}" GroupName="color-scheme" Grid.Column="1" Grid.Row="5"/>
+                <RadioButton Text="Dark" IsChecked="{Binding color_Scheme_.Is_Dark_Selected_}" TextColor="{Binding color_Scheme_.Setting_Text_}" GroupName="color-scheme" Grid.Column="1" Grid.Row="6"/>
+                <!--<RadioButton Text="Halloween" IsChecked="False" GroupName="color-scheme" Grid.Column="1" Grid.Row="7"/>-->
+
+                <Label Text="{Binding Setting_App_Info_Label_}" TextColor="{Binding color_Scheme_.Setting_Text_}" FontSize="18" Grid.Row="8" Grid.Column="1"/>
+                <Label Text="{Binding Setting_App_Version_}" TextColor="{Binding color_Scheme_.Setting_Text_}" Grid.Row="9" Grid.Column="1"/>
+
+                <Button Text="{Binding Setting_Accept_Button_}" TextColor="{Binding color_Scheme_.Setting_Text_}" BackgroundColor="{Binding color_Scheme_.Setting_Button_}" Command="{Binding Setting_Accept_Button_Command_}" Grid.Row="10" Grid.Column="1"/>
+                <Button Text="{Binding Setting_Close_Button_}" TextColor="{Binding color_Scheme_.Setting_Text_}" BackgroundColor="{Binding color_Scheme_.Setting_Button_}" Command="{Binding Setting_Close_Button_Command_}" Grid.Row="10" Grid.Column="2"/>
             </Grid>
         </StackLayout>
 

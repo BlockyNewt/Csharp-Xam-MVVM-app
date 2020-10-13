@@ -77,9 +77,8 @@ namespace cca_p_mvvm.ViewModels
 
             set
             {
-                this.message_Text_Changed_ = value;
-                this.OnPropertyChanged("Message_Text_Changed_");
                 this.SetProperty(ref this.message_Text_Changed_, value);
+                this.RaisePropertyChanged("Message_Text_Changed_");
             }
         }
 
@@ -97,9 +96,8 @@ namespace cca_p_mvvm.ViewModels
 
             set
             {
-                this.chat_Frame_Label_ = value;
-                this.OnPropertyChanged("Chat_Frame_Label_");
                 this.SetProperty(ref this.chat_Frame_Label_, value);
+                this.RaisePropertyChanged("Chat_Frame_Label_");
             }
         }
 
@@ -117,9 +115,8 @@ namespace cca_p_mvvm.ViewModels
 
             set
             {
-                this.chat_Message_Editor_Placeholder_ = value;
-                this.OnPropertyChanged("Chat_Message_Editor_Placeholder_");
                 this.SetProperty(ref this.chat_Message_Editor_Placeholder_, value);
+                this.RaisePropertyChanged("Chat_Message_Editor_Placeholder_");
             }
         }
 
@@ -137,9 +134,8 @@ namespace cca_p_mvvm.ViewModels
 
             set
             {
-                this.chat_Send_Button_ = value;
-                this.OnPropertyChanged("Chat_Send_Button_");
                 this.SetProperty(ref this.chat_Send_Button_, value);
+                this.RaisePropertyChanged("Chat_Send_Button_");
             }
         }
 

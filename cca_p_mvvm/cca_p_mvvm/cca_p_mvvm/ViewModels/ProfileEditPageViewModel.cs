@@ -23,6 +23,8 @@ namespace cca_p_mvvm.ViewModels
 
             this.client_Connection_ = new ClientConnection();
 
+            this.color_Scheme_ = new ColorScheme();
+
             this.SetLanguage();
         }
 
@@ -52,6 +54,9 @@ namespace cca_p_mvvm.ViewModels
         //CLIENT CONNECTION
         public ClientConnection client_Connection_ { get; private set; }
 
+        //COLOR-SCHEMES
+        public ColorScheme color_Scheme_ { get; private set; }
+
 
 
         public string First_Name_Placeholder_
@@ -68,9 +73,8 @@ namespace cca_p_mvvm.ViewModels
 
             set
             {
-                this.first_Name_Placeholder_ = value;
-                this.OnPropertyChanged("First_Name_Placeholder_");
                 this.SetProperty(ref this.first_Name_Placeholder_, value);
+                this.RaisePropertyChanged("First_Name_Placeholder_");
             }
         }
 
@@ -88,9 +92,8 @@ namespace cca_p_mvvm.ViewModels
 
             set
             {
-                this.first_Name_Changed_Text_ = value;
-                this.OnPropertyChanged("First_Name_Changed_Text_");
                 this.SetProperty(ref this.first_Name_Changed_Text_, value);
+                this.RaisePropertyChanged("First_Name_Changed_Text_");
             }
         }
 
@@ -108,9 +111,8 @@ namespace cca_p_mvvm.ViewModels
 
             set
             {
-                this.last_Name_Placeholder_ = value;
-                this.OnPropertyChanged("Last_Name_Placeholder_");
                 this.SetProperty(ref this.last_Name_Placeholder_, value);
+                this.RaisePropertyChanged("Last_Name_Placeholder_");
             }
         }
 
@@ -128,9 +130,8 @@ namespace cca_p_mvvm.ViewModels
 
             set
             {
-                this.last_Name_Changed_Text_ = value;
-                this.OnPropertyChanged("Last_Name_Changed_Text_");
                 this.SetProperty(ref this.last_Name_Changed_Text_, value);
+                this.RaisePropertyChanged("Last_Name_Changed_Text_");
             }
         }
 
@@ -148,9 +149,8 @@ namespace cca_p_mvvm.ViewModels
 
             set
             {
-                this.picture_Changed_Text_ = value;
-                this.OnPropertyChanged("Picture_Changed_Text_");
                 this.SetProperty(ref this.picture_Changed_Text_, value);
+                this.RaisePropertyChanged("Picture_Changed_Text_");
             }
         }
 
@@ -168,9 +168,8 @@ namespace cca_p_mvvm.ViewModels
 
             set
             {
-                this.picture_Placeholder_ = value;
-                this.OnPropertyChanged("Picture_Placeholder_");
                 this.SetProperty(ref this.picture_Placeholder_, value);
+                this.RaisePropertyChanged("Picture_Placeholder_");
             }
         }
 
@@ -188,9 +187,8 @@ namespace cca_p_mvvm.ViewModels
 
             set
             {
-                this.confirm_Button_ = value;
-                this.OnPropertyChanged("Confirm_Button_");
                 this.SetProperty(ref this.confirm_Button_, value);
+                this.RaisePropertyChanged("Confirm_Button_");
             }
         }
 
@@ -208,9 +206,8 @@ namespace cca_p_mvvm.ViewModels
 
             set
             {
-                this.cancel_Button_ = value;
-                this.OnPropertyChanged("Cancel_Button_");
                 this.SetProperty(ref this.cancel_Button_, value);
+                this.RaisePropertyChanged("Cancel_Button_");
             }
         }
 
@@ -228,9 +225,8 @@ namespace cca_p_mvvm.ViewModels
 
             set
             {
-                this.alert_Title_ = value;
-                this.OnPropertyChanged("Alert_Title_");
                 this.SetProperty(ref this.alert_Title_, value);
+                this.RaisePropertyChanged("Alert_Title_");
             }
         }
 
@@ -248,9 +244,8 @@ namespace cca_p_mvvm.ViewModels
 
             set
             {
-                this.alert_Message_ = value;
-                this.OnPropertyChanged("Alert_Message_");
                 this.SetProperty(ref this.alert_Message_, value);
+                this.RaisePropertyChanged("Alert_Message_");
             }
         }
 
@@ -268,9 +263,8 @@ namespace cca_p_mvvm.ViewModels
 
             set
             {
-                this.alert_Button_ = value;
-                this.OnPropertyChanged("Alert_Button_");
                 this.SetProperty(ref this.alert_Button_, value);
+                this.RaisePropertyChanged("Alert_Button_");
             }
         }
 
@@ -380,11 +374,15 @@ namespace cca_p_mvvm.ViewModels
                 this.client_Connection_.Port_ = parameters.GetValue<ClientConnection>("client_Connection_").Port_;
                 this.client_Connection_.Local_Address_ = parameters.GetValue<ClientConnection>("client_Connection_").Local_Address_;
 
+                this.color_Scheme_.Is_Dark_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Dark_Selected_;
+                this.color_Scheme_.Is_Light_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Light_Selected_;
+
                 this.First_Name_Placeholder_ = this.user_.First_Name_;
                 this.Last_Name_Placeholder_ = this.user_.Last_Name_;
                 this.Picture_Placeholder_ = this.user_.Picture_;
 
                 this.SetLanguage();
+                this.color_Scheme_.SetColors();
             }
         }
     }
