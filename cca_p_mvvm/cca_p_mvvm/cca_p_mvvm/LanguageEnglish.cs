@@ -56,8 +56,11 @@ namespace cca_p_mvvm
         SETTING_ACCEPT_BUTTON,
         SETTING_CLOSE_BUTTON,
         SETTING_APP_INFORMATION_LABEL,
-        SETTING_APP_VERSION_,
-
+        SETTING_APP_VERSION,
+        SETTING_COLOR_DESIGN_LABEL,
+        SETTING_RADIO_LIGHT_BUTTON,
+        SETTING_RADIO_DARK_BUTTON,
+        SETTING_RADIO_HALLOWEEN_BUTTON,
 
         PROFILE_EDIT_CONFIRM_BUTTON,
         PROFILE_EDIT_CANCEL_BUTTON,
@@ -67,7 +70,6 @@ namespace cca_p_mvvm
 
         CHAT_SEND_BUTTON,
         CHAT_EDITOR_PLACEHOLDER,
-
 
         CONNECTION_ERROR_TITLE,
         CONNECTION_ERROR_MESSAGE,
@@ -127,7 +129,12 @@ namespace cca_p_mvvm
             this.word_.Add(ENG_WORD.SETTING_ACCEPT_BUTTON, "Accept");
             this.word_.Add(ENG_WORD.SETTING_CLOSE_BUTTON, "Close");
             this.word_.Add(ENG_WORD.SETTING_APP_INFORMATION_LABEL, "App Information");
-            this.word_.Add(ENG_WORD.SETTING_APP_VERSION_, "Version: ");
+            this.word_.Add(ENG_WORD.SETTING_APP_VERSION, "Version: ");
+            this.word_.Add(ENG_WORD.SETTING_COLOR_DESIGN_LABEL, "Color-Scheme");
+            this.word_.Add(ENG_WORD.SETTING_RADIO_LIGHT_BUTTON, "Light");
+            this.word_.Add(ENG_WORD.SETTING_RADIO_DARK_BUTTON, "Dark");
+            this.word_.Add(ENG_WORD.SETTING_RADIO_HALLOWEEN_BUTTON, "Halloween");
+
 
             this.word_.Add(ENG_WORD.PROFILE_EDIT_CONFIRM_BUTTON, "Confirm");
             this.word_.Add(ENG_WORD.PROFILE_EDIT_CANCEL_BUTTON, "Cancel");

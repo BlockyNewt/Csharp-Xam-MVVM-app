@@ -44,22 +44,21 @@ namespace cca_p_mvvm
         }
 
 
-        ////USE THIS FOR NOW. ONLY FOR THE XAML 
-        //private Color text_Color_;
+        //USE THIS FOR NOW. ONLY FOR THE XAML 
+        private Color text_Color_;
 
-        //public Color Text_Color_
-        //{
-        //    get
-        //    {
-        //        return this.text_Color_;
-        //    }
+        public Color Text_Color_
+        {
+            get
+            {
+                return this.text_Color_;
+            }
 
-        //    set
-        //    {
-        //        this.text_Color_ = value;
-        //        this.OnPropertyChanged("Text_Color_");
-        //        this.SetProperty(ref this.text_Color_, value);
-        //    }
-        //}
+            set
+            {
+                this.SetProperty(ref this.text_Color_, value);
+                this.RaisePropertyChanged("Text_Color_");
+            }
+        }
     }
 }

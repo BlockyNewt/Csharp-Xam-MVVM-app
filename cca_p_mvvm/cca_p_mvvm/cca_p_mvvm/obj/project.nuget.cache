@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "nDv5TP4jJQvUMkpYcvOWTMp4m5+8RlH04rwIxFfodqk3OJGP7im4k7//hG5KEn0YOBPYANo9B9EkHTtMQNLFTQ==",
+  "dgSpecHash": "+3Uz+zd23uMlppYG0PYf2dZezUhu2fC1qoZOXTUwT8V4VizEuu7jlshYUiFiVse2Zpk1R35SLPVGPDeV7m149Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\S-03\\Source\\Repos\\BlockyNewt\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm.csproj",
+  "projectFilePath": "C:\\Users\\S-03\\source\\repos\\BlockyNewt\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\S-03\\.nuget\\packages\\dryioc.dll\\4.0.7\\dryioc.dll.4.0.7.nupkg.sha512",
     "C:\\Users\\S-03\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",

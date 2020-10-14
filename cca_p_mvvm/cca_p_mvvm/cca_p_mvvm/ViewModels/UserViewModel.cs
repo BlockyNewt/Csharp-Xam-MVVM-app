@@ -2,6 +2,7 @@
 using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 
 namespace cca_p_mvvm.ViewModels
@@ -110,7 +111,7 @@ namespace cca_p_mvvm.ViewModels
         {
             get
             {
-                if(string.IsNullOrEmpty(this.picture_))
+                if (string.IsNullOrEmpty(this.picture_))
                 {
                     return "Empty string";
                 }
@@ -122,6 +123,22 @@ namespace cca_p_mvvm.ViewModels
             {
                 this.SetProperty(ref this.picture_, value);
                 this.RaisePropertyChanged("Picture_");
+            }
+        }
+
+        private Color text_Color_;
+
+        public Color Text_Color_
+        {
+            get
+            {
+                return this.text_Color_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.text_Color_, value);
+                this.RaisePropertyChanged("Text_Color_");
             }
         }
     }

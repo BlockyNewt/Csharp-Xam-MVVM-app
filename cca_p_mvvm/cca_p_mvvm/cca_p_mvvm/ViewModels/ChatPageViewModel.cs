@@ -30,6 +30,8 @@ namespace cca_p_mvvm.ViewModels
 
             this.client_Connection_ = new ClientConnection();
 
+            this.color_Scheme_ = new ColorScheme();
+
             this.channel_Or_Direct_Message = false;
         }
         //NAVIGATION SERVICE
@@ -49,7 +51,10 @@ namespace cca_p_mvvm.ViewModels
         private ClientConnection client_Connection_ { get; set; }
 
         //CURRENT CHANNEL (IF WE ARE ENTERING A CHANNEL)
-        private Channel channel_ { get; set; }  
+        private Channel channel_ { get; set; }
+
+        //COLOR-SCHEMES
+        public ColorScheme color_Scheme_ { get; private set; }
 
         private IList<Message> messages_List_;
 
@@ -157,6 +162,8 @@ namespace cca_p_mvvm.ViewModels
             {
                 //CREATE NEW MESSAGE
                 Message message = new Message();
+                message.Text_Color_ = this.color_Scheme_.Chat_Text_;
+                message.Background_Color_ = this.color_Scheme_.Chat_Background_;
                 message.Sender_Name_ = this.user_.First_Name_;
                 message.Message_ = this.Message_Text_Changed_;
 
@@ -188,9 +195,11 @@ namespace cca_p_mvvm.ViewModels
 
         public void OnNavigatedTo(INavigationParameters parameters)
         {
+            Console.WriteLine("BEFORE ENTERING ");
             //CHECK IF WE ARE TALKING TO A CHANNEL
             if(parameters.ContainsKey("channel_"))
             {
+                Console.WriteLine("A");
                 this.user_ = parameters.GetValue<UserViewModel>("user_");
                 this.user_.ID_ = parameters.GetValue<UserViewModel>("user_").ID_;
                 this.user_.First_Name_ = parameters.GetValue<UserViewModel>("user_").First_Name_;
@@ -209,11 +218,24 @@ namespace cca_p_mvvm.ViewModels
                 this.channel_.Name_ = parameters.GetValue<Channel>("channel_").Name_;
                 this.channel_.ID_ = parameters.GetValue<Channel>("channel_").ID_;
 
+                Console.WriteLine("B");
+
+                this.color_Scheme_.Is_Light_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Light_Selected_;
+                this.color_Scheme_.Is_Dark_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Dark_Selected_;
+                this.color_Scheme_.Is_Halloween_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Halloween_Selected_;
+
                 this.Chat_Frame_Label_ = this.channel_.Name_;
+                Console.WriteLine("C");
 
                 this.SetLanguage();
 
+                this.color_Scheme_.SetColors();
+                Console.WriteLine("D");
+
+
                 this.GetMessages(false);
+                Console.WriteLine("E");
+
             }
             //CHECK IF WE ARE TALKING DIRECTLY TO ANOTHER USER (CLIENT)
             else if(parameters.ContainsKey("target_User_"))
@@ -240,9 +262,15 @@ namespace cca_p_mvvm.ViewModels
                 this.target_User_.First_Name_ = parameters.GetValue<UserViewModel>("target_User_").First_Name_;
                 this.target_User_.Last_Name_ = parameters.GetValue<UserViewModel>("target_User_").Last_Name_;
 
+                this.color_Scheme_.Is_Light_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Light_Selected_;
+                this.color_Scheme_.Is_Dark_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Dark_Selected_;
+                this.color_Scheme_.Is_Halloween_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Halloween_Selected_;
+
                 this.Chat_Frame_Label_ = this.target_User_.First_Name_;
 
                 this.SetLanguage();
+
+                this.color_Scheme_.SetColors();
 
                 this.GetMessages(true);
             }
@@ -283,6 +311,8 @@ namespace cca_p_mvvm.ViewModels
 
                         //CREATE A NEW MESSAGE
                         Message message = new Message();
+                        message.Text_Color_ = this.color_Scheme_.Chat_Text_;
+                        message.Background_Color_ = this.color_Scheme_.Chat_Background_;
                         message.Sender_Name_ = getMessageInfo[0];
                         message.Message_ = getMessageInfo[1];
 

@@ -336,6 +336,8 @@ namespace cca_p_mvvm.ViewModels
                 //THEN CHECK CLIENT CONNECTION
                 if (this.client_Connection_.CheckConnection())
                 {
+                    Console.WriteLine("D");
+
                     //MAKE SURE BOTH USERNAME AND PASSWORD TEXT FIELDS ARE NOT EMPTY OR NULL
                     if (!string.IsNullOrEmpty(this.Username_Entry_Changed_Text_) && !string.IsNullOrEmpty(this.Password_Entry_Changed_Text_))
                     {
@@ -415,6 +417,7 @@ namespace cca_p_mvvm.ViewModels
                 
                 this.color_Scheme_.Is_Light_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Light_Selected_;
                 this.color_Scheme_.Is_Dark_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Dark_Selected_;
+                this.color_Scheme_.Is_Halloween_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Halloween_Selected_;
             }
             else if(parameters.Count() == 5)
             {
@@ -432,6 +435,7 @@ namespace cca_p_mvvm.ViewModels
 
                 this.color_Scheme_.Is_Light_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Light_Selected_;
                 this.color_Scheme_.Is_Dark_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Dark_Selected_;
+                this.color_Scheme_.Is_Halloween_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Halloween_Selected_;
             }
 
             this.SetLanguage();

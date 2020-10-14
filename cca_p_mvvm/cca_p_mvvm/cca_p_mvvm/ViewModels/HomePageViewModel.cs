@@ -408,6 +408,7 @@ namespace cca_p_mvvm.ViewModels
 
                 //SET THE DATA FOR THE CHANNEL
                 Channel channel = new Channel();
+                channel.Text_Color_ = this.color_Scheme_.Home_Text_;
                 channel.ID_ = Convert.ToInt32(getChannelInfo[0]);
                 channel.Name_ = getChannelInfo[1];
 
@@ -432,6 +433,7 @@ namespace cca_p_mvvm.ViewModels
                 {
                     //SET DATA FOR THE USER
                     UserViewModel user = new UserViewModel();
+                    user.Text_Color_ = this.color_Scheme_.Home_Text_;
                     user.ID_ = Convert.ToInt32(getUserInfo[0]);
                     user.First_Name_ = getUserInfo[1];
                     user.Last_Name_ = getUserInfo[2];
@@ -442,6 +444,7 @@ namespace cca_p_mvvm.ViewModels
                 }
             }
         }
+
 
 
         private Channel selected_Channel_ { get; set; }
@@ -476,12 +479,15 @@ namespace cca_p_mvvm.ViewModels
                 p.Add("l_Eng_", this.l_Eng_);
                 p.Add("l_Jap_", this.l_Jap_);
                 p.Add("client_Connection_", this.client_Connection_);
-                p.Add("channel_", this.selected_Channel_);
+                p.Add("channel_", this.Selected_Channel_);
+                p.Add("color_Scheme_", this.color_Scheme_);
 
                 //PASS PARAMETERS
                 await this.navigation_Service_.NavigateAsync("ChatPage", p);
             }
         }
+
+
 
         private UserViewModel selected_Messages_ { get; set; }
         public UserViewModel Selected_Messages_
@@ -516,6 +522,7 @@ namespace cca_p_mvvm.ViewModels
                 p.Add("l_Jap_", this.l_Jap_);
                 p.Add("client_Connection_", this.client_Connection_);
                 p.Add("target_User_", this.selected_Messages_);
+                p.Add("color_Scheme_", this.color_Scheme_);
 
                 //PASS PARAMETERS
                 await this.navigation_Service_.NavigateAsync("ChatPage", p);
@@ -527,6 +534,7 @@ namespace cca_p_mvvm.ViewModels
                 var p = new NavigationParameters();
 
                 p.Add("target_User_", this.selected_Messages_);
+                p.Add("color_Scheme_", this.color_Scheme_);
 
                 //PASS PARAMETERS
                 await this.navigation_Service_.NavigateAsync("ViewUserProfilePage", p);
@@ -538,6 +546,7 @@ namespace cca_p_mvvm.ViewModels
                 this.User_Messages_.Remove(this.selected_Messages_);
             }
         }
+
 
 
         private DelegateCommand channel_Button_Command_;
@@ -554,6 +563,7 @@ namespace cca_p_mvvm.ViewModels
         }
 
 
+
         private DelegateCommand dm_Button_Command_;
         public DelegateCommand DM_Button_Command_ => this.dm_Button_Command_ ?? (this.dm_Button_Command_ = new DelegateCommand(this.DMButton));
         private void DMButton()
@@ -566,6 +576,7 @@ namespace cca_p_mvvm.ViewModels
                 this.DM_Display_ = true;
             }
         }
+
 
 
         private DelegateCommand profile_Button_Command_;
@@ -581,6 +592,8 @@ namespace cca_p_mvvm.ViewModels
             }
         }
 
+
+
         private DelegateCommand setting_Button_Command_;
         public DelegateCommand Setting_Button_Command_ => this.setting_Button_Command_ ?? (this.setting_Button_Command_ = new DelegateCommand(this.SettingButton));
         private async void SettingButton()
@@ -591,10 +604,13 @@ namespace cca_p_mvvm.ViewModels
             p.Add("l_Eng_", this.l_Eng_);
             p.Add("l_Jap_", this.l_Jap_);
             p.Add("color_Scheme_", this.color_Scheme_);
+            p.Add("Channel_", this.Channel_);
 
             //PASS PARAMETERS
             await this.navigation_Service_.NavigateAsync("SettingPage", p);
         }
+
+
 
         private DelegateCommand profile_Edit_Button_Command_;
         public DelegateCommand Profile_Edit_Button_Command_ => this.profile_Edit_Button_Command_ ?? (this.profile_Edit_Button_Command_ = new DelegateCommand(this.ProfileEditButton));
@@ -612,6 +628,8 @@ namespace cca_p_mvvm.ViewModels
             //PASS PARAMETERS
             this.navigation_Service_.NavigateAsync("ProfileEditPage", p);
         }
+
+
 
         private DelegateCommand profile_Logout_Button_Command_;
         public DelegateCommand Profile_Logout_Button_Command_ => this.profile_Logout_Button_Command_ ?? (this.profile_Logout_Button_Command_ = new DelegateCommand(this.ProfileLogoutButton));
@@ -633,42 +651,6 @@ namespace cca_p_mvvm.ViewModels
         }
 
 
-        private void SetLanguage()
-        {
-            //SET UI VARIABLES BASED ON THE CURRENTLY ACTIVE LANGUAGE
-            if(this.l_Eng_.Is_English_Selected_)
-            {
-                this.Hub_Frame_Label_ = this.l_Eng_.Word[ENG_WORD.HUB_FRAME_LABEL];
-                this.Hub_Channel_Button_ = this.l_Eng_.Word[ENG_WORD.HUB_CHANNEL_BUTTON];
-                this.Hub_DM_Button_ = this.l_Eng_.Word[ENG_WORD.HUB_DM_BUTTON];
-                this.Hub_Profile_Button_ = this.l_Eng_.Word[ENG_WORD.HUB_PROFILE_BUTTON];
-                this.Hub_Channel_Label_ = this.l_Eng_.Word[ENG_WORD.HUB_CHANNEL_LABEL];
-                this.Hub_Profile_Edit_Button_ = this.l_Eng_.Word[ENG_WORD.HUB_PROFILE_EDIT_BUTTON];
-                this.Hub_Profile_Logout_Button_ = this.l_Eng_.Word[ENG_WORD.HUB_PROFILE_LOGOUT_BUTTON];
-                this.Hub_Channel_Event_Enter_ = this.l_Eng_.Word[ENG_WORD.HUB_CHANNEL_EVENT_ENTER];
-                this.Hub_Channel_Event_Cancel_ = this.l_Eng_.Word[ENG_WORD.HUB_CHANNEL_EVENT_CANCEL];
-                this.Hub_DM_Event_Chat_ = this.l_Eng_.Word[ENG_WORD.HUB_DM_EVENT_CHAT];
-                this.Hub_DM_Event_Profile_ = this.l_Eng_.Word[ENG_WORD.HUB_DM_EVENT_PROFILE];
-                this.Hub_DM_Event_Delete_ = this.l_Eng_.Word[ENG_WORD.HUB_DM_EVENT_DELETE];
-                this.Hub_DM_Event_Cancel_ = this.l_Eng_.Word[ENG_WORD.HUB_DM_EVENT_CANCEL];
-            }
-            else if(this.l_Jap_.Is_Japanese_Selected_)
-            {
-                this.Hub_Frame_Label_ = this.l_Jap_.Word[JAP_WORD.HUB_FRAME_LABEL];
-                this.Hub_Channel_Button_ = this.l_Jap_.Word[JAP_WORD.HUB_CHANNEL_BUTTON];
-                this.Hub_DM_Button_ = this.l_Jap_.Word[JAP_WORD.HUB_DM_BUTTON];
-                this.Hub_Profile_Button_ = this.l_Jap_.Word[JAP_WORD.HUB_PROFILE_BUTTON];
-                this.Hub_Channel_Label_ = this.l_Jap_.Word[JAP_WORD.HUB_CHANNEL_LABEL];
-                this.Hub_Profile_Edit_Button_ = this.l_Jap_.Word[JAP_WORD.HUB_PROFILE_EDIT_BUTTON];
-                this.Hub_Profile_Logout_Button_ = this.l_Jap_.Word[JAP_WORD.HUB_PROFILE_LOGOUT_BUTTON];
-                this.Hub_Channel_Event_Enter_ = this.l_Jap_.Word[JAP_WORD.HUB_CHANNEL_EVENT_ENTER];
-                this.Hub_Channel_Event_Cancel_ = this.l_Jap_.Word[JAP_WORD.HUB_CHANNEL_EVENT_CANCEL];
-                this.Hub_DM_Event_Chat_ = this.l_Jap_.Word[JAP_WORD.HUB_DM_EVENT_CHAT];
-                this.Hub_DM_Event_Profile_ = this.l_Jap_.Word[JAP_WORD.HUB_DM_EVENT_PROFILE];
-                this.Hub_DM_Event_Delete_ = this.l_Jap_.Word[JAP_WORD.HUB_DM_EVENT_DELETE];
-                this.Hub_DM_Event_Cancel_ = this.l_Jap_.Word[JAP_WORD.HUB_DM_EVENT_CANCEL];
-            }
-        }
 
         public void OnNavigatedFrom(INavigationParameters parameters)
         {
@@ -700,19 +682,35 @@ namespace cca_p_mvvm.ViewModels
 
                 this.color_Scheme_.Is_Light_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Light_Selected_;
                 this.color_Scheme_.Is_Dark_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Dark_Selected_;
+                this.color_Scheme_.Is_Halloween_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Halloween_Selected_;
 
                 this.client_Connection_.CheckConnection();
+
+                this.color_Scheme_.SetColors();
                 this.GetChannels();
                 this.GetDirectMessages();
             }
             //COMING FROM SETTINGS
-            if(parameters.Count == 3)
+            if (parameters.Count == 3)
             {
                 this.l_Eng_.Is_English_Selected_ = parameters.GetValue<LanguageEnglish>("l_Eng_").Is_English_Selected_;
                 this.l_Jap_.Is_Japanese_Selected_ = parameters.GetValue<LanguageJapanese>("l_Jap_").Is_Japanese_Selected_;
 
                 this.color_Scheme_.Is_Light_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Light_Selected_;
                 this.color_Scheme_.Is_Dark_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Dark_Selected_;
+                this.color_Scheme_.Is_Halloween_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Halloween_Selected_;
+
+                this.color_Scheme_.SetColors();
+
+                for (int i = 0; i < this.Channel_.Count; ++i)
+                {
+                    this.Channel_[i].Text_Color_ = this.color_Scheme_.Home_Text_;
+                }
+
+                for (int i = 0; i < this.User_Messages_.Count; ++i)
+                {
+                    this.User_Messages_[i].Text_Color_ = this.color_Scheme_.Home_Text_;
+                }
             }
             //DON'T KNOW
             if (parameters.Count == 1)
@@ -725,7 +723,46 @@ namespace cca_p_mvvm.ViewModels
             }
 
             this.SetLanguage();
-            this.color_Scheme_.SetColors();
         }
+
+
+
+        private void SetLanguage()
+        {
+            //SET UI VARIABLES BASED ON THE CURRENTLY ACTIVE LANGUAGE
+            if (this.l_Eng_.Is_English_Selected_)
+            {
+                this.Hub_Frame_Label_ = this.l_Eng_.Word[ENG_WORD.HUB_FRAME_LABEL];
+                this.Hub_Channel_Button_ = this.l_Eng_.Word[ENG_WORD.HUB_CHANNEL_BUTTON];
+                this.Hub_DM_Button_ = this.l_Eng_.Word[ENG_WORD.HUB_DM_BUTTON];
+                this.Hub_Profile_Button_ = this.l_Eng_.Word[ENG_WORD.HUB_PROFILE_BUTTON];
+                this.Hub_Channel_Label_ = this.l_Eng_.Word[ENG_WORD.HUB_CHANNEL_LABEL];
+                this.Hub_Profile_Edit_Button_ = this.l_Eng_.Word[ENG_WORD.HUB_PROFILE_EDIT_BUTTON];
+                this.Hub_Profile_Logout_Button_ = this.l_Eng_.Word[ENG_WORD.HUB_PROFILE_LOGOUT_BUTTON];
+                this.Hub_Channel_Event_Enter_ = this.l_Eng_.Word[ENG_WORD.HUB_CHANNEL_EVENT_ENTER];
+                this.Hub_Channel_Event_Cancel_ = this.l_Eng_.Word[ENG_WORD.HUB_CHANNEL_EVENT_CANCEL];
+                this.Hub_DM_Event_Chat_ = this.l_Eng_.Word[ENG_WORD.HUB_DM_EVENT_CHAT];
+                this.Hub_DM_Event_Profile_ = this.l_Eng_.Word[ENG_WORD.HUB_DM_EVENT_PROFILE];
+                this.Hub_DM_Event_Delete_ = this.l_Eng_.Word[ENG_WORD.HUB_DM_EVENT_DELETE];
+                this.Hub_DM_Event_Cancel_ = this.l_Eng_.Word[ENG_WORD.HUB_DM_EVENT_CANCEL];
+            }
+            else if (this.l_Jap_.Is_Japanese_Selected_)
+            {
+                this.Hub_Frame_Label_ = this.l_Jap_.Word[JAP_WORD.HUB_FRAME_LABEL];
+                this.Hub_Channel_Button_ = this.l_Jap_.Word[JAP_WORD.HUB_CHANNEL_BUTTON];
+                this.Hub_DM_Button_ = this.l_Jap_.Word[JAP_WORD.HUB_DM_BUTTON];
+                this.Hub_Profile_Button_ = this.l_Jap_.Word[JAP_WORD.HUB_PROFILE_BUTTON];
+                this.Hub_Channel_Label_ = this.l_Jap_.Word[JAP_WORD.HUB_CHANNEL_LABEL];
+                this.Hub_Profile_Edit_Button_ = this.l_Jap_.Word[JAP_WORD.HUB_PROFILE_EDIT_BUTTON];
+                this.Hub_Profile_Logout_Button_ = this.l_Jap_.Word[JAP_WORD.HUB_PROFILE_LOGOUT_BUTTON];
+                this.Hub_Channel_Event_Enter_ = this.l_Jap_.Word[JAP_WORD.HUB_CHANNEL_EVENT_ENTER];
+                this.Hub_Channel_Event_Cancel_ = this.l_Jap_.Word[JAP_WORD.HUB_CHANNEL_EVENT_CANCEL];
+                this.Hub_DM_Event_Chat_ = this.l_Jap_.Word[JAP_WORD.HUB_DM_EVENT_CHAT];
+                this.Hub_DM_Event_Profile_ = this.l_Jap_.Word[JAP_WORD.HUB_DM_EVENT_PROFILE];
+                this.Hub_DM_Event_Delete_ = this.l_Jap_.Word[JAP_WORD.HUB_DM_EVENT_DELETE];
+                this.Hub_DM_Event_Cancel_ = this.l_Jap_.Word[JAP_WORD.HUB_DM_EVENT_CANCEL];
+            }
+        }
+
     }
 }

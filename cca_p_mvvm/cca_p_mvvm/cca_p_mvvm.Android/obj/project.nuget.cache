@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "5uamfBHQ3pd1fY+W4D3ydikcpDwqaLMo1q1OCsb8KuIVcPGsG4xEE5nVnttoi93Ad5dZLpAWJBFza5MHg7Z7Sg==",
+  "dgSpecHash": "XDvtiD9C/GrHZJwCZfsvSAJC3vCkd+IGBfNLkG1+TcCB7YTNpxaRsJGWwBQccRi/qwPjdOtmJEM2xQRv4k4Djw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\S-03\\Source\\Repos\\BlockyNewt\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm.Android\\cca_p_mvvm.Android.csproj",
+  "projectFilePath": "C:\\Users\\S-03\\source\\repos\\BlockyNewt\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm.Android\\cca_p_mvvm.Android.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\S-03\\.nuget\\packages\\dryioc.dll\\4.0.7\\dryioc.dll.4.0.7.nupkg.sha512",
     "C:\\Users\\S-03\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",

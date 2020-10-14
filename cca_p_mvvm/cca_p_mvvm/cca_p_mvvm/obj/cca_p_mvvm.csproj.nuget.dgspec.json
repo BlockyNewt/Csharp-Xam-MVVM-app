@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\S-03\\Source\\Repos\\BlockyNewt\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm.csproj": {}
+    "C:\\Users\\S-03\\source\\repos\\BlockyNewt\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm.csproj": {}
   },
   "projects": {
-    "C:\\Users\\S-03\\Source\\Repos\\BlockyNewt\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm.csproj": {
+    "C:\\Users\\S-03\\source\\repos\\BlockyNewt\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\S-03\\Source\\Repos\\BlockyNewt\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm.csproj",
+        "projectUniqueName": "C:\\Users\\S-03\\source\\repos\\BlockyNewt\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm.csproj",
         "projectName": "cca_p_mvvm",
-        "projectPath": "C:\\Users\\S-03\\Source\\Repos\\BlockyNewt\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm.csproj",
+        "projectPath": "C:\\Users\\S-03\\source\\repos\\BlockyNewt\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm.csproj",
         "packagesPath": "C:\\Users\\S-03\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\S-03\\Source\\Repos\\BlockyNewt\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm\\obj\\",
+        "outputPath": "C:\\Users\\S-03\\source\\repos\\BlockyNewt\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"

@@ -2338,11 +2338,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\S-03\\Source\\Repos\\BlockyNewt\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm.Android\\cca_p_mvvm.Android.csproj",
+      "projectUniqueName": "C:\\Users\\S-03\\source\\repos\\BlockyNewt\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm.Android\\cca_p_mvvm.Android.csproj",
       "projectName": "cca_p_mvvm.Android",
-      "projectPath": "C:\\Users\\S-03\\Source\\Repos\\BlockyNewt\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm.Android\\cca_p_mvvm.Android.csproj",
+      "projectPath": "C:\\Users\\S-03\\source\\repos\\BlockyNewt\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm.Android\\cca_p_mvvm.Android.csproj",
       "packagesPath": "C:\\Users\\S-03\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\S-03\\Source\\Repos\\BlockyNewt\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm.Android\\obj\\",
+      "outputPath": "C:\\Users\\S-03\\source\\repos\\BlockyNewt\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm.Android\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
@@ -2363,8 +2363,8 @@
       "frameworks": {
         "monoandroid10.0": {
           "projectReferences": {
-            "C:\\Users\\S-03\\Source\\Repos\\BlockyNewt\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm.csproj": {
-              "projectPath": "C:\\Users\\S-03\\Source\\Repos\\BlockyNewt\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm.csproj"
+            "C:\\Users\\S-03\\source\\repos\\BlockyNewt\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm.csproj": {
+              "projectPath": "C:\\Users\\S-03\\source\\repos\\BlockyNewt\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm.csproj"
             }
           }
         }

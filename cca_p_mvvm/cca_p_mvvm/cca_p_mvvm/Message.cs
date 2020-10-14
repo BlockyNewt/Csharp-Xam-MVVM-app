@@ -2,6 +2,7 @@
 using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 
 namespace cca_p_mvvm.ViewModels
@@ -47,6 +48,38 @@ namespace cca_p_mvvm.ViewModels
                 this.sender_Name_ = value;
                 this.OnPropertyChanged("Sender_Name_");
                 this.SetProperty(ref this.sender_Name_, value);
+            }
+        }
+
+
+        private Color text_Color_;
+        private Color background_Color_;
+
+        public Color Text_Color_
+        {
+            get
+            {
+                return this.text_Color_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.text_Color_, value);
+                this.RaisePropertyChanged("Text_Color_");
+            }
+        }
+
+        public Color Background_Color_
+        {
+            get
+            {
+                return this.background_Color_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.background_Color_, value);
+                this.RaisePropertyChanged("Background_Color_");
             }
         }
     }

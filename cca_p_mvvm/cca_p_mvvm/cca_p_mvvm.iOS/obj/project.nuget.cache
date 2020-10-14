@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "jYoMkd4hSymiG7BwXThQe+zyUkzAGDvwNNolFdSF/8J1vDCYMHI8x4fQcgt75/ppDskenZk7eR0q00SZLSZrfg==",
+  "dgSpecHash": "T8GMoc/nvP4794wPHzIvJ8IEFUVV1gWfRKbwVOW4G1jGAPg7kQjpYIf/22A369P6K9slBFpAw0uDOhFHfAFYvw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\S-03\\Source\\Repos\\BlockyNewt\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm.iOS\\cca_p_mvvm.iOS.csproj",
+  "projectFilePath": "C:\\Users\\S-03\\source\\repos\\BlockyNewt\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm.iOS\\cca_p_mvvm.iOS.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\S-03\\.nuget\\packages\\dryioc.dll\\4.0.7\\dryioc.dll.4.0.7.nupkg.sha512",
     "C:\\Users\\S-03\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",

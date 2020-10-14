@@ -8,9 +8,9 @@
              NavigationPage.HasNavigationBar="False">
 
 
-    <StackLayout>
+    <StackLayout BackgroundColor="{Binding color_Scheme_.View_User_Profile_Background_}">
 
-        <Frame BackgroundColor="DarkSlateGray">
+        <Frame BackgroundColor="{Binding color_Scheme_.View_User_Profile_Background_}">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -21,7 +21,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <ImageButton Source="back_Button" BackgroundColor="Transparent" HorizontalOptions="Start" Command="{Binding Back_Button_Command}" WidthRequest="40" HeightRequest="40" Grid.Column="1"/>
-                <Label Text="{Binding target_User_.First_Name_}" TextColor="White" HorizontalOptions="Center" FontSize="24" Grid.Column="1" Grid.ColumnSpan="1"/>
+                <Label Text="{Binding target_User_.First_Name_}" TextColor="{Binding color_Scheme_.View_User_Profile_Text_}" HorizontalOptions="Center" FontSize="24" Grid.Column="1" Grid.ColumnSpan="1"/>
             </Grid>
         </Frame>
 
@@ -36,8 +36,8 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Image Source="{Binding target_User_.Picture_}" Grid.RowSpan="4" HorizontalOptions="CenterAndExpand" Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="1"/>
-                <Label Text="{Binding target_User_.First_Name_}" FontSize="18" HorizontalOptions="CenterAndExpand" Grid.ColumnSpan="1" Grid.Column="1" Grid.Row="6"/>
-                <Label Text="{Binding target_User_.Last_Name_}" FontSize="18" HorizontalOptions="CenterAndExpand" Grid.ColumnSpan="1" Grid.Column="2" Grid.Row="6"/>
+                <Label Text="{Binding target_User_.First_Name_}" TextColor="{Binding color_Scheme_.View_User_Profile_Text_}" FontSize="18" HorizontalOptions="CenterAndExpand" Grid.ColumnSpan="1" Grid.Column="1" Grid.Row="6"/>
+                <Label Text="{Binding target_User_.Last_Name_}" TextColor="{Binding color_Scheme_.View_User_Profile_Text_}" FontSize="18" HorizontalOptions="CenterAndExpand" Grid.ColumnSpan="1" Grid.Column="2" Grid.Row="6"/>
             </Grid>
         </StackLayout>
 

@@ -58,6 +58,10 @@ namespace cca_p_mvvm
         SETTING_CLOSE_BUTTON,
         SETTING_APP_INFORMATION_LABEL,
         SETTING_APP_VERSION_,
+        SETTING_COLOR_DESIGN_LABEL,
+        SETTING_RADIO_LIGHT_BUTTON,
+        SETTING_RADIO_DARK_BUTTON,
+        SETTING_RADIO_HALLOWEEN_BUTTON,
 
         PROFILE_EDIT_CONFIRM_BUTTON,
         PROFILE_EDIT_CANCEL_BUTTON,
@@ -106,7 +110,6 @@ namespace cca_p_mvvm
             this.word_.Add(JAP_WORD.CREATE_ACCOUNT_ERROR_MESSAGE, "パスワードが一緒じゃないのでもう一度を入力してみてください。");
             this.word_.Add(JAP_WORD.CREATE_ACCOUNT_ERROR_BUTTON, "閉じる");
 
-
             this.word_.Add(JAP_WORD.HUB_FRAME_LABEL, "株式会社コンサイズ");
             this.word_.Add(JAP_WORD.HUB_CHANNEL_BUTTON, "チャンネル");
             this.word_.Add(JAP_WORD.HUB_DM_BUTTON, "メッセージ");
@@ -129,6 +132,10 @@ namespace cca_p_mvvm
             this.word_.Add(JAP_WORD.SETTING_CLOSE_BUTTON, "戻る");
             this.word_.Add(JAP_WORD.SETTING_APP_INFORMATION_LABEL, "アプリの環境情報");
             this.word_.Add(JAP_WORD.SETTING_APP_VERSION_, "バージョン：");
+            this.word_.Add(JAP_WORD.SETTING_COLOR_DESIGN_LABEL, "設計の色");
+            this.word_.Add(JAP_WORD.SETTING_RADIO_LIGHT_BUTTON, "ライト");
+            this.word_.Add(JAP_WORD.SETTING_RADIO_DARK_BUTTON, "ダーク");
+            this.word_.Add(JAP_WORD.SETTING_RADIO_HALLOWEEN_BUTTON, "ハロウィーン");
 
             this.word_.Add(JAP_WORD.PROFILE_EDIT_CONFIRM_BUTTON, "完了");
             this.word_.Add(JAP_WORD.PROFILE_EDIT_CANCEL_BUTTON, "キャンセル");
@@ -142,7 +149,6 @@ namespace cca_p_mvvm
             this.word_.Add(JAP_WORD.CONNECTION_ERROR_TITLE, "エラー");
             this.word_.Add(JAP_WORD.CONNECTION_ERROR_MESSAGE, "インターネットを繋がらなかったです。");
             this.word_.Add(JAP_WORD.CONNECTION_ERROR_BUTTON, "閉じる");
-
         }
 
         private Dictionary<JAP_WORD, string> word_ = new Dictionary<JAP_WORD, string>();

@@ -15,12 +15,18 @@ namespace cca_p_mvvm.ViewModels
             this.navigation_Service_ = navigationService;
 
             this.target_User_ = new UserViewModel();
+
+            this.color_Scheme_ = new ColorScheme();
         }
+
         //NAVIGATION SERVICE
         private readonly INavigationService navigation_Service_;
 
         //THE USER WE ARE LOOKING AT (NOT OUR PROFILE)
         public UserViewModel target_User_ { get; private set; }
+
+        //COLOR-SCHEMES
+        public ColorScheme color_Scheme_ { get; private set; }
 
 
         private DelegateCommand back_Button_Command;
@@ -43,6 +49,12 @@ namespace cca_p_mvvm.ViewModels
                 this.target_User_.First_Name_ = parameters.GetValue<UserViewModel>("target_User_").First_Name_;
                 this.target_User_.Last_Name_ = parameters.GetValue<UserViewModel>("target_User_").Last_Name_;
                 this.target_User_.Picture_ = parameters.GetValue<UserViewModel>("target_User_").Picture_;
+
+                this.color_Scheme_.Is_Light_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Light_Selected_;
+                this.color_Scheme_.Is_Dark_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Dark_Selected_;
+                this.color_Scheme_.Is_Halloween_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Halloween_Selected_;
+
+                this.color_Scheme_.SetColors();
             }
         }
     }

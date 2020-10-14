@@ -33,6 +33,10 @@ namespace cca_p_mvvm.ViewModels
         private string setting_Close_Button_;
         private string setting_App_Info_Label_;
         private string setting_App_Version_;
+        private string setting_Color_Design_Label_;
+        private string setting_Radio_Light_Button_;
+        private string setting_Radio_Dark_Button_;
+        private string setting_Radio_Halloween_Button_;
 
         //LANGUAGES
         public LanguageEnglish l_Eng_ { get; private set; }
@@ -194,6 +198,82 @@ namespace cca_p_mvvm.ViewModels
             }
         }
 
+        public string Setting_Color_Design_Label_
+        {
+            get
+            {
+                if(string.IsNullOrEmpty(this.setting_Color_Design_Label_))
+                {
+                    return "Empty string";
+                }
+
+                return this.setting_Color_Design_Label_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.setting_Color_Design_Label_, value);
+                this.RaisePropertyChanged("Setting_Color_Design_Label_");
+            }
+        }
+
+        public string Setting_Radio_Light_Button_
+        {
+            get
+            {
+                if(string.IsNullOrEmpty(this.setting_Radio_Light_Button_))
+                {
+                    return "Empty string";
+                }
+
+                return this.setting_Radio_Light_Button_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.setting_Radio_Light_Button_, value);
+                this.RaisePropertyChanged("Setting_Radio_Light_Button_");
+            }
+        }
+
+        public string Setting_Radio_Dark_Button_
+        {
+            get
+            {
+                if(string.IsNullOrEmpty(this.setting_Radio_Dark_Button_))
+                {
+                    return "Empty string";
+                }
+
+                return this.setting_Radio_Dark_Button_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.setting_Radio_Dark_Button_, value);
+                this.RaisePropertyChanged("Setting_Radio_Dark_Button_");
+            }
+        }
+
+        public string Setting_Radio_Halloween_Button_
+        {
+            get
+            {
+                if(string.IsNullOrEmpty(this.setting_Radio_Halloween_Button_))
+                {
+                    return "Empty string";
+                }
+
+                return this.setting_Radio_Halloween_Button_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.setting_Radio_Halloween_Button_, value);
+                this.RaisePropertyChanged("setting_Radio_Halloween_Button_");
+            }
+        }
+
 
 
         private DelegateCommand setting_Accept_Button_Command_;
@@ -233,6 +313,9 @@ namespace cca_p_mvvm.ViewModels
 
             this.color_Scheme_.Is_Light_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Light_Selected_;
             this.color_Scheme_.Is_Dark_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Dark_Selected_;
+            this.color_Scheme_.Is_Halloween_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Halloween_Selected_;
+
+
 
             this.SetLanguage();
             this.color_Scheme_.SetColors();
@@ -252,7 +335,11 @@ namespace cca_p_mvvm.ViewModels
                 this.Setting_Accept_Button_ = this.l_Eng_.Word[ENG_WORD.SETTING_ACCEPT_BUTTON];
                 this.Setting_Close_Button_ = this.l_Eng_.Word[ENG_WORD.SETTING_CLOSE_BUTTON];
                 this.Setting_App_Info_Label_ = this.l_Eng_.Word[ENG_WORD.SETTING_APP_INFORMATION_LABEL];
-                this.Setting_App_Version_ = this.l_Eng_.Word[ENG_WORD.SETTING_APP_VERSION_] + "1.0.0";
+                this.Setting_App_Version_ = this.l_Eng_.Word[ENG_WORD.SETTING_APP_VERSION] + "1.0.0";
+                this.Setting_Color_Design_Label_ = this.l_Eng_.Word[ENG_WORD.SETTING_COLOR_DESIGN_LABEL];
+                this.Setting_Radio_Light_Button_ = this.l_Eng_.Word[ENG_WORD.SETTING_RADIO_LIGHT_BUTTON];
+                this.Setting_Radio_Dark_Button_ = this.l_Eng_.Word[ENG_WORD.SETTING_RADIO_DARK_BUTTON];
+                this.Setting_Radio_Halloween_Button_ = this.l_Eng_.Word[ENG_WORD.SETTING_RADIO_HALLOWEEN_BUTTON];
             }
             else if (this.l_Jap_.Is_Japanese_Selected_)
             {
@@ -264,6 +351,10 @@ namespace cca_p_mvvm.ViewModels
                 this.Setting_Close_Button_ = this.l_Jap_.Word[JAP_WORD.SETTING_CLOSE_BUTTON];
                 this.Setting_App_Info_Label_ = this.l_Jap_.Word[JAP_WORD.SETTING_APP_INFORMATION_LABEL];
                 this.Setting_App_Version_ = this.l_Jap_.Word[JAP_WORD.SETTING_APP_VERSION_] + "1.0.0";
+                this.Setting_Color_Design_Label_ = this.l_Jap_.Word[JAP_WORD.SETTING_COLOR_DESIGN_LABEL];
+                this.Setting_Radio_Light_Button_ = this.l_Jap_.Word[JAP_WORD.SETTING_RADIO_LIGHT_BUTTON];
+                this.Setting_Radio_Dark_Button_ = this.l_Jap_.Word[JAP_WORD.SETTING_RADIO_DARK_BUTTON];
+                this.Setting_Radio_Halloween_Button_ = this.l_Jap_.Word[JAP_WORD.SETTING_RADIO_HALLOWEEN_BUTTON];
             }
         }
 

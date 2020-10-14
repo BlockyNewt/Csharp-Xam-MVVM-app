@@ -376,6 +376,7 @@ namespace cca_p_mvvm.ViewModels
 
                 this.color_Scheme_.Is_Dark_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Dark_Selected_;
                 this.color_Scheme_.Is_Light_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Light_Selected_;
+                this.color_Scheme_.Is_Halloween_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Halloween_Selected_;
 
                 this.First_Name_Placeholder_ = this.user_.First_Name_;
                 this.Last_Name_Placeholder_ = this.user_.Last_Name_;

@@ -28,7 +28,7 @@
 
     <!--CHANNEL TAB-->
         <StackLayout IsVisible="{Binding Channel_Display_}">
-            <Label Text="{Binding Hub_Channel_Label_}" TextColor="{Binding color_Scheme_.Home_Text_}" FontSize="20"/>
+            <!--<Label Text="{Binding Hub_Channel_Label_}" TextColor="{Binding color_Scheme_.Home_Text_}" FontSize="20"/>-->
             <ListView ItemsSource="{Binding Channel_}" SelectedItem="{Binding Selected_Channel_}" SeparatorVisibility="None" HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -42,7 +42,7 @@
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <Label Text="{Binding Name_}" TextColor="{Binding color_Scheme_.Home_Text_}" FontSize="18" HorizontalOptions="StartAndExpand" Grid.Column="1"/>
+                                <Label Text="{Binding Name_}" TextColor="{Binding Text_Color_}" FontSize="18" HorizontalOptions="StartAndExpand" Grid.Column="1"/>
                             </Grid>
                         </ViewCell>
                     </DataTemplate>
@@ -66,7 +66,7 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                                 <Image Source="{Binding Picture_}" HeightRequest="75" WidthRequest="75" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Grid.Column="1" Grid.ColumnSpan="1" Grid.RowSpan="4"/>
-                                <Label Text="{Binding First_Name_}" TextColor="{Binding color_Scheme_.Home_Text_}" FontSize="18" HorizontalOptions="StartAndExpand" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="2"/>
+                                <Label Text="{Binding First_Name_}" TextColor="{Binding Text_Color_}" FontSize="18" HorizontalOptions="StartAndExpand" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="2"/>
                             </Grid>
                     </ViewCell>
                 </DataTemplate>
