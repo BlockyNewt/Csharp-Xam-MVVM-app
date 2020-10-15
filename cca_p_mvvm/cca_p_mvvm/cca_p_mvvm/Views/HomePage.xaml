@@ -78,22 +78,41 @@
 
     <!--PROFILE TAB-->
     <StackLayout IsVisible="{Binding Profile_Display_}">
-        <Grid Padding="10">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-                <Image Source="{Binding user_.Picture_}" HorizontalOptions="CenterAndExpand" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="4"/>
-                <Label Text="{Binding user_.First_Name_}" TextColor="{Binding color_Scheme_.Home_Text_}" FontSize="18" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2"/>
-                <Label Text="{Binding user_.Last_Name_}" TextColor="{Binding color_Scheme_.Home_Text_}" FontSize="18" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2"/>
-                <Button Text="{Binding Hub_Profile_Edit_Button_}" TextColor="{Binding color_Scheme_.Home_Text_}" BackgroundColor="{Binding color_Scheme_.Home_Button_}" Command="{Binding Profile_Edit_Button_Command_}" Grid.Row="8" Grid.Column="1"/>
-                <Button Text="{Binding Hub_Profile_Logout_Button_}" TextColor="{Binding color_Scheme_.Home_Text_}" BackgroundColor="{Binding color_Scheme_.Home_Button_}" Command="{Binding Profile_Logout_Button_Command_}" Grid.Row="8" Grid.Column="2"/>
-        </Grid>
-    </StackLayout>
+            <ScrollView VerticalOptions="FillAndExpand">
+                <Grid Padding="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="{Binding user_.Picture_}" HorizontalOptions="CenterAndExpand" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="4"/>
+
+                    <Label Text="{Binding Hub_Profile_Fullname_Label_}" TextColor="{Binding color_Scheme_.Home_Text_Secondary_}" FontSize="18" Grid.ColumnSpan="2" Grid.Row="5"/>
+                    <Label Text="{Binding user_.Fullname_}" TextColor="{Binding color_Scheme_.Home_Text_}" FontSize="20" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2"/>
+
+                    <Label Text="{Binding Hub_Profile_Bio_Label_}" TextColor="{Binding color_Scheme_.Home_Text_Secondary_}" FontSize="18" Grid.ColumnSpan="2" Grid.Row="7"/>
+                    <Editor Text="{Binding user_.Bio_}" TextColor="{Binding color_Scheme_.Home_Text_}" Placeholder="{Binding Hub_Profile_Bio_Placeholder_}" PlaceholderColor="{Binding color_Scheme_.Home_Text_}" FontSize="20" MaxLength="250" IsReadOnly="True" Grid.Row="8" Grid.RowSpan="9" Grid.Column="1" Grid.ColumnSpan="2"/>
+                </Grid>
+            </ScrollView>
+
+            <StackLayout>
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Text="{Binding Hub_Profile_Edit_Button_}" TextColor="{Binding color_Scheme_.Home_Text_Secondary_}" BackgroundColor="{Binding color_Scheme_.Home_Button_}" Command="{Binding Profile_Edit_Button_Command_}" Grid.Row="1" Grid.Column="1"/>
+                    <Button Text="{Binding Hub_Profile_Logout_Button_}" TextColor="{Binding color_Scheme_.Home_Text_Secondary_}" BackgroundColor="{Binding color_Scheme_.Home_Button_}" Command="{Binding Profile_Logout_Button_Command_}" Grid.Row="1" Grid.Column="2"/>
+                </Grid>
+            </StackLayout>
+        </StackLayout>
 
 
     <!--TAB BUTTONS-->
@@ -107,9 +126,9 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-                <Button Text="{Binding Hub_Channel_Button_}" TextColor="{Binding color_Scheme_.Home_Text_}" BackgroundColor="{Binding color_Scheme_.Home_Button_}" Command="{Binding Channel_Button_Command_}" HorizontalOptions="FillAndExpand" Grid.Column="1"/>
-                <Button Text="{Binding Hub_DM_Button_}" TextColor="{Binding color_Scheme_.Home_Text_}" Command="{Binding DM_Button_Command_}" BackgroundColor="{Binding color_Scheme_.Home_Button_}" HorizontalOptions="FillAndExpand" Grid.Column="2"/>
-                <Button Text="{Binding Hub_Profile_Button_}" TextColor="{Binding color_Scheme_.Home_Text_}" Command="{Binding Profile_Button_Command_}" BackgroundColor="{Binding color_Scheme_.Home_Button_}" HorizontalOptions="FillAndExpand" Grid.Column="3"/>
+                <Button Text="{Binding Hub_Channel_Button_}" TextColor="{Binding color_Scheme_.Home_Text_Secondary_}" BackgroundColor="{Binding color_Scheme_.Home_Button_}" Command="{Binding Channel_Button_Command_}" HorizontalOptions="FillAndExpand" Grid.Column="1"/>
+                <Button Text="{Binding Hub_DM_Button_}" TextColor="{Binding color_Scheme_.Home_Text_Secondary_}" Command="{Binding DM_Button_Command_}" BackgroundColor="{Binding color_Scheme_.Home_Button_}" HorizontalOptions="FillAndExpand" Grid.Column="2"/>
+                <Button Text="{Binding Hub_Profile_Button_}" TextColor="{Binding color_Scheme_.Home_Text_Secondary_}" Command="{Binding Profile_Button_Command_}" BackgroundColor="{Binding color_Scheme_.Home_Button_}" HorizontalOptions="FillAndExpand" Grid.Column="3"/>
         </Grid>
     </StackLayout>
 

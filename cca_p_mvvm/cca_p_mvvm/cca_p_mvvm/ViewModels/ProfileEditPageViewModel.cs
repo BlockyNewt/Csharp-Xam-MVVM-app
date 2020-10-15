@@ -43,6 +43,9 @@ namespace cca_p_mvvm.ViewModels
         private string alert_Title_;
         private string alert_Message_;
         private string alert_Button_;
+        private string bio_Label_Text_;
+        private string bio_Text_Changed_;
+        private string bio_Text_Placeholder_;
 
         //LANGUAGES
         public LanguageEnglish l_Eng_ { get; private set; }
@@ -139,7 +142,7 @@ namespace cca_p_mvvm.ViewModels
         {
             get
             {
-                if(string.IsNullOrEmpty(this.picture_Changed_Text_))
+                if (string.IsNullOrEmpty(this.picture_Changed_Text_))
                 {
                     return string.Empty;
                 }
@@ -215,7 +218,7 @@ namespace cca_p_mvvm.ViewModels
         {
             get
             {
-                if(string.IsNullOrEmpty(this.alert_Title_))
+                if (string.IsNullOrEmpty(this.alert_Title_))
                 {
                     return "Empty string";
                 }
@@ -234,7 +237,7 @@ namespace cca_p_mvvm.ViewModels
         {
             get
             {
-                if(string.IsNullOrEmpty(this.alert_Message_))
+                if (string.IsNullOrEmpty(this.alert_Message_))
                 {
                     return "Empty string";
                 }
@@ -253,7 +256,7 @@ namespace cca_p_mvvm.ViewModels
         {
             get
             {
-                if(string.IsNullOrEmpty(this.alert_Button_))
+                if (string.IsNullOrEmpty(this.alert_Button_))
                 {
                     return "Empty string";
                 }
@@ -268,6 +271,57 @@ namespace cca_p_mvvm.ViewModels
             }
         }
 
+        public string Bio_Label_Text_
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(this.bio_Label_Text_))
+                {
+                    return "Empty string";
+                }
+
+                return this.bio_Label_Text_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.bio_Label_Text_, value);
+                this.RaisePropertyChanged("Bio_Label_Text_");
+            }
+        }
+
+        public string Bio_Text_Changed_
+        {
+            get
+            {
+                return this.bio_Text_Changed_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.bio_Text_Changed_, value);
+                this.RaisePropertyChanged("Bio_Text_Changed_");
+            }
+        }
+
+        public string Bio_Text_Placeholder_
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(this.bio_Text_Placeholder_))
+                {
+                    return "Empty string";
+                }
+
+                return this.bio_Text_Placeholder_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.bio_Text_Placeholder_, value);
+                this.RaisePropertyChanged("Bio_Text_Placeholder_");
+            }
+        }
 
 
         private DelegateCommand profile_Edit_Confirm_Button_Command_;
@@ -275,7 +329,7 @@ namespace cca_p_mvvm.ViewModels
         private async void ProfileEditConfirmButton()
         {
             //CHECK IF FIRSTNAME, LASTNAME, AND PICTURE FIELD TEXT VALUES ARE NOT NULL OR EMPTY
-            if(!string.IsNullOrEmpty(this.First_Name_Changed_Text_) || !string.IsNullOrEmpty(this.Last_Name_Changed_Text_) || !string.IsNullOrEmpty(this.Picture_Changed_Text_))
+            if (!string.IsNullOrEmpty(this.First_Name_Changed_Text_) || !string.IsNullOrEmpty(this.Last_Name_Changed_Text_) || !string.IsNullOrEmpty(this.Picture_Changed_Text_) || !string.IsNullOrEmpty(this.Bio_Text_Changed_))
             {
                 //IF THE FIRSTNAME TEXT FIELD HAS BEEN CHANGED THEN UPDATE THE USERS FIRSTNAME
                 if (this.First_Name_Changed_Text_.Length > 0)
@@ -292,6 +346,12 @@ namespace cca_p_mvvm.ViewModels
                 {
                     this.user_.Picture_ = this.Picture_Changed_Text_;
                 }
+                if(this.bio_Label_Text_.Length > 0)
+                {
+                    this.user_.Bio_ = this.Bio_Text_Changed_;
+                }
+
+                this.user_.Fullname_ = this.user_.First_Name_ + " " + this.user_.Last_Name_;
 
                 //CREATE PARAMETERS
                 var p = new NavigationParameters();
@@ -299,7 +359,7 @@ namespace cca_p_mvvm.ViewModels
                 p.Add("user_", this.user_);
 
                 //UPDATE THE USERS VALUES IN THE DATABASE
-                this.client_Connection_.EditUser(this.user_.ID_, this.user_.First_Name_, this.user_.Last_Name_, this.user_.Picture_);
+                this.client_Connection_.EditUser(this.user_.ID_, this.user_.First_Name_, this.user_.Last_Name_, this.user_.Bio_, this.user_.Picture_);
 
                 //PASS PARAMETERS
                 await this.navigation_Service_.GoBackAsync(p);
@@ -326,27 +386,9 @@ namespace cca_p_mvvm.ViewModels
             //GO BACK TO PREVIOUS PAGE WITHOUT CHANGING ANYTHING 
             this.navigation_Service_.GoBackAsync();
         }
+        
 
-        private void SetLanguage()
-        {
-            //CHECK WHICH LANGUAGE IS CURRENTLY SELECTED AND THEN SET IT BASED ON THAT
-            if(this.l_Eng_.Is_English_Selected_)
-            {
-                this.Confirm_Button_ = this.l_Eng_.Word[ENG_WORD.PROFILE_EDIT_CONFIRM_BUTTON];
-                this.Cancel_Button_ = this.l_Eng_.Word[ENG_WORD.PROFILE_EDIT_CANCEL_BUTTON];
-                this.Alert_Title_ = this.l_Eng_.Word[ENG_WORD.PROFILE_EDIT_ALERT_TITLE];
-                this.Alert_Message_ = this.l_Eng_.Word[ENG_WORD.PROFILE_EDIT_ALERT_MESSAGE];
-                this.Alert_Button_ = this.l_Eng_.Word[ENG_WORD.PROFILE_EDIT_ALERT_BUTTON];
-            }
-            else if(this.l_Jap_.Is_Japanese_Selected_)
-            {
-                this.Confirm_Button_ = this.l_Jap_.Word[JAP_WORD.PROFILE_EDIT_CONFIRM_BUTTON];
-                this.Cancel_Button_ = this.l_Jap_.Word[JAP_WORD.PROFILE_EDIT_CANCEL_BUTTON];
-                this.Alert_Title_ = this.l_Jap_.Word[JAP_WORD.PROFILE_EDIT_ALERT_TITLE];
-                this.Alert_Message_ = this.l_Jap_.Word[JAP_WORD.PROFILE_EDIT_ALERT_MESSAGE];
-                this.Alert_Button_ = this.l_Jap_.Word[JAP_WORD.PROFILE_EDIT_ALERT_BUTTON];
-            }
-        }
+
 
         public void OnNavigatedFrom(INavigationParameters parameters)
         {
@@ -360,6 +402,7 @@ namespace cca_p_mvvm.ViewModels
                 this.user_.ID_ = parameters.GetValue<UserViewModel>("user_").ID_;
                 this.user_.First_Name_ = parameters.GetValue<UserViewModel>("user_").First_Name_;
                 this.user_.Last_Name_ = parameters.GetValue<UserViewModel>("user_").Last_Name_;
+                this.user_.Fullname_ = parameters.GetValue<UserViewModel>("user_").Fullname_;
                 this.user_.Username_ = parameters.GetValue<UserViewModel>("user_").Username_;
                 this.user_.Password_ = parameters.GetValue<UserViewModel>("user_").Password_;
                 this.user_.Picture_ = parameters.GetValue<UserViewModel>("user_").Picture_;
@@ -384,6 +427,33 @@ namespace cca_p_mvvm.ViewModels
 
                 this.SetLanguage();
                 this.color_Scheme_.SetColors();
+            }
+        }
+
+        private void SetLanguage()
+        {
+            //CHECK WHICH LANGUAGE IS CURRENTLY SELECTED AND THEN SET IT BASED ON THAT
+            if (this.l_Eng_.Is_English_Selected_)
+            {
+                this.Confirm_Button_ = this.l_Eng_.Word[ENG_WORD.PROFILE_EDIT_CONFIRM_BUTTON];
+                this.Cancel_Button_ = this.l_Eng_.Word[ENG_WORD.PROFILE_EDIT_CANCEL_BUTTON];
+                this.Alert_Title_ = this.l_Eng_.Word[ENG_WORD.PROFILE_EDIT_ALERT_TITLE];
+                this.Alert_Message_ = this.l_Eng_.Word[ENG_WORD.PROFILE_EDIT_ALERT_MESSAGE];
+                this.Alert_Button_ = this.l_Eng_.Word[ENG_WORD.PROFILE_EDIT_ALERT_BUTTON];
+                this.Bio_Label_Text_ = this.l_Eng_.Word[ENG_WORD.PROFILE_EDIT_BIO_LABEL];
+                this.Bio_Text_Placeholder_ = this.l_Eng_.Word[ENG_WORD.PROFILE_EDIT_BIO_PLACEHOLDER];
+            }
+            else if (this.l_Jap_.Is_Japanese_Selected_)
+            {
+                this.Confirm_Button_ = this.l_Jap_.Word[JAP_WORD.PROFILE_EDIT_CONFIRM_BUTTON];
+                this.Cancel_Button_ = this.l_Jap_.Word[JAP_WORD.PROFILE_EDIT_CANCEL_BUTTON];
+                this.Alert_Title_ = this.l_Jap_.Word[JAP_WORD.PROFILE_EDIT_ALERT_TITLE];
+                this.Alert_Message_ = this.l_Jap_.Word[JAP_WORD.PROFILE_EDIT_ALERT_MESSAGE];
+                this.Alert_Button_ = this.l_Jap_.Word[JAP_WORD.PROFILE_EDIT_ALERT_BUTTON];
+                this.Bio_Label_Text_ = this.l_Jap_.Word[JAP_WORD.PROFILE_EDIT_BIO_LABEL];
+                this.Bio_Text_Placeholder_ = this.l_Jap_.Word[JAP_WORD.PROFILE_EDIT_BIO_PLACEHOLDER];
+                
+                
             }
         }
     }

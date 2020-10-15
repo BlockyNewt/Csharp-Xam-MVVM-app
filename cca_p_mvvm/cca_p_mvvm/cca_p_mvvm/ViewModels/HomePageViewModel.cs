@@ -34,7 +34,7 @@ namespace cca_p_mvvm.ViewModels
             this.client_Connection_ = new ClientConnection();
 
             this.color_Scheme_ = new ColorScheme();
-
+            
             this.SetLanguage();
         }
 
@@ -44,14 +44,17 @@ namespace cca_p_mvvm.ViewModels
         //UI VARIABLES
         private string hub_Frame_Label_;
         private string hub_Channel_Button_;
-        private string hub_DM_Button_;
-        private string hub_Profile_Button_;
         private string hub_Channel_Label_;
+        private string hub_Profile_Button_;
         private string hub_Profile_Edit_Button_;
         private string hub_Profile_Logout_Button_;
+        private string hub_Profile_Fullname_Label_;
+        private string hub_Profile_Bio_Label_;
+        private string hub_Profile_Bio_Placeholder_;
         private string hub_Channel_Event_Enter_;
         private string hub_Channel_Event_Cancel_;
         private string hub_DM_Event_Chat_;
+        private string hub_DM_Button_;
         private string hub_DM_Event_Profile_;
         private string hub_DM_Event_Delete_;
         private string hub_DM_Event_Cancel_;
@@ -208,6 +211,63 @@ namespace cca_p_mvvm.ViewModels
             {
                 this.SetProperty(ref this.hub_Profile_Logout_Button_, value);
                 this.RaisePropertyChanged("Hub_Profile_Logout_Button_");
+            }
+        }
+
+        public string Hub_Profile_Fullname_Label_
+        {
+            get
+            {
+                if(string.IsNullOrEmpty(this.hub_Profile_Fullname_Label_))
+                {
+                    return "Empty string";
+                }
+
+                return this.hub_Profile_Fullname_Label_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.hub_Profile_Fullname_Label_, value);
+                this.RaisePropertyChanged("Hub_Profile_Fullname_Label_");
+            }
+        }
+
+        public string Hub_Profile_Bio_Label_
+        {
+            get
+            {
+                if(string.IsNullOrEmpty(this.hub_Profile_Bio_Label_))
+                {
+                    return "Empty string";
+                }
+
+                return this.hub_Profile_Bio_Label_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.hub_Profile_Bio_Label_, value);
+                this.RaisePropertyChanged("Hub_Profile_Bio_Label_");
+            }
+        }
+
+        public string Hub_Profile_Bio_Placeholder_
+        {
+            get
+            {
+                if(string.IsNullOrEmpty(this.hub_Profile_Bio_Placeholder_))
+                {
+                    return "Empty string";
+                }
+
+                return this.hub_Profile_Bio_Placeholder_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.hub_Profile_Bio_Placeholder_, value);
+                this.RaisePropertyChanged("Hub_Profile_Bio_Placeholder_");
             }
         }
 
@@ -437,7 +497,11 @@ namespace cca_p_mvvm.ViewModels
                     user.ID_ = Convert.ToInt32(getUserInfo[0]);
                     user.First_Name_ = getUserInfo[1];
                     user.Last_Name_ = getUserInfo[2];
-                    user.Picture_ = getUserInfo[3];
+                    user.Fullname_ = user.First_Name_ + " " + user.Last_Name_;
+                    user.Bio_ = getUserInfo[3];
+                    user.Picture_ = getUserInfo[4];
+
+                    Console.WriteLine("ID: " + user.ID_ + " Fullname: " + user.Fullname_ + " Bio: " + user.Bio_ + " Picture:" + user.Picture_);
 
                     //ADD IT INTO THE LIST
                     this.User_Messages_.Add(user);
@@ -534,6 +598,8 @@ namespace cca_p_mvvm.ViewModels
                 var p = new NavigationParameters();
 
                 p.Add("target_User_", this.selected_Messages_);
+                p.Add("l_Eng_", this.l_Eng_);
+                p.Add("l_Jap_", this.l_Jap_);
                 p.Add("color_Scheme_", this.color_Scheme_);
 
                 //PASS PARAMETERS
@@ -672,8 +738,10 @@ namespace cca_p_mvvm.ViewModels
                 this.user_.ID_ = parameters.GetValue<UserViewModel>("user_").ID_;
                 this.user_.First_Name_ = parameters.GetValue<UserViewModel>("user_").First_Name_;
                 this.user_.Last_Name_ = parameters.GetValue<UserViewModel>("user_").Last_Name_;
+                this.user_.Fullname_ = parameters.GetValue<UserViewModel>("user_").Fullname_;
                 this.user_.Username_ = parameters.GetValue<UserViewModel>("user_").Username_;
                 this.user_.Password_ = parameters.GetValue<UserViewModel>("user_").Password_;
+                this.user_.Bio_ = parameters.GetValue<UserViewModel>("user_").Bio_;
                 this.user_.Picture_ = parameters.GetValue<UserViewModel>("user_").Picture_;
 
                 this.client_Connection_ = parameters.GetValue<ClientConnection>("client_Connection_");
@@ -717,8 +785,10 @@ namespace cca_p_mvvm.ViewModels
             {
                 this.user_.First_Name_ = parameters.GetValue<UserViewModel>("user_").First_Name_;
                 this.user_.Last_Name_ = parameters.GetValue<UserViewModel>("user_").Last_Name_;
+                this.user_.Fullname_ = parameters.GetValue<UserViewModel>("user_").Fullname_;
                 this.user_.Username_ = parameters.GetValue<UserViewModel>("user_").Username_;
                 this.user_.Password_ = parameters.GetValue<UserViewModel>("user_").Password_;
+                this.user_.Bio_ = parameters.GetValue<UserViewModel>("user_").Bio_;
                 this.user_.Picture_ = parameters.GetValue<UserViewModel>("user_").Picture_;
             }
 
@@ -734,14 +804,16 @@ namespace cca_p_mvvm.ViewModels
             {
                 this.Hub_Frame_Label_ = this.l_Eng_.Word[ENG_WORD.HUB_FRAME_LABEL];
                 this.Hub_Channel_Button_ = this.l_Eng_.Word[ENG_WORD.HUB_CHANNEL_BUTTON];
-                this.Hub_DM_Button_ = this.l_Eng_.Word[ENG_WORD.HUB_DM_BUTTON];
-                this.Hub_Profile_Button_ = this.l_Eng_.Word[ENG_WORD.HUB_PROFILE_BUTTON];
                 this.Hub_Channel_Label_ = this.l_Eng_.Word[ENG_WORD.HUB_CHANNEL_LABEL];
+                this.Hub_Profile_Button_ = this.l_Eng_.Word[ENG_WORD.HUB_PROFILE_BUTTON];
                 this.Hub_Profile_Edit_Button_ = this.l_Eng_.Word[ENG_WORD.HUB_PROFILE_EDIT_BUTTON];
                 this.Hub_Profile_Logout_Button_ = this.l_Eng_.Word[ENG_WORD.HUB_PROFILE_LOGOUT_BUTTON];
+                this.Hub_Profile_Fullname_Label_ = this.l_Eng_.Word[ENG_WORD.HUB_PROFILE_FULLNAME_LABEL];
+                this.Hub_Profile_Bio_Label_ = this.l_Eng_.Word[ENG_WORD.HUB_PROFILE_BIO_LABEL];
                 this.Hub_Channel_Event_Enter_ = this.l_Eng_.Word[ENG_WORD.HUB_CHANNEL_EVENT_ENTER];
                 this.Hub_Channel_Event_Cancel_ = this.l_Eng_.Word[ENG_WORD.HUB_CHANNEL_EVENT_CANCEL];
                 this.Hub_DM_Event_Chat_ = this.l_Eng_.Word[ENG_WORD.HUB_DM_EVENT_CHAT];
+                this.Hub_DM_Button_ = this.l_Eng_.Word[ENG_WORD.HUB_DM_BUTTON];
                 this.Hub_DM_Event_Profile_ = this.l_Eng_.Word[ENG_WORD.HUB_DM_EVENT_PROFILE];
                 this.Hub_DM_Event_Delete_ = this.l_Eng_.Word[ENG_WORD.HUB_DM_EVENT_DELETE];
                 this.Hub_DM_Event_Cancel_ = this.l_Eng_.Word[ENG_WORD.HUB_DM_EVENT_CANCEL];
@@ -750,14 +822,16 @@ namespace cca_p_mvvm.ViewModels
             {
                 this.Hub_Frame_Label_ = this.l_Jap_.Word[JAP_WORD.HUB_FRAME_LABEL];
                 this.Hub_Channel_Button_ = this.l_Jap_.Word[JAP_WORD.HUB_CHANNEL_BUTTON];
-                this.Hub_DM_Button_ = this.l_Jap_.Word[JAP_WORD.HUB_DM_BUTTON];
-                this.Hub_Profile_Button_ = this.l_Jap_.Word[JAP_WORD.HUB_PROFILE_BUTTON];
                 this.Hub_Channel_Label_ = this.l_Jap_.Word[JAP_WORD.HUB_CHANNEL_LABEL];
+                this.Hub_Profile_Button_ = this.l_Jap_.Word[JAP_WORD.HUB_PROFILE_BUTTON];
                 this.Hub_Profile_Edit_Button_ = this.l_Jap_.Word[JAP_WORD.HUB_PROFILE_EDIT_BUTTON];
                 this.Hub_Profile_Logout_Button_ = this.l_Jap_.Word[JAP_WORD.HUB_PROFILE_LOGOUT_BUTTON];
+                this.Hub_Profile_Fullname_Label_ = this.l_Jap_.Word[JAP_WORD.HUB_PROFILE_FULLNAME_LABEL];
+                this.Hub_Profile_Bio_Label_ = this.l_Jap_.Word[JAP_WORD.HUB_PROFILE_BIO_LABEL];
                 this.Hub_Channel_Event_Enter_ = this.l_Jap_.Word[JAP_WORD.HUB_CHANNEL_EVENT_ENTER];
                 this.Hub_Channel_Event_Cancel_ = this.l_Jap_.Word[JAP_WORD.HUB_CHANNEL_EVENT_CANCEL];
                 this.Hub_DM_Event_Chat_ = this.l_Jap_.Word[JAP_WORD.HUB_DM_EVENT_CHAT];
+                this.Hub_DM_Button_ = this.l_Jap_.Word[JAP_WORD.HUB_DM_BUTTON];
                 this.Hub_DM_Event_Profile_ = this.l_Jap_.Word[JAP_WORD.HUB_DM_EVENT_PROFILE];
                 this.Hub_DM_Event_Delete_ = this.l_Jap_.Word[JAP_WORD.HUB_DM_EVENT_DELETE];
                 this.Hub_DM_Event_Cancel_ = this.l_Jap_.Word[JAP_WORD.HUB_DM_EVENT_CANCEL];

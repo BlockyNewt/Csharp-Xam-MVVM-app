@@ -53,6 +53,9 @@ namespace cca_p_mvvm.ViewModels
         private string profile_Picture_Label_Text_;
         private string profile_Picture_Placeholder_Text_;
         private string profile_Picture_Text_Changed_;
+        private string bio_Label_Text_;
+        private string bio_Text_Changed_;
+        private string bio_Text_Placeholder_;
 
         private string clear_Button_;
         private string confirm_Button_;
@@ -66,7 +69,7 @@ namespace cca_p_mvvm.ViewModels
         {
             get
             {
-                if(string.IsNullOrEmpty(this.first_Name_Label_Text_))
+                if (string.IsNullOrEmpty(this.first_Name_Label_Text_))
                 {
                     return "Empty";
                 }
@@ -99,7 +102,7 @@ namespace cca_p_mvvm.ViewModels
         {
             get
             {
-                if(string.IsNullOrEmpty(this.first_Name_Placeholder_Text_))
+                if (string.IsNullOrEmpty(this.first_Name_Placeholder_Text_))
                 {
                     return "Empty";
                 }
@@ -118,7 +121,7 @@ namespace cca_p_mvvm.ViewModels
         {
             get
             {
-                if(string.IsNullOrEmpty(this.last_Name_Label_Text_))
+                if (string.IsNullOrEmpty(this.last_Name_Label_Text_))
                 {
                     return "Empty";
                 }
@@ -151,7 +154,7 @@ namespace cca_p_mvvm.ViewModels
         {
             get
             {
-                if(string.IsNullOrEmpty(this.last_Name_Placeholder_Text_))
+                if (string.IsNullOrEmpty(this.last_Name_Placeholder_Text_))
                 {
                     return "Empty";
                 }
@@ -170,7 +173,7 @@ namespace cca_p_mvvm.ViewModels
         {
             get
             {
-                if(string.IsNullOrEmpty(this.username_Label_Text_))
+                if (string.IsNullOrEmpty(this.username_Label_Text_))
                 {
                     return "Empty";
                 }
@@ -189,7 +192,7 @@ namespace cca_p_mvvm.ViewModels
         {
             get
             {
-                if(string.IsNullOrEmpty(this.username_Placeholder_Text_))
+                if (string.IsNullOrEmpty(this.username_Placeholder_Text_))
                 {
                     return "Empty";
                 }
@@ -222,7 +225,7 @@ namespace cca_p_mvvm.ViewModels
         {
             get
             {
-                if(string.IsNullOrEmpty(this.password_Label_Text_))
+                if (string.IsNullOrEmpty(this.password_Label_Text_))
                 {
                     return "Empty";
                 }
@@ -269,7 +272,7 @@ namespace cca_p_mvvm.ViewModels
         {
             get
             {
-                if(string.IsNullOrEmpty(this.password_Placeholder_Text_))
+                if (string.IsNullOrEmpty(this.password_Placeholder_Text_))
                 {
                     return "Empty";
                 }
@@ -288,7 +291,7 @@ namespace cca_p_mvvm.ViewModels
         {
             get
             {
-                if(string.IsNullOrEmpty(profile_Picture_Label_Text_))
+                if (string.IsNullOrEmpty(profile_Picture_Label_Text_))
                 {
                     return "Empty";
                 }
@@ -321,7 +324,7 @@ namespace cca_p_mvvm.ViewModels
                 this.RaisePropertyChanged("Profile_Picture_Placeholder_Text_");
             }
         }
-        
+
         public string Profile_Picture_Text_Changed_
         {
             get
@@ -333,6 +336,58 @@ namespace cca_p_mvvm.ViewModels
             {
                 this.SetProperty(ref this.profile_Picture_Text_Changed_, value);
                 this.RaisePropertyChanged("Profile_Picture_Text_Changed_");
+            }
+        }
+
+        public string Bio_Label_Text_
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(this.bio_Label_Text_))
+                {
+                    return "Empty string";
+                }
+
+                return this.bio_Label_Text_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.bio_Label_Text_, value);
+                this.RaisePropertyChanged("Bio_Label_Text_");
+            }
+        }
+
+        public string Bio_Text_Changed_
+        {
+            get
+            {
+                return this.bio_Text_Changed_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.bio_Text_Changed_, value);
+                this.RaisePropertyChanged("Bio_Text_Changed_");
+            }
+        }
+
+        public string Bio_Text_Placeholder_
+        {
+            get
+            {
+                if(string.IsNullOrEmpty(this.bio_Text_Placeholder_))
+                {
+                    return "Empty";
+                }
+
+                return this.bio_Text_Placeholder_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.bio_Text_Placeholder_, value);
+                this.RaisePropertyChanged("Bio_Text_Placeholder_");
             }
         }
 
@@ -463,6 +518,7 @@ namespace cca_p_mvvm.ViewModels
             this.Password_Text_Changed_ = string.Empty;
             this.Password_Confirm_Text_Changed_ = string.Empty;
             this.Profile_Picture_Text_Changed_ = string.Empty;
+            this.Bio_Text_Changed_ = string.Empty;
         }
 
         private DelegateCommand confirm_Button_Command_;
@@ -478,7 +534,7 @@ namespace cca_p_mvvm.ViewModels
                 Console.WriteLine("DETAILS: " + " firstname: " + this.First_Name_Text_Changed_ + " lastname: " + this.Last_Name_Text_Changed_ + " username: " + this.Username_Text_Changed_ + " password:" + this.Password_Text_Changed_ + " profile picture:" + this.Profile_Picture_Text_Changed_);
 
                 //SEND THROUGH CLIENT
-                this.client_Connection_.CreateAccount(this.First_Name_Text_Changed_, this.Last_Name_Text_Changed_, this.Username_Text_Changed_, this.Password_Confirm_Text_Changed_, this.Profile_Picture_Text_Changed_);
+                this.client_Connection_.CreateAccount(this.First_Name_Text_Changed_, this.Last_Name_Text_Changed_, this.Username_Text_Changed_, this.Password_Confirm_Text_Changed_, this.Bio_Text_Changed_, this.Profile_Picture_Text_Changed_);
 
                 this.client_Connection_.CloseAllConnections();
 
@@ -525,6 +581,7 @@ namespace cca_p_mvvm.ViewModels
             this.color_Scheme_.Is_Halloween_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Halloween_Selected_;
 
             this.SetLanguage();
+
             this.color_Scheme_.SetColors();
         }
 
@@ -544,6 +601,8 @@ namespace cca_p_mvvm.ViewModels
                 this.Password_Placeholder_Text_ = this.l_Eng_.Word[ENG_WORD.CREATE_ACCOUNT_PASSWORD_PLACEHOLDER];
                 this.Profile_Picture_Label_Text_ = this.l_Eng_.Word[ENG_WORD.CREATE_ACCOUNT_PROFILE_PICTURE_LABEL];
                 this.Profile_Picture_Placeholder_Text_ = this.l_Eng_.Word[ENG_WORD.CREATE_ACCOUNT_PROFILE_PICTURE_PLACEHOLDER];
+                this.Bio_Label_Text_ = this.l_Eng_.Word[ENG_WORD.CREATE_ACCOUNT_PROFILE_BIO_LABEL];
+                this.Bio_Text_Placeholder_ = this.l_Eng_.Word[ENG_WORD.CREATE_ACCOUNT_PROFILE_BIO_PLACEHOLDER];
                 this.Clear_Button_ = this.l_Eng_.Word[ENG_WORD.CREATE_ACCOUNT_CLEAR_BUTTON];
                 this.Confirm_Button_ = this.l_Eng_.Word[ENG_WORD.CREATE_ACCOUNT_CONFIRM_BUTTON];
                 this.Cancel_Button_ = this.l_Eng_.Word[ENG_WORD.CREATE_ACCOUNT_CANCEL_BUTTON];
@@ -564,6 +623,8 @@ namespace cca_p_mvvm.ViewModels
                 this.Password_Placeholder_Text_ = this.l_Jap_.Word[JAP_WORD.CREATE_ACCOUNT_PASSWORD_PLACEHOLDER];
                 this.Profile_Picture_Label_Text_ = this.l_Jap_.Word[JAP_WORD.CREATE_ACCOUNT_PROFILE_PICTURE_LABEL];
                 this.Profile_Picture_Placeholder_Text_ = this.l_Jap_.Word[JAP_WORD.CREATE_ACCOUNT_PROFILE_PICTURE_PLACEHOLDER];
+                this.Bio_Label_Text_ = this.l_Jap_.Word[JAP_WORD.CREATE_ACCOUNT_PROFILE_BIO_LABEL];
+                this.Bio_Text_Changed_ = this.l_Jap_.Word[JAP_WORD.CREATE_ACCOUNT_PROFILE_BIO_PLACEHOLDER];
                 this.Clear_Button_ = this.l_Jap_.Word[JAP_WORD.CREATE_ACCOUNT_CLEAR_BUTTON];
                 this.Confirm_Button_ = this.l_Jap_.Word[JAP_WORD.CREATE_ACCOUNT_CONFIRM_BUTTON];
                 this.Cancel_Button_ = this.l_Jap_.Word[JAP_WORD.CREATE_ACCOUNT_CANCEL_BUTTON];

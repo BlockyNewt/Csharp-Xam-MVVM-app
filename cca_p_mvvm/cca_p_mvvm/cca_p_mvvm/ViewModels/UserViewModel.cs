@@ -12,8 +12,10 @@ namespace cca_p_mvvm.ViewModels
         private int id_;
         private string first_Name_;
         private string last_Name_;
+        private string fullname_;
         private string username_;
         private string password_;
+        private string bio_;
         private string picture_;
 
         public int ID_
@@ -69,6 +71,25 @@ namespace cca_p_mvvm.ViewModels
             }
         }
 
+        public string Fullname_
+        {
+            get
+            {
+                if(string.IsNullOrEmpty(this.fullname_))
+                {
+                    return "Empty string";
+                }
+
+                return this.fullname_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.fullname_, value);
+                this.RaisePropertyChanged("Fullname_");
+            }
+        }
+
         public string Username_
         {
             get
@@ -104,6 +125,25 @@ namespace cca_p_mvvm.ViewModels
             {
                 this.SetProperty(ref this.password_, value);
                 this.RaisePropertyChanged("Password_");
+            }
+        }
+
+        public string Bio_
+        {
+            get
+            {
+                if(string.IsNullOrEmpty(this.bio_))
+                {
+                    return "Empty";
+                }
+
+                return this.bio_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.bio_, value);
+                this.RaisePropertyChanged("Bio_");
             }
         }
 

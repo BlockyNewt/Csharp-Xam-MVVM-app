@@ -28,6 +28,8 @@ namespace cca_p_mvvm
         CREATE_ACCOUNT_PASSWORD_PLACEHOLDER,
         CREATE_ACCOUNT_PROFILE_PICTURE_LABEL,
         CREATE_ACCOUNT_PROFILE_PICTURE_PLACEHOLDER,
+        CREATE_ACCOUNT_PROFILE_BIO_LABEL,
+        CREATE_ACCOUNT_PROFILE_BIO_PLACEHOLDER,
         CREATE_ACCOUNT_CLEAR_BUTTON,
         CREATE_ACCOUNT_CONFIRM_BUTTON,
         CREATE_ACCOUNT_CANCEL_BUTTON,
@@ -37,17 +39,22 @@ namespace cca_p_mvvm
 
         HUB_FRAME_LABEL,
         HUB_CHANNEL_BUTTON,
-        HUB_DM_BUTTON,
-        HUB_PROFILE_BUTTON,
         HUB_CHANNEL_LABEL,
+        HUB_PROFILE_BUTTON,
         HUB_PROFILE_EDIT_BUTTON,
         HUB_PROFILE_LOGOUT_BUTTON,
+        HUB_PROFILE_FULLNAME_LABEL,
+        HUB_PROFILE_BIO_LABEL,
         HUB_CHANNEL_EVENT_ENTER,
         HUB_CHANNEL_EVENT_CANCEL,
         HUB_DM_EVENT_CHAT,
+        HUB_DM_BUTTON,
         HUB_DM_EVENT_PROFILE,
         HUB_DM_EVENT_DELETE,
         HUB_DM_EVENT_CANCEL,
+
+        VIEW_USER_PROFILE_FULLNAME_LABEL,
+        VIEW_USER_PROFILE_BIO_LABEL,
 
         SETTING_FRAME_LABEL,
         SETTING_LANGUAGE_LABEL,
@@ -67,6 +74,8 @@ namespace cca_p_mvvm
         PROFILE_EDIT_ALERT_TITLE,
         PROFILE_EDIT_ALERT_MESSAGE,
         PROFILE_EDIT_ALERT_BUTTON,
+        PROFILE_EDIT_BIO_LABEL,
+        PROFILE_EDIT_BIO_PLACEHOLDER,
 
         CHAT_SEND_BUTTON,
         CHAT_EDITOR_PLACEHOLDER,
@@ -101,6 +110,8 @@ namespace cca_p_mvvm
             this.word_.Add(ENG_WORD.CREATE_ACCOUNT_PASSWORD_PLACEHOLDER, "Password...");
             this.word_.Add(ENG_WORD.CREATE_ACCOUNT_PROFILE_PICTURE_LABEL, "Profile Picture");
             this.word_.Add(ENG_WORD.CREATE_ACCOUNT_PROFILE_PICTURE_PLACEHOLDER, "URL...");
+            this.word_.Add(ENG_WORD.CREATE_ACCOUNT_PROFILE_BIO_LABEL, "Bio");
+            this.word_.Add(ENG_WORD.CREATE_ACCOUNT_PROFILE_BIO_PLACEHOLDER, "Something about yourself or something you like...");
             this.word_.Add(ENG_WORD.CREATE_ACCOUNT_CLEAR_BUTTON, "Clear");
             this.word_.Add(ENG_WORD.CREATE_ACCOUNT_CONFIRM_BUTTON, "Confirm");
             this.word_.Add(ENG_WORD.CREATE_ACCOUNT_CANCEL_BUTTON, "Cancel");
@@ -110,17 +121,22 @@ namespace cca_p_mvvm
 
             this.word_.Add(ENG_WORD.HUB_FRAME_LABEL, "Comsize Inc");
             this.word_.Add(ENG_WORD.HUB_CHANNEL_BUTTON, "Channel");
-            this.word_.Add(ENG_WORD.HUB_DM_BUTTON, "Messages");
-            this.word_.Add(ENG_WORD.HUB_PROFILE_BUTTON, "Profile");
             this.word_.Add(ENG_WORD.HUB_CHANNEL_LABEL, "#Channel");
+            this.word_.Add(ENG_WORD.HUB_PROFILE_BUTTON, "Profile");
             this.word_.Add(ENG_WORD.HUB_PROFILE_EDIT_BUTTON, "Edit");
             this.word_.Add(ENG_WORD.HUB_PROFILE_LOGOUT_BUTTON, "Logout");
+            this.word_.Add(ENG_WORD.HUB_PROFILE_FULLNAME_LABEL, "Fullname");
+            this.word_.Add(ENG_WORD.HUB_PROFILE_BIO_LABEL, "Bio");
             this.word_.Add(ENG_WORD.HUB_CHANNEL_EVENT_ENTER, "Enter");
             this.word_.Add(ENG_WORD.HUB_CHANNEL_EVENT_CANCEL, "Cancel");
             this.word_.Add(ENG_WORD.HUB_DM_EVENT_CHAT, "Chat");
+            this.word_.Add(ENG_WORD.HUB_DM_BUTTON, "Messages");
             this.word_.Add(ENG_WORD.HUB_DM_EVENT_PROFILE, "Profile");
             this.word_.Add(ENG_WORD.HUB_DM_EVENT_DELETE, "Delete");
             this.word_.Add(ENG_WORD.HUB_DM_EVENT_CANCEL, "Cancel");
+
+            this.word_.Add(ENG_WORD.VIEW_USER_PROFILE_FULLNAME_LABEL, "Fullname");
+            this.word_.Add(ENG_WORD.VIEW_USER_PROFILE_BIO_LABEL, "Bio");
 
             this.word_.Add(ENG_WORD.SETTING_FRAME_LABEL, "Settings");
             this.word_.Add(ENG_WORD.SETTING_LANGUAGE_LABEL, "Language");
@@ -141,6 +157,8 @@ namespace cca_p_mvvm
             this.word_.Add(ENG_WORD.PROFILE_EDIT_ALERT_TITLE, "Error");
             this.word_.Add(ENG_WORD.PROFILE_EDIT_ALERT_MESSAGE, "Values have not been entered for any of the fields.");
             this.word_.Add(ENG_WORD.PROFILE_EDIT_ALERT_BUTTON, "Close");
+            this.word_.Add(ENG_WORD.PROFILE_EDIT_BIO_LABEL, "Bio");
+            this.word_.Add(ENG_WORD.PROFILE_EDIT_BIO_PLACEHOLDER, "Something about yourself or something you like...");
 
             this.Word.Add(ENG_WORD.CHAT_EDITOR_PLACEHOLDER, "Enter text here");
             this.Word.Add(ENG_WORD.CHAT_SEND_BUTTON, "Send");

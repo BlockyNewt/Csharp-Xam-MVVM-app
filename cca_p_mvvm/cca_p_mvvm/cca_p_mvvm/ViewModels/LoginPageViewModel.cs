@@ -30,6 +30,10 @@ namespace cca_p_mvvm.ViewModels
             this.user_ = new UserViewModel();
 
             this.color_Scheme_ = new ColorScheme();
+            this.color_Scheme_.Is_Light_Selected_ = false;
+            this.color_Scheme_.Is_Dark_Selected_ = true;
+            this.color_Scheme_.Is_Halloween_Selected_ = false;
+
 
             this.SetLanguage();
         }
@@ -336,8 +340,6 @@ namespace cca_p_mvvm.ViewModels
                 //THEN CHECK CLIENT CONNECTION
                 if (this.client_Connection_.CheckConnection())
                 {
-                    Console.WriteLine("D");
-
                     //MAKE SURE BOTH USERNAME AND PASSWORD TEXT FIELDS ARE NOT EMPTY OR NULL
                     if (!string.IsNullOrEmpty(this.Username_Entry_Changed_Text_) && !string.IsNullOrEmpty(this.Password_Entry_Changed_Text_))
                     {
@@ -350,8 +352,9 @@ namespace cca_p_mvvm.ViewModels
                             this.user_.ID_ = Convert.ToInt32(userInfo[0]);
                             this.user_.First_Name_ = userInfo[1];
                             this.user_.Last_Name_ = userInfo[2];
-                            this.user_.Picture_ = userInfo[3];
-                            Console.WriteLine("Picture: " + user_.Picture_);
+                            this.user_.Fullname_ = this.user_.First_Name_ + " " + this.user_.Last_Name_;
+                            this.user_.Bio_ = userInfo[3];
+                            this.user_.Picture_ = userInfo[4];
 
                             //PASS VARIABLES TO NEXT PAGE
                             var p = new NavigationParameters();

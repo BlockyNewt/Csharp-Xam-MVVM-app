@@ -25,8 +25,8 @@
                 <Entry Text="{Binding Username_Entry_Changed_Text_, Mode=TwoWay}" TextColor="{Binding color_Scheme_.Login_Text_}" Placeholder="{Binding Sign_In_Username_Entry_Placeholder_}" PlaceholderColor="{Binding color_Scheme_.Login_Text_}" Grid.Row="7" Grid.RowSpan="2" Grid.ColumnSpan="2" ClearButtonVisibility="WhileEditing" Margin="20,20,20,20"/>
                 <Entry Text="{Binding Password_Entry_Changed_Text_, Mode=TwoWay}" TextColor="{Binding color_Scheme_.Login_Text_}" Placeholder="{Binding Sign_In_Password_Entry_Placeholder_}" PlaceholderColor="{Binding color_Scheme_.Login_Text_}" Grid.Row="9" Grid.RowSpan="2" Grid.ColumnSpan="2" IsPassword="True" ClearButtonVisibility="WhileEditing" Margin="20,20,20,20"/>
 
-                <Button Text="{Binding Sign_In_Login_Button_}" TextColor="{Binding color_Scheme_.Login_Text_}" HorizontalOptions="FillAndExpand" Command="{Binding Login_Command_}" BackgroundColor="{Binding color_Scheme_.Login_Button_}" Grid.Row="11" Grid.RowSpan="2" Grid.ColumnSpan="2" Margin="20,20,20,20"/>
-                <Button Text="{Binding Sign_In_Create_Account_Button_}" TextColor="{Binding color_Scheme_.Login_Text_}" HorizontalOptions="FillAndExpand" Command="{Binding Create_Account_Button_Command_}" BackgroundColor="{Binding color_Scheme_.Login_Button_}" Grid.Row="13" Grid.RowSpan="2" Grid.ColumnSpan="2" Margin="20,20,20,20"/>
+                <Button Text="{Binding Sign_In_Login_Button_}" TextColor="{Binding color_Scheme_.Login_Text_Secondary_}" HorizontalOptions="FillAndExpand" Command="{Binding Login_Command_}" BackgroundColor="{Binding color_Scheme_.Login_Button_}" Grid.Row="11" Grid.RowSpan="2" Grid.ColumnSpan="2" Margin="20,20,20,20"/>
+                <Button Text="{Binding Sign_In_Create_Account_Button_}" TextColor="{Binding color_Scheme_.Login_Text_Secondary_}" HorizontalOptions="FillAndExpand" Command="{Binding Create_Account_Button_Command_}" BackgroundColor="{Binding color_Scheme_.Login_Button_}" Grid.Row="13" Grid.RowSpan="2" Grid.ColumnSpan="2" Margin="20,20,20,20"/>
             </Grid>
         </StackLayout>
 

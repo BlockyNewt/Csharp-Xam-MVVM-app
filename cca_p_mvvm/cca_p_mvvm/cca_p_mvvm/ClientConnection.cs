@@ -99,11 +99,11 @@ namespace cca_p_mvvm
             }
         }
 
-        public void CreateAccount(string firstname, string lastname, string username, string password, string profilePicture)
+        public void CreateAccount(string firstname, string lastname, string username, string password, string bio,  string profilePicture)
         {
             try
             {
-                string msg = "CREATE_ACCOUNT;" + firstname + ";" + lastname + ";" + username + ";" + password + ";" + profilePicture + "$";
+                string msg = "CREATE_ACCOUNT;" + firstname + ";" + lastname + ";" + username + ";" + password + ";" + bio + ";" + profilePicture + "$";
 
                 Byte[] data = System.Text.Encoding.ASCII.GetBytes(msg);
 
@@ -287,9 +287,9 @@ namespace cca_p_mvvm
             }
         }
 
-        public void EditUser(int id, string firstName, string lastName, string picture)
+        public void EditUser(int id, string firstName, string lastName, string bio, string picture)
         {
-            string msg = "EDIT;" + Convert.ToString(id) + ";" + firstName + ";" + lastName + ";" + picture + "$";
+            string msg = "EDIT;" + Convert.ToString(id) + ";" + firstName + ";" + lastName + ";" + bio + ";" + picture + "$";
 
             Byte[] data = System.Text.Encoding.ASCII.GetBytes(msg);
 
