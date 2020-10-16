@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "+3Uz+zd23uMlppYG0PYf2dZezUhu2fC1qoZOXTUwT8V4VizEuu7jlshYUiFiVse2Zpk1R35SLPVGPDeV7m149Q==",
+  "dgSpecHash": "Y16pzkoqDsFcZ17TZjkHywqG8iwq+nfnD7boo3amcCkloqOk0INmtYygbg3EbSG/FLetPudq12NXWkLVhqsJhA==",
   "success": true,
   "projectFilePath": "C:\\Users\\S-03\\source\\repos\\BlockyNewt\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm.csproj",
   "expectedPackageFiles": [
@@ -24,7 +24,7 @@
     "C:\\Users\\S-03\\.nuget\\packages\\xam.plugins.forms.imagecircle\\3.0.0.5\\xam.plugins.forms.imagecircle.3.0.0.5.nupkg.sha512",
     "C:\\Microsoft\\Xamarin\\NuGet\\xamarin.essentials\\1.5.3.2\\xamarin.essentials.1.5.3.2.nupkg.sha512",
     "C:\\Users\\S-03\\.nuget\\packages\\xamarin.essentials.interfaces\\1.5.3.2\\xamarin.essentials.interfaces.1.5.3.2.nupkg.sha512",
-    "C:\\Users\\S-03\\.nuget\\packages\\xamarin.forms\\4.8.0.1534\\xamarin.forms.4.8.0.1534.nupkg.sha512"
+    "C:\\Users\\S-03\\.nuget\\packages\\xamarin.forms\\4.8.0.1560\\xamarin.forms.4.8.0.1560.nupkg.sha512"
   ],
   "logs": []
 }

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "XDvtiD9C/GrHZJwCZfsvSAJC3vCkd+IGBfNLkG1+TcCB7YTNpxaRsJGWwBQccRi/qwPjdOtmJEM2xQRv4k4Djw==",
+  "dgSpecHash": "aIgKdbXL+wkUmsL9Kug1U2SW7HjlE+SnMv97OXSTSdRix+Q0b4Yzk5fxdHWxaEjNJm+m/AJWJ+ptEYKK66Pwdg==",
   "success": true,
   "projectFilePath": "C:\\Users\\S-03\\source\\repos\\BlockyNewt\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm\\cca_p_mvvm.Android\\cca_p_mvvm.Android.csproj",
   "expectedPackageFiles": [
@@ -62,7 +62,7 @@
       "code": "NU1605",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Detected package downgrade: Xamarin.Forms from 4.8.0.1534 to 4.7.0.1239. Reference the package directly from the project to select a different version. \r\n cca_p_mvvm.Android -> cca_p_mvvm -> Xamarin.Forms (>= 4.8.0.1534) \r\n cca_p_mvvm.Android -> Xamarin.Forms (>= 4.7.0.1239)",
+      "message": "Detected package downgrade: Xamarin.Forms from 4.8.0.1560 to 4.7.0.1239. Reference the package directly from the project to select a different version. \r\n cca_p_mvvm.Android -> cca_p_mvvm -> Xamarin.Forms (>= 4.8.0.1560) \r\n cca_p_mvvm.Android -> Xamarin.Forms (>= 4.7.0.1239)",
       "libraryId": "Xamarin.Forms",
       "targetGraphs": [
         "MonoAndroid,Version=v10.0"

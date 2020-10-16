@@ -23,7 +23,21 @@ namespace cca_p_mvvm.ViewModels
             this.client_Connection_ = new ClientConnection();
 
             this.color_Scheme_ = new ColorScheme();
+
+            this.name_Section_ = true;
+            this.username_Section_ = false;
+            this.password_Section_ = false;
+            this.picture_Section_ = false;
+            this.bio_Section_ = false;
+
+            this.next_Button_Visibility_ = true;
+            this.confirm_Button_Visibility_ = false;
+
+            this.progress_Bar_Value_ = 0.0f;
+            this.progress_Current_ = 0;
+            this.progress_Max_ = 4;
         }
+
         //NAVIGATION SERVICE
         private readonly INavigationService navigation_Service_;
 
@@ -57,13 +71,30 @@ namespace cca_p_mvvm.ViewModels
         private string bio_Text_Changed_;
         private string bio_Text_Placeholder_;
 
-        private string clear_Button_;
+        private string back_Button_;
+        private string next_Button_;
         private string confirm_Button_;
+        private string clear_Button_;
         private string cancel_Button_;
 
         private string error_Title_;
         private string error_Message_;
         private string error_Button_;
+
+        private bool username_Section_;
+        private bool password_Section_;
+        private bool name_Section_;
+        private bool picture_Section_;
+        private bool bio_Section_;
+
+        private bool confirm_Button_Visibility_;
+        private bool next_Button_Visibility_;
+
+        private float progress_Bar_Value_;
+        private string progress_Text_;
+        private string progress_Text_Language_String_;
+        private int progress_Current_;
+        private int progress_Max_;
 
         public string First_Name_Label_Text_
         {
@@ -391,6 +422,44 @@ namespace cca_p_mvvm.ViewModels
             }
         }
 
+        public string Back_Button_
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(back_Button_))
+                {
+                    return "Empty string";
+                }
+
+                return this.back_Button_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.back_Button_, value);
+                this.RaisePropertyChanged("Back_Button_");
+            }
+        }
+
+        public string Next_Button_
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(next_Button_))
+                {
+                    return "Empty string";
+                }
+
+                return this.next_Button_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.next_Button_, value);
+                this.RaisePropertyChanged("Next_Button_");
+            }
+        }
+
         public string Clear_Button_
         {
             get
@@ -505,62 +574,347 @@ namespace cca_p_mvvm.ViewModels
             }
         }
 
+        public bool Name_Section_
+        {
+            get
+            {
+                return this.name_Section_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.name_Section_, value);
+                this.RaisePropertyChanged("Name_Section_");
+            }
+        }
+
+        public bool Username_Section_
+        {
+            get
+            {
+                return this.username_Section_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.username_Section_, value);
+                this.RaisePropertyChanged("Username_Section_");
+            }
+        }
+
+        public bool Password_Section_
+        {
+            get
+            {
+                return this.password_Section_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.password_Section_, value);
+                this.RaisePropertyChanged("Password_Section_");
+            }
+        }
+
+        public bool Picture_Section_
+        {
+            get
+            {
+                return this.picture_Section_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.picture_Section_, value);
+                this.RaisePropertyChanged("Picture_Section_");
+            }
+        }
+
+        public bool Bio_Section_
+        {
+            get
+            {
+                return this.bio_Section_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.bio_Section_, value);
+                this.RaisePropertyChanged("Bio_Section_");
+            }
+        }
+
+        public bool Confirm_Button_Visibility_
+        {
+            get
+            {
+                return this.confirm_Button_Visibility_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.confirm_Button_Visibility_, value);
+                this.RaisePropertyChanged("Confirm_Button_Visibility_");
+            }
+        }
+
+        public bool Next_Button_Visibility_
+        {
+            get
+            {
+                return this.next_Button_Visibility_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.next_Button_Visibility_, value);
+                this.RaisePropertyChanged("Next_Button_Visibility_");
+            }
+        }
+
+        public float Progress_Bar_Value_
+        {
+            get
+            {
+                return this.progress_Bar_Value_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.progress_Bar_Value_, value);
+                this.RaisePropertyChanged("Progress_Bar_Value_");
+            }
+        }
+
+        public string Progress_Text_
+        {
+            get
+            {
+                if(string.IsNullOrEmpty(this.progress_Text_))
+                {
+                    return "Empty string";
+                }
+
+                return this.progress_Text_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.progress_Text_, value);
+                this.RaisePropertyChanged("Progress_Text_");
+            }
+        }
+
 
 
         private DelegateCommand clear_Button_Command_;
         public DelegateCommand Clear_Button_Command_ => this.clear_Button_Command_ ?? (this.clear_Button_Command_ = new DelegateCommand(this.ClearButton));
         private void ClearButton()
         {
-            //CLEAR ALL TEXT FIELDS
-            this.First_Name_Text_Changed_ = string.Empty;
-            this.Last_Name_Text_Changed_ = string.Empty;
-            this.Username_Text_Changed_ = string.Empty;
-            this.Password_Text_Changed_ = string.Empty;
-            this.Password_Confirm_Text_Changed_ = string.Empty;
-            this.Profile_Picture_Text_Changed_ = string.Empty;
-            this.Bio_Text_Changed_ = string.Empty;
+            //CLEAR FIELD BASED ON THE SECTION THE USER IS ON
+            if(this.Name_Section_)
+            {
+                this.First_Name_Text_Changed_ = string.Empty;
+                this.Last_Name_Text_Changed_ = string.Empty;
+            }
+            else if(this.Username_Section_)
+            {
+                this.Username_Text_Changed_ = string.Empty;
+            }
+            else if(this.Password_Section_)
+            {
+                this.Password_Text_Changed_ = string.Empty;
+                this.Password_Confirm_Text_Changed_ = string.Empty;
+            }
+            else if(this.Picture_Section_)
+            {
+                this.Profile_Picture_Text_Changed_ = string.Empty;
+            }
+            else if(this.Bio_Section_)
+            {
+                this.Bio_Text_Changed_ = string.Empty;
+            }
         }
+
+
 
         private DelegateCommand confirm_Button_Command_;
         public DelegateCommand Confirm_Button_Command_ => this.confirm_Button_Command_ ?? (this.confirm_Button_Command_ = new DelegateCommand(this.ConfirmButton));
         private async void ConfirmButton()
         {
-            Console.WriteLine("A");
             //CREATE USER AND PUSH BACK 
-            if(this.Password_Confirm_Text_Changed_ == this.Password_Text_Changed_)
+            if( !string.IsNullOrEmpty(this.First_Name_Text_Changed_) && 
+                !string.IsNullOrEmpty(this.Last_Name_Text_Changed_) &&
+                !string.IsNullOrEmpty(this.Password_Text_Changed_) && 
+                !string.IsNullOrEmpty(this.Password_Confirm_Text_Changed_) && 
+                !string.IsNullOrEmpty(this.Username_Text_Changed_) && 
+                this.Progress_Bar_Value_ == 1.0f)
             {
-                this.client_Connection_.Connect("192.168.12.7", 45000);
+                if(this.Password_Confirm_Text_Changed_ == this.Password_Text_Changed_)
+                {
+                    //CONNECT TO SERVER
+                    this.client_Connection_.Connect("192.168.12.7", 45000);
 
-                Console.WriteLine("DETAILS: " + " firstname: " + this.First_Name_Text_Changed_ + " lastname: " + this.Last_Name_Text_Changed_ + " username: " + this.Username_Text_Changed_ + " password:" + this.Password_Text_Changed_ + " profile picture:" + this.Profile_Picture_Text_Changed_);
+                    //SEND NEW ACCOUNT INFORMATION TO SERVER AND ADD IT TO THE D.B
+                    this.client_Connection_.CreateAccount(this.First_Name_Text_Changed_, this.Last_Name_Text_Changed_, this.Username_Text_Changed_, this.Password_Confirm_Text_Changed_, this.Bio_Text_Changed_, this.Profile_Picture_Text_Changed_);
 
-                //SEND THROUGH CLIENT
-                this.client_Connection_.CreateAccount(this.First_Name_Text_Changed_, this.Last_Name_Text_Changed_, this.Username_Text_Changed_, this.Password_Confirm_Text_Changed_, this.Bio_Text_Changed_, this.Profile_Picture_Text_Changed_);
+                    //AFTER CREATION CLOSE THE CONNECTION
+                    this.client_Connection_.CloseAllConnections();
 
-                this.client_Connection_.CloseAllConnections();
-
-                await this.navigation_Service_.GoBackAsync();
+                    //GO BACK TO LOGIN PAGE
+                    await this.navigation_Service_.GoBackAsync();
+                }
+                else
+                {
+                    //IF PASSWORDS DO NOT MATCH SHOW AN ERROR
+                    await Application.Current.MainPage.DisplayAlert(this.error_Title_, this.error_Message_, this.error_Button_);
+                }
             }
             else
             {
-                Console.WriteLine("B");
-
-                this.Password_Text_Changed_ = string.Empty;
-                this.Password_Confirm_Text_Changed_ = string.Empty;
-
-                await Application.Current.MainPage.DisplayAlert(this.error_Title_, this.error_Message_, this.error_Button_);
+                //IF ALL FIELDS ARE NOT FILLED THEN SHOW AN ERROR
+                await Application.Current.MainPage.DisplayAlert("N.Y.I", "Not all fields are filled", "N.Y.I");
             }
         }
+
+
 
         private DelegateCommand cancel_Button_Command_;
         public DelegateCommand Cancel_Button_Command_ => this.cancel_Button_Command_ ?? (this.cancel_Button_Command_ = new DelegateCommand(this.CancelButton));
         private async void CancelButton()
         {
-            //CLEAR ALL FIELDS AND PUSH BACK 
-            ClearButton();
-
+            //GO BACK TO LOGIN SCREEN
             await this.navigation_Service_.GoBackAsync();
         }
 
+
+
+        private DelegateCommand next_Button_Command_;
+        public DelegateCommand Next_Button_Command_ => this.next_Button_Command_ ?? (this.next_Button_Command_ = new DelegateCommand(this.NextButton));
+        private void NextButton()
+        {
+            //SHOW INFORMATION RELATED TO SECTION
+            if (this.Name_Section_)
+            {
+                //CHANGE THE VISIBILITY OF CURRENT ITEM SINCE WE WILL GO TO NEXT SECTION
+                this.Name_Section_ = false;
+                this.Username_Section_ = true;
+
+                //INCREASE PROGRESS BAR
+                this.Progress_Bar_Value_ += 0.25f;
+                //INCREASE PROGRESS COUNT (FOR LABEL)
+                this.progress_Current_++;
+                //UPDATE UI
+                this.Progress_Text_ = this.progress_Text_Language_String_ + this.progress_Current_.ToString() + "/" + this.progress_Max_.ToString();
+
+                //CHANGE VISIBILITY OF CONFIRM AND NEXT BUTTON IF NEEDED (ONLY ON LAST SECTION DO WE SWITCH THEM)
+                this.Confirm_Button_Visibility_ = false;
+                this.Next_Button_Visibility_ = true;
+            }
+            else if(this.Username_Section_)
+            {
+                this.Username_Section_ = false;
+                this.Password_Section_ = true;
+
+                this.Progress_Bar_Value_ += 0.25f;
+                this.progress_Current_++;
+                this.Progress_Text_ = this.progress_Text_Language_String_ + this.progress_Current_.ToString() + "/" + this.progress_Max_.ToString();
+
+                this.Confirm_Button_Visibility_ = false;
+                this.Next_Button_Visibility_ = true;
+            }
+            else if(this.Password_Section_)
+            {
+                this.Password_Section_ = false;
+                this.Picture_Section_ = true;
+
+                this.Progress_Bar_Value_ += 0.25f;
+                this.progress_Current_++;
+                this.Progress_Text_ = this.progress_Text_Language_String_ + this.progress_Current_.ToString() + "/" + this.progress_Max_.ToString();
+
+                this.Confirm_Button_Visibility_ = false;
+                this.Next_Button_Visibility_ = true;
+            }
+            else if(this.Picture_Section_)
+            {
+                this.Picture_Section_ = false;
+                this.Bio_Section_ = true;
+
+                this.Progress_Bar_Value_ += 0.25f;
+                this.progress_Current_++;
+                this.Progress_Text_ = this.progress_Text_Language_String_ + this.progress_Current_.ToString() + "/" + this.progress_Max_.ToString();
+
+                this.Next_Button_Visibility_ = false;
+                this.Confirm_Button_Visibility_ = true;
+            }
+        }
+
+
+
+        private DelegateCommand back_Button_Command_;
+        public DelegateCommand Back_Button_Command_ => this.back_Button_Command_ ?? (this.back_Button_Command_ = new DelegateCommand(this.BackButton));
+        private void BackButton()
+        {
+            //GOING BACK A SECTION
+            if(this.Name_Section_)
+            {
+                //IF ON THE FIRST PAGE THEN IT WILL JUST TAKE YOU BACK TO LOGIN
+                this.navigation_Service_.GoBackAsync();
+            }
+            else if(this.Username_Section_)
+            {
+                //CHANGE THE VISIBILITY OF CURRENT ITEM SINCE WE WILL GO TO NEXT SECTION
+                this.Username_Section_ = false;
+                this.Name_Section_ = true;
+
+                //INCREASE PROGRESS BAR
+                this.Progress_Bar_Value_ -= 0.25f;
+                //INCREASE PROGRESS COUNT (FOR LABEL)
+                this.progress_Current_--;
+                //UPDATE UI
+                this.Progress_Text_ = this.progress_Text_Language_String_ + this.progress_Current_.ToString() + "/" + this.progress_Max_.ToString();
+
+                //CHANGE VISIBILITY OF CONFIRM AND NEXT BUTTON IF NEEDED (ONLY ON LAST SECTION DO WE SWITCH THEM)
+                this.Confirm_Button_Visibility_ = false;
+                this.Next_Button_Visibility_ = true;
+            }
+            else if(this.Password_Section_)
+            {
+                this.Password_Section_ = false;
+                this.Username_Section_ = true;
+
+                this.Progress_Bar_Value_ -= 0.25f;
+                this.progress_Current_--;
+                this.Progress_Text_ = this.progress_Text_Language_String_ + this.progress_Current_.ToString() + "/" + this.progress_Max_.ToString();
+
+                this.Confirm_Button_Visibility_ = false;
+                this.Next_Button_Visibility_ = true;
+            }
+            else if(this.Picture_Section_)
+            {
+                this.Picture_Section_ = false;
+                this.Password_Section_ = true;
+
+                this.Progress_Bar_Value_ -= 0.25f;
+                this.progress_Current_--;
+                this.Progress_Text_ = this.progress_Text_Language_String_ + this.progress_Current_.ToString() + "/" + this.progress_Max_.ToString();
+
+                this.Confirm_Button_Visibility_ = false;
+                this.Next_Button_Visibility_ = true;
+            }
+            else if(this.Bio_Section_)
+            {
+                this.Bio_Section_ = false;
+                this.Picture_Section_ = true;
+
+                this.Progress_Bar_Value_ -= 0.25f;
+                this.progress_Current_--;
+                this.Progress_Text_ = this.progress_Text_Language_String_ + this.progress_Current_.ToString() + "/" + this.progress_Max_.ToString();
+
+                this.Confirm_Button_Visibility_ = false;
+                this.Next_Button_Visibility_ = true;
+            }
+        }
 
 
         public void OnNavigatedFrom(INavigationParameters parameters)
@@ -581,6 +935,8 @@ namespace cca_p_mvvm.ViewModels
             this.color_Scheme_.Is_Halloween_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Halloween_Selected_;
 
             this.SetLanguage();
+
+            this.Progress_Text_ = this.progress_Text_Language_String_ + this.progress_Current_.ToString() + "/" + this.progress_Max_.ToString();
 
             this.color_Scheme_.SetColors();
         }
@@ -603,9 +959,12 @@ namespace cca_p_mvvm.ViewModels
                 this.Profile_Picture_Placeholder_Text_ = this.l_Eng_.Word[ENG_WORD.CREATE_ACCOUNT_PROFILE_PICTURE_PLACEHOLDER];
                 this.Bio_Label_Text_ = this.l_Eng_.Word[ENG_WORD.CREATE_ACCOUNT_PROFILE_BIO_LABEL];
                 this.Bio_Text_Placeholder_ = this.l_Eng_.Word[ENG_WORD.CREATE_ACCOUNT_PROFILE_BIO_PLACEHOLDER];
-                this.Clear_Button_ = this.l_Eng_.Word[ENG_WORD.CREATE_ACCOUNT_CLEAR_BUTTON];
+                this.Back_Button_ = this.l_Eng_.Word[ENG_WORD.CREATE_ACCOUNT_BACK_BUTTON];
+                this.Next_Button_ = this.l_Eng_.Word[ENG_WORD.CREATE_ACCOUNT_NEXT_BUTTON];
                 this.Confirm_Button_ = this.l_Eng_.Word[ENG_WORD.CREATE_ACCOUNT_CONFIRM_BUTTON];
+                this.Clear_Button_ = this.l_Eng_.Word[ENG_WORD.CREATE_ACCOUNT_CLEAR_BUTTON];
                 this.Cancel_Button_ = this.l_Eng_.Word[ENG_WORD.CREATE_ACCOUNT_CANCEL_BUTTON];
+                this.progress_Text_Language_String_ = this.l_Eng_.Word[ENG_WORD.CREATE_ACCOUNT_PROGRESS_BAR_TEXT];
                 this.Error_Title_ = this.l_Eng_.Word[ENG_WORD.CREATE_ACCOUNT_ERROR_TITLE];
                 this.Error_Message_ = this.l_Eng_.Word[ENG_WORD.CREATE_ACCOUNT_ERROR_MESSAGE];
                 this.Error_Button_ = this.l_Eng_.Word[ENG_WORD.CREATE_ACCOUNT_ERROR_BUTTON];
@@ -625,9 +984,12 @@ namespace cca_p_mvvm.ViewModels
                 this.Profile_Picture_Placeholder_Text_ = this.l_Jap_.Word[JAP_WORD.CREATE_ACCOUNT_PROFILE_PICTURE_PLACEHOLDER];
                 this.Bio_Label_Text_ = this.l_Jap_.Word[JAP_WORD.CREATE_ACCOUNT_PROFILE_BIO_LABEL];
                 this.Bio_Text_Changed_ = this.l_Jap_.Word[JAP_WORD.CREATE_ACCOUNT_PROFILE_BIO_PLACEHOLDER];
-                this.Clear_Button_ = this.l_Jap_.Word[JAP_WORD.CREATE_ACCOUNT_CLEAR_BUTTON];
+                this.Back_Button_ = this.l_Jap_.Word[JAP_WORD.CREATE_ACCOUNT_BACK_BUTTON];
+                this.Next_Button_ = this.l_Jap_.Word[JAP_WORD.CREATE_ACCOUNT_NEXT_BUTTON];
                 this.Confirm_Button_ = this.l_Jap_.Word[JAP_WORD.CREATE_ACCOUNT_CONFIRM_BUTTON];
+                this.Clear_Button_ = this.l_Jap_.Word[JAP_WORD.CREATE_ACCOUNT_CLEAR_BUTTON];
                 this.Cancel_Button_ = this.l_Jap_.Word[JAP_WORD.CREATE_ACCOUNT_CANCEL_BUTTON];
+                this.progress_Text_Language_String_ = this.l_Jap_.Word[JAP_WORD.CREATE_ACCOUNT_PROGRESS_BAR_TEXT];
                 this.Error_Title_ = this.l_Jap_.Word[JAP_WORD.CREATE_ACCOUNT_ERROR_TITLE];
                 this.Error_Message_ = this.l_Jap_.Word[JAP_WORD.CREATE_ACCOUNT_ERROR_MESSAGE];
                 this.Error_Button_ = this.l_Jap_.Word[JAP_WORD.CREATE_ACCOUNT_ERROR_BUTTON];

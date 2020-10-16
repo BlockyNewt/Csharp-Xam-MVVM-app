@@ -20,24 +20,24 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <Label Text="Profile Picture" TextColor="{Binding color_Scheme_.Profile_Edit_Text_Secondary_}" FontSize="18" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1"/>
-                <Image Source="{Binding user_.Picture_}" HorizontalOptions="CenterAndExpand" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" Grid.RowSpan="3"/>
+                <Label Grid.Row="1" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Picture_Label_Text_}" TextColor="{Binding color_Scheme_.Profile_Edit_Text_Secondary_}" FontSize="18"/>
+                <Image Grid.Row="2" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="2" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Source="{Binding user_.Picture_}"/>
 
-                <Entry Text="{Binding Picture_Changed_Text_, Mode=OneWayToSource}" TextColor="{Binding color_Scheme_.Profile_Edit_Text_}" FontSize="20" Placeholder="{Binding Picture_Placeholder_}" PlaceholderColor="{Binding color_Scheme_.Profile_Edit_Text_}" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2"/>
+                <Entry Grid.Row="5" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Picture_Changed_Text_, Mode=OneWayToSource}" TextColor="{Binding color_Scheme_.Profile_Edit_Text_}" FontSize="20" Placeholder="{Binding Picture_Placeholder_}" PlaceholderColor="{Binding color_Scheme_.Profile_Edit_Text_}"/>
 
-                <Label Text="Firstname" TextColor="{Binding color_Scheme_.Profile_Edit_Text_Secondary_}" FontSize="18" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="7"/>
-                <Entry Text="{Binding First_Name_Changed_Text_, Mode=OneWayToSource}" TextColor="{Binding color_Scheme_.Profile_Edit_Text_}" FontSize="20" Placeholder="{Binding First_Name_Placeholder_}" PlaceholderColor="{Binding color_Scheme_.Profile_Edit_Text_}" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2"/>
+                <Label Grid.Row="7" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding First_Name_Label_Text_}" TextColor="{Binding color_Scheme_.Profile_Edit_Text_Secondary_}" FontSize="18"/>
+                <Entry Grid.Row="8" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding First_Name_Changed_Text_, Mode=OneWayToSource}" TextColor="{Binding color_Scheme_.Profile_Edit_Text_}" FontSize="20" Placeholder="{Binding First_Name_Placeholder_}" PlaceholderColor="{Binding color_Scheme_.Profile_Edit_Text_}"/>
 
-                <Label Text="Lastname" TextColor="{Binding color_Scheme_.Profile_Edit_Text_Secondary_}" FontSize="18" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="9"/>
-                <Entry Text="{Binding Last_Name_Changed_Text_, Mode=OneWayToSource}" TextColor="{Binding color_Scheme_.Profile_Edit_Text_}" FontSize="20" Placeholder="{Binding Last_Name_Placeholder_}" PlaceholderColor="{Binding color_Scheme_.Profile_Edit_Text_}" Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="2"/>
+                <Label  Grid.Row="9" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Last_Name_Label_Text_}" TextColor="{Binding color_Scheme_.Profile_Edit_Text_Secondary_}" FontSize="18"/>
+                <Entry Grid.Row="10" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Last_Name_Changed_Text_, Mode=OneWayToSource}" TextColor="{Binding color_Scheme_.Profile_Edit_Text_}" FontSize="20" Placeholder="{Binding Last_Name_Placeholder_}" PlaceholderColor="{Binding color_Scheme_.Profile_Edit_Text_}"/>
 
                 
-                <Label  Grid.Row="11" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Bio_Label_Text_}" TextColor="{Binding color_Scheme_.Create_Account_Text_Secondary_}"/>
-                <Editor Grid.Row="12" Grid.RowSpan="6" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Bio_Text_Changed_}" TextColor="{Binding color_Scheme_.Create_Account_Text_}" Placeholder="{Binding Bio_Text_Placeholder_}" PlaceholderColor="{Binding color_Scheme_.Create_Account_Text_}}" MaxLength="255"/>
+                <Label  Grid.Row="11" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Bio_Label_Text_}" TextColor="{Binding color_Scheme_.Create_Account_Text_Secondary_}" FontSize="18"/>
+                <Editor Grid.Row="12" Grid.RowSpan="6" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Bio_Text_Changed_}" TextColor="{Binding color_Scheme_.Create_Account_Text_}" FontSize="20" Placeholder="{Binding Bio_Text_Placeholder_}" PlaceholderColor="{Binding color_Scheme_.Create_Account_Text_}}" MaxLength="255"/>
 
 
-                <Button Text="{Binding Confirm_Button_}" TextColor="{Binding color_Scheme_.Profile_Edit_Text_Secondary_}" BackgroundColor="{Binding color_Scheme_.Profile_Edit_Button_}" Command="{Binding Profile_Edit_Confirm_Button_Command_}" Grid.Row="19" Grid.Column="1"/>
-                <Button Text="{Binding Cancel_Button_}" TextColor="{Binding color_Scheme_.Profile_Edit_Text_Secondary_}" BackgroundColor="{Binding color_Scheme_.Profile_Edit_Button_}" Command="{Binding Profile_Edit_Cancel_Button_Command_}" Grid.Row="19" Grid.Column="2"/>
+                <Button Grid.Row="19" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="1" Text="{Binding Confirm_Button_}" TextColor="{Binding color_Scheme_.Profile_Edit_Text_Secondary_}" BackgroundColor="{Binding color_Scheme_.Profile_Edit_Button_}" Command="{Binding Profile_Edit_Confirm_Button_Command_}"/>
+                <Button Grid.Row="19" Grid.RowSpan="1" Grid.Column="2" Grid.ColumnSpan="1" Text="{Binding Cancel_Button_}" TextColor="{Binding color_Scheme_.Profile_Edit_Text_Secondary_}" BackgroundColor="{Binding color_Scheme_.Profile_Edit_Button_}" Command="{Binding Profile_Edit_Cancel_Button_Command_}"/>
 
             </Grid>
         </ScrollView>

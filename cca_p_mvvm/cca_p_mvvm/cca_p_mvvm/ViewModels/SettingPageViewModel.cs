@@ -285,6 +285,8 @@ namespace cca_p_mvvm.ViewModels
             this.color_Scheme_.SetColors();
         }
 
+
+
         private DelegateCommand setting_Close_Button_Command_;
         public DelegateCommand Setting_Close_Button_Command_ => this.setting_Close_Button_Command_ ?? (this.setting_Close_Button_Command_ = new DelegateCommand(this.SettingCloseButton));
         private async void SettingCloseButton()

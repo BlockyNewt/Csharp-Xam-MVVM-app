@@ -43,6 +43,9 @@ namespace cca_p_mvvm.ViewModels
         private string alert_Title_;
         private string alert_Message_;
         private string alert_Button_;
+        private string picture_Label_Text_;
+        private string first_Name_Label_Text_;
+        private string last_Name_Label_Text_;
         private string bio_Label_Text_;
         private string bio_Text_Changed_;
         private string bio_Text_Placeholder_;
@@ -271,6 +274,63 @@ namespace cca_p_mvvm.ViewModels
             }
         }
 
+        public string Picture_Label_Text_
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(this.picture_Label_Text_))
+                {
+                    return "Empty string";
+                }
+
+                return this.picture_Label_Text_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.picture_Label_Text_, value);
+                this.RaisePropertyChanged("Picture_Label_Text_");
+            }
+        }
+
+        public string First_Name_Label_Text_
+        {
+            get
+            {
+                if(string.IsNullOrEmpty(this.first_Name_Label_Text_))
+                {
+                    return "Empty string";
+                }
+
+                return this.first_Name_Label_Text_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.first_Name_Label_Text_, value);
+                this.RaisePropertyChanged("First_Name_Label_Text_");
+            }
+        }
+
+        public string Last_Name_Label_Text_
+        {
+            get
+            {
+                if(string.IsNullOrEmpty(this.last_Name_Label_Text_))
+                {
+                    return "Empty string";
+                }
+
+                return this.last_Name_Label_Text_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.last_Name_Label_Text_, value);
+                this.RaisePropertyChanged("Last_Name_Label_Text_");
+            }
+        }
+
         public string Bio_Label_Text_
         {
             get
@@ -346,6 +406,7 @@ namespace cca_p_mvvm.ViewModels
                 {
                     this.user_.Picture_ = this.Picture_Changed_Text_;
                 }
+                //IF THE BIO TEXT FIELD HAS BEEN CHANGED THEN UPDATE THE BIO
                 if(this.bio_Label_Text_.Length > 0)
                 {
                     this.user_.Bio_ = this.Bio_Text_Changed_;
@@ -378,6 +439,8 @@ namespace cca_p_mvvm.ViewModels
             }
             
         }
+
+
 
         private DelegateCommand profile_Edit_Cancel_Button_Command_;
         public DelegateCommand Profile_Edit_Cancel_Button_Command_ => this.profile_Edit_Cancel_Button_Command_ ?? (this.profile_Edit_Cancel_Button_Command_ = new DelegateCommand(this.ProfileEditCancelButton));
@@ -440,6 +503,9 @@ namespace cca_p_mvvm.ViewModels
                 this.Alert_Title_ = this.l_Eng_.Word[ENG_WORD.PROFILE_EDIT_ALERT_TITLE];
                 this.Alert_Message_ = this.l_Eng_.Word[ENG_WORD.PROFILE_EDIT_ALERT_MESSAGE];
                 this.Alert_Button_ = this.l_Eng_.Word[ENG_WORD.PROFILE_EDIT_ALERT_BUTTON];
+                this.Picture_Label_Text_ = this.l_Eng_.Word[ENG_WORD.PROFILE_EDIT_PICTURE_LABEL];
+                this.First_Name_Label_Text_ = this.l_Eng_.Word[ENG_WORD.PROFILE_EDIT_FIRST_NAME];
+                this.Last_Name_Label_Text_ = this.l_Eng_.Word[ENG_WORD.PROFILE_EDIT_LAST_NAME];
                 this.Bio_Label_Text_ = this.l_Eng_.Word[ENG_WORD.PROFILE_EDIT_BIO_LABEL];
                 this.Bio_Text_Placeholder_ = this.l_Eng_.Word[ENG_WORD.PROFILE_EDIT_BIO_PLACEHOLDER];
             }
@@ -450,6 +516,9 @@ namespace cca_p_mvvm.ViewModels
                 this.Alert_Title_ = this.l_Jap_.Word[JAP_WORD.PROFILE_EDIT_ALERT_TITLE];
                 this.Alert_Message_ = this.l_Jap_.Word[JAP_WORD.PROFILE_EDIT_ALERT_MESSAGE];
                 this.Alert_Button_ = this.l_Jap_.Word[JAP_WORD.PROFILE_EDIT_ALERT_BUTTON];
+                this.Picture_Label_Text_ = this.l_Jap_.Word[JAP_WORD.PROFILE_EDIT_PICTURE_LABEL];
+                this.First_Name_Label_Text_ = this.l_Jap_.Word[JAP_WORD.PROFILE_EDIT_FIRST_NAME];
+                this.Last_Name_Label_Text_ = this.l_Jap_.Word[JAP_WORD.PROFILE_EDIT_LAST_NAME];
                 this.Bio_Label_Text_ = this.l_Jap_.Word[JAP_WORD.PROFILE_EDIT_BIO_LABEL];
                 this.Bio_Text_Placeholder_ = this.l_Jap_.Word[JAP_WORD.PROFILE_EDIT_BIO_PLACEHOLDER];
                 

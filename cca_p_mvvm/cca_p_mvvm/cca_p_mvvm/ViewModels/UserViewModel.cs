@@ -27,9 +27,8 @@ namespace cca_p_mvvm.ViewModels
 
             set
             {
-                this.id_ = value;
-                this.OnPropertyChanged("ID_");
                 this.SetProperty(ref this.id_, value);
+                this.RaisePropertyChanged("ID_");
             }
         }
 

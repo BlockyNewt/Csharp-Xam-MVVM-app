@@ -46,6 +46,7 @@ namespace cca_p_mvvm
         CHAT_BACKGROUND,
         CHAT_BUTTONS,
         CHAT_TEXT,
+        CHAT_TEXT_SECONDARY,
     }
 
 
@@ -53,10 +54,6 @@ namespace cca_p_mvvm
     {
         public ColorScheme()
         {
-            //this.is_Light_Selected_ = false;
-            //this.is_Dark_Selected_ = true;
-            //this.is_Halloween_Selected_ = false;
-
             string lightColorBackground = "ffffff";
             string lightColorButton = "cde8f6";
             string lightColorText = "968c83";
@@ -69,7 +66,6 @@ namespace cca_p_mvvm
 
             string halloweenColorBackground = "313131";
             string halloweenColorButton = "684656";
-            //string halloweenColorButton = "7b3c59"; DECENT PURPLE
             string halloweenColorText = "F36A1F";
             string halloweenColorTextSecondary = "FFA52B";
 
@@ -108,6 +104,7 @@ namespace cca_p_mvvm
             this.light_Color_Scheme_.Add(COLOR.CHAT_BACKGROUND, Color.FromHex(lightColorBackground));
             this.light_Color_Scheme_.Add(COLOR.CHAT_BUTTONS, Color.FromHex(lightColorButton));
             this.light_Color_Scheme_.Add(COLOR.CHAT_TEXT, Color.FromHex(lightColorText));
+            this.light_Color_Scheme_.Add(COLOR.CHAT_TEXT_SECONDARY, Color.FromHex(lightColorTextSecondary));
 
 
 
@@ -145,6 +142,7 @@ namespace cca_p_mvvm
             this.dark_Color_Scheme_.Add(COLOR.CHAT_BACKGROUND, Color.FromHex(darkColorBackground));
             this.dark_Color_Scheme_.Add(COLOR.CHAT_BUTTONS, Color.FromHex(darkColorButton));
             this.dark_Color_Scheme_.Add(COLOR.CHAT_TEXT, Color.FromHex(darkColorText));
+            this.dark_Color_Scheme_.Add(COLOR.CHAT_TEXT_SECONDARY, Color.FromHex(darkColorTextSecondary));
 
 
             //HALLOWEEN
@@ -181,6 +179,7 @@ namespace cca_p_mvvm
             this.halloween_Color_Scheme_.Add(COLOR.CHAT_BACKGROUND, Color.FromHex(halloweenColorBackground));
             this.halloween_Color_Scheme_.Add(COLOR.CHAT_BUTTONS, Color.FromHex(halloweenColorButton));
             this.halloween_Color_Scheme_.Add(COLOR.CHAT_TEXT, Color.FromHex(halloweenColorText));
+            this.halloween_Color_Scheme_.Add(COLOR.CHAT_TEXT_SECONDARY, Color.FromHex(halloweenColorTextSecondary));
         }
 
         private Dictionary<COLOR, Color> light_Color_Scheme_ = new Dictionary<COLOR, Color>();
@@ -295,6 +294,7 @@ namespace cca_p_mvvm
         private Color chat_Background_;
         private Color chat_Button_;
         private Color chat_Text_;
+        private Color chat_Text_Secondary_;
 
         public Color Login_Background_
         {
@@ -674,10 +674,23 @@ namespace cca_p_mvvm
             }
         }
 
-        //##########################################
-        //##########################################
-        //##########################################
+        public Color Chat_Text_Secondary_
+        {
+            get
+            {
+                return this.chat_Text_Secondary_;
+            }
 
+            set
+            {
+                this.SetProperty(ref this.chat_Text_Secondary_, value);
+                this.RaisePropertyChanged("Chat_Text_Secondary_");
+            }
+        }
+
+        //##########################################
+        //##########################################
+        //##########################################
 
         public void SetColors()
         {
@@ -716,6 +729,7 @@ namespace cca_p_mvvm
                 this.Chat_Background_ = this.Light_Color_Scheme_[COLOR.CHAT_BACKGROUND];
                 this.Chat_Button_ = this.Light_Color_Scheme_[COLOR.CHAT_BUTTONS];
                 this.Chat_Text_ = this.Light_Color_Scheme_[COLOR.CHAT_TEXT];
+                this.Chat_Text_Secondary_ = this.Light_Color_Scheme_[COLOR.CHAT_TEXT_SECONDARY];
             }
             else if(this.Is_Dark_Selected_)
             {
@@ -752,6 +766,7 @@ namespace cca_p_mvvm
                 this.Chat_Background_ = this.Dark_Color_Scheme_[COLOR.CHAT_BACKGROUND];
                 this.Chat_Button_ = this.Dark_Color_Scheme_[COLOR.CHAT_BUTTONS];
                 this.Chat_Text_ = this.Dark_Color_Scheme_[COLOR.CHAT_TEXT];
+                this.Chat_Text_Secondary_ = this.Dark_Color_Scheme_[COLOR.CHAT_TEXT_SECONDARY];
             }
             else if (this.Is_Halloween_Selected_)
             {
@@ -788,6 +803,7 @@ namespace cca_p_mvvm
                 this.Chat_Background_ = this.Halloween_Color_Scheme_[COLOR.CHAT_BACKGROUND];
                 this.Chat_Button_ = this.Halloween_Color_Scheme_[COLOR.CHAT_BUTTONS];
                 this.Chat_Text_ = this.Halloween_Color_Scheme_[COLOR.CHAT_TEXT];
+                this.Chat_Text_Secondary_ = this.Halloween_Color_Scheme_[COLOR.CHAT_TEXT_SECONDARY];
             }
         }
     }

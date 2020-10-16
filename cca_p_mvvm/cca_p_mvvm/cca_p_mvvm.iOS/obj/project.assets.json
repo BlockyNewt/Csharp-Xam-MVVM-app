@@ -233,7 +233,7 @@
           "Prism.DryIoc.Forms": "7.2.0.1422",
           "Xam.Plugins.Forms.ImageCircle": "3.0.0.5",
           "Xamarin.Essentials.Interfaces": "1.5.3.2",
-          "Xamarin.Forms": "4.8.0.1534"
+          "Xamarin.Forms": "4.8.0.1560"
         },
         "compile": {
           "bin/placeholder/cca_p_mvvm.dll": {}
@@ -475,7 +475,7 @@
           "Prism.DryIoc.Forms": "7.2.0.1422",
           "Xam.Plugins.Forms.ImageCircle": "3.0.0.5",
           "Xamarin.Essentials.Interfaces": "1.5.3.2",
-          "Xamarin.Forms": "4.8.0.1534"
+          "Xamarin.Forms": "4.8.0.1560"
         },
         "compile": {
           "bin/placeholder/cca_p_mvvm.dll": {}
@@ -717,7 +717,7 @@
           "Prism.DryIoc.Forms": "7.2.0.1422",
           "Xam.Plugins.Forms.ImageCircle": "3.0.0.5",
           "Xamarin.Essentials.Interfaces": "1.5.3.2",
-          "Xamarin.Forms": "4.8.0.1534"
+          "Xamarin.Forms": "4.8.0.1560"
         },
         "compile": {
           "bin/placeholder/cca_p_mvvm.dll": {}
@@ -959,7 +959,7 @@
           "Prism.DryIoc.Forms": "7.2.0.1422",
           "Xam.Plugins.Forms.ImageCircle": "3.0.0.5",
           "Xamarin.Essentials.Interfaces": "1.5.3.2",
-          "Xamarin.Forms": "4.8.0.1534"
+          "Xamarin.Forms": "4.8.0.1560"
         },
         "compile": {
           "bin/placeholder/cca_p_mvvm.dll": {}
@@ -1615,7 +1615,7 @@
       "code": "NU1605",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Detected package downgrade: Xamarin.Forms from 4.8.0.1534 to 4.7.0.1239. Reference the package directly from the project to select a different version. \r\n cca_p_mvvm.iOS -> cca_p_mvvm -> Xamarin.Forms (>= 4.8.0.1534) \r\n cca_p_mvvm.iOS -> Xamarin.Forms (>= 4.7.0.1239)",
+      "message": "Detected package downgrade: Xamarin.Forms from 4.8.0.1560 to 4.7.0.1239. Reference the package directly from the project to select a different version. \r\n cca_p_mvvm.iOS -> cca_p_mvvm -> Xamarin.Forms (>= 4.8.0.1560) \r\n cca_p_mvvm.iOS -> Xamarin.Forms (>= 4.7.0.1239)",
       "libraryId": "Xamarin.Forms",
       "targetGraphs": [
         "Xamarin.iOS,Version=v1.0",

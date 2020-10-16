@@ -86,6 +86,8 @@ namespace cca_p_mvvm.ViewModels
             await this.navigation_Service_.GoBackAsync();
         }
 
+
+
         public void OnNavigatedFrom(INavigationParameters parameters)
         {
 

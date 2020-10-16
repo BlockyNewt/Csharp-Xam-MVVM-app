@@ -45,15 +45,17 @@ namespace cca_p_mvvm.ViewModels
 
             set
             {
-                this.sender_Name_ = value;
-                this.OnPropertyChanged("Sender_Name_");
                 this.SetProperty(ref this.sender_Name_, value);
+                this.RaisePropertyChanged("Sender_Name_");
             }
         }
 
 
+        //COLORS FOR APP THEME
         private Color text_Color_;
+        private Color text_Secondary_Color_;
         private Color background_Color_;
+        private Color button_Color_;
 
         public Color Text_Color_
         {
@@ -69,6 +71,20 @@ namespace cca_p_mvvm.ViewModels
             }
         }
 
+        public Color Text_Secondary_Color_
+        {
+            get
+            {
+                return this.text_Secondary_Color_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.text_Secondary_Color_, value);
+                this.RaisePropertyChanged("Text_Secondary_Color_");
+            }
+        }
+
         public Color Background_Color_
         {
             get
@@ -80,6 +96,20 @@ namespace cca_p_mvvm.ViewModels
             {
                 this.SetProperty(ref this.background_Color_, value);
                 this.RaisePropertyChanged("Background_Color_");
+            }
+        }
+
+        public Color Button_Color_
+        {
+            get
+            {
+                return this.button_Color_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.button_Color_, value);
+                this.RaisePropertyChanged("Button_Color_");
             }
         }
     }

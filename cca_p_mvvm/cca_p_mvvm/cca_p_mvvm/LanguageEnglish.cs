@@ -30,16 +30,18 @@ namespace cca_p_mvvm
         CREATE_ACCOUNT_PROFILE_PICTURE_PLACEHOLDER,
         CREATE_ACCOUNT_PROFILE_BIO_LABEL,
         CREATE_ACCOUNT_PROFILE_BIO_PLACEHOLDER,
-        CREATE_ACCOUNT_CLEAR_BUTTON,
+        CREATE_ACCOUNT_BACK_BUTTON,
+        CREATE_ACCOUNT_NEXT_BUTTON,
         CREATE_ACCOUNT_CONFIRM_BUTTON,
         CREATE_ACCOUNT_CANCEL_BUTTON,
+        CREATE_ACCOUNT_PROGRESS_BAR_TEXT,
+        CREATE_ACCOUNT_CLEAR_BUTTON,
         CREATE_ACCOUNT_ERROR_TITLE,
         CREATE_ACCOUNT_ERROR_MESSAGE,
         CREATE_ACCOUNT_ERROR_BUTTON,
 
         HUB_FRAME_LABEL,
         HUB_CHANNEL_BUTTON,
-        HUB_CHANNEL_LABEL,
         HUB_PROFILE_BUTTON,
         HUB_PROFILE_EDIT_BUTTON,
         HUB_PROFILE_LOGOUT_BUTTON,
@@ -74,6 +76,9 @@ namespace cca_p_mvvm
         PROFILE_EDIT_ALERT_TITLE,
         PROFILE_EDIT_ALERT_MESSAGE,
         PROFILE_EDIT_ALERT_BUTTON,
+        PROFILE_EDIT_PICTURE_LABEL,
+        PROFILE_EDIT_FIRST_NAME,
+        PROFILE_EDIT_LAST_NAME,
         PROFILE_EDIT_BIO_LABEL,
         PROFILE_EDIT_BIO_PLACEHOLDER,
 
@@ -112,16 +117,18 @@ namespace cca_p_mvvm
             this.word_.Add(ENG_WORD.CREATE_ACCOUNT_PROFILE_PICTURE_PLACEHOLDER, "URL...");
             this.word_.Add(ENG_WORD.CREATE_ACCOUNT_PROFILE_BIO_LABEL, "Bio");
             this.word_.Add(ENG_WORD.CREATE_ACCOUNT_PROFILE_BIO_PLACEHOLDER, "Something about yourself or something you like...");
-            this.word_.Add(ENG_WORD.CREATE_ACCOUNT_CLEAR_BUTTON, "Clear");
+            this.word_.Add(ENG_WORD.CREATE_ACCOUNT_BACK_BUTTON, "Back");
+            this.word_.Add(ENG_WORD.CREATE_ACCOUNT_NEXT_BUTTON, "Next");
             this.word_.Add(ENG_WORD.CREATE_ACCOUNT_CONFIRM_BUTTON, "Confirm");
+            this.word_.Add(ENG_WORD.CREATE_ACCOUNT_CLEAR_BUTTON, "Clear");
             this.word_.Add(ENG_WORD.CREATE_ACCOUNT_CANCEL_BUTTON, "Cancel");
+            this.word_.Add(ENG_WORD.CREATE_ACCOUNT_PROGRESS_BAR_TEXT, "Progress: ");
             this.word_.Add(ENG_WORD.CREATE_ACCOUNT_ERROR_TITLE, "Error");
             this.word_.Add(ENG_WORD.CREATE_ACCOUNT_ERROR_MESSAGE, "Passwords do not match. Please re - enter and try again.");
             this.word_.Add(ENG_WORD.CREATE_ACCOUNT_ERROR_BUTTON, "Close");
 
             this.word_.Add(ENG_WORD.HUB_FRAME_LABEL, "Comsize Inc");
             this.word_.Add(ENG_WORD.HUB_CHANNEL_BUTTON, "Channel");
-            this.word_.Add(ENG_WORD.HUB_CHANNEL_LABEL, "#Channel");
             this.word_.Add(ENG_WORD.HUB_PROFILE_BUTTON, "Profile");
             this.word_.Add(ENG_WORD.HUB_PROFILE_EDIT_BUTTON, "Edit");
             this.word_.Add(ENG_WORD.HUB_PROFILE_LOGOUT_BUTTON, "Logout");
@@ -151,7 +158,6 @@ namespace cca_p_mvvm
             this.word_.Add(ENG_WORD.SETTING_RADIO_DARK_BUTTON, "Dark");
             this.word_.Add(ENG_WORD.SETTING_RADIO_HALLOWEEN_BUTTON, "Halloween");
 
-
             this.word_.Add(ENG_WORD.PROFILE_EDIT_CONFIRM_BUTTON, "Confirm");
             this.word_.Add(ENG_WORD.PROFILE_EDIT_CANCEL_BUTTON, "Cancel");
             this.word_.Add(ENG_WORD.PROFILE_EDIT_ALERT_TITLE, "Error");
@@ -159,6 +165,9 @@ namespace cca_p_mvvm
             this.word_.Add(ENG_WORD.PROFILE_EDIT_ALERT_BUTTON, "Close");
             this.word_.Add(ENG_WORD.PROFILE_EDIT_BIO_LABEL, "Bio");
             this.word_.Add(ENG_WORD.PROFILE_EDIT_BIO_PLACEHOLDER, "Something about yourself or something you like...");
+            this.word_.Add(ENG_WORD.PROFILE_EDIT_PICTURE_LABEL, "Profile Picture");
+            this.word_.Add(ENG_WORD.PROFILE_EDIT_FIRST_NAME, "Firstname");
+            this.word_.Add(ENG_WORD.PROFILE_EDIT_LAST_NAME, "Lastname");
 
             this.Word.Add(ENG_WORD.CHAT_EDITOR_PLACEHOLDER, "Enter text here");
             this.Word.Add(ENG_WORD.CHAT_SEND_BUTTON, "Send");

@@ -44,7 +44,6 @@ namespace cca_p_mvvm.ViewModels
         //UI VARIABLES
         private string hub_Frame_Label_;
         private string hub_Channel_Button_;
-        private string hub_Channel_Label_;
         private string hub_Profile_Button_;
         private string hub_Profile_Edit_Button_;
         private string hub_Profile_Logout_Button_;
@@ -154,25 +153,6 @@ namespace cca_p_mvvm.ViewModels
             {
                 this.SetProperty(ref this.hub_Profile_Button_, value);
                 this.RaisePropertyChanged("Hub_Profile_Button_");
-            }
-        }
-
-        public string Hub_Channel_Label_
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(this.hub_Channel_Label_))
-                {
-                    return "Empty string";
-                }
-
-                return this.hub_Channel_Label_;
-            }
-
-            set
-            {
-                this.SetProperty(ref this.hub_Channel_Button_, value);
-                this.RaisePropertyChanged("Hub_Channel_Label_");
             }
         }
 
@@ -724,11 +704,6 @@ namespace cca_p_mvvm.ViewModels
 
         public void OnNavigatedTo(INavigationParameters parameters)
         {
-            //WHEN PASSING CLASS PARAMETERS YOU MUST SET EACH AND EVERY VARIABLE AGAIN FOR IT TO UPDATE THE VIEW
-            //CANNOT DO: this.u_View_Model = parameters.GetValue<UserViewModel>("u_View_Model_");
-
-            //IN ORDER FOR LANGUAGE TO CHANGE YOU MUST CHECK THE COUNT OF PARAMETERS BEING PASSED
-
             //COMING FROM LOGIN PAGE
             if(parameters.Count == 5)
             {
@@ -780,7 +755,7 @@ namespace cca_p_mvvm.ViewModels
                     this.User_Messages_[i].Text_Color_ = this.color_Scheme_.Home_Text_;
                 }
             }
-            //DON'T KNOW
+            //COMING FROM PROFILE EDIT
             if (parameters.Count == 1)
             {
                 this.user_.First_Name_ = parameters.GetValue<UserViewModel>("user_").First_Name_;
@@ -804,7 +779,6 @@ namespace cca_p_mvvm.ViewModels
             {
                 this.Hub_Frame_Label_ = this.l_Eng_.Word[ENG_WORD.HUB_FRAME_LABEL];
                 this.Hub_Channel_Button_ = this.l_Eng_.Word[ENG_WORD.HUB_CHANNEL_BUTTON];
-                this.Hub_Channel_Label_ = this.l_Eng_.Word[ENG_WORD.HUB_CHANNEL_LABEL];
                 this.Hub_Profile_Button_ = this.l_Eng_.Word[ENG_WORD.HUB_PROFILE_BUTTON];
                 this.Hub_Profile_Edit_Button_ = this.l_Eng_.Word[ENG_WORD.HUB_PROFILE_EDIT_BUTTON];
                 this.Hub_Profile_Logout_Button_ = this.l_Eng_.Word[ENG_WORD.HUB_PROFILE_LOGOUT_BUTTON];
@@ -822,7 +796,6 @@ namespace cca_p_mvvm.ViewModels
             {
                 this.Hub_Frame_Label_ = this.l_Jap_.Word[JAP_WORD.HUB_FRAME_LABEL];
                 this.Hub_Channel_Button_ = this.l_Jap_.Word[JAP_WORD.HUB_CHANNEL_BUTTON];
-                this.Hub_Channel_Label_ = this.l_Jap_.Word[JAP_WORD.HUB_CHANNEL_LABEL];
                 this.Hub_Profile_Button_ = this.l_Jap_.Word[JAP_WORD.HUB_PROFILE_BUTTON];
                 this.Hub_Profile_Edit_Button_ = this.l_Jap_.Word[JAP_WORD.HUB_PROFILE_EDIT_BUTTON];
                 this.Hub_Profile_Logout_Button_ = this.l_Jap_.Word[JAP_WORD.HUB_PROFILE_LOGOUT_BUTTON];

@@ -34,6 +34,7 @@ namespace cca_p_mvvm.ViewModels
 
             this.channel_Or_Direct_Message = false;
         }
+
         //NAVIGATION SERVICE
         private readonly INavigationService navigation_Service_;
 
@@ -145,6 +146,7 @@ namespace cca_p_mvvm.ViewModels
         }
 
 
+
         private DelegateCommand back_Button_Command_;
         public DelegateCommand Back_Button_Command_ => this.back_Button_Command_ ?? (this.back_Button_Command_ = new DelegateCommand(this.GoBack));
         private async void GoBack()
@@ -163,7 +165,9 @@ namespace cca_p_mvvm.ViewModels
                 //CREATE NEW MESSAGE
                 Message message = new Message();
                 message.Text_Color_ = this.color_Scheme_.Chat_Text_;
+                message.Text_Secondary_Color_ = this.color_Scheme_.Chat_Text_Secondary_;
                 message.Background_Color_ = this.color_Scheme_.Chat_Background_;
+                message.Button_Color_ = this.color_Scheme_.Chat_Button_;
                 message.Sender_Name_ = this.user_.First_Name_;
                 message.Message_ = this.Message_Text_Changed_;
 
@@ -195,7 +199,6 @@ namespace cca_p_mvvm.ViewModels
 
         public void OnNavigatedTo(INavigationParameters parameters)
         {
-            Console.WriteLine("BEFORE ENTERING ");
             //CHECK IF WE ARE TALKING TO A CHANNEL
             if(parameters.ContainsKey("channel_"))
             {
@@ -312,7 +315,9 @@ namespace cca_p_mvvm.ViewModels
                         //CREATE A NEW MESSAGE
                         Message message = new Message();
                         message.Text_Color_ = this.color_Scheme_.Chat_Text_;
+                        message.Text_Secondary_Color_ = this.color_Scheme_.Chat_Text_Secondary_;
                         message.Background_Color_ = this.color_Scheme_.Chat_Background_;
+                        message.Button_Color_ = this.color_Scheme_.Chat_Button_;
                         message.Sender_Name_ = getMessageInfo[0];
                         message.Message_ = getMessageInfo[1];
 
