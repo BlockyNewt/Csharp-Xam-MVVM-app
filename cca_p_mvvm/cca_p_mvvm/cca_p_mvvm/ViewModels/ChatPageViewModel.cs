@@ -10,6 +10,8 @@ using System.Runtime.CompilerServices;
 using System.Net;
 using System.Net.Sockets;
 using Xamarin.Forms;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace cca_p_mvvm.ViewModels
 {
@@ -32,8 +34,13 @@ namespace cca_p_mvvm.ViewModels
 
             this.color_Scheme_ = new ColorScheme();
 
-            this.channel_Or_Direct_Message = false;
+            this.channel_Or_Direct_Message = true;
+
+
+            
         }
+
+        private Thread eq;
 
         //NAVIGATION SERVICE
         private readonly INavigationService navigation_Service_;
@@ -276,6 +283,11 @@ namespace cca_p_mvvm.ViewModels
                 this.color_Scheme_.SetColors();
 
                 this.GetMessages(true);
+
+                Console.WriteLine("fuuuuuuuuck");
+                Thread j = new Thread(this.Nothing);
+                j.Start();
+
             }
         }
 
@@ -306,7 +318,7 @@ namespace cca_p_mvvm.ViewModels
                 //AS LONG AS THE STRING ARRAY IS NOT NULL
                 if (allMessages != null)
                 {
-                    for (int i = 0; i < allMessages.Length; ++i)
+                    for (int i = 0; i <= allMessages.Length; ++i)
                     {
                         //SPLIT AGAIN TO MAKE MESSAGE
                         string seperatingMessages = allMessages[i];
@@ -340,6 +352,19 @@ namespace cca_p_mvvm.ViewModels
             {
                 this.Chat_Message_Editor_Placeholder_ = this.l_Jap_.Word[JAP_WORD.CHAT_EDITOR_PLACEHOLDER];
                 this.Chat_Send_Button_ = this.l_Jap_.Word[JAP_WORD.CHAT_SEND_BUTTON];
+            }
+        }
+
+        private void Nothing()
+        {
+            while(true)
+            {
+                string[] jack = this.client_Connection_.GetDirectMessages(this.user_.ID_, this.target_User_.ID_);
+
+                for (int i = 0; i < jack.Length; ++i)
+                {
+                    Console.WriteLine("MESSAGES: " + jack);
+                }
             }
         }
     }

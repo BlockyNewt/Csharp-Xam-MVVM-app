@@ -46,9 +46,12 @@ namespace cca_p_mvvm.ViewModels
         private string sign_In_Username_Entry_Placeholder_;
         private string sign_In_Password_Entry_Placeholder_;
         private string sign_In_Login_Button_;
-        private string sign_In_Login_Error_Title_;
-        private string sign_In_Login_Error_Message_;
-        private string sign_In_Login_Error_Button_;
+        private string sign_In_Login_Error_Credentials_Title_;
+        private string sign_In_Login_Error_Credentials_Message_;
+        private string sign_In_Login_Error_Credentials_Button_;
+        private string sign_In_Login_Error_Connection_Title_;
+        private string sign_In_Login_Error_Connection_Message_;
+        private string sign_In_Login_Error_Connection_Button_;
         private string sign_In_Create_Account_Button_;
 
         private string username_Entry_Changed_Text_;
@@ -148,60 +151,117 @@ namespace cca_p_mvvm.ViewModels
             }
         }
         
-        public string Sign_In_Login_Error_Title_
+        public string Sign_In_Login_Error_Credentials_Title_
         {
             get
             {
-                if (string.IsNullOrEmpty(this.sign_In_Login_Error_Title_))
+                if (string.IsNullOrEmpty(this.sign_In_Login_Error_Credentials_Title_))
                 {
                     return "Empty string";
                 }
 
-                return this.sign_In_Login_Error_Title_;
+                return this.sign_In_Login_Error_Credentials_Title_;
             }
 
             set
             {
-                this.SetProperty(ref this.sign_In_Login_Error_Title_, value);
-                this.RaisePropertyChanged("Sign_In_Login_Error_Title_");
+                this.SetProperty(ref this.sign_In_Login_Error_Credentials_Title_, value);
+                this.RaisePropertyChanged("Sign_In_Login_Error_Credentials_Title_");
             }
         }
 
-        public string Sign_In_Login_Error_Message_
+        public string Sign_In_Login_Error_Credentials_Message_
         {
             get
             {
-                if(string.IsNullOrEmpty(this.sign_In_Login_Error_Message_))
+                if(string.IsNullOrEmpty(this.sign_In_Login_Error_Credentials_Message_))
                 {
                     return "Empty string";
                 }
 
-                return this.sign_In_Login_Error_Message_;
+                return this.sign_In_Login_Error_Credentials_Message_;
             }
 
             set
             {
-                this.SetProperty(ref this.sign_In_Login_Error_Message_, value);
-                this.RaisePropertyChanged("Sign_In_Login_Error_Message_");
+                this.SetProperty(ref this.sign_In_Login_Error_Credentials_Message_, value);
+                this.RaisePropertyChanged("Sign_In_Login_Error_Credentials_Message_");
             }
         }
 
-        public string Sign_In_Login_Error_Button_
+        public string Sign_In_Login_Error_Credentials_Button_
         {
             get
             {
-                if(string.IsNullOrEmpty(this.sign_In_Login_Error_Button_))
+                if(string.IsNullOrEmpty(this.sign_In_Login_Error_Credentials_Button_))
                 {
                     return "Empty string";
                 }
 
-                return this.sign_In_Login_Error_Button_;
+                return this.sign_In_Login_Error_Credentials_Button_;
             }
 
             set
             {
-                this.SetProperty(ref this.sign_In_Login_Error_Button_, value);
-                this.RaisePropertyChanged("Sign_In_Login_Error_Button_");
+                this.SetProperty(ref this.sign_In_Login_Error_Credentials_Button_, value);
+                this.RaisePropertyChanged("Sign_In_Login_Error_Credentials_Button_");
+            }
+        }
+
+        public string Sign_In_Login_Error_Connection_Title_
+        {
+            get
+            {
+                if(string.IsNullOrEmpty(this.sign_In_Login_Error_Connection_Title_))
+                {
+                    return "Empty string";
+                }
+
+                return this.sign_In_Login_Error_Connection_Title_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.sign_In_Login_Error_Connection_Title_, value);
+                this.RaisePropertyChanged("Sign_In_Login_Error_Connection_Title_");
+            }
+        }
+
+        public string Sign_In_Login_Error_Connection_Message_
+        {
+            get
+            {
+                if(string.IsNullOrEmpty(this.sign_In_Login_Error_Connection_Message_))
+                {
+                    return "Empty string";
+                }
+
+                return this.sign_In_Login_Error_Connection_Message_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.sign_In_Login_Error_Connection_Message_, value);
+                this.RaisePropertyChanged("Sign_In_Login_Error_Connection_Message_");
+            }
+        }
+
+        public string Sign_In_Login_Error_Connection_Button_
+        {
+            get
+            {
+                if(string.IsNullOrEmpty(this.sign_In_Login_Error_Connection_Button_))
+                {
+                    return "Empty string";
+                }
+
+                return this.sign_In_Login_Error_Connection_Button_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.sign_In_Login_Error_Connection_Button_, value);
+                this.RaisePropertyChanged("Sign_In_Login_Error_Connection_Button_");
             }
         }
 
@@ -290,7 +350,7 @@ namespace cca_p_mvvm.ViewModels
             }
         }
 
-        private string Connection_Error_Button_
+        public string Connection_Error_Button_
         {
             get
             {
@@ -299,7 +359,7 @@ namespace cca_p_mvvm.ViewModels
                     return "Empty string";
                 }
 
-                return this.Connection_Error_Button_;
+                return this.connection_Error_Button_;
             }
 
             set
@@ -308,6 +368,7 @@ namespace cca_p_mvvm.ViewModels
                 this.RaisePropertyChanged("Connection_Error_Button_");
             }
         }
+
 
 
 
@@ -335,14 +396,14 @@ namespace cca_p_mvvm.ViewModels
             //CHECK MOBILE DEVICE CONNECTION
             if(this.CheckConnection())
             {
-                //FIRST CONNECT TO SERVER ON LOGIN
-                this.client_Connection_.Connect("192.168.12.7", 45000);
-
-                //THEN CHECK CLIENT CONNECTION
-                if (this.client_Connection_.CheckConnection())
+                //MAKE SURE BOTH USERNAME AND PASSWORD TEXT FIELDS ARE NOT EMPTY OR NULL
+                if (!string.IsNullOrEmpty(this.Username_Entry_Changed_Text_) && 
+                    !string.IsNullOrEmpty(this.Password_Entry_Changed_Text_) || 
+                    !string.IsNullOrEmpty(this.Username_Entry_Changed_Text_) || 
+                    !string.IsNullOrEmpty(this.Password_Entry_Changed_Text_))
                 {
-                    //MAKE SURE BOTH USERNAME AND PASSWORD TEXT FIELDS ARE NOT EMPTY OR NULL
-                    if (!string.IsNullOrEmpty(this.Username_Entry_Changed_Text_) && !string.IsNullOrEmpty(this.Password_Entry_Changed_Text_))
+                    //FIRST CONNECT TO SERVER ON LOGIN
+                    if (this.client_Connection_.Connect("192.168.12.7", 45000))
                     {
                         //SEND LOGIN CREDIDENTIALS TO THE SERVER TO CHECK WITH THE DATABASE
                         if (this.client_Connection_.LoginMessage(this.Username_Entry_Changed_Text_) == this.Password_Entry_Changed_Text_)
@@ -379,9 +440,23 @@ namespace cca_p_mvvm.ViewModels
                             this.Password_Entry_Changed_Text_ = string.Empty;
 
                             //GIVE AN ERROR IF LOGIN CREDIDENTIALS CAME BACK INVALID
-                            await Application.Current.MainPage.DisplayAlert(this.Sign_In_Login_Error_Title_, this.Sign_In_Login_Error_Message_, this.Sign_In_Login_Error_Button_);
+                            await Application.Current.MainPage.DisplayAlert(this.Sign_In_Login_Error_Credentials_Title_, this.Sign_In_Login_Error_Credentials_Message_, this.Sign_In_Login_Error_Credentials_Button_);
                         }
                     }
+                    else
+                    {
+                        this.Username_Entry_Changed_Text_ = string.Empty;
+                        this.Password_Entry_Changed_Text_ = string.Empty;
+
+                        await Application.Current.MainPage.DisplayAlert(this.Sign_In_Login_Error_Connection_Title_, this.Sign_In_Login_Error_Connection_Message_, this.Sign_In_Login_Error_Connection_Button_);
+                    }
+                }
+                else
+                {
+                    this.Username_Entry_Changed_Text_ = string.Empty;
+                    this.Password_Entry_Changed_Text_ = string.Empty;
+
+                    await Application.Current.MainPage.DisplayAlert(this.Sign_In_Login_Error_Credentials_Title_, this.Sign_In_Login_Error_Credentials_Message_, this.Sign_In_Login_Error_Credentials_Button_);
                 }
             }
         }
@@ -459,9 +534,12 @@ namespace cca_p_mvvm.ViewModels
                 this.Sign_In_Username_Entry_Placeholder_ = this.l_Eng_.Word[ENG_WORD.SIGN_IN_USERNAME_ENTRY_PLACEHOLDER];
                 this.Sign_In_Password_Entry_Placeholder_ = this.l_Eng_.Word[ENG_WORD.SIGN_IN_PASSWORD_ENTRY_PLACEHOLDER];
                 this.Sign_In_Login_Button_ = this.l_Eng_.Word[ENG_WORD.SIGN_IN_LOGIN_BUTTON];
-                this.Sign_In_Login_Error_Title_ = this.l_Eng_.Word[ENG_WORD.SIGN_IN_LOGIN_ERROR_TITLE];
-                this.Sign_In_Login_Error_Message_ = this.l_Eng_.Word[ENG_WORD.SIGN_IN_LOGIN_ERROR_MESSAGE];
-                this.Sign_In_Login_Error_Button_ = this.l_Eng_.Word[ENG_WORD.SIGN_IN_LOGIN_ERROR_BUTTON];
+                this.Sign_In_Login_Error_Credentials_Title_ = this.l_Eng_.Word[ENG_WORD.SIGN_IN_LOGIN_ERROR_CREDENTIALS_TITLE];
+                this.Sign_In_Login_Error_Credentials_Message_ = this.l_Eng_.Word[ENG_WORD.SIGN_IN_LOGIN_ERROR_CREDENTIALS_MESSAGE];
+                this.Sign_In_Login_Error_Credentials_Button_ = this.l_Eng_.Word[ENG_WORD.SIGN_IN_LOGIN_ERROR_CREDENTIALS_BUTTON];
+                this.Sign_In_Login_Error_Connection_Title_ = this.l_Eng_.Word[ENG_WORD.SIGN_IN_LOGIN_ERROR_CONNECTION_TITLE];
+                this.Sign_In_Login_Error_Connection_Message_ = this.l_Eng_.Word[ENG_WORD.SIGN_IN_LOGIN_ERROR_CONNECTION_MESSAGE];
+                this.Sign_In_Login_Error_Connection_Button_ = this.l_Eng_.Word[ENG_WORD.SIGN_IN_LOGIN_ERROR_CONNECTION_BUTTON];
                 this.Sign_In_Create_Account_Button_ = this.l_Eng_.Word[ENG_WORD.SIGN_IN_CREATE_ACCOUNT_BUTTON];
 
 
@@ -475,9 +553,12 @@ namespace cca_p_mvvm.ViewModels
                 this.Sign_In_Username_Entry_Placeholder_ = this.l_Jap_.Word[JAP_WORD.SIGN_IN_USERNAME_ENTRY_PLACEHOLDER];
                 this.Sign_In_Password_Entry_Placeholder_ = this.l_Jap_.Word[JAP_WORD.SIGN_IN_PASSWORD_ENTRY_PLACEHOLDER];
                 this.Sign_In_Login_Button_ = this.l_Jap_.Word[JAP_WORD.SIGN_IN_LOGIN_BUTTON];
-                this.Sign_In_Login_Error_Title_ = this.l_Jap_.Word[JAP_WORD.SIGN_IN_LOGIN_ERROR_TITLE];
-                this.Sign_In_Login_Error_Message_ = this.l_Jap_.Word[JAP_WORD.SIGN_IN_LOGIN_ERROR_MESSAGE];
-                this.Sign_In_Login_Error_Button_ = this.l_Jap_.Word[JAP_WORD.SIGN_IN_LOGIN_ERROR_BUTTON];
+                this.Sign_In_Login_Error_Credentials_Title_ = this.l_Jap_.Word[JAP_WORD.SIGN_IN_LOGIN_ERROR_CREDENTIALS_TITLE];
+                this.Sign_In_Login_Error_Credentials_Message_ = this.l_Jap_.Word[JAP_WORD.SIGN_IN_LOGIN_ERROR_CREDENTIALS_MESSAGE];
+                this.Sign_In_Login_Error_Credentials_Button_ = this.l_Jap_.Word[JAP_WORD.SIGN_IN_LOGIN_ERROR_CREDENTIALS_BUTTON];
+                this.Sign_In_Login_Error_Connection_Title_ = this.l_Jap_.Word[JAP_WORD.SIGN_IN_LOGIN_ERROR_CONNECTION_TITLE];
+                this.Sign_In_Login_Error_Connection_Message_ = this.l_Jap_.Word[JAP_WORD.SIGN_IN_LOGIN_ERROR_CONNECTION_MESSAGE];
+                this.Sign_In_Login_Error_Connection_Button_ = this.l_Jap_.Word[JAP_WORD.SIGN_IN_LOGIN_ERROR_CONNECTION_BUTTON];
                 this.Sign_In_Create_Account_Button_ = this.l_Jap_.Word[JAP_WORD.SIGN_IN_CREATE_ACCOUNT_BUTTON];
 
                 this.connection_Error_Title_ = this.l_Jap_.Word[JAP_WORD.CONNECTION_ERROR_TITLE];

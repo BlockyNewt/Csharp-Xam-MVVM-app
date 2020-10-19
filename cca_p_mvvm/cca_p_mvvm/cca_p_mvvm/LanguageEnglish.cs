@@ -13,9 +13,12 @@ namespace cca_p_mvvm
         SIGN_IN_USERNAME_ENTRY_PLACEHOLDER,
         SIGN_IN_PASSWORD_ENTRY_PLACEHOLDER,
         SIGN_IN_LOGIN_BUTTON,
-        SIGN_IN_LOGIN_ERROR_TITLE,
-        SIGN_IN_LOGIN_ERROR_MESSAGE,
-        SIGN_IN_LOGIN_ERROR_BUTTON,
+        SIGN_IN_LOGIN_ERROR_CREDENTIALS_TITLE,
+        SIGN_IN_LOGIN_ERROR_CREDENTIALS_MESSAGE,
+        SIGN_IN_LOGIN_ERROR_CREDENTIALS_BUTTON,
+        SIGN_IN_LOGIN_ERROR_CONNECTION_TITLE,
+        SIGN_IN_LOGIN_ERROR_CONNECTION_MESSAGE,
+        SIGN_IN_LOGIN_ERROR_CONNECTION_BUTTON,
         SIGN_IN_CREATE_ACCOUNT_BUTTON,
 
         CREATE_ACCOUNT_FIRST_NAME_LABEL,
@@ -100,9 +103,12 @@ namespace cca_p_mvvm
             this.word_.Add(ENG_WORD.SIGN_IN_USERNAME_ENTRY_PLACEHOLDER, "Username...");
             this.word_.Add(ENG_WORD.SIGN_IN_PASSWORD_ENTRY_PLACEHOLDER, "Password...");
             this.word_.Add(ENG_WORD.SIGN_IN_LOGIN_BUTTON, "Login");
-            this.word_.Add(ENG_WORD.SIGN_IN_LOGIN_ERROR_TITLE, "Error");
-            this.word_.Add(ENG_WORD.SIGN_IN_LOGIN_ERROR_MESSAGE, "Username and or password are incorrect. Please try again.");
-            this.word_.Add(ENG_WORD.SIGN_IN_LOGIN_ERROR_BUTTON, "Close");
+            this.word_.Add(ENG_WORD.SIGN_IN_LOGIN_ERROR_CREDENTIALS_TITLE, "Error");
+            this.word_.Add(ENG_WORD.SIGN_IN_LOGIN_ERROR_CREDENTIALS_MESSAGE, "Username and or password are incorrect. Please try again.");
+            this.word_.Add(ENG_WORD.SIGN_IN_LOGIN_ERROR_CREDENTIALS_BUTTON, "Close");
+            this.word_.Add(ENG_WORD.SIGN_IN_LOGIN_ERROR_CONNECTION_TITLE, "Error");
+            this.word_.Add(ENG_WORD.SIGN_IN_LOGIN_ERROR_CONNECTION_MESSAGE, "Could not connect to the server.");
+            this.word_.Add(ENG_WORD.SIGN_IN_LOGIN_ERROR_CONNECTION_BUTTON, "Close");
             this.word_.Add(ENG_WORD.SIGN_IN_CREATE_ACCOUNT_BUTTON, "Create account");
 
             this.word_.Add(ENG_WORD.CREATE_ACCOUNT_FIRST_NAME_LABEL, "Firstname");

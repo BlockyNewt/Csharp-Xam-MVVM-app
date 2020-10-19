@@ -43,7 +43,7 @@ namespace cca_p_mvvm
         }
 
 
-        public async void Connect(string server, Int32 port)
+        public bool Connect(string server, Int32 port)
         {
             //SET THE LOCAL IP AND PORT 
             this.local_Address_ = IPAddress.Parse(server);
@@ -54,30 +54,40 @@ namespace cca_p_mvvm
             try
             {
                 //START THE CONNECTION
-                this.client_ = new TcpClient(this.local_Address_.ToString(), this.port_);
+                this.client_ = new TcpClient();
 
-                if (this.CheckConnection())
+                if (this.client_.ConnectAsync(this.local_Address_.ToString(), this.port_).Wait(1000))
                 {
-                    //GET A CLIENT STREAM FOR READING AND WRITING 
-                    this.stream_ = this.client_.GetStream();
+                    if (this.CheckConnection())
+                    {
+                        //GET A CLIENT STREAM FOR READING AND WRITING 
+                        this.stream_ = this.client_.GetStream();
 
-                    //TRANSLATE THE MESSGE INTO ACII AND THEN STORE IT INTO A BYTE ARRAY
-                    Byte[] data = System.Text.Encoding.ASCII.GetBytes(connectedMsg);
+                        //TRANSLATE THE MESSGE INTO ACII AND THEN STORE IT INTO A BYTE ARRAY
+                        Byte[] data = System.Text.Encoding.ASCII.GetBytes(connectedMsg);
 
-                    //SEND THE MESSAGE
-                    this.stream_.Write(data, 0, data.Length);
+                        //SEND THE MESSAGE
+                        this.stream_.Write(data, 0, data.Length);
 
-                    this.ReceiveMessage();
+                        this.ReceiveMessage();
+
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
                 else
                 {
-                    await Application.Current.MainPage.DisplayAlert("Error", "Could not connect to the server.", "Close");
+                    return false;
                 }
             }
             catch (SocketException e)
             {
                 Console.WriteLine(e.ToString());
-                await Application.Current.MainPage.DisplayAlert("Socket Error", "Could not connect", "Close");
+
+                return false;
             }
         }
 
@@ -378,6 +388,8 @@ namespace cca_p_mvvm
 
                 //RETURN IT SO WE CAN ADD IT INTO A LIST ON THE CHATPAGEVIEWMODEL
                 responseMessage = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
+
+                Console.WriteLine("RESPONSE MESSAGE: " + responseMessage);
 
                 if (responseMessage == "EMPTY")
                 {

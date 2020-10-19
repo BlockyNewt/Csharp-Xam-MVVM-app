@@ -14,9 +14,12 @@ namespace cca_p_mvvm
         SIGN_IN_USERNAME_ENTRY_PLACEHOLDER,
         SIGN_IN_PASSWORD_ENTRY_PLACEHOLDER,
         SIGN_IN_LOGIN_BUTTON,
-        SIGN_IN_LOGIN_ERROR_TITLE,
-        SIGN_IN_LOGIN_ERROR_MESSAGE,
-        SIGN_IN_LOGIN_ERROR_BUTTON,
+        SIGN_IN_LOGIN_ERROR_CREDENTIALS_TITLE,
+        SIGN_IN_LOGIN_ERROR_CREDENTIALS_MESSAGE,
+        SIGN_IN_LOGIN_ERROR_CREDENTIALS_BUTTON,
+        SIGN_IN_LOGIN_ERROR_CONNECTION_TITLE,
+        SIGN_IN_LOGIN_ERROR_CONNECTION_MESSAGE,
+        SIGN_IN_LOGIN_ERROR_CONNECTION_BUTTON,
         SIGN_IN_CREATE_ACCOUNT_BUTTON,
 
         CREATE_ACCOUNT_FIRST_NAME_LABEL,
@@ -102,9 +105,12 @@ namespace cca_p_mvvm
             this.word_.Add(JAP_WORD.SIGN_IN_USERNAME_ENTRY_PLACEHOLDER, "ユーザーネーム");
             this.word_.Add(JAP_WORD.SIGN_IN_PASSWORD_ENTRY_PLACEHOLDER, "パスワード");
             this.word_.Add(JAP_WORD.SIGN_IN_LOGIN_BUTTON, "ログイン");
-            this.word_.Add(JAP_WORD.SIGN_IN_LOGIN_ERROR_TITLE, "エラー");
-            this.word_.Add(JAP_WORD.SIGN_IN_LOGIN_ERROR_MESSAGE, "ユーザーネームかパスワードが間違いているのでもう一度入力してください。");
-            this.word_.Add(JAP_WORD.SIGN_IN_LOGIN_ERROR_BUTTON, "閉じる");
+            this.word_.Add(JAP_WORD.SIGN_IN_LOGIN_ERROR_CREDENTIALS_TITLE, "エラー");
+            this.word_.Add(JAP_WORD.SIGN_IN_LOGIN_ERROR_CREDENTIALS_MESSAGE, "ユーザーネームかパスワードが間違いているのでもう一度入力してください。");
+            this.word_.Add(JAP_WORD.SIGN_IN_LOGIN_ERROR_CREDENTIALS_BUTTON, "閉じる");
+            this.word_.Add(JAP_WORD.SIGN_IN_LOGIN_ERROR_CONNECTION_TITLE, "エラー");
+            this.word_.Add(JAP_WORD.SIGN_IN_LOGIN_ERROR_CONNECTION_MESSAGE, "サーバーに繋がらなかったです。");
+            this.word_.Add(JAP_WORD.SIGN_IN_LOGIN_ERROR_CONNECTION_BUTTON, "閉じる");
             this.word_.Add(JAP_WORD.SIGN_IN_CREATE_ACCOUNT_BUTTON, "新規アカウント");
 
             this.word_.Add(JAP_WORD.CREATE_ACCOUNT_FIRST_NAME_LABEL, "名");
