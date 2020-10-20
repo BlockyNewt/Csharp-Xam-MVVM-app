@@ -12,6 +12,8 @@ using System.Net.Sockets;
 using Xamarin.Forms;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Timers;
+using Java.Lang;
 
 namespace cca_p_mvvm.ViewModels
 {
@@ -34,13 +36,10 @@ namespace cca_p_mvvm.ViewModels
 
             this.color_Scheme_ = new ColorScheme();
 
-            this.channel_Or_Direct_Message = true;
+            this.channel_Or_Direct_Message_ = true;
 
-
-            
+            this.is_Refreshing_ = false;
         }
-
-        private Thread eq;
 
         //NAVIGATION SERVICE
         private readonly INavigationService navigation_Service_;
@@ -64,13 +63,20 @@ namespace cca_p_mvvm.ViewModels
         //COLOR-SCHEMES
         public ColorScheme color_Scheme_ { get; private set; }
 
+        //TASK CANCELLATION TOKEN
+        private CancellationTokenSource tokenSource2;
+        private CancellationToken ct;
+
+        private System.Timers.Timer timer;
+
         private IList<Message> messages_List_;
 
         private string message_Text_Changed_;
         private string chat_Frame_Label_;
         private string chat_Message_Editor_Placeholder_;
         private string chat_Send_Button_;
-        private bool channel_Or_Direct_Message;
+        private bool channel_Or_Direct_Message_;
+        private bool is_Refreshing_;
 
 
         public IList<Message> Messages_List_
@@ -154,10 +160,66 @@ namespace cca_p_mvvm.ViewModels
 
 
 
+        private Task task;
+        async void GetFuckingMessages()
+        {
+            tokenSource2 = new CancellationTokenSource();
+            ct = tokenSource2.Token;
+
+            this.task = Task.Run(async () =>
+            {
+                ct.ThrowIfCancellationRequested();
+
+                this.timer = new System.Timers.Timer();
+                timer.Interval = 2000;
+                timer.Elapsed += Timer_Elapsed;
+                timer.AutoReset = true;
+                timer.Enabled = true;
+                timer.Start();
+
+                if (!this.timer.Enabled)
+                {
+                    this.tokenSource2.Cancel();
+                }
+
+                if(this.ct.IsCancellationRequested)
+                {
+                    ct.ThrowIfCancellationRequested();
+
+                    try
+                    {
+                        await this.task;
+                    }
+                    catch (OperationCanceledException e)
+                    {
+                        Console.WriteLine(e.ToString());
+                    }
+                    finally
+                    {
+                        timer.Stop();
+
+                        this.tokenSource2.Dispose();
+                    }
+                }
+            }, tokenSource2.Token);
+
+
+
+            
+        }
+
+        private void Timer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            this.UpdateMessages();
+        }
+
+
         private DelegateCommand back_Button_Command_;
         public DelegateCommand Back_Button_Command_ => this.back_Button_Command_ ?? (this.back_Button_Command_ = new DelegateCommand(this.GoBack));
         private async void GoBack()
         {
+            this.timer.Enabled = false;
+
             //GO BACK TO PREVIOUS PAGE
             await this.navigation_Service_.GoBackAsync();
         }
@@ -182,7 +244,7 @@ namespace cca_p_mvvm.ViewModels
                 this.Messages_List_.Add(message);
 
                 //CHECK IF WE ARE CURRENTLY TALKING WITHIN A CHANNEL OR A TALKING DIRECTLY TO ANOTHER USER (CLIENT)
-                if(!this.channel_Or_Direct_Message)
+                if(!this.channel_Or_Direct_Message_)
                 {
                     this.client_Connection_.SendChannelMessage(this.channel_.ID_, this.user_.First_Name_, this.Message_Text_Changed_);
                 }
@@ -195,8 +257,6 @@ namespace cca_p_mvvm.ViewModels
                 this.Message_Text_Changed_ = string.Empty;
             }
         }
-
-
 
 
 
@@ -283,12 +343,9 @@ namespace cca_p_mvvm.ViewModels
                 this.color_Scheme_.SetColors();
 
                 this.GetMessages(true);
-
-                Console.WriteLine("fuuuuuuuuck");
-                Thread j = new Thread(this.Nothing);
-                j.Start();
-
             }
+
+            GetFuckingMessages();
         }
 
 
@@ -305,20 +362,23 @@ namespace cca_p_mvvm.ViewModels
                 {
                     allMessages = this.client_Connection_.GetChannelMessages(this.channel_.ID_);
 
-                    this.channel_Or_Direct_Message = false;
+                    this.channel_Or_Direct_Message_ = false;
                 }
                 //IF WE ARE DIRECTLY TALKING TO ANOTHER USER (CLIENT)
                 else
                 {
                     allMessages = this.client_Connection_.GetDirectMessages(this.user_.ID_, this.target_User_.ID_);
 
-                    this.channel_Or_Direct_Message = true;
+                    this.channel_Or_Direct_Message_ = true;
+
+                    Console.WriteLine("Read from channels messages." + allMessages);
                 }
 
                 //AS LONG AS THE STRING ARRAY IS NOT NULL
                 if (allMessages != null)
                 {
-                    for (int i = 0; i <= allMessages.Length; ++i)
+                    //MUST MINUS 1 ON THE STRING ARRAY LENGTH SINCE THE LAST POSITION IS EMPTY
+                    for (int i = 0; i < allMessages.Length - 1; ++i)
                     {
                         //SPLIT AGAIN TO MAKE MESSAGE
                         string seperatingMessages = allMessages[i];
@@ -333,8 +393,88 @@ namespace cca_p_mvvm.ViewModels
                         message.Sender_Name_ = getMessageInfo[0];
                         message.Message_ = getMessageInfo[1];
 
+
                         //ADD INTO LIST 
                         this.Messages_List_.Add(message);
+                    }
+                }
+            }
+        }
+
+        private void UpdateMessages()
+        {
+            if (this.client_Connection_.CheckConnection())
+            {
+                //CREATE A STRING TO MESSAGES
+                string[] allMessages = null;
+
+                //IF WE ARE WITHIN A CHANNEL 
+                if (!this.channel_Or_Direct_Message_)
+                {
+                    allMessages = this.client_Connection_.GetChannelMessages(this.channel_.ID_);
+                }
+                //IF WE ARE DIRECTLY TALKING TO ANOTHER USER (CLIENT)
+                else
+                {
+                    allMessages = this.client_Connection_.GetDirectMessages(this.user_.ID_, this.target_User_.ID_);
+                }
+
+                //AS LONG AS THE STRING ARRAY IS NOT NULL
+                if (allMessages != null)
+                {
+                    string seperatingMessages = string.Empty;
+                    string[] getMessageInfo = null;
+
+                    //MUST MINUS 1 ON THE STRING ARRAY LENGTH SINCE THE LAST POSITION IS EMPTY
+                    for (int i = 0; i < allMessages.Length - 1; ++i)
+                    {
+                        //SPLIT AGAIN TO MAKE MESSAGE
+                        seperatingMessages = allMessages[i];
+                        getMessageInfo = seperatingMessages.Split(',');
+                    }
+
+                    if (seperatingMessages.Contains(this.Messages_List_[this.Messages_List_.Count -1].Message_))
+                    {
+                        //IF THE MESSAGES STRING CONTIANS THE VALUE OF THE LAST POSITION IN THE LIST THEN DON'T UPDATE
+
+                        //CREATE A NEW MESSAGE
+                        Message message = new Message();
+                        message.Text_Color_ = this.color_Scheme_.Chat_Text_;
+                        message.Text_Secondary_Color_ = this.color_Scheme_.Chat_Text_Secondary_;
+                        message.Background_Color_ = this.color_Scheme_.Chat_Background_;
+                        message.Button_Color_ = this.color_Scheme_.Chat_Button_;
+                        message.Sender_Name_ = getMessageInfo[0];
+                        message.Message_ = getMessageInfo[1];
+
+                        Console.WriteLine("DID NOT UPDATE");
+                    }
+                    else
+                    {
+                        //IF IT DOES NOT CONTAIN IT, CLEAR IT THEN PULL ALL MESSAGES AGAIN AND FILL THE LIST
+
+                        this.Messages_List_.Clear();
+
+                        for(int i = 0; i < allMessages.Length - 1; ++i)
+                        {
+                            //SPLIT AGAIN TO MAKE MESSAGE
+                            seperatingMessages = allMessages[i];
+                            getMessageInfo = seperatingMessages.Split(',');
+
+                            //CREATE A NEW MESSAGE
+                            Message message = new Message();
+                            message.Text_Color_ = this.color_Scheme_.Chat_Text_;
+                            message.Text_Secondary_Color_ = this.color_Scheme_.Chat_Text_Secondary_;
+                            message.Background_Color_ = this.color_Scheme_.Chat_Background_;
+                            message.Button_Color_ = this.color_Scheme_.Chat_Button_;
+                            message.Sender_Name_ = getMessageInfo[0];
+                            message.Message_ = getMessageInfo[1];
+
+
+                            //ADD INTO LIST 
+                            this.Messages_List_.Add(message);
+
+                            Console.WriteLine("UPDATED LIST");
+                        }
                     }
                 }
             }
@@ -352,19 +492,6 @@ namespace cca_p_mvvm.ViewModels
             {
                 this.Chat_Message_Editor_Placeholder_ = this.l_Jap_.Word[JAP_WORD.CHAT_EDITOR_PLACEHOLDER];
                 this.Chat_Send_Button_ = this.l_Jap_.Word[JAP_WORD.CHAT_SEND_BUTTON];
-            }
-        }
-
-        private void Nothing()
-        {
-            while(true)
-            {
-                string[] jack = this.client_Connection_.GetDirectMessages(this.user_.ID_, this.target_User_.ID_);
-
-                for (int i = 0; i < jack.Length; ++i)
-                {
-                    Console.WriteLine("MESSAGES: " + jack);
-                }
             }
         }
     }

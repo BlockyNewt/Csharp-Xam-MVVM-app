@@ -25,6 +25,8 @@
         </Frame>
 
 
+        
+        
         <ListView ItemsSource="{Binding Messages_List_}" HasUnevenRows="True">
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -45,9 +47,10 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        
-        
-        
+
+
+
+
         <!--ENTRY FIELD AND SEND BUTTON-->
         <StackLayout BackgroundColor="{Binding color_Scheme_.Chat_Background_}">
             <Grid Padding="10">

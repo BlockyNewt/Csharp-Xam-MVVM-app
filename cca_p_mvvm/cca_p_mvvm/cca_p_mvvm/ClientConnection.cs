@@ -301,7 +301,11 @@ namespace cca_p_mvvm
         {
             string msg = "EDIT;" + Convert.ToString(id) + ";" + firstName + ";" + lastName + ";" + bio + ";" + picture + "$";
 
-            Byte[] data = System.Text.Encoding.ASCII.GetBytes(msg);
+
+            Console.Write("EDITING USER: " + msg);
+
+            Byte[] data = System.Text.Encoding.UTF8.GetBytes(msg);
+
 
             try
             {
@@ -320,7 +324,7 @@ namespace cca_p_mvvm
         {
             string msg = "CHANNEL_MESSAGE;" + Convert.ToString(channelID) + ";" + userFirstname + ";" + message + "$";
 
-            Byte[] data = System.Text.Encoding.ASCII.GetBytes(msg);
+            Byte[] data = System.Text.Encoding.UTF8.GetBytes(msg);
 
             try
             {
@@ -339,8 +343,8 @@ namespace cca_p_mvvm
         {
             string msg = "DIRECT_MESSAGE;" + Convert.ToString(senderID) + ";" + senderName + ";" + Convert.ToString(receiverID) + ";" + message + "$";
 
-            Byte[] data = System.Text.Encoding.ASCII.GetBytes(msg);
-
+            Byte[] data = System.Text.Encoding.UTF8.GetBytes(msg);
+            
             try
             {
                 if(this.CheckConnection())
@@ -359,7 +363,7 @@ namespace cca_p_mvvm
             string newMessage = firstname + ": " + message + "$";
 
             //TRANSLATE THE MESSGE INTO ACII AND THEN STORE IT INTO A BYTE ARRAY
-            Byte[] data = System.Text.Encoding.ASCII.GetBytes(newMessage);
+            Byte[] data = System.Text.Encoding.UTF8.GetBytes(newMessage);
 
             //CHECK IF WE HAVE A CONNECTION AT THE TIME OF SENDING
             if(this.CheckConnection())
@@ -387,7 +391,12 @@ namespace cca_p_mvvm
                 Int32 bytes = this.stream_.Read(data, 0, data.Length);
 
                 //RETURN IT SO WE CAN ADD IT INTO A LIST ON THE CHATPAGEVIEWMODEL
-                responseMessage = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
+                responseMessage = System.Text.Encoding.UTF8.GetString(data, 0, bytes);
+                UTF8Encoding utf8 = new UTF8Encoding();
+                byte[] unicode = utf8.GetBytes(responseMessage);
+                string jack = utf8.GetString(unicode);
+                Console.WriteLine("MOTHA fucking UTF8 BITCHES" + jack);
+
 
                 Console.WriteLine("RESPONSE MESSAGE: " + responseMessage);
 
