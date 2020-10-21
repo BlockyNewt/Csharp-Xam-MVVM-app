@@ -20,19 +20,26 @@ namespace cca_p_mvvm.ViewModels
         public LoginPageViewModel(INavigationService navigationService)
             : base(navigationService)
         {
+            Console.WriteLine("A");
             this.navigation_Service_ = navigationService;
+            Console.WriteLine("B");
 
             this.l_Eng_ = new LanguageEnglish();
             this.l_Jap_ = new LanguageJapanese();
+            Console.WriteLine("C");
 
             this.client_Connection_ = new ClientConnection();
+            Console.WriteLine("D");
 
             this.user_ = new UserViewModel();
+            Console.WriteLine("E");
 
             this.color_Scheme_ = new ColorScheme();
             this.color_Scheme_.Is_Light_Selected_ = false;
             this.color_Scheme_.Is_Dark_Selected_ = true;
             this.color_Scheme_.Is_Halloween_Selected_ = false;
+            Console.WriteLine("F");
+
 
 
             this.SetLanguage();
@@ -382,6 +389,7 @@ namespace cca_p_mvvm.ViewModels
 
             p.Add("l_Eng_", this.l_Eng_);
             p.Add("l_Jap_", this.l_Jap_);
+            p.Add("client_Connection_", this.client_Connection_);
             p.Add("color_Scheme_", this.color_Scheme_);
 
             await this.navigation_Service_.NavigateAsync("SettingPage", p);
@@ -403,7 +411,7 @@ namespace cca_p_mvvm.ViewModels
                     !string.IsNullOrEmpty(this.Password_Entry_Changed_Text_))
                 {
                     //FIRST CONNECT TO SERVER ON LOGIN
-                    if (this.client_Connection_.Connect("192.168.12.7", 45000))
+                    if (this.client_Connection_.Connect())
                     {
                         //SEND LOGIN CREDIDENTIALS TO THE SERVER TO CHECK WITH THE DATABASE
                         if (this.client_Connection_.LoginMessage(this.Username_Entry_Changed_Text_) == this.Password_Entry_Changed_Text_)
@@ -499,6 +507,20 @@ namespace cca_p_mvvm.ViewModels
                 this.color_Scheme_.Is_Dark_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Dark_Selected_;
                 this.color_Scheme_.Is_Halloween_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Halloween_Selected_;
             }
+            //COMING BACK FROM SETTINGS PAGE
+            else if (parameters.Count() == 4)
+            {
+                this.l_Eng_.Is_English_Selected_ = parameters.GetValue<LanguageEnglish>("l_Eng_").Is_English_Selected_;
+                this.l_Jap_.Is_Japanese_Selected_ = parameters.GetValue<LanguageJapanese>("l_Jap_").Is_Japanese_Selected_;
+
+                this.client_Connection_.Local_Address_ = parameters.GetValue<ClientConnection>("client_Connection_").Local_Address_;
+                this.client_Connection_.Port_ = parameters.GetValue<ClientConnection>("client_Connection_").Port_;
+
+                this.color_Scheme_.Is_Light_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Light_Selected_;
+                this.color_Scheme_.Is_Dark_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Dark_Selected_;
+                this.color_Scheme_.Is_Halloween_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Halloween_Selected_;
+            }
+            //COMING BACK FROM ACCOUNT CREATION
             else if(parameters.Count() == 5)
             {
                 this.l_Eng_.Is_English_Selected_ = parameters.GetValue<LanguageEnglish>("l_Eng_").Is_English_Selected_;

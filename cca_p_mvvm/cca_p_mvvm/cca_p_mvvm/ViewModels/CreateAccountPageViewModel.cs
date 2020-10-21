@@ -77,9 +77,12 @@ namespace cca_p_mvvm.ViewModels
         private string clear_Button_;
         private string cancel_Button_;
 
-        private string error_Title_;
-        private string error_Message_;
-        private string error_Button_;
+        private string error_Password_Title_;
+        private string error_Password_Message_;
+        private string error_Password_Button_;
+        private string error_Fields_Title_;
+        private string error_Fields_Message_;
+        private string error_Fields_Button_;
 
         private bool username_Section_;
         private bool password_Section_;
@@ -498,60 +501,117 @@ namespace cca_p_mvvm.ViewModels
             }
         }
 
-        public string Error_Title_
+        public string Error_Password_Title_
         {
             get
             {
-                if(string.IsNullOrEmpty(this.error_Title_))
+                if(string.IsNullOrEmpty(this.error_Password_Title_))
                 {
                     return "Empty";
                 }
 
-                return this.error_Title_;
+                return this.error_Password_Title_;
             }
 
             set
             {
-                this.SetProperty(ref this.error_Title_, value);
+                this.SetProperty(ref this.error_Password_Title_, value);
                 this.RaisePropertyChanged("Error_Title_");
             }
         }
 
-        public string Error_Message_
+        public string Error_Password_Message_
         {
             get
             {
-                if(string.IsNullOrEmpty(this.error_Message_))
+                if(string.IsNullOrEmpty(this.error_Password_Message_))
                 {
                     return "Empty";
                 }
 
-                return this.error_Message_;
+                return this.error_Password_Message_;
             }
 
             set
             {
-                this.SetProperty(ref this.error_Message_, value);
+                this.SetProperty(ref this.error_Password_Message_, value);
                 this.RaisePropertyChanged("Error_Messsage_");
             }
         }
 
-        public string Error_Button_
+        public string Error_Password_Button_
         {
             get
             {
-                if(string.IsNullOrEmpty(this.Error_Button_))
+                if(string.IsNullOrEmpty(this.error_Password_Button_))
                 {
                     return "Empty";
                 }
 
-                return this.error_Button_;
+                return this.error_Password_Button_;
             }
 
             set
             {
-                this.SetProperty(ref this.error_Button_, value);
+                this.SetProperty(ref this.error_Password_Button_, value);
                 this.RaisePropertyChanged("Error_Button_");
+            }
+        }
+
+        public string Error_Fields_Title_
+        {
+            get
+            {
+                if(string.IsNullOrEmpty(this.error_Fields_Title_))
+                {
+                    return "Empty string";
+                }
+
+                return this.error_Fields_Title_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.error_Fields_Title_, value);
+                this.RaisePropertyChanged("Error_Fields_Title_");
+            }
+        }
+
+        public string Error_Fields_Message_
+        {
+            get
+            {
+                if(string.IsNullOrEmpty(this.error_Fields_Message_))
+                {
+                    return "Empty string";
+                }
+
+                return this.error_Fields_Message_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.error_Fields_Message_, value);
+                this.RaisePropertyChanged("Error_Fields_Message_");
+            }
+        }
+
+        public string Error_Fields_Button_
+        {
+            get
+            {
+                if(string.IsNullOrEmpty(this.error_Fields_Button_))
+                {
+                    return "Empty string";
+                }
+
+                return this.error_Fields_Button_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.error_Fields_Button_, value);
+                this.RaisePropertyChanged("Error_Fields_Button_");
             }
         }
 
@@ -753,7 +813,7 @@ namespace cca_p_mvvm.ViewModels
                 if(this.Password_Confirm_Text_Changed_ == this.Password_Text_Changed_)
                 {
                     //CONNECT TO SERVER
-                    this.client_Connection_.Connect("192.168.12.7", 45000);
+                    this.client_Connection_.Connect();
 
                     //SEND NEW ACCOUNT INFORMATION TO SERVER AND ADD IT TO THE D.B
                     this.client_Connection_.CreateAccount(this.First_Name_Text_Changed_, this.Last_Name_Text_Changed_, this.Username_Text_Changed_, this.Password_Confirm_Text_Changed_, this.Bio_Text_Changed_, this.Profile_Picture_Text_Changed_);
@@ -767,13 +827,13 @@ namespace cca_p_mvvm.ViewModels
                 else
                 {
                     //IF PASSWORDS DO NOT MATCH SHOW AN ERROR
-                    await Application.Current.MainPage.DisplayAlert(this.error_Title_, this.error_Message_, this.error_Button_);
+                    await Application.Current.MainPage.DisplayAlert(this.Error_Password_Title_, this.Error_Password_Message_, this.Error_Password_Button_);
                 }
             }
             else
             {
                 //IF ALL FIELDS ARE NOT FILLED THEN SHOW AN ERROR
-                await Application.Current.MainPage.DisplayAlert("N.Y.I", "Not all fields are filled", "N.Y.I");
+                await Application.Current.MainPage.DisplayAlert(this.Error_Fields_Title_, this.Error_Fields_Message_, this.Error_Fields_Button_);
             }
         }
 
@@ -965,9 +1025,12 @@ namespace cca_p_mvvm.ViewModels
                 this.Clear_Button_ = this.l_Eng_.Word[ENG_WORD.CREATE_ACCOUNT_CLEAR_BUTTON];
                 this.Cancel_Button_ = this.l_Eng_.Word[ENG_WORD.CREATE_ACCOUNT_CANCEL_BUTTON];
                 this.progress_Text_Language_String_ = this.l_Eng_.Word[ENG_WORD.CREATE_ACCOUNT_PROGRESS_BAR_TEXT];
-                this.Error_Title_ = this.l_Eng_.Word[ENG_WORD.CREATE_ACCOUNT_ERROR_TITLE];
-                this.Error_Message_ = this.l_Eng_.Word[ENG_WORD.CREATE_ACCOUNT_ERROR_MESSAGE];
-                this.Error_Button_ = this.l_Eng_.Word[ENG_WORD.CREATE_ACCOUNT_ERROR_BUTTON];
+                this.Error_Password_Title_ = this.l_Eng_.Word[ENG_WORD.CREATE_ACCOUNT_PASSWORD_ERROR_TITLE];
+                this.Error_Password_Message_ = this.l_Eng_.Word[ENG_WORD.CREATE_ACCOUNT_PASSWORD_ERROR_MESSAGE];
+                this.Error_Password_Button_ = this.l_Eng_.Word[ENG_WORD.CREATE_ACCOUNT_PASSWORD_ERROR_BUTTON];
+                this.Error_Fields_Title_ = this.l_Eng_.Word[ENG_WORD.CREATE_ACCOUNT_FIELDS_ERROR_TITLE];
+                this.Error_Fields_Message_ = this.l_Eng_.Word[ENG_WORD.CREATE_ACCOUNT_FIELDS_ERROR_MESSAGE];
+                this.Error_Fields_Button_ = this.l_Eng_.Word[ENG_WORD.CREATE_ACCOUNT_FIELDS_ERROR_BUTTON];
 
             }
             else if (this.l_Jap_.Is_Japanese_Selected_)
@@ -990,9 +1053,12 @@ namespace cca_p_mvvm.ViewModels
                 this.Clear_Button_ = this.l_Jap_.Word[JAP_WORD.CREATE_ACCOUNT_CLEAR_BUTTON];
                 this.Cancel_Button_ = this.l_Jap_.Word[JAP_WORD.CREATE_ACCOUNT_CANCEL_BUTTON];
                 this.progress_Text_Language_String_ = this.l_Jap_.Word[JAP_WORD.CREATE_ACCOUNT_PROGRESS_BAR_TEXT];
-                this.Error_Title_ = this.l_Jap_.Word[JAP_WORD.CREATE_ACCOUNT_ERROR_TITLE];
-                this.Error_Message_ = this.l_Jap_.Word[JAP_WORD.CREATE_ACCOUNT_ERROR_MESSAGE];
-                this.Error_Button_ = this.l_Jap_.Word[JAP_WORD.CREATE_ACCOUNT_ERROR_BUTTON];
+                this.Error_Password_Title_ = this.l_Jap_.Word[JAP_WORD.CREATE_ACCOUNT_PASSWORD_ERROR_TITLE];
+                this.Error_Password_Message_ = this.l_Jap_.Word[JAP_WORD.CREATE_ACCOUNT_PASSWORD_ERROR_MESSAGE];
+                this.Error_Password_Button_ = this.l_Jap_.Word[JAP_WORD.CREATE_ACCOUNT_PASSWORD_ERROR_BUTTON];
+                this.Error_Fields_Title_ = this.l_Jap_.Word[JAP_WORD.CREATE_ACCOUNT_FIELDS_ERROR_TITLE];
+                this.Error_Fields_Message_ = this.l_Jap_.Word[JAP_WORD.CREATE_ACCOUNT_FIELDS_ERROR_MESSAGE];
+                this.Error_Fields_Button_ = this.l_Jap_.Word[JAP_WORD.CREATE_ACCOUNT_FIELDS_ERROR_BUTTON];
             }
         }
 

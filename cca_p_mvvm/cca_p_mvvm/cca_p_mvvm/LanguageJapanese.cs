@@ -40,9 +40,12 @@ namespace cca_p_mvvm
         CREATE_ACCOUNT_CANCEL_BUTTON,
         CREATE_ACCOUNT_PROGRESS_BAR_TEXT,
         CREATE_ACCOUNT_CLEAR_BUTTON,
-        CREATE_ACCOUNT_ERROR_TITLE,
-        CREATE_ACCOUNT_ERROR_MESSAGE,
-        CREATE_ACCOUNT_ERROR_BUTTON,
+        CREATE_ACCOUNT_PASSWORD_ERROR_TITLE,
+        CREATE_ACCOUNT_PASSWORD_ERROR_MESSAGE,
+        CREATE_ACCOUNT_PASSWORD_ERROR_BUTTON,
+        CREATE_ACCOUNT_FIELDS_ERROR_TITLE,
+        CREATE_ACCOUNT_FIELDS_ERROR_MESSAGE,
+        CREATE_ACCOUNT_FIELDS_ERROR_BUTTON,
 
         HUB_FRAME_LABEL,
         HUB_CHANNEL_BUTTON,
@@ -74,6 +77,15 @@ namespace cca_p_mvvm
         SETTING_RADIO_LIGHT_BUTTON,
         SETTING_RADIO_DARK_BUTTON,
         SETTING_RADIO_HALLOWEEN_BUTTON,
+        SETTING_CONNECTION_INFO_LABEL,
+        SETTING_IP_LABEL,
+        SETTING_PORT_LABEL,
+        SETTING_CHANGE_BUTTON,
+        SETTING_CONFIRM_BUTTON,
+        SETTING_CANCEL_BUTTON,
+        SETTING_INVALID_FORMAT_ERROR_TITLE,
+        SETTING_INVALID_FORMAT_ERROR_MESSAGE,
+        SETTING_INVALID_FORMAT_ERROR_BUTTON,
 
         PROFILE_EDIT_CONFIRM_BUTTON,
         PROFILE_EDIT_CANCEL_BUTTON,
@@ -131,9 +143,12 @@ namespace cca_p_mvvm
             this.word_.Add(JAP_WORD.CREATE_ACCOUNT_CANCEL_BUTTON, "キャンセル");
             this.word_.Add(JAP_WORD.CREATE_ACCOUNT_PROGRESS_BAR_TEXT, "プログレス： ");
             this.word_.Add(JAP_WORD.CREATE_ACCOUNT_CLEAR_BUTTON, "クリア");
-            this.word_.Add(JAP_WORD.CREATE_ACCOUNT_ERROR_TITLE, "エラー");
-            this.word_.Add(JAP_WORD.CREATE_ACCOUNT_ERROR_MESSAGE, "パスワードが一緒じゃないのでもう一度を入力してみてください。");
-            this.word_.Add(JAP_WORD.CREATE_ACCOUNT_ERROR_BUTTON, "閉じる");
+            this.word_.Add(JAP_WORD.CREATE_ACCOUNT_PASSWORD_ERROR_TITLE, "エラー");
+            this.word_.Add(JAP_WORD.CREATE_ACCOUNT_PASSWORD_ERROR_MESSAGE, "パスワードが一緒じゃないのでもう一度を入力してみてください。");
+            this.word_.Add(JAP_WORD.CREATE_ACCOUNT_PASSWORD_ERROR_BUTTON, "閉じる");
+            this.word_.Add(JAP_WORD.CREATE_ACCOUNT_FIELDS_ERROR_TITLE, "エラー");
+            this.word_.Add(JAP_WORD.CREATE_ACCOUNT_FIELDS_ERROR_MESSAGE, "名前とユーザーネームとパスワードの入力が必要です。");
+            this.word_.Add(JAP_WORD.CREATE_ACCOUNT_FIELDS_ERROR_BUTTON, "閉じる");
 
             this.word_.Add(JAP_WORD.HUB_FRAME_LABEL, "株式会社コンサイズ");
             this.word_.Add(JAP_WORD.HUB_CHANNEL_BUTTON, "チャンネル");
@@ -165,6 +180,15 @@ namespace cca_p_mvvm
             this.word_.Add(JAP_WORD.SETTING_RADIO_LIGHT_BUTTON, "ライト");
             this.word_.Add(JAP_WORD.SETTING_RADIO_DARK_BUTTON, "ダーク");
             this.word_.Add(JAP_WORD.SETTING_RADIO_HALLOWEEN_BUTTON, "ハロウィーン");
+            this.word_.Add(JAP_WORD.SETTING_CONNECTION_INFO_LABEL, "コネクション情報");
+            this.word_.Add(JAP_WORD.SETTING_IP_LABEL, "IP：");
+            this.word_.Add(JAP_WORD.SETTING_PORT_LABEL, "ポート：");
+            this.word_.Add(JAP_WORD.SETTING_CHANGE_BUTTON, "編集");
+            this.word_.Add(JAP_WORD.SETTING_CONFIRM_BUTTON, "完了");
+            this.word_.Add(JAP_WORD.SETTING_CANCEL_BUTTON, "キャンセル");
+            this.word_.Add(JAP_WORD.SETTING_INVALID_FORMAT_ERROR_TITLE, "エラー");
+            this.word_.Add(JAP_WORD.SETTING_INVALID_FORMAT_ERROR_MESSAGE, "無効な形式です。");
+            this.word_.Add(JAP_WORD.SETTING_INVALID_FORMAT_ERROR_BUTTON, "閉じる");
 
             this.word_.Add(JAP_WORD.PROFILE_EDIT_CONFIRM_BUTTON, "完了");
             this.word_.Add(JAP_WORD.PROFILE_EDIT_CANCEL_BUTTON, "キャンセル");

@@ -7,10 +7,12 @@ using Xamarin.Forms;
 using Xamarin.Essentials;
 using Android.Content.PM;
 using System.IO;
+using DryIoc;
+using Prism.Mvvm;
 
 namespace cca_p_mvvm
 {
-    public class ClientConnection
+    public class ClientConnection : BindableBase
     {
         private NetworkStream stream_;
         private Int32 port_;
@@ -26,7 +28,8 @@ namespace cca_p_mvvm
 
             set
             {
-                this.port_ = value;
+                this.SetProperty(ref this.port_, value);
+                this.RaisePropertyChanged("Port_");
             }
         }
         public IPAddress Local_Address_
@@ -38,17 +41,21 @@ namespace cca_p_mvvm
 
             set
             {
-                this.local_Address_ = value;
+                this.SetProperty(ref this.local_Address_, value);
+                this.RaisePropertyChanged("Local_Address_");
             }
         }
 
 
-        public bool Connect(string server, Int32 port)
+        public ClientConnection()
         {
             //SET THE LOCAL IP AND PORT 
-            this.local_Address_ = IPAddress.Parse(server);
-            this.port_ = port;
+            this.local_Address_ = IPAddress.Parse("192.168.12.7");
+            this.port_ = 45000;
+        }
 
+        public bool Connect()
+        {
             string connectedMsg = this.local_Address_ + " has connected." + "$";
 
             try

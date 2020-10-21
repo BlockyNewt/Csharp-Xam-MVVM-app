@@ -426,11 +426,8 @@ namespace cca_p_mvvm.ViewModels
 
             set
             {
-                Console.WriteLine("Updateing setter");
-                this.user_Messages_ = value;
-
-                //this.SetProperty(ref this.direct_Message_, value);
-                this.OnPropertyChanged("User_Messages_");
+                this.SetProperty(ref this.user_Messages_, value);
+                this.RaisePropertyChanged("User_Messages_");
             }
         }
         
@@ -649,8 +646,9 @@ namespace cca_p_mvvm.ViewModels
 
             p.Add("l_Eng_", this.l_Eng_);
             p.Add("l_Jap_", this.l_Jap_);
+            p.Add("client_Connection_", this.client_Connection_);
             p.Add("color_Scheme_", this.color_Scheme_);
-            p.Add("Channel_", this.Channel_);
+            //p.Add("Channel_", this.Channel_);
 
             //PASS PARAMETERS
             await this.navigation_Service_.NavigateAsync("SettingPage", p);
@@ -734,10 +732,14 @@ namespace cca_p_mvvm.ViewModels
                 this.GetDirectMessages();
             }
             //COMING FROM SETTINGS
-            if (parameters.Count == 3)
+            if (parameters.Count == 4)
             {
+                Console.WriteLine("SHOULD BE RUNNING THIS BITCH");
                 this.l_Eng_.Is_English_Selected_ = parameters.GetValue<LanguageEnglish>("l_Eng_").Is_English_Selected_;
                 this.l_Jap_.Is_Japanese_Selected_ = parameters.GetValue<LanguageJapanese>("l_Jap_").Is_Japanese_Selected_;
+
+                this.client_Connection_.Local_Address_ = parameters.GetValue<ClientConnection>("client_Connection_").Local_Address_;
+                this.client_Connection_.Port_ = parameters.GetValue<ClientConnection>("client_Connection_").Port_;
 
                 this.color_Scheme_.Is_Light_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Light_Selected_;
                 this.color_Scheme_.Is_Dark_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Dark_Selected_;

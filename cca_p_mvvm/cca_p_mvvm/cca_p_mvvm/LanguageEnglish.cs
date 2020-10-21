@@ -39,9 +39,12 @@ namespace cca_p_mvvm
         CREATE_ACCOUNT_CANCEL_BUTTON,
         CREATE_ACCOUNT_PROGRESS_BAR_TEXT,
         CREATE_ACCOUNT_CLEAR_BUTTON,
-        CREATE_ACCOUNT_ERROR_TITLE,
-        CREATE_ACCOUNT_ERROR_MESSAGE,
-        CREATE_ACCOUNT_ERROR_BUTTON,
+        CREATE_ACCOUNT_PASSWORD_ERROR_TITLE,
+        CREATE_ACCOUNT_PASSWORD_ERROR_MESSAGE,
+        CREATE_ACCOUNT_PASSWORD_ERROR_BUTTON,
+        CREATE_ACCOUNT_FIELDS_ERROR_TITLE,
+        CREATE_ACCOUNT_FIELDS_ERROR_MESSAGE,
+        CREATE_ACCOUNT_FIELDS_ERROR_BUTTON,
 
         HUB_FRAME_LABEL,
         HUB_CHANNEL_BUTTON,
@@ -73,6 +76,15 @@ namespace cca_p_mvvm
         SETTING_RADIO_LIGHT_BUTTON,
         SETTING_RADIO_DARK_BUTTON,
         SETTING_RADIO_HALLOWEEN_BUTTON,
+        SETTING_CONNECTION_INFO_LABEL,
+        SETTING_IP_LABEL,
+        SETTING_PORT_LABEL,
+        SETTING_CHANGE_BUTTON,
+        SETTING_CONFIRM_BUTTON,
+        SETTING_CANCEL_BUTTON,
+        SETTING_INVALID_FORMAT_ERROR_TITLE,
+        SETTING_INVALID_FORMAT_ERROR_MESSAGE,
+        SETTING_INVALID_FORMAT_ERROR_BUTTON,
 
         PROFILE_EDIT_CONFIRM_BUTTON,
         PROFILE_EDIT_CANCEL_BUTTON,
@@ -129,9 +141,12 @@ namespace cca_p_mvvm
             this.word_.Add(ENG_WORD.CREATE_ACCOUNT_CLEAR_BUTTON, "Clear");
             this.word_.Add(ENG_WORD.CREATE_ACCOUNT_CANCEL_BUTTON, "Cancel");
             this.word_.Add(ENG_WORD.CREATE_ACCOUNT_PROGRESS_BAR_TEXT, "Progress: ");
-            this.word_.Add(ENG_WORD.CREATE_ACCOUNT_ERROR_TITLE, "Error");
-            this.word_.Add(ENG_WORD.CREATE_ACCOUNT_ERROR_MESSAGE, "Passwords do not match. Please re - enter and try again.");
-            this.word_.Add(ENG_WORD.CREATE_ACCOUNT_ERROR_BUTTON, "Close");
+            this.word_.Add(ENG_WORD.CREATE_ACCOUNT_PASSWORD_ERROR_TITLE, "Error");
+            this.word_.Add(ENG_WORD.CREATE_ACCOUNT_PASSWORD_ERROR_MESSAGE, "Passwords do not match. Please re - enter and try again.");
+            this.word_.Add(ENG_WORD.CREATE_ACCOUNT_PASSWORD_ERROR_BUTTON, "Close");
+            this.word_.Add(ENG_WORD.CREATE_ACCOUNT_FIELDS_ERROR_TITLE, "Error");
+            this.word_.Add(ENG_WORD.CREATE_ACCOUNT_FIELDS_ERROR_MESSAGE, "Not all fields have been filled out. Username, lastname, username, and password fields a required.");
+            this.word_.Add(ENG_WORD.CREATE_ACCOUNT_FIELDS_ERROR_BUTTON, "Close");
 
             this.word_.Add(ENG_WORD.HUB_FRAME_LABEL, "Comsize Inc");
             this.word_.Add(ENG_WORD.HUB_CHANNEL_BUTTON, "Channel");
@@ -163,6 +178,15 @@ namespace cca_p_mvvm
             this.word_.Add(ENG_WORD.SETTING_RADIO_LIGHT_BUTTON, "Light");
             this.word_.Add(ENG_WORD.SETTING_RADIO_DARK_BUTTON, "Dark");
             this.word_.Add(ENG_WORD.SETTING_RADIO_HALLOWEEN_BUTTON, "Halloween");
+            this.word_.Add(ENG_WORD.SETTING_CONNECTION_INFO_LABEL, "Connection Info");
+            this.word_.Add(ENG_WORD.SETTING_IP_LABEL, "IP: ");
+            this.word_.Add(ENG_WORD.SETTING_PORT_LABEL, "Port: ");
+            this.word_.Add(ENG_WORD.SETTING_CHANGE_BUTTON, "Change");
+            this.word_.Add(ENG_WORD.SETTING_CONFIRM_BUTTON, "Confirm");
+            this.word_.Add(ENG_WORD.SETTING_CANCEL_BUTTON, "Cancel");
+            this.word_.Add(ENG_WORD.SETTING_INVALID_FORMAT_ERROR_TITLE, "Error");
+            this.word_.Add(ENG_WORD.SETTING_INVALID_FORMAT_ERROR_MESSAGE, "Inalid format.");
+            this.word_.Add(ENG_WORD.SETTING_INVALID_FORMAT_ERROR_BUTTON, "Close");
 
             this.word_.Add(ENG_WORD.PROFILE_EDIT_CONFIRM_BUTTON, "Confirm");
             this.word_.Add(ENG_WORD.PROFILE_EDIT_CANCEL_BUTTON, "Cancel");
