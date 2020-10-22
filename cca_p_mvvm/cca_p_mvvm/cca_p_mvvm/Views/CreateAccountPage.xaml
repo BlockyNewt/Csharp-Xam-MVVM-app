@@ -46,7 +46,7 @@
 
 
                 <Label  Grid.Row="1" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="2" IsVisible="{Binding Bio_Section_}" Text="{Binding Bio_Label_Text_}" FontSize="20" TextColor="{Binding color_Scheme_.Create_Account_Text_Secondary_}"/>
-                <Editor Grid.Row="2" Grid.RowSpan="6" Grid.Column="1" Grid.ColumnSpan="2" IsVisible="{Binding Bio_Section_}" Text="{Binding Bio_Text_Changed_, Mode=TwoWay}" TextColor="{Binding color_Scheme_.Create_Account_Text_}" Placeholder="{Binding Bio_Text_Placeholder_}" PlaceholderColor="{Binding color_Scheme_.Create_Account_Text_}}" MaxLength="255"/>
+                <Editor Grid.Row="2" Grid.RowSpan="6" Grid.Column="1" Grid.ColumnSpan="2" IsVisible="{Binding Bio_Section_}" Text="{Binding Bio_Text_Changed_}" TextColor="{Binding color_Scheme_.Create_Account_Text_}" Placeholder="{Binding Bio_Text_Placeholder_}" PlaceholderColor="{Binding color_Scheme_.Create_Account_Text_}}" MaxLength="255"/>
                 <!--<Editor Grid.Row="2" Grid.RowSpan="6" Grid.Column="1" Grid.ColumnSpan="2" IsVisible="{Binding Bio_Section_}" Text="{Binding Bio_Text_Changed_, Mode=TwoWay}" TextColor="{Binding color_Scheme_.Create_Account_Text_}" Placeholder="{Binding Bio_Text_Placeholder_}" PlaceholderColor="{Binding color_Scheme_.Create_Account_Text_}}" BackgroundColor="{Binding color_Scheme_.Create_Account_Button_}" MaxLength="255"/>-->
 
 

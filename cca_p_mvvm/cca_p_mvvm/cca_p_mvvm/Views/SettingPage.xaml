@@ -46,8 +46,8 @@
             </Grid>
         </ScrollView>
 
-        <StackLayout Padding="10">
-            <Grid>
+        <StackLayout>
+            <Grid Padding="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
@@ -56,8 +56,8 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Button Grid.Row="1" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="1" Text="{Binding Setting_Accept_Button_}" TextColor="{Binding color_Scheme_.Setting_Text_Secondary_}" BackgroundColor="{Binding color_Scheme_.Setting_Button_}" Command="{Binding Setting_Accept_Button_Command_}"/>
-                <Button Grid.Row="1" Grid.RowSpan="1" Grid.Column="2" Grid.ColumnSpan="1" Text="{Binding Setting_Close_Button_}" TextColor="{Binding color_Scheme_.Setting_Text_Secondary_}" BackgroundColor="{Binding color_Scheme_.Setting_Button_}" Command="{Binding Setting_Close_Button_Command_}" />
+                <Button Grid.Row="0" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="1" Text="{Binding Setting_Accept_Button_}" TextColor="{Binding color_Scheme_.Setting_Text_Secondary_}" BackgroundColor="{Binding color_Scheme_.Setting_Button_}" Command="{Binding Setting_Accept_Button_Command_}"/>
+                <Button Grid.Row="0" Grid.RowSpan="1" Grid.Column="2" Grid.ColumnSpan="1" Text="{Binding Setting_Close_Button_}" TextColor="{Binding color_Scheme_.Setting_Text_Secondary_}" BackgroundColor="{Binding color_Scheme_.Setting_Button_}" Command="{Binding Setting_Close_Button_Command_}" />
             </Grid>
         </StackLayout>
 

@@ -688,10 +688,17 @@ namespace cca_p_mvvm.ViewModels
 
             //IF I ADD A SHOW LOGIN FUNCTION, THEN THIS WOULD BE THE PLACE TO SET THE VALUE IN THE DATABASE TO LOGGED OFF
 
-            this.client_Connection_.CloseAllConnections();
-
-            //PASS PARAMETERS 
-            await this.navigation_Service_.GoBackAsync(p);
+            if(this.client_Connection_.ChangeUserLoggedValue(this.user_.ID_, 0))
+            {
+                this.client_Connection_.CloseAllConnections();
+                
+                //PASS PARAMETERS 
+                await this.navigation_Service_.GoBackAsync(p);
+            }
+            else
+            {
+                //THROW CONNECTION ERROR AND THAT THE USER IS NOT YET LOGGED OUT 
+            }
         }
 
 

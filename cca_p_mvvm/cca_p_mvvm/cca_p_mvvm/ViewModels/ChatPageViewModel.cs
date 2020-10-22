@@ -39,6 +39,13 @@ namespace cca_p_mvvm.ViewModels
             this.channel_Or_Direct_Message_ = true;
 
             this.is_Refreshing_ = false;
+
+            this.timer = new System.Timers.Timer();
+            timer.Interval = 1500;
+            timer.Elapsed += Timer_Elapsed;
+            timer.AutoReset = true;
+            timer.Enabled = true;
+            timer.Start();
         }
 
         //NAVIGATION SERVICE
@@ -166,26 +173,24 @@ namespace cca_p_mvvm.ViewModels
             tokenSource2 = new CancellationTokenSource();
             ct = tokenSource2.Token;
 
+            this.timer = new System.Timers.Timer();
+            timer.Interval = 1500;
+            timer.Elapsed += Timer_Elapsed;
+            timer.AutoReset = true;
+            timer.Enabled = true;
+            timer.Start();
+
             this.task = Task.Run(async () =>
             {
                 ct.ThrowIfCancellationRequested();
 
-                this.timer = new System.Timers.Timer();
-                timer.Interval = 2000;
-                timer.Elapsed += Timer_Elapsed;
-                timer.AutoReset = true;
-                timer.Enabled = true;
-                timer.Start();
-
-                if (!this.timer.Enabled)
+                if(!this.timer.Enabled)
                 {
                     this.tokenSource2.Cancel();
                 }
 
-                if(this.ct.IsCancellationRequested)
+                if (this.ct.IsCancellationRequested)
                 {
-                    ct.ThrowIfCancellationRequested();
-
                     try
                     {
                         await this.task;
@@ -198,14 +203,15 @@ namespace cca_p_mvvm.ViewModels
                     {
                         timer.Stop();
 
+
+                        this.client_Connection_.CloseAllConnections();
+
+
                         this.tokenSource2.Dispose();
                     }
                 }
+
             }, tokenSource2.Token);
-
-
-
-            
         }
 
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)
@@ -218,10 +224,29 @@ namespace cca_p_mvvm.ViewModels
         public DelegateCommand Back_Button_Command_ => this.back_Button_Command_ ?? (this.back_Button_Command_ = new DelegateCommand(this.GoBack));
         private async void GoBack()
         {
-            this.timer.Enabled = false;
+            this.timer.Stop();
 
             //GO BACK TO PREVIOUS PAGE
             await this.navigation_Service_.GoBackAsync();
+        }
+
+
+
+
+        private DelegateCommand refresh_Button_Command_;
+        public DelegateCommand Refresh_Button_Command_ => this.refresh_Button_Command_ ?? (this.refresh_Button_Command_ = new DelegateCommand(this.RefreshButton));
+        private void RefreshButton()
+        {
+            this.client_Connection_.Connect();
+
+            this.client_Connection_.SendUserID(this.user_.ID_);
+
+            this.timer.Start();
+
+            //if(this.client_Connection_.CheckConnection())
+            //{
+            //    this.GetFuckingMessages();
+            //}
         }
 
         private DelegateCommand send_Button_Command_;
@@ -345,7 +370,7 @@ namespace cca_p_mvvm.ViewModels
                 this.GetMessages(true);
             }
 
-            GetFuckingMessages();
+            //GetFuckingMessages();
         }
 
 
@@ -401,7 +426,7 @@ namespace cca_p_mvvm.ViewModels
             }
         }
 
-        private void UpdateMessages()
+        private async void UpdateMessages()
         {
             if (this.client_Connection_.CheckConnection())
             {
@@ -433,9 +458,15 @@ namespace cca_p_mvvm.ViewModels
                         getMessageInfo = seperatingMessages.Split(',');
                     }
 
-                    if (seperatingMessages.Contains(this.Messages_List_[this.Messages_List_.Count -1].Message_))
+                    //IF IT DOES NOT CONTAIN IT, CLEAR IT THEN PULL ALL MESSAGES AGAIN AND FILL THE LIST
+
+                    this.Messages_List_.Clear();
+
+                    for (int i = 0; i < allMessages.Length - 1; ++i)
                     {
-                        //IF THE MESSAGES STRING CONTIANS THE VALUE OF THE LAST POSITION IN THE LIST THEN DON'T UPDATE
+                        //SPLIT AGAIN TO MAKE MESSAGE
+                        seperatingMessages = allMessages[i];
+                        getMessageInfo = seperatingMessages.Split(',');
 
                         //CREATE A NEW MESSAGE
                         Message message = new Message();
@@ -446,37 +477,18 @@ namespace cca_p_mvvm.ViewModels
                         message.Sender_Name_ = getMessageInfo[0];
                         message.Message_ = getMessageInfo[1];
 
-                        Console.WriteLine("DID NOT UPDATE");
-                    }
-                    else
-                    {
-                        //IF IT DOES NOT CONTAIN IT, CLEAR IT THEN PULL ALL MESSAGES AGAIN AND FILL THE LIST
 
-                        this.Messages_List_.Clear();
-
-                        for(int i = 0; i < allMessages.Length - 1; ++i)
-                        {
-                            //SPLIT AGAIN TO MAKE MESSAGE
-                            seperatingMessages = allMessages[i];
-                            getMessageInfo = seperatingMessages.Split(',');
-
-                            //CREATE A NEW MESSAGE
-                            Message message = new Message();
-                            message.Text_Color_ = this.color_Scheme_.Chat_Text_;
-                            message.Text_Secondary_Color_ = this.color_Scheme_.Chat_Text_Secondary_;
-                            message.Background_Color_ = this.color_Scheme_.Chat_Background_;
-                            message.Button_Color_ = this.color_Scheme_.Chat_Button_;
-                            message.Sender_Name_ = getMessageInfo[0];
-                            message.Message_ = getMessageInfo[1];
-
-
-                            //ADD INTO LIST 
-                            this.Messages_List_.Add(message);
-
-                            Console.WriteLine("UPDATED LIST");
-                        }
+                        //ADD INTO LIST 
+                        this.Messages_List_.Add(message);
+                        //Console.WriteLine("UPDATED LIST");
                     }
                 }
+            }
+            else
+            {
+                this.client_Connection_.CloseAllConnections();
+                this.timer.Stop();
+                //this.tokenSource2.Cancel();
             }
         }
 

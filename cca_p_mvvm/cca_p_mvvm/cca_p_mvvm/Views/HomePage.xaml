@@ -99,7 +99,7 @@
             </ScrollView>
 
             <StackLayout>
-                <Grid >
+                <Grid Padding="10">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
@@ -117,7 +117,7 @@
 
     <!--TAB BUTTONS-->
     <StackLayout VerticalOptions="EndAndExpand" BackgroundColor="Transparent">
-        <Grid Padding="2" BackgroundColor="Transparent">
+        <Grid Padding="10" BackgroundColor="Transparent">
             <Grid.RowDefinitions>
                 <RowDefinition Height="75"/>
                 <RowDefinition Height="*"/>

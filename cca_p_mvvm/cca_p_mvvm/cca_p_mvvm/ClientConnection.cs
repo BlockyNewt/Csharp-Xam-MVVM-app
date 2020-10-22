@@ -116,6 +116,44 @@ namespace cca_p_mvvm
             }
         }
 
+        public bool CheckIfUserIsLogged(int userID)
+        {
+            string msg = "IS_LOGGED;" + userID.ToString() + "$";    
+
+            Byte[] data = System.Text.Encoding.UTF8.GetBytes(msg);
+
+            if(this.CheckConnection())
+            {
+                this.stream_.Write(data, 0, data.Length);
+
+                string getMsg = this.ReceiveMessage();
+                
+                return Convert.ToBoolean(getMsg);
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool ChangeUserLoggedValue(int userID, int value)
+        {
+            string msg = "CHANGE_LOGGED_VALUE;" + userID.ToString() + ";" + value.ToString() + "$";
+
+            Byte[] data = System.Text.Encoding.UTF8.GetBytes(msg);
+
+            if(this.CheckConnection())
+            {
+                this.stream_.Write(data, 0, data.Length);
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public void CreateAccount(string firstname, string lastname, string username, string password, string bio,  string profilePicture)
         {
             try
@@ -232,7 +270,7 @@ namespace cca_p_mvvm
         {
             string msg = "GET_CHANNEL_MESSAGES;" + Convert.ToString(channelID) + "$";
 
-            Byte[] data = System.Text.Encoding.ASCII.GetBytes(msg);
+            Byte[] data = System.Text.Encoding.UTF8.GetBytes(msg);
 
             try
             {
@@ -270,7 +308,7 @@ namespace cca_p_mvvm
         {
             string msg = "GET_DIRECT_MESSAGES;" + Convert.ToInt32(senderID) + ";" + Convert.ToInt32(receiverID) + "$";
 
-            Byte[] data = System.Text.Encoding.ASCII.GetBytes(msg);
+            Byte[] data = System.Text.Encoding.UTF8.GetBytes(msg);
 
             try
             {
@@ -428,6 +466,25 @@ namespace cca_p_mvvm
             }
         }
 
+        public void SendUserID(int userID)
+        {
+            string msg = "USER_ID;" + userID.ToString() + ";" + "$";
+
+            Byte[] data = System.Text.Encoding.UTF8.GetBytes(msg);
+
+            try
+            {
+                if(this.CheckConnection())
+                {
+                    this.stream_.Write(data, 0, data.Length);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+        }
+
         public bool CheckConnection()
         {
             //CHECK IF WE ARE CONNECTED
@@ -452,9 +509,7 @@ namespace cca_p_mvvm
             //CLOSE ALL CONNECTIONS
             this.stream_.Flush();
 
-            this.stream_.Dispose();
             this.stream_.Close();
-            this.client_.Dispose();
             this.client_.Close();
         }
     }

@@ -20,27 +20,19 @@ namespace cca_p_mvvm.ViewModels
         public LoginPageViewModel(INavigationService navigationService)
             : base(navigationService)
         {
-            Console.WriteLine("A");
             this.navigation_Service_ = navigationService;
-            Console.WriteLine("B");
 
             this.l_Eng_ = new LanguageEnglish();
             this.l_Jap_ = new LanguageJapanese();
-            Console.WriteLine("C");
 
             this.client_Connection_ = new ClientConnection();
-            Console.WriteLine("D");
 
             this.user_ = new UserViewModel();
-            Console.WriteLine("E");
 
             this.color_Scheme_ = new ColorScheme();
             this.color_Scheme_.Is_Light_Selected_ = false;
             this.color_Scheme_.Is_Dark_Selected_ = true;
             this.color_Scheme_.Is_Halloween_Selected_ = false;
-            Console.WriteLine("F");
-
-
 
             this.SetLanguage();
         }
@@ -426,21 +418,42 @@ namespace cca_p_mvvm.ViewModels
                             this.user_.Bio_ = userInfo[3];
                             this.user_.Picture_ = userInfo[4];
 
-                            //PASS VARIABLES TO NEXT PAGE
-                            var p = new NavigationParameters();
+                            if(!this.client_Connection_.CheckIfUserIsLogged(this.user_.ID_))
+                            {
+                                //PASS VARIABLES TO NEXT PAGE
+                                var p = new NavigationParameters();
 
-                            p.Add("l_Eng_", this.l_Eng_);
-                            p.Add("l_Jap_", this.l_Jap_);
-                            p.Add("user_", user_);
-                            p.Add("client_Connection_", this.client_Connection_);
-                            p.Add("color_Scheme_", this.color_Scheme_);
+                                p.Add("l_Eng_", this.l_Eng_);
+                                p.Add("l_Jap_", this.l_Jap_);
+                                p.Add("user_", user_);
+                                p.Add("client_Connection_", this.client_Connection_);
+                                p.Add("color_Scheme_", this.color_Scheme_);
 
-                            //RESET USERNAME AND PASSWORD TEXT FIELDS
-                            this.Username_Entry_Changed_Text_ = string.Empty;
-                            this.Password_Entry_Changed_Text_ = string.Empty;
+                                //RESET USERNAME AND PASSWORD TEXT FIELDS
+                                this.Username_Entry_Changed_Text_ = string.Empty;
+                                this.Password_Entry_Changed_Text_ = string.Empty;
 
-                            //GOTO NEXT PAGE
-                            await this.navigation_Service_.NavigateAsync("HomePage", p);
+                                if(this.client_Connection_.ChangeUserLoggedValue(this.user_.ID_, 1))
+                                {
+                                    //GOTO NEXT PAGE
+                                    await this.navigation_Service_.NavigateAsync("HomePage", p);
+                                }
+                                else
+                                {
+                                    //CONNECTION ERROR
+                                    this.Username_Entry_Changed_Text_ = string.Empty;
+                                    this.Password_Entry_Changed_Text_ = string.Empty;
+
+                                    await Application.Current.MainPage.DisplayAlert(this.Sign_In_Login_Error_Connection_Title_, this.Sign_In_Login_Error_Connection_Message_, this.Sign_In_Login_Error_Connection_Button_);
+                                }
+                            }
+                            else
+                            {
+                                this.Username_Entry_Changed_Text_ = string.Empty;
+                                this.Password_Entry_Changed_Text_ = string.Empty;
+
+                                await Application.Current.MainPage.DisplayAlert("Error", "This account is already logged in.", "Close");
+                            }
                         }
                         else
                         {
