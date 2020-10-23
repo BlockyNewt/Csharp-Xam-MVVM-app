@@ -21,6 +21,9 @@ namespace cca_p_mvvm
         SIGN_IN_LOGIN_ERROR_CONNECTION_MESSAGE,
         SIGN_IN_LOGIN_ERROR_CONNECTION_BUTTON,
         SIGN_IN_CREATE_ACCOUNT_BUTTON,
+        SIGN_IN_LOGIN_ERROR_ALREADY_LOGGED_IN_TITLE,
+        SIGN_IN_LOGIN_ERROR_ALREADY_LOGGED_IN_MESSAGE,
+        SIGN_IN_LOGIN_ERROR_ALREADY_LOGGED_IN_BUTTON,
 
         CREATE_ACCOUNT_FIRST_NAME_LABEL,
         CREATE_ACCOUNT_FIRST_NAME_PLACEHOLDER,
@@ -77,6 +80,7 @@ namespace cca_p_mvvm
         SETTING_RADIO_LIGHT_BUTTON,
         SETTING_RADIO_DARK_BUTTON,
         SETTING_RADIO_HALLOWEEN_BUTTON,
+        SETTING_RADIO_CHRISTMAS_BUTTON,
         SETTING_CONNECTION_INFO_LABEL,
         SETTING_IP_LABEL,
         SETTING_PORT_LABEL,
@@ -124,6 +128,9 @@ namespace cca_p_mvvm
             this.word_.Add(JAP_WORD.SIGN_IN_LOGIN_ERROR_CONNECTION_MESSAGE, "サーバーに繋がらなかったです。");
             this.word_.Add(JAP_WORD.SIGN_IN_LOGIN_ERROR_CONNECTION_BUTTON, "閉じる");
             this.word_.Add(JAP_WORD.SIGN_IN_CREATE_ACCOUNT_BUTTON, "新規アカウント");
+            this.word_.Add(JAP_WORD.SIGN_IN_LOGIN_ERROR_ALREADY_LOGGED_IN_TITLE, "エラー");
+            this.word_.Add(JAP_WORD.SIGN_IN_LOGIN_ERROR_ALREADY_LOGGED_IN_MESSAGE, "このアカウントはもうログインしています。");
+            this.word_.Add(JAP_WORD.SIGN_IN_LOGIN_ERROR_ALREADY_LOGGED_IN_BUTTON, "閉じる");
 
             this.word_.Add(JAP_WORD.CREATE_ACCOUNT_FIRST_NAME_LABEL, "名");
             this.word_.Add(JAP_WORD.CREATE_ACCOUNT_FIRST_NAME_PLACEHOLDER, "名");
@@ -180,6 +187,7 @@ namespace cca_p_mvvm
             this.word_.Add(JAP_WORD.SETTING_RADIO_LIGHT_BUTTON, "ライト");
             this.word_.Add(JAP_WORD.SETTING_RADIO_DARK_BUTTON, "ダーク");
             this.word_.Add(JAP_WORD.SETTING_RADIO_HALLOWEEN_BUTTON, "ハロウィーン");
+            this.word_.Add(JAP_WORD.SETTING_RADIO_CHRISTMAS_BUTTON, "クリスマス");
             this.word_.Add(JAP_WORD.SETTING_CONNECTION_INFO_LABEL, "コネクション情報");
             this.word_.Add(JAP_WORD.SETTING_IP_LABEL, "IP：");
             this.word_.Add(JAP_WORD.SETTING_PORT_LABEL, "ポート：");

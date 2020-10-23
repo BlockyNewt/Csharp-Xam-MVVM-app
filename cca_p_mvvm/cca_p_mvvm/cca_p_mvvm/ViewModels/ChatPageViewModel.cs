@@ -38,8 +38,6 @@ namespace cca_p_mvvm.ViewModels
 
             this.channel_Or_Direct_Message_ = true;
 
-            this.is_Refreshing_ = false;
-
             this.timer = new System.Timers.Timer();
             timer.Interval = 1500;
             timer.Elapsed += Timer_Elapsed;
@@ -70,10 +68,11 @@ namespace cca_p_mvvm.ViewModels
         //COLOR-SCHEMES
         public ColorScheme color_Scheme_ { get; private set; }
 
-        //TASK CANCELLATION TOKEN
-        private CancellationTokenSource tokenSource2;
-        private CancellationToken ct;
+        ////TASK CANCELLATION TOKEN
+        //private CancellationTokenSource tokenSource2;
+        //private CancellationToken ct;
 
+        //TIMER FOR UPDATING THE CHAT (PULLING THE MESSAGES)
         private System.Timers.Timer timer;
 
         private IList<Message> messages_List_;
@@ -83,7 +82,6 @@ namespace cca_p_mvvm.ViewModels
         private string chat_Message_Editor_Placeholder_;
         private string chat_Send_Button_;
         private bool channel_Or_Direct_Message_;
-        private bool is_Refreshing_;
 
 
         public IList<Message> Messages_List_
@@ -167,52 +165,52 @@ namespace cca_p_mvvm.ViewModels
 
 
 
-        private Task task;
-        async void GetFuckingMessages()
-        {
-            tokenSource2 = new CancellationTokenSource();
-            ct = tokenSource2.Token;
+        //private Task task;
+        //async void GetFuckingMessages()
+        //{
+        //    tokenSource2 = new CancellationTokenSource();
+        //    ct = tokenSource2.Token;
 
-            this.timer = new System.Timers.Timer();
-            timer.Interval = 1500;
-            timer.Elapsed += Timer_Elapsed;
-            timer.AutoReset = true;
-            timer.Enabled = true;
-            timer.Start();
+        //    this.timer = new System.Timers.Timer();
+        //    timer.Interval = 1500;
+        //    timer.Elapsed += Timer_Elapsed;
+        //    timer.AutoReset = true;
+        //    timer.Enabled = true;
+        //    timer.Start();
 
-            this.task = Task.Run(async () =>
-            {
-                ct.ThrowIfCancellationRequested();
+        //    this.task = Task.Run(async () =>
+        //    {
+        //        ct.ThrowIfCancellationRequested();
 
-                if(!this.timer.Enabled)
-                {
-                    this.tokenSource2.Cancel();
-                }
+        //        if(!this.timer.Enabled)
+        //        {
+        //            this.tokenSource2.Cancel();
+        //        }
 
-                if (this.ct.IsCancellationRequested)
-                {
-                    try
-                    {
-                        await this.task;
-                    }
-                    catch (OperationCanceledException e)
-                    {
-                        Console.WriteLine(e.ToString());
-                    }
-                    finally
-                    {
-                        timer.Stop();
-
-
-                        this.client_Connection_.CloseAllConnections();
+        //        if (this.ct.IsCancellationRequested)
+        //        {
+        //            try
+        //            {
+        //                await this.task;
+        //            }
+        //            catch (OperationCanceledException e)
+        //            {
+        //                Console.WriteLine(e.ToString());
+        //            }
+        //            finally
+        //            {
+        //                timer.Stop();
 
 
-                        this.tokenSource2.Dispose();
-                    }
-                }
+        //                this.client_Connection_.CloseAllConnections();
 
-            }, tokenSource2.Token);
-        }
+
+        //                this.tokenSource2.Dispose();
+        //            }
+        //        }
+
+        //    }, tokenSource2.Token);
+        //}
 
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
@@ -232,7 +230,6 @@ namespace cca_p_mvvm.ViewModels
 
 
 
-
         private DelegateCommand refresh_Button_Command_;
         public DelegateCommand Refresh_Button_Command_ => this.refresh_Button_Command_ ?? (this.refresh_Button_Command_ = new DelegateCommand(this.RefreshButton));
         private void RefreshButton()
@@ -242,12 +239,9 @@ namespace cca_p_mvvm.ViewModels
             this.client_Connection_.SendUserID(this.user_.ID_);
 
             this.timer.Start();
-
-            //if(this.client_Connection_.CheckConnection())
-            //{
-            //    this.GetFuckingMessages();
-            //}
         }
+
+
 
         private DelegateCommand send_Button_Command_;
         public DelegateCommand Send_Button_Command_ => this.send_Button_Command_ ?? (this.send_Button_Command_ = new DelegateCommand(this.SendButton));
@@ -433,14 +427,14 @@ namespace cca_p_mvvm.ViewModels
                 //CREATE A STRING TO MESSAGES
                 string[] allMessages = null;
 
-                //IF WE ARE WITHIN A CHANNEL 
                 if (!this.channel_Or_Direct_Message_)
                 {
+                    //IF WE ARE WITHIN A CHANNEL 
                     allMessages = this.client_Connection_.GetChannelMessages(this.channel_.ID_);
                 }
-                //IF WE ARE DIRECTLY TALKING TO ANOTHER USER (CLIENT)
                 else
                 {
+                    //IF WE ARE DIRECTLY TALKING TO ANOTHER USER (CLIENT)
                     allMessages = this.client_Connection_.GetDirectMessages(this.user_.ID_, this.target_User_.ID_);
                 }
 
@@ -457,8 +451,6 @@ namespace cca_p_mvvm.ViewModels
                         seperatingMessages = allMessages[i];
                         getMessageInfo = seperatingMessages.Split(',');
                     }
-
-                    //IF IT DOES NOT CONTAIN IT, CLEAR IT THEN PULL ALL MESSAGES AGAIN AND FILL THE LIST
 
                     this.Messages_List_.Clear();
 
@@ -480,15 +472,16 @@ namespace cca_p_mvvm.ViewModels
 
                         //ADD INTO LIST 
                         this.Messages_List_.Add(message);
-                        //Console.WriteLine("UPDATED LIST");
                     }
                 }
             }
             else
             {
+                //IF CLIENT LOSES CONNECTION TO SERVER OR SERVER GOES DOWN WE CLOSE THE CONNECTIONS
                 this.client_Connection_.CloseAllConnections();
+
+                //AND ALSO STOP THE TIMER FROM RUNNING THIS FUNCTION
                 this.timer.Stop();
-                //this.tokenSource2.Cancel();
             }
         }
 

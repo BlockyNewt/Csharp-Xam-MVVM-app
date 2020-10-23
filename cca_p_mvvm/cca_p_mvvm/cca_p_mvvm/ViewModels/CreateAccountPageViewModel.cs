@@ -771,27 +771,32 @@ namespace cca_p_mvvm.ViewModels
         public DelegateCommand Clear_Button_Command_ => this.clear_Button_Command_ ?? (this.clear_Button_Command_ = new DelegateCommand(this.ClearButton));
         private void ClearButton()
         {
-            //CLEAR FIELD BASED ON THE SECTION THE USER IS ON
+            //CLEAR FIELDS BASED ON THE STEP YOU ARE ON
             if(this.Name_Section_)
             {
+                //CLEAR NAME ENTRY FIELDS 
                 this.First_Name_Text_Changed_ = string.Empty;
                 this.Last_Name_Text_Changed_ = string.Empty;
             }
             else if(this.Username_Section_)
             {
+                //CLEAR USERNAME ENTRY FIELDS 
                 this.Username_Text_Changed_ = string.Empty;
             }
             else if(this.Password_Section_)
             {
+                //CLEAR PASSWORD ENTRY FIELDS
                 this.Password_Text_Changed_ = string.Empty;
                 this.Password_Confirm_Text_Changed_ = string.Empty;
             }
             else if(this.Picture_Section_)
             {
+                //CLEAR PROFILE ENTRY FIELD
                 this.Profile_Picture_Text_Changed_ = string.Empty;
             }
             else if(this.Bio_Section_)
             {
+                //CLEAR BIO ENTRY FIELD
                 this.Bio_Text_Changed_ = string.Empty;
             }
         }
@@ -812,14 +817,14 @@ namespace cca_p_mvvm.ViewModels
             {
                 if(this.Password_Confirm_Text_Changed_ == this.Password_Text_Changed_)
                 {
-                    //CONNECT TO SERVER
-                    this.client_Connection_.Connect();
+                    ////CONNECT TO SERVER
+                    //this.client_Connection_.Connect();
 
                     //SEND NEW ACCOUNT INFORMATION TO SERVER AND ADD IT TO THE D.B
                     this.client_Connection_.CreateAccount(this.First_Name_Text_Changed_, this.Last_Name_Text_Changed_, this.Username_Text_Changed_, this.Password_Confirm_Text_Changed_, this.Bio_Text_Changed_, this.Profile_Picture_Text_Changed_);
 
-                    //AFTER CREATION CLOSE THE CONNECTION
-                    this.client_Connection_.CloseAllConnections();
+                    ////AFTER CREATION CLOSE THE CONNECTION
+                    //this.client_Connection_.CloseAllConnections();
 
                     //GO BACK TO LOGIN PAGE
                     await this.navigation_Service_.GoBackAsync();
@@ -851,7 +856,7 @@ namespace cca_p_mvvm.ViewModels
 
         private DelegateCommand next_Button_Command_;
         public DelegateCommand Next_Button_Command_ => this.next_Button_Command_ ?? (this.next_Button_Command_ = new DelegateCommand(this.NextButton));
-        private void NextButton()
+        private async void NextButton()
         {
             //SHOW INFORMATION RELATED TO SECTION
             if (this.Name_Section_)
@@ -862,9 +867,7 @@ namespace cca_p_mvvm.ViewModels
 
                 //INCREASE PROGRESS BAR
                 this.Progress_Bar_Value_ += 0.25f;
-                //INCREASE PROGRESS COUNT (FOR LABEL)
                 this.progress_Current_++;
-                //UPDATE UI
                 this.Progress_Text_ = this.progress_Text_Language_String_ + this.progress_Current_.ToString() + "/" + this.progress_Max_.ToString();
 
                 //CHANGE VISIBILITY OF CONFIRM AND NEXT BUTTON IF NEEDED (ONLY ON LAST SECTION DO WE SWITCH THEM)
@@ -873,37 +876,55 @@ namespace cca_p_mvvm.ViewModels
             }
             else if(this.Username_Section_)
             {
-                this.Username_Section_ = false;
-                this.Password_Section_ = true;
+                //CHECK IF THE TYPED USERNAME IS ALREADY OR TAKEN OR NOT
+                if(this.client_Connection_.CheckIfUsernameIsTaken(this.Username_Text_Changed_) != "EMPTY")
+                {
+                    //CHANGE WHICH SECTION IS TO BE DISPLAYED
+                    this.Username_Section_ = false;
+                    this.Password_Section_ = true;
 
-                this.Progress_Bar_Value_ += 0.25f;
-                this.progress_Current_++;
-                this.Progress_Text_ = this.progress_Text_Language_String_ + this.progress_Current_.ToString() + "/" + this.progress_Max_.ToString();
+                    //INCREASE PROGRESS BAR
+                    this.Progress_Bar_Value_ += 0.25f;
+                    this.progress_Current_++;
+                    this.Progress_Text_ = this.progress_Text_Language_String_ + this.progress_Current_.ToString() + "/" + this.progress_Max_.ToString();
 
-                this.Confirm_Button_Visibility_ = false;
-                this.Next_Button_Visibility_ = true;
+                    //CHANGE WHICH BUTTONS ARE VISIBLE
+                    this.Confirm_Button_Visibility_ = false;
+                    this.Next_Button_Visibility_ = true;
+                }
+                else
+                {
+                    //IF USERNAME IS ALREADY TAKEN THE SHOW AN ERROR
+                    await Application.Current.MainPage.DisplayAlert("Error", "That username is already taken.", "Close");
+                }
             }
             else if(this.Password_Section_)
             {
+                //CHANGE WHICH SECTION IS TO BE DISPLAYED
                 this.Password_Section_ = false;
                 this.Picture_Section_ = true;
 
+                //INCREASE PROGRESS BAR
                 this.Progress_Bar_Value_ += 0.25f;
                 this.progress_Current_++;
                 this.Progress_Text_ = this.progress_Text_Language_String_ + this.progress_Current_.ToString() + "/" + this.progress_Max_.ToString();
 
+                //CHANGE WHICH BUTTONS ARE TO BE DISPLAYED
                 this.Confirm_Button_Visibility_ = false;
                 this.Next_Button_Visibility_ = true;
             }
             else if(this.Picture_Section_)
             {
+                //SHOW WHICH SECTION IS TO BE DISPLAYED
                 this.Picture_Section_ = false;
                 this.Bio_Section_ = true;
 
+                //INCREASE PROGRESS BAR
                 this.Progress_Bar_Value_ += 0.25f;
                 this.progress_Current_++;
                 this.Progress_Text_ = this.progress_Text_Language_String_ + this.progress_Current_.ToString() + "/" + this.progress_Max_.ToString();
 
+                //CHANGE WHICH BUTTONS ARE TO BE DISPLAYED
                 this.Next_Button_Visibility_ = false;
                 this.Confirm_Button_Visibility_ = true;
             }
@@ -916,6 +937,7 @@ namespace cca_p_mvvm.ViewModels
         private void BackButton()
         {
             //GOING BACK A SECTION
+
             if(this.Name_Section_)
             {
                 //IF ON THE FIRST PAGE THEN IT WILL JUST TAKE YOU BACK TO LOGIN
@@ -929,9 +951,7 @@ namespace cca_p_mvvm.ViewModels
 
                 //INCREASE PROGRESS BAR
                 this.Progress_Bar_Value_ -= 0.25f;
-                //INCREASE PROGRESS COUNT (FOR LABEL)
                 this.progress_Current_--;
-                //UPDATE UI
                 this.Progress_Text_ = this.progress_Text_Language_String_ + this.progress_Current_.ToString() + "/" + this.progress_Max_.ToString();
 
                 //CHANGE VISIBILITY OF CONFIRM AND NEXT BUTTON IF NEEDED (ONLY ON LAST SECTION DO WE SWITCH THEM)
@@ -940,37 +960,46 @@ namespace cca_p_mvvm.ViewModels
             }
             else if(this.Password_Section_)
             {
+                //CHANGE WHICH SECTION IS TO BE DISPLAYED
                 this.Password_Section_ = false;
                 this.Username_Section_ = true;
 
+                //DECREASE PROGRESS BAR
                 this.Progress_Bar_Value_ -= 0.25f;
                 this.progress_Current_--;
                 this.Progress_Text_ = this.progress_Text_Language_String_ + this.progress_Current_.ToString() + "/" + this.progress_Max_.ToString();
 
+                //CHANGE WHICH BUTTONS ARE TO BE DISPLAYED
                 this.Confirm_Button_Visibility_ = false;
                 this.Next_Button_Visibility_ = true;
             }
             else if(this.Picture_Section_)
             {
+                //CHANGE WHICH SECTION IS TO BE DISPLAYED
                 this.Picture_Section_ = false;
                 this.Password_Section_ = true;
 
+                //DECREASE PROGRESS BAR
                 this.Progress_Bar_Value_ -= 0.25f;
                 this.progress_Current_--;
                 this.Progress_Text_ = this.progress_Text_Language_String_ + this.progress_Current_.ToString() + "/" + this.progress_Max_.ToString();
 
+                //CHANGE WHICH BUTTONS ARE TO BE DISPLAYED
                 this.Confirm_Button_Visibility_ = false;
                 this.Next_Button_Visibility_ = true;
             }
             else if(this.Bio_Section_)
             {
+                //CHANGE WHICH SECTION IS TO BE DISPLAYED
                 this.Bio_Section_ = false;
                 this.Picture_Section_ = true;
 
+                //DECREASE PROGRESS BAR
                 this.Progress_Bar_Value_ -= 0.25f;
                 this.progress_Current_--;
                 this.Progress_Text_ = this.progress_Text_Language_String_ + this.progress_Current_.ToString() + "/" + this.progress_Max_.ToString();
 
+                //CHANGE WHICH BUTTONS ARE TO BE DISPLAYED
                 this.Confirm_Button_Visibility_ = false;
                 this.Next_Button_Visibility_ = true;
             }
@@ -993,6 +1022,7 @@ namespace cca_p_mvvm.ViewModels
             this.color_Scheme_.Is_Light_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Light_Selected_;
             this.color_Scheme_.Is_Dark_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Dark_Selected_;
             this.color_Scheme_.Is_Halloween_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Halloween_Selected_;
+            this.color_Scheme_.Is_Christmas_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Christmas_Selected_;
 
             this.SetLanguage();
 

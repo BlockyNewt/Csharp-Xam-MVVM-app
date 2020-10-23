@@ -69,6 +69,11 @@ namespace cca_p_mvvm
             string halloweenColorText = "F36A1F";
             string halloweenColorTextSecondary = "FFA52B";
 
+            string christmasColorBackground = "344d2f";
+            string christmasColorButton = "a81817";
+            string christmasColorText = "fac57d";
+            string christmasColorTextSecondary = "f0f4f7";
+
 
             //LIGHT
             this.light_Color_Scheme_.Add(COLOR.LOGIN_BACKGROUND, Color.FromHex(lightColorBackground));
@@ -180,15 +185,54 @@ namespace cca_p_mvvm
             this.halloween_Color_Scheme_.Add(COLOR.CHAT_BUTTONS, Color.FromHex(halloweenColorButton));
             this.halloween_Color_Scheme_.Add(COLOR.CHAT_TEXT, Color.FromHex(halloweenColorText));
             this.halloween_Color_Scheme_.Add(COLOR.CHAT_TEXT_SECONDARY, Color.FromHex(halloweenColorTextSecondary));
+
+
+            //CHRISTMAS
+            this.christmas_Color_Scheme_.Add(COLOR.LOGIN_BACKGROUND, Color.FromHex(christmasColorBackground));
+            this.christmas_Color_Scheme_.Add(COLOR.LOGIN_BUTTONS, Color.FromHex(christmasColorButton));
+            this.christmas_Color_Scheme_.Add(COLOR.LOGIN_TEXT, Color.FromHex(christmasColorText));
+            this.christmas_Color_Scheme_.Add(COLOR.LOGIN_TEXT_SECONDARY, Color.FromHex(christmasColorTextSecondary));
+                 
+            this.christmas_Color_Scheme_.Add(COLOR.CREATE_ACCOUNT_BACKGROUND, Color.FromHex(christmasColorBackground));
+            this.christmas_Color_Scheme_.Add(COLOR.CREATE_ACCOUNT_BUTTONS, Color.FromHex(christmasColorButton));
+            this.christmas_Color_Scheme_.Add(COLOR.CREATE_ACCOUNT_TEXT, Color.FromHex(christmasColorText));
+            this.christmas_Color_Scheme_.Add(COLOR.CREATE_ACCOUNT_TEXT_SECONDARY, Color.FromHex(christmasColorTextSecondary));
+                 
+            this.christmas_Color_Scheme_.Add(COLOR.SETTING_BACKGROUND, Color.FromHex(christmasColorBackground));
+            this.christmas_Color_Scheme_.Add(COLOR.SETTING_BUTTONS, Color.FromHex(christmasColorButton));
+            this.christmas_Color_Scheme_.Add(COLOR.SETTING_TEXT, Color.FromHex(christmasColorText));
+            this.christmas_Color_Scheme_.Add(COLOR.SETTING_TEXT_SECONDARY, Color.FromHex(christmasColorTextSecondary));
+                 
+            this.christmas_Color_Scheme_.Add(COLOR.HOME_BACKGROUND, Color.FromHex(christmasColorBackground));
+            this.christmas_Color_Scheme_.Add(COLOR.HOME_BUTTONS, Color.FromHex(christmasColorButton));
+            this.christmas_Color_Scheme_.Add(COLOR.HOME_TEXT, Color.FromHex(christmasColorText));
+            this.christmas_Color_Scheme_.Add(COLOR.HOME_TEXT_SECONDARY, Color.FromHex(christmasColorTextSecondary));
+                 
+            this.christmas_Color_Scheme_.Add(COLOR.PROFILE_EDIT_BACKGROUND, Color.FromHex(christmasColorBackground));
+            this.christmas_Color_Scheme_.Add(COLOR.PROFILE_EDIT_BUTTONS, Color.FromHex(christmasColorButton));
+            this.christmas_Color_Scheme_.Add(COLOR.PROFILE_EDIT_TEXT, Color.FromHex(christmasColorText));
+            this.christmas_Color_Scheme_.Add(COLOR.PROFILE_EDIT_TEXT_SECONDARY, Color.FromHex(christmasColorTextSecondary));
+                 
+            this.christmas_Color_Scheme_.Add(COLOR.VIEW_USER_PROFILE_BACKGROUND, Color.FromHex(christmasColorBackground));
+            this.christmas_Color_Scheme_.Add(COLOR.VIEW_USER_PROFILE_BUTTONS, Color.FromHex(christmasColorButton));
+            this.christmas_Color_Scheme_.Add(COLOR.VIEW_USER_PROFILE_TEXT, Color.FromHex(christmasColorText));
+            this.christmas_Color_Scheme_.Add(COLOR.VIEW_USER_PROFILE_TEXT_SECONDARY, Color.FromHex(christmasColorTextSecondary));
+                 
+            this.christmas_Color_Scheme_.Add(COLOR.CHAT_BACKGROUND, Color.FromHex(christmasColorBackground));
+            this.christmas_Color_Scheme_.Add(COLOR.CHAT_BUTTONS, Color.FromHex(christmasColorButton));
+            this.christmas_Color_Scheme_.Add(COLOR.CHAT_TEXT, Color.FromHex(christmasColorText));
+            this.christmas_Color_Scheme_.Add(COLOR.CHAT_TEXT_SECONDARY, Color.FromHex(christmasColorTextSecondary));
         }
 
         private Dictionary<COLOR, Color> light_Color_Scheme_ = new Dictionary<COLOR, Color>();
         private Dictionary<COLOR, Color> dark_Color_Scheme_ = new Dictionary<COLOR, Color>();
         private Dictionary<COLOR, Color> halloween_Color_Scheme_ = new Dictionary<COLOR, Color>();
+        private Dictionary<COLOR, Color> christmas_Color_Scheme_ = new Dictionary<COLOR, Color>();
 
         private bool is_Light_Selected_;
         private bool is_Dark_Selected_;
         private bool is_Halloween_Selected_;
+        private bool is_Christmas_Selected_;
 
         public Dictionary<COLOR, Color> Light_Color_Scheme_
         {
@@ -211,6 +255,14 @@ namespace cca_p_mvvm
             get
             {
                 return this.halloween_Color_Scheme_;
+            }
+        }
+
+        public Dictionary<COLOR, Color> Christmas_Color_Scheme_
+        {
+            get
+            {
+                return this.christmas_Color_Scheme_;
             }
         }
 
@@ -253,6 +305,20 @@ namespace cca_p_mvvm
             {
                 this.SetProperty(ref this.is_Halloween_Selected_, value);
                 this.RaisePropertyChanged("Is_Halloween_Selected_");
+            }
+        }
+
+        public bool Is_Christmas_Selected_
+        {
+            get
+            {
+                return this.is_Christmas_Selected_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.is_Christmas_Selected_, value);
+                this.RaisePropertyChanged("Is_Christmas_Selected_");
             }
         }
 
@@ -804,6 +870,43 @@ namespace cca_p_mvvm
                 this.Chat_Button_ = this.Halloween_Color_Scheme_[COLOR.CHAT_BUTTONS];
                 this.Chat_Text_ = this.Halloween_Color_Scheme_[COLOR.CHAT_TEXT];
                 this.Chat_Text_Secondary_ = this.Halloween_Color_Scheme_[COLOR.CHAT_TEXT_SECONDARY];
+            }
+            else if (this.Is_Christmas_Selected_)
+            {
+                this.Login_Background_ = this.Christmas_Color_Scheme_[COLOR.LOGIN_BACKGROUND];
+                this.Login_Button_ = this.Christmas_Color_Scheme_[COLOR.LOGIN_BUTTONS];
+                this.Login_Text_ = this.Christmas_Color_Scheme_[COLOR.LOGIN_TEXT];
+                this.Login_Text_Secondary_ = this.Christmas_Color_Scheme_[COLOR.LOGIN_TEXT_SECONDARY];
+
+                this.Create_Account_Background_ = this.Christmas_Color_Scheme_[COLOR.CREATE_ACCOUNT_BACKGROUND];
+                this.Create_Account_Button_ = this.Christmas_Color_Scheme_[COLOR.CREATE_ACCOUNT_BUTTONS];
+                this.Create_Account_Text_ = this.Christmas_Color_Scheme_[COLOR.CREATE_ACCOUNT_TEXT];
+                this.Create_Account_Text_Secondary_ = this.Christmas_Color_Scheme_[COLOR.CREATE_ACCOUNT_TEXT_SECONDARY];
+
+                this.Setting_Background_ = this.Christmas_Color_Scheme_[COLOR.SETTING_BACKGROUND];
+                this.Setting_Button_ = this.Christmas_Color_Scheme_[COLOR.SETTING_BUTTONS];
+                this.Setting_Text_ = this.Christmas_Color_Scheme_[COLOR.SETTING_TEXT];
+                this.Setting_Text_Secondary_ = this.Christmas_Color_Scheme_[COLOR.SETTING_TEXT_SECONDARY];
+
+                this.Home_Background_ = this.Christmas_Color_Scheme_[COLOR.HOME_BACKGROUND];
+                this.Home_Button_ = this.Christmas_Color_Scheme_[COLOR.HOME_BUTTONS];
+                this.Home_Text_ = this.Christmas_Color_Scheme_[COLOR.HOME_TEXT];
+                this.Home_Text_Secondary_ = this.Christmas_Color_Scheme_[COLOR.HOME_TEXT_SECONDARY];
+
+                this.Profile_Edit_Background_ = this.Christmas_Color_Scheme_[COLOR.PROFILE_EDIT_BACKGROUND];
+                this.Profile_Edit_Button_ = this.Christmas_Color_Scheme_[COLOR.PROFILE_EDIT_BUTTONS];
+                this.Profile_Edit_Text_ = this.Christmas_Color_Scheme_[COLOR.PROFILE_EDIT_TEXT];
+                this.Profile_Edit_Text_Secondary_ = this.Christmas_Color_Scheme_[COLOR.PROFILE_EDIT_TEXT_SECONDARY];
+
+                this.View_User_Profile_Background_ = this.Christmas_Color_Scheme_[COLOR.VIEW_USER_PROFILE_BACKGROUND];
+                this.View_User_Profile_Button_ = this.Christmas_Color_Scheme_[COLOR.VIEW_USER_PROFILE_BUTTONS];
+                this.View_User_Profile_Text_ = this.Christmas_Color_Scheme_[COLOR.VIEW_USER_PROFILE_TEXT];
+                this.View_User_Profile_Text_Secondary_ = this.Christmas_Color_Scheme_[COLOR.VIEW_USER_PROFILE_TEXT_SECONDARY];
+
+                this.Chat_Background_ = this.Christmas_Color_Scheme_[COLOR.CHAT_BACKGROUND];
+                this.Chat_Button_ = this.Christmas_Color_Scheme_[COLOR.CHAT_BUTTONS];
+                this.Chat_Text_ = this.Christmas_Color_Scheme_[COLOR.CHAT_TEXT];
+                this.Chat_Text_Secondary_ = this.Christmas_Color_Scheme_[COLOR.CHAT_TEXT_SECONDARY];
             }
         }
     }

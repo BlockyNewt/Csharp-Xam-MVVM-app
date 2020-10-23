@@ -690,14 +690,11 @@ namespace cca_p_mvvm.ViewModels
 
             if(this.client_Connection_.ChangeUserLoggedValue(this.user_.ID_, 0))
             {
+                //CLOSE CURRENT CONNECTION
                 this.client_Connection_.CloseAllConnections();
                 
                 //PASS PARAMETERS 
                 await this.navigation_Service_.GoBackAsync(p);
-            }
-            else
-            {
-                //THROW CONNECTION ERROR AND THAT THE USER IS NOT YET LOGGED OUT 
             }
         }
 
@@ -731,6 +728,7 @@ namespace cca_p_mvvm.ViewModels
                 this.color_Scheme_.Is_Light_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Light_Selected_;
                 this.color_Scheme_.Is_Dark_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Dark_Selected_;
                 this.color_Scheme_.Is_Halloween_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Halloween_Selected_;
+                this.color_Scheme_.Is_Christmas_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Christmas_Selected_;
 
                 this.client_Connection_.CheckConnection();
 
@@ -751,6 +749,7 @@ namespace cca_p_mvvm.ViewModels
                 this.color_Scheme_.Is_Light_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Light_Selected_;
                 this.color_Scheme_.Is_Dark_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Dark_Selected_;
                 this.color_Scheme_.Is_Halloween_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Halloween_Selected_;
+                this.color_Scheme_.Is_Christmas_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Christmas_Selected_;
 
                 this.color_Scheme_.SetColors();
 

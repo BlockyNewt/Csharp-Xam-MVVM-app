@@ -45,6 +45,7 @@ namespace cca_p_mvvm.ViewModels
         private string setting_Radio_Light_Button_;
         private string setting_Radio_Dark_Button_;
         private string setting_Radio_Halloween_Button_;
+        private string setting_Radio_Christmas_Button_;
         private string setting_Connection_Info_Label_;
         private string setting_Ip_;
         private string setting_Port_;
@@ -279,6 +280,25 @@ namespace cca_p_mvvm.ViewModels
             {
                 this.SetProperty(ref this.setting_Radio_Dark_Button_, value);
                 this.RaisePropertyChanged("Setting_Radio_Dark_Button_");
+            }
+        }
+
+        public string Setting_Radio_Christmas_Button_
+        {
+            get
+            {
+                if(string.IsNullOrEmpty(this.setting_Radio_Christmas_Button_))
+                {
+                    return "Empty string";
+                }
+
+                return this.setting_Radio_Christmas_Button_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.setting_Radio_Christmas_Button_, value);
+                this.RaisePropertyChanged("Setting_Radio_Christmas_Button_");
             }
         }
 
@@ -573,61 +593,78 @@ namespace cca_p_mvvm.ViewModels
         public DelegateCommand Setting_Change_Button_Command_ => this.setting_Change_Button_Command_ ?? (this.setting_Change_Button_Command_ = new DelegateCommand(this.SettingChangeButton));
         private void SettingChangeButton()
         {
+            //IF THIS BUTTON IS TAPPED THEN WE WILL BE ABLE TO EDIT THE IP AND PORT VALUES
             this.Is_Not_Editing_Connection_Info_ = false;
             this.Is_Editing_Connection_Info_ = true;
         }
+
+
 
         private DelegateCommand setting_Confirm_Button_Command_;
         public DelegateCommand Setting_Confirm_Button_Command_ => this.setting_Confirm_Button_Command_ ?? (this.setting_Confirm_Button_Command_ = new DelegateCommand(this.ConfirmButton));
         private async void ConfirmButton()
         {
+            //IF THE NEW IP VALUE IS NOT EMPTY OR NULL
             if (!string.IsNullOrEmpty(this.Setting_Ip_Changed_Text_))
             {
                 try
                 {
+                    //FORMAT THE STRING INTO AN IP ADDRESS
                     this.client_Connection_.Local_Address_ = IPAddress.Parse(this.Setting_Ip_Changed_Text_);
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine(e.ToString());
 
+                    //INVALID IP FORMAT 
                     await Application.Current.MainPage.DisplayAlert(this.Setting_Error_Invalid_Format_Error_Title_, this.Setting_Error_Invalid_Format_Error_Message_, this.Setting_Error_Invalid_Format_Error_Button_);
                 }
             }
 
+            //IF THE NEW PORT VALUE IS NOT EMPTY OR NULL
             if (!string.IsNullOrEmpty(this.Setting_Port_Changed_Text_))
             {
                 try
                 {
+                    //CONVERT NEW VALUE TO INT
                     this.client_Connection_.Port_ = Convert.ToInt32(this.Setting_Port_Changed_Text_);
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine(e.ToString());
 
+                    //INVALID PORT FORMAT
                     await Application.Current.MainPage.DisplayAlert(this.Setting_Error_Invalid_Format_Error_Title_, this.Setting_Error_Invalid_Format_Error_Message_, this.Setting_Error_Invalid_Format_Error_Button_);
                 }
             }
 
+            //RESET ENTRY FIELD TEXT VALUES BACK TO EMPTY
             this.Setting_Ip_Changed_Text_ = string.Empty;
             this.Setting_Port_Changed_Text_ = string.Empty;
 
+            //GET STRING TO UPDATE THE UI
             this.Setting_Ip_ = this.client_Connection_.Local_Address_.ToString();
             this.Setting_Port_ = this.client_Connection_.Port_.ToString();
 
             Console.Write("NEW IP: " + this.client_Connection_.Local_Address_ + " NEW PORT: " + this.client_Connection_.Port_);
 
+            //CHANGE WHICH BUTTONS ARE TO BE DISPLAYED
             this.Is_Editing_Connection_Info_ = false;
             this.Is_Not_Editing_Connection_Info_ = true;
         }
+
+
 
         private DelegateCommand setting_Cancel_Button_Command_;
         public DelegateCommand Setting_Cancel_Button_Command_ => this.setting_Cancel_Button_Command_ ?? (this.setting_Cancel_Button_Command_ = new DelegateCommand(this.CancelButton));
         private void CancelButton()
         {
+            //CHANGE WHICH BUTTONS ARE TO BE DISPLAYED
             this.Is_Editing_Connection_Info_ = false;
             this.Is_Not_Editing_Connection_Info_ = true;
         }
+
+
 
         private DelegateCommand setting_Accept_Button_Command_;
         public DelegateCommand Setting_Accept_Button_Command_ => this.setting_Accept_Button_Command_ ?? (this.setting_Accept_Button_Command_ = new DelegateCommand(this.SettingAcceptButton));
@@ -673,6 +710,7 @@ namespace cca_p_mvvm.ViewModels
             this.color_Scheme_.Is_Light_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Light_Selected_;
             this.color_Scheme_.Is_Dark_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Dark_Selected_;
             this.color_Scheme_.Is_Halloween_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Halloween_Selected_;
+            this.color_Scheme_.Is_Christmas_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Christmas_Selected_;
 
             this.SetLanguage();
 
@@ -698,6 +736,7 @@ namespace cca_p_mvvm.ViewModels
                 this.Setting_Radio_Light_Button_ = this.l_Eng_.Word[ENG_WORD.SETTING_RADIO_LIGHT_BUTTON];
                 this.Setting_Radio_Dark_Button_ = this.l_Eng_.Word[ENG_WORD.SETTING_RADIO_DARK_BUTTON];
                 this.Setting_Radio_Halloween_Button_ = this.l_Eng_.Word[ENG_WORD.SETTING_RADIO_HALLOWEEN_BUTTON];
+                this.Setting_Radio_Christmas_Button_ = this.l_Eng_.Word[ENG_WORD.SETTING_RADIO_CHRISTMAS_BUTTON];
                 this.Setting_Connection_Info_Label_ = this.l_Eng_.Word[ENG_WORD.SETTING_CONNECTION_INFO_LABEL];
                 this.Setting_Ip_Language_ = this.l_Eng_.Word[ENG_WORD.SETTING_IP_LABEL];
                 this.Setting_Port_Language_ = this.l_Eng_.Word[ENG_WORD.SETTING_PORT_LABEL];
@@ -722,6 +761,7 @@ namespace cca_p_mvvm.ViewModels
                 this.Setting_Radio_Light_Button_ = this.l_Jap_.Word[JAP_WORD.SETTING_RADIO_LIGHT_BUTTON];
                 this.Setting_Radio_Dark_Button_ = this.l_Jap_.Word[JAP_WORD.SETTING_RADIO_DARK_BUTTON];
                 this.Setting_Radio_Halloween_Button_ = this.l_Jap_.Word[JAP_WORD.SETTING_RADIO_HALLOWEEN_BUTTON];
+                this.Setting_Radio_Christmas_Button_ = this.l_Jap_.Word[JAP_WORD.SETTING_RADIO_CHRISTMAS_BUTTON];
                 this.Setting_Connection_Info_Label_ = this.l_Jap_.Word[JAP_WORD.SETTING_CONNECTION_INFO_LABEL];
                 this.Setting_Ip_Language_ = this.l_Jap_.Word[JAP_WORD.SETTING_IP_LABEL];
                 this.Setting_Port_Language_ = this.l_Jap_.Word[JAP_WORD.SETTING_PORT_LABEL];

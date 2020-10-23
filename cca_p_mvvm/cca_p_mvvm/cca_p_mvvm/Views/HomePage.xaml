@@ -28,7 +28,6 @@
 
     <!--CHANNEL TAB-->
         <StackLayout IsVisible="{Binding Channel_Display_}">
-            <!--<Label Text="{Binding Hub_Channel_Label_}" TextColor="{Binding color_Scheme_.Home_Text_}" FontSize="20"/>-->
             <ListView ItemsSource="{Binding Channel_}" SelectedItem="{Binding Selected_Channel_}" SeparatorVisibility="None" HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -65,8 +64,8 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                                <Image Grid.Row="1" Grid.RowSpan="4" Grid.Column="1" Grid.ColumnSpan="1" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Source="{Binding Picture_}" HeightRequest="75" WidthRequest="75"/>
-                                <Label Grid.Row="2" Grid.RowSpan="1" Grid.Column="2" Grid.ColumnSpan="2" HorizontalOptions="StartAndExpand" Text="{Binding First_Name_}" TextColor="{Binding Text_Color_}" FontSize="18"/>
+                                <Image Grid.Row="1" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="1" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Source="{Binding Picture_}" HeightRequest="75" WidthRequest="75"/>
+                                <Label Grid.Row="2" Grid.RowSpan="1" Grid.Column="2" Grid.ColumnSpan="2" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Text="{Binding First_Name_}" TextColor="{Binding Text_Color_}" FontSize="18"/>
                             </Grid>
                     </ViewCell>
                 </DataTemplate>
@@ -88,6 +87,7 @@
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
+                   
                     <Image Grid.Row="1" Grid.RowSpan="4" Grid.Column="1" Grid.ColumnSpan="2" HorizontalOptions="CenterAndExpand" Source="{Binding user_.Picture_}"/>
 
                     <Label Grid.Row="5" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Hub_Profile_Fullname_Label_}" TextColor="{Binding color_Scheme_.Home_Text_Secondary_}" FontSize="18"/>
@@ -95,6 +95,7 @@
 
                     <Label  Grid.Row="7" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Hub_Profile_Bio_Label_}" TextColor="{Binding color_Scheme_.Home_Text_Secondary_}" FontSize="18"/>
                     <Editor Grid.Row="8" Grid.RowSpan="9" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding user_.Bio_}" TextColor="{Binding color_Scheme_.Home_Text_}" Placeholder="{Binding Hub_Profile_Bio_Placeholder_}" PlaceholderColor="{Binding color_Scheme_.Home_Text_}" FontSize="20" MaxLength="250" IsReadOnly="True"/>
+                
                 </Grid>
             </ScrollView>
 
@@ -108,8 +109,10 @@
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
+                    
                     <Button Grid.Row="1" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="1" Text="{Binding Hub_Profile_Edit_Button_}" TextColor="{Binding color_Scheme_.Home_Text_Secondary_}" BackgroundColor="{Binding color_Scheme_.Home_Button_}" Command="{Binding Profile_Edit_Button_Command_}"/>
                     <Button Grid.Row="1" Grid.RowSpan="1" Grid.Column="2" Grid.ColumnSpan="1" Text="{Binding Hub_Profile_Logout_Button_}" TextColor="{Binding color_Scheme_.Home_Text_Secondary_}" BackgroundColor="{Binding color_Scheme_.Home_Button_}" Command="{Binding Profile_Logout_Button_Command_}"/>
+                
                 </Grid>
             </StackLayout>
         </StackLayout>
@@ -126,6 +129,7 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
+                
                 <Button Grid.Row="0" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="1" HorizontalOptions="FillAndExpand" Text="{Binding Hub_Channel_Button_}" TextColor="{Binding color_Scheme_.Home_Text_Secondary_}" BackgroundColor="{Binding color_Scheme_.Home_Button_}" Command="{Binding Channel_Button_Command_}"/>
                 <Button Grid.Row="0" Grid.RowSpan="1" Grid.Column="2" Grid.ColumnSpan="1" HorizontalOptions="FillAndExpand" Text="{Binding Hub_DM_Button_}" TextColor="{Binding color_Scheme_.Home_Text_Secondary_}" BackgroundColor="{Binding color_Scheme_.Home_Button_}" Command="{Binding DM_Button_Command_}" />
                 <Button Grid.Row="0" Grid.RowSpan="1" Grid.Column="3" Grid.ColumnSpan="1" HorizontalOptions="FillAndExpand" Text="{Binding Hub_Profile_Button_}" TextColor="{Binding color_Scheme_.Home_Text_Secondary_}" BackgroundColor="{Binding color_Scheme_.Home_Button_}" Command="{Binding Profile_Button_Command_}" />

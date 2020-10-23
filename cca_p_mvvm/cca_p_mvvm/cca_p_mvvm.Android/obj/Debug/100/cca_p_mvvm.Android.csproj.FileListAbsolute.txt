@@ -1,12 +1,3 @@
-C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\bin\Debug\cca_p_mvvm.Android.dll
-C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\bin\Debug\cca_p_mvvm.Android.pdb
-C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\bin\Debug\com.companyname.appname.apk
-C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\bin\Debug\com.companyname.appname.aab
-C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\bin\Debug\com.companyname.appname-Signed.aab
-C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\bin\Debug\com.companyname.appname-Signed.apk
-C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\bin\Debug\com.companyname.appname-Signed.apk.idsig
-C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\bin\Debug\cca_p_mvvm.dll
-C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\bin\Debug\cca_p_mvvm.pdb
 C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\MonoAndroid,Version=v10.0.AssemblyAttributes.cs
 C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\build.props
 C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\adb.props
@@ -16,6 +7,15 @@ C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvv
 C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\R.txt
 C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\R.cs.flag
 C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\cca_p_mvvm.Android.csproj.CoreCompileInputs.cache
+C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\bin\Debug\cca_p_mvvm.Android.dll
+C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\bin\Debug\cca_p_mvvm.Android.pdb
+C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\bin\Debug\com.companyname.appname.apk
+C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\bin\Debug\com.companyname.appname.aab
+C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\bin\Debug\com.companyname.appname-Signed.aab
+C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\bin\Debug\com.companyname.appname-Signed.apk
+C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\bin\Debug\com.companyname.appname-Signed.apk.idsig
+C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\bin\Debug\cca_p_mvvm.dll
+C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\bin\Debug\cca_p_mvvm.pdb
 C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\XamlC.stamp
 C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\cca_p_mvvm.Android.csproj.CopyComplete
 C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\cca_p_mvvm.Android.dll
@@ -50,6 +50,7 @@ C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvv
 C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\res\drawable\comsize_icon.png
 C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\res\drawable\back_button.png
 C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\res\drawable\settings_icon.png
+C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\res\drawable\reload_button.png
 C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\uploadflags.txt
 C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\resolvedassemblies.hash
 C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\android\assets\cca_p_mvvm.Android.dll
@@ -535,4 +536,3 @@ C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvv
 C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\stamp\_GenerateJavaStubs.stamp
 C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\stamp\_GeneratePackageManagerJava.stamp
 C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\stamp\_ResolveLibraryProjectImports.stamp
-C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\res\drawable\reload_button.png

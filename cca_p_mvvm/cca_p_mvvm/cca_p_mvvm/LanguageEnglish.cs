@@ -20,6 +20,9 @@ namespace cca_p_mvvm
         SIGN_IN_LOGIN_ERROR_CONNECTION_MESSAGE,
         SIGN_IN_LOGIN_ERROR_CONNECTION_BUTTON,
         SIGN_IN_CREATE_ACCOUNT_BUTTON,
+        SIGN_IN_LOGIN_ERROR_ALREADY_LOGGED_IN_TITLE,
+        SIGN_IN_LOGIN_ERROR_ALREADY_LOGGED_IN_MESSAGE,
+        SIGN_IN_LOGIN_ERROR_ALREADY_LOGGED_IN_BUTTON,
 
         CREATE_ACCOUNT_FIRST_NAME_LABEL,
         CREATE_ACCOUNT_FIRST_NAME_PLACEHOLDER,
@@ -76,6 +79,7 @@ namespace cca_p_mvvm
         SETTING_RADIO_LIGHT_BUTTON,
         SETTING_RADIO_DARK_BUTTON,
         SETTING_RADIO_HALLOWEEN_BUTTON,
+        SETTING_RADIO_CHRISTMAS_BUTTON,
         SETTING_CONNECTION_INFO_LABEL,
         SETTING_IP_LABEL,
         SETTING_PORT_LABEL,
@@ -122,6 +126,9 @@ namespace cca_p_mvvm
             this.word_.Add(ENG_WORD.SIGN_IN_LOGIN_ERROR_CONNECTION_MESSAGE, "Could not connect to the server.");
             this.word_.Add(ENG_WORD.SIGN_IN_LOGIN_ERROR_CONNECTION_BUTTON, "Close");
             this.word_.Add(ENG_WORD.SIGN_IN_CREATE_ACCOUNT_BUTTON, "Create account");
+            this.word_.Add(ENG_WORD.SIGN_IN_LOGIN_ERROR_ALREADY_LOGGED_IN_TITLE, "Error");
+            this.word_.Add(ENG_WORD.SIGN_IN_LOGIN_ERROR_ALREADY_LOGGED_IN_MESSAGE, "This account is already logged in.");
+            this.word_.Add(ENG_WORD.SIGN_IN_LOGIN_ERROR_ALREADY_LOGGED_IN_BUTTON, "Close");
 
             this.word_.Add(ENG_WORD.CREATE_ACCOUNT_FIRST_NAME_LABEL, "Firstname");
             this.word_.Add(ENG_WORD.CREATE_ACCOUNT_FIRST_NAME_PLACEHOLDER, "Firstname...");
@@ -178,6 +185,7 @@ namespace cca_p_mvvm
             this.word_.Add(ENG_WORD.SETTING_RADIO_LIGHT_BUTTON, "Light");
             this.word_.Add(ENG_WORD.SETTING_RADIO_DARK_BUTTON, "Dark");
             this.word_.Add(ENG_WORD.SETTING_RADIO_HALLOWEEN_BUTTON, "Halloween");
+            this.word_.Add(ENG_WORD.SETTING_RADIO_CHRISTMAS_BUTTON, "Christmas");
             this.word_.Add(ENG_WORD.SETTING_CONNECTION_INFO_LABEL, "Connection Info");
             this.word_.Add(ENG_WORD.SETTING_IP_LABEL, "IP: ");
             this.word_.Add(ENG_WORD.SETTING_PORT_LABEL, "Port: ");

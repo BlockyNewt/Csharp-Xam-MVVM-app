@@ -12,6 +12,7 @@ using DryIoc;
 using Java.Util;
 using System.Collections.ObjectModel;
 using Org.Apache.Http.Cookie.Params;
+using System.Threading.Tasks;
 
 namespace cca_p_mvvm.ViewModels
 {
@@ -51,6 +52,9 @@ namespace cca_p_mvvm.ViewModels
         private string sign_In_Login_Error_Connection_Title_;
         private string sign_In_Login_Error_Connection_Message_;
         private string sign_In_Login_Error_Connection_Button_;
+        private string sign_In_Login_Error_Already_Logged_In_Title_;
+        private string sign_In_Login_Error_Already_Logged_In_Message_;
+        private string sign_In_Login_Error_Already_Logged_In_Button_;
         private string sign_In_Create_Account_Button_;
 
         private string username_Entry_Changed_Text_;
@@ -264,6 +268,63 @@ namespace cca_p_mvvm.ViewModels
             }
         }
 
+        public string Sign_In_Login_Error_Already_Logged_In_Title_
+        {
+            get
+            {
+                if(string.IsNullOrEmpty(this.sign_In_Login_Error_Already_Logged_In_Title_))
+                {
+                    return "Empty string";
+                }
+
+                return this.sign_In_Login_Error_Already_Logged_In_Title_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.sign_In_Login_Error_Already_Logged_In_Title_, value);
+                this.RaisePropertyChanged("");
+            }
+        }
+
+        public string Sign_In_Login_Error_Already_Logged_In_Message_
+        {
+            get
+            {
+                if(string.IsNullOrEmpty(sign_In_Login_Error_Already_Logged_In_Message_))
+                {
+                    return "Empty string";
+                }
+
+                return this.sign_In_Login_Error_Already_Logged_In_Message_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.sign_In_Login_Error_Already_Logged_In_Message_, value);
+                this.RaisePropertyChanged("");
+            }
+        }
+
+        public string Sign_In_Login_Error_Already_Logged_In_Button_
+        {
+            get
+            {
+                if(string.IsNullOrEmpty(this.sign_In_Login_Error_Already_Logged_In_Button_))
+                {
+                    return "Empty string";
+                }
+
+                return this.sign_In_Login_Error_Already_Logged_In_Button_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.sign_In_Login_Error_Already_Logged_In_Button_, value);
+                this.RaisePropertyChanged("");
+            }
+        }
+
         public string Sign_In_Create_Account_Button_
         {
             get
@@ -440,10 +501,10 @@ namespace cca_p_mvvm.ViewModels
                                 }
                                 else
                                 {
-                                    //CONNECTION ERROR
                                     this.Username_Entry_Changed_Text_ = string.Empty;
                                     this.Password_Entry_Changed_Text_ = string.Empty;
 
+                                    //CONNECTION ERROR
                                     await Application.Current.MainPage.DisplayAlert(this.Sign_In_Login_Error_Connection_Title_, this.Sign_In_Login_Error_Connection_Message_, this.Sign_In_Login_Error_Connection_Button_);
                                 }
                             }
@@ -452,7 +513,8 @@ namespace cca_p_mvvm.ViewModels
                                 this.Username_Entry_Changed_Text_ = string.Empty;
                                 this.Password_Entry_Changed_Text_ = string.Empty;
 
-                                await Application.Current.MainPage.DisplayAlert("Error", "This account is already logged in.", "Close");
+                                //THIS ACCOUNT IS ALREADY LOGGED IN ERROR 
+                                await Application.Current.MainPage.DisplayAlert(this.Sign_In_Login_Error_Already_Logged_In_Title_, this.Sign_In_Login_Error_Already_Logged_In_Message_, this.Sign_In_Login_Error_Already_Logged_In_Message_);
                             }
                         }
                         else
@@ -469,6 +531,7 @@ namespace cca_p_mvvm.ViewModels
                         this.Username_Entry_Changed_Text_ = string.Empty;
                         this.Password_Entry_Changed_Text_ = string.Empty;
 
+                        //CONNECTION ERROR 
                         await Application.Current.MainPage.DisplayAlert(this.Sign_In_Login_Error_Connection_Title_, this.Sign_In_Login_Error_Connection_Message_, this.Sign_In_Login_Error_Connection_Button_);
                     }
                 }
@@ -477,6 +540,7 @@ namespace cca_p_mvvm.ViewModels
                     this.Username_Entry_Changed_Text_ = string.Empty;
                     this.Password_Entry_Changed_Text_ = string.Empty;
 
+                    //LOGIN CREDENTIALS ARE INCORRECT ERROR
                     await Application.Current.MainPage.DisplayAlert(this.Sign_In_Login_Error_Credentials_Title_, this.Sign_In_Login_Error_Credentials_Message_, this.Sign_In_Login_Error_Credentials_Button_);
                 }
             }
@@ -519,6 +583,7 @@ namespace cca_p_mvvm.ViewModels
                 this.color_Scheme_.Is_Light_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Light_Selected_;
                 this.color_Scheme_.Is_Dark_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Dark_Selected_;
                 this.color_Scheme_.Is_Halloween_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Halloween_Selected_;
+                this.color_Scheme_.Is_Christmas_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Christmas_Selected_;
             }
             //COMING BACK FROM SETTINGS PAGE
             else if (parameters.Count() == 4)
@@ -532,6 +597,7 @@ namespace cca_p_mvvm.ViewModels
                 this.color_Scheme_.Is_Light_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Light_Selected_;
                 this.color_Scheme_.Is_Dark_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Dark_Selected_;
                 this.color_Scheme_.Is_Halloween_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Halloween_Selected_;
+                this.color_Scheme_.Is_Christmas_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Christmas_Selected_;
             }
             //COMING BACK FROM ACCOUNT CREATION
             else if(parameters.Count() == 5)
@@ -551,6 +617,7 @@ namespace cca_p_mvvm.ViewModels
                 this.color_Scheme_.Is_Light_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Light_Selected_;
                 this.color_Scheme_.Is_Dark_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Dark_Selected_;
                 this.color_Scheme_.Is_Halloween_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Halloween_Selected_;
+                this.color_Scheme_.Is_Christmas_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Christmas_Selected_;
             }
 
             this.SetLanguage();
@@ -576,6 +643,9 @@ namespace cca_p_mvvm.ViewModels
                 this.Sign_In_Login_Error_Connection_Message_ = this.l_Eng_.Word[ENG_WORD.SIGN_IN_LOGIN_ERROR_CONNECTION_MESSAGE];
                 this.Sign_In_Login_Error_Connection_Button_ = this.l_Eng_.Word[ENG_WORD.SIGN_IN_LOGIN_ERROR_CONNECTION_BUTTON];
                 this.Sign_In_Create_Account_Button_ = this.l_Eng_.Word[ENG_WORD.SIGN_IN_CREATE_ACCOUNT_BUTTON];
+                this.Sign_In_Login_Error_Already_Logged_In_Title_ = this.l_Eng_.Word[ENG_WORD.SIGN_IN_LOGIN_ERROR_ALREADY_LOGGED_IN_TITLE];
+                this.Sign_In_Login_Error_Already_Logged_In_Message_ = this.l_Eng_.Word[ENG_WORD.SIGN_IN_LOGIN_ERROR_ALREADY_LOGGED_IN_MESSAGE];
+                this.Sign_In_Login_Error_Already_Logged_In_Button_ = this.l_Eng_.Word[ENG_WORD.SIGN_IN_LOGIN_ERROR_ALREADY_LOGGED_IN_BUTTON];
 
 
                 this.connection_Error_Title_ = this.l_Eng_.Word[ENG_WORD.CONNECTION_ERROR_TITLE];
@@ -595,6 +665,9 @@ namespace cca_p_mvvm.ViewModels
                 this.Sign_In_Login_Error_Connection_Message_ = this.l_Jap_.Word[JAP_WORD.SIGN_IN_LOGIN_ERROR_CONNECTION_MESSAGE];
                 this.Sign_In_Login_Error_Connection_Button_ = this.l_Jap_.Word[JAP_WORD.SIGN_IN_LOGIN_ERROR_CONNECTION_BUTTON];
                 this.Sign_In_Create_Account_Button_ = this.l_Jap_.Word[JAP_WORD.SIGN_IN_CREATE_ACCOUNT_BUTTON];
+                this.Sign_In_Login_Error_Already_Logged_In_Title_ = this.l_Jap_.Word[JAP_WORD.SIGN_IN_LOGIN_ERROR_ALREADY_LOGGED_IN_TITLE];
+                this.Sign_In_Login_Error_Already_Logged_In_Message_ = this.l_Jap_.Word[JAP_WORD.SIGN_IN_LOGIN_ERROR_ALREADY_LOGGED_IN_MESSAGE];
+                this.Sign_In_Login_Error_Already_Logged_In_Button_ = this.l_Jap_.Word[JAP_WORD.SIGN_IN_LOGIN_ERROR_ALREADY_LOGGED_IN_BUTTON];
 
                 this.connection_Error_Title_ = this.l_Jap_.Word[JAP_WORD.CONNECTION_ERROR_TITLE];
                 this.connection_Error_Message_ = this.l_Jap_.Word[JAP_WORD.CONNECTION_ERROR_MESSAGE];
@@ -605,7 +678,7 @@ namespace cca_p_mvvm.ViewModels
         private bool CheckConnection()
         {
             var current = Connectivity.NetworkAccess;
-
+            
             if (current == NetworkAccess.Internet)
             {
                 //IF CLIENT IS CONNECTED THEN CONTINUE
@@ -614,6 +687,7 @@ namespace cca_p_mvvm.ViewModels
             }
             else
             {
+                Console.WriteLine("NOT CONNECTED TO WIFI BITCH.");
                 //IF IT'S NOT CONNECTED THEN IT WILL DISPLAY AN ALERT 
                 Application.Current.MainPage.DisplayAlert(this.connection_Error_Title_, this.Connection_Error_Message_, this.connection_Error_Button_);
 

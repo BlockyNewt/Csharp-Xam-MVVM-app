@@ -122,16 +122,23 @@ namespace cca_p_mvvm
 
             Byte[] data = System.Text.Encoding.UTF8.GetBytes(msg);
 
-            if(this.CheckConnection())
+            try
             {
-                this.stream_.Write(data, 0, data.Length);
+                if (this.CheckConnection())
+                {
+                    this.stream_.Write(data, 0, data.Length);
 
-                string getMsg = this.ReceiveMessage();
-                
-                return Convert.ToBoolean(getMsg);
+                    return Convert.ToBoolean(this.ReceiveMessage());
+                }
+                else
+                {
+                    return false;
+                }
             }
-            else
+            catch (Exception e)
             {
+                Console.WriteLine(e.ToString());
+
                 return false;
             }
         }
@@ -142,28 +149,45 @@ namespace cca_p_mvvm
 
             Byte[] data = System.Text.Encoding.UTF8.GetBytes(msg);
 
-            if(this.CheckConnection())
+            try
             {
-                this.stream_.Write(data, 0, data.Length);
+                if (this.CheckConnection())
+                {
+                    this.stream_.Write(data, 0, data.Length);
+                    this.stream_.Flush();
 
-                return true;
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
-            else
+            catch(Exception e)
             {
-                return false;
+                Console.WriteLine(e.ToString());
+
+                return false;;
             }
         }
 
         public void CreateAccount(string firstname, string lastname, string username, string password, string bio,  string profilePicture)
         {
+            string msg = "CREATE_ACCOUNT;" + firstname + ";" + lastname + ";" + username + ";" + password + ";" + bio + ";" + profilePicture + ";" + 0 + "$";
+
+            Byte[] data = System.Text.Encoding.UTF8.GetBytes(msg);
+
             try
             {
-                string msg = "CREATE_ACCOUNT;" + firstname + ";" + lastname + ";" + username + ";" + password + ";" + bio + ";" + profilePicture + "$";
+                this.Connect();
 
-                Byte[] data = System.Text.Encoding.ASCII.GetBytes(msg);
+                if(this.CheckConnection())
+                {
+                    this.stream_.Write(data, 0, data.Length);
+                    this.stream_.Flush();
 
-                this.stream_.Write(data, 0, data.Length);
-                this.stream_.Flush();
+                    this.CloseAllConnections();
+                }
             }
             catch (Exception e)
             {
@@ -173,13 +197,45 @@ namespace cca_p_mvvm
             }
         }
 
+        public string CheckIfUsernameIsTaken(string username)
+        {
+            string msg = "USERNAME_CHECK;" + username + ";" + "$";
+
+            Byte[] data = System.Text.Encoding.UTF8.GetBytes(msg);
+
+            try
+            {
+                this.Connect();
+
+                if(this.CheckConnection())
+                {
+                    this.stream_.Write(data, 0, data.Length);
+                    this.stream_.Flush();
+
+                    string value = this.ReceiveMessage();
+
+                    this.CloseAllConnections();
+                 
+                    return value;
+                }
+                else
+                {
+                    return "EMPTY";
+                }
+            }
+            catch (Exception e)
+            {
+                Console.Write(e.ToString());
+
+                return "EMPTY";
+            }
+        }
+
         public string[] GetUser(string typedPassword)
         {
             string newMessage = "PASSWORD;" + typedPassword + "$";
 
-            Console.WriteLine(typedPassword);
-
-            Byte[] data = System.Text.Encoding.ASCII.GetBytes(newMessage);
+            Byte[] data = System.Text.Encoding.UTF8.GetBytes(newMessage);
 
             try
             {
@@ -208,7 +264,7 @@ namespace cca_p_mvvm
         {
             string msg = "CHANNELS;" + "$";
 
-            Byte[] data = System.Text.Encoding.ASCII.GetBytes(msg);
+            Byte[] data = System.Text.Encoding.UTF8.GetBytes(msg);
 
             try
             {
@@ -346,11 +402,7 @@ namespace cca_p_mvvm
         {
             string msg = "EDIT;" + Convert.ToString(id) + ";" + firstName + ";" + lastName + ";" + bio + ";" + picture + "$";
 
-
-            Console.Write("EDITING USER: " + msg);
-
             Byte[] data = System.Text.Encoding.UTF8.GetBytes(msg);
-
 
             try
             {
@@ -425,7 +477,7 @@ namespace cca_p_mvvm
 
         public string ReceiveMessage()
         {
-            if(this.CheckConnection())
+            if (this.CheckConnection())
             {
                 //MAKE A CONTAINER FOR THE DATA WE WILL BE GRABBING FROM THE SERVER
                 Byte[] data = new byte[20000];
@@ -437,13 +489,6 @@ namespace cca_p_mvvm
 
                 //RETURN IT SO WE CAN ADD IT INTO A LIST ON THE CHATPAGEVIEWMODEL
                 responseMessage = System.Text.Encoding.UTF8.GetString(data, 0, bytes);
-                UTF8Encoding utf8 = new UTF8Encoding();
-                byte[] unicode = utf8.GetBytes(responseMessage);
-                string jack = utf8.GetString(unicode);
-                Console.WriteLine("MOTHA fucking UTF8 BITCHES" + jack);
-
-
-                Console.WriteLine("RESPONSE MESSAGE: " + responseMessage);
 
                 if (responseMessage == "EMPTY")
                 {
@@ -491,6 +536,7 @@ namespace cca_p_mvvm
             if (this.client_.Connected)
             {
                 Console.WriteLine("CLIENT CONNECTED.");
+
                 return true;
             }
             else

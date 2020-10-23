@@ -1,4 +1,3 @@
-cca_p_mvvm
 FormsViewGroup
 ImageCircle.Forms.Plugin
 Prism.Forms
@@ -82,3 +81,4 @@ androidx.media.media
 androidx.lifecycle.lifecycle-livedata
 androidx.legacy.legacy-support-v4
 androidx.browser.browser
+cca_p_mvvm
