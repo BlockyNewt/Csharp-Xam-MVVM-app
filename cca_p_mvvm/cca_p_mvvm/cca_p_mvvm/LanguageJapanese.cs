@@ -33,6 +33,8 @@ namespace cca_p_mvvm
         CREATE_ACCOUNT_USERNAME_PLACEHOLDER,
         CREATE_ACCOUNT_PASSWORD_LABEL,
         CREATE_ACCOUNT_PASSWORD_PLACEHOLDER,
+        CREATE_ACCOUNT_EMAIL_LABEL,
+        CREATE_ACCOUNT_EMAIL_PLACEHOLDER,
         CREATE_ACCOUNT_PROFILE_PICTURE_LABEL,
         CREATE_ACCOUNT_PROFILE_PICTURE_PLACEHOLDER,
         CREATE_ACCOUNT_PROFILE_BIO_LABEL,
@@ -49,6 +51,12 @@ namespace cca_p_mvvm
         CREATE_ACCOUNT_FIELDS_ERROR_TITLE,
         CREATE_ACCOUNT_FIELDS_ERROR_MESSAGE,
         CREATE_ACCOUNT_FIELDS_ERROR_BUTTON,
+        CREATE_ACCOUNT_USERNAME_ERROR_TITLE,
+        CREATE_ACCOUNT_USERNAME_ERROR_MESSAGE,
+        CREATE_ACCOUNT_USERNAME_ERROR_BUTTON,
+        CREATE_ACCOUNT_EMAIL_ERROR_TITLE,
+        CREATE_ACCOUNT_EMAIL_ERROR_MESSAGE,
+        CREATE_ACCOUNT_EMAIL_ERROR_BUTTON,
 
         HUB_FRAME_LABEL,
         HUB_CHANNEL_BUTTON,
@@ -140,6 +148,8 @@ namespace cca_p_mvvm
             this.word_.Add(JAP_WORD.CREATE_ACCOUNT_USERNAME_PLACEHOLDER, "ユーザーネーム");
             this.word_.Add(JAP_WORD.CREATE_ACCOUNT_PASSWORD_LABEL, "パスワード");
             this.word_.Add(JAP_WORD.CREATE_ACCOUNT_PASSWORD_PLACEHOLDER, "パスワード");
+            this.word_.Add(JAP_WORD.CREATE_ACCOUNT_EMAIL_LABEL, "メールアドレス");
+            this.word_.Add(JAP_WORD.CREATE_ACCOUNT_EMAIL_PLACEHOLDER, "メールアドレス");
             this.word_.Add(JAP_WORD.CREATE_ACCOUNT_PROFILE_PICTURE_LABEL, "プロファイルの写真");
             this.word_.Add(JAP_WORD.CREATE_ACCOUNT_PROFILE_PICTURE_PLACEHOLDER, "ウエブサイトのURL");
             this.word_.Add(JAP_WORD.CREATE_ACCOUNT_PROFILE_BIO_LABEL, "ステータス");
@@ -156,6 +166,12 @@ namespace cca_p_mvvm
             this.word_.Add(JAP_WORD.CREATE_ACCOUNT_FIELDS_ERROR_TITLE, "エラー");
             this.word_.Add(JAP_WORD.CREATE_ACCOUNT_FIELDS_ERROR_MESSAGE, "名前とユーザーネームとパスワードの入力が必要です。");
             this.word_.Add(JAP_WORD.CREATE_ACCOUNT_FIELDS_ERROR_BUTTON, "閉じる");
+            this.word_.Add(JAP_WORD.CREATE_ACCOUNT_USERNAME_ERROR_TITLE, "エラー");
+            this.word_.Add(JAP_WORD.CREATE_ACCOUNT_USERNAME_ERROR_MESSAGE, "そのユーザーネームもう取られています。");
+            this.word_.Add(JAP_WORD.CREATE_ACCOUNT_USERNAME_ERROR_BUTTON, "閉じる");
+            this.word_.Add(JAP_WORD.CREATE_ACCOUNT_EMAIL_ERROR_TITLE, "エラー");
+            this.word_.Add(JAP_WORD.CREATE_ACCOUNT_EMAIL_ERROR_MESSAGE, "そのメールアドレスもう取られているか無効な形式です。");
+            this.word_.Add(JAP_WORD.CREATE_ACCOUNT_EMAIL_ERROR_BUTTON, "閉じる");
 
             this.word_.Add(JAP_WORD.HUB_FRAME_LABEL, "株式会社コンサイズ");
             this.word_.Add(JAP_WORD.HUB_CHANNEL_BUTTON, "チャンネル");

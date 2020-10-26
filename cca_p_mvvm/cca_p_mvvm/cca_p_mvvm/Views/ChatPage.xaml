@@ -27,14 +27,12 @@
             </Grid>
         </Frame>
 
-
-        
         <!--MESSAGES-->
-        <ListView ItemsSource="{Binding Messages_List_}" HasUnevenRows="True">
+        <ListView ItemsSource="{Binding Messages_List_}" HasUnevenRows="True" >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Grid Padding="10" >
+                        <Grid Padding="10">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="*"/>

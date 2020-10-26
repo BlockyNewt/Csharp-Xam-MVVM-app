@@ -9,6 +9,7 @@ using Android.Content.PM;
 using System.IO;
 using DryIoc;
 using Prism.Mvvm;
+using cca_p_mvvm.ViewModels;
 
 namespace cca_p_mvvm
 {
@@ -212,10 +213,14 @@ namespace cca_p_mvvm
                     this.stream_.Write(data, 0, data.Length);
                     this.stream_.Flush();
 
+                    Console.WriteLine("GETTING MESSAGE FROM SERVER...");
+
                     string value = this.ReceiveMessage();
 
                     this.CloseAllConnections();
-                 
+
+                    Console.WriteLine("VALUE: " + value);
+
                     return value;
                 }
                 else
@@ -227,6 +232,51 @@ namespace cca_p_mvvm
             {
                 Console.Write(e.ToString());
 
+                return "EMPTY";
+            }
+        }
+
+        public string CheckIfEmailIsTaken(string email)
+        {
+            if( email.Contains("@gmail.com") || 
+                email.Contains("@hotmail.com") || 
+                email.Contains("@icloud.com") ||
+                email.Contains("@yahoo.com") ||
+                email.Contains("@aol.com"))
+            {
+                string msg = "EMAIL_CHECK;" + email + "$";
+
+                Byte[] data = System.Text.Encoding.UTF8.GetBytes(msg);
+
+                try
+                {
+                    this.Connect();
+
+                    if (this.CheckConnection())
+                    {
+                        this.stream_.Write(data, 0, data.Length);
+                        this.stream_.Flush();
+
+                        string value = this.ReceiveMessage();
+
+                        this.CloseAllConnections();
+
+                        return value;
+                    }
+                    else
+                    {
+                        return "EMPTY";
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.ToString());
+
+                    return "EMPTY";
+                }
+            }
+            else
+            {
                 return "EMPTY";
             }
         }
@@ -322,6 +372,41 @@ namespace cca_p_mvvm
             }
         }
 
+        public string[] GetAllChats(int userID)
+        {
+            string msg = "CHATS;" + userID.ToString() + "$";
+
+            Byte[] data = System.Text.Encoding.ASCII.GetBytes(msg);
+
+            try
+            {
+                if (this.CheckConnection())
+                {
+                    this.stream_.Write(data, 0, data.Length);
+
+                    Console.WriteLine("ATTACK");
+
+                    string allUsers = this.ReceiveMessage();
+
+                    Console.WriteLine("BLOCK");
+
+                    string[] splitAllUsers = allUsers.Split(';');
+
+                    return splitAllUsers;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+
+                return null;
+            }
+        }
+
         public string[] GetChannelMessages(int channelID)
         {
             string msg = "GET_CHANNEL_MESSAGES;" + Convert.ToString(channelID) + "$";
@@ -398,6 +483,47 @@ namespace cca_p_mvvm
             }
         }
 
+        public void AddNewChat(int clientID, UserViewModel targetUser)
+        {
+            string msg = "ADD_CHAT;" + clientID.ToString() + ";" + targetUser.ID_.ToString() + ";" + targetUser.First_Name_ + ";" + targetUser.Last_Name_ + ";" + targetUser.Bio_ + ";" + targetUser.Picture_ + ";" + "$";
+
+            Byte[] data = System.Text.Encoding.UTF8.GetBytes(msg);
+
+            try
+            {
+                if (this.CheckConnection())
+                {
+                    this.stream_.Write(data, 0, data.Length);
+                    this.stream_.Flush();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+        }
+
+        public void RemoveChat(int targetID)
+        {
+            string msg = "REMOVE_CHAT;" + targetID.ToString() + ";" + "$";
+
+            Byte[] data = System.Text.Encoding.UTF8.GetBytes(msg);
+
+            try
+            {
+                if(this.CheckConnection())
+                {
+                    this.stream_.Write(data, 0, data.Length);
+                    this.stream_.Flush();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+        }
+
+
         public void EditUser(int id, string firstName, string lastName, string bio, string picture)
         {
             string msg = "EDIT;" + Convert.ToString(id) + ";" + firstName + ";" + lastName + ";" + bio + ";" + picture + "$";
@@ -409,6 +535,7 @@ namespace cca_p_mvvm
                 if(this.CheckConnection())
                 {
                     this.stream_.Write(data, 0, data.Length);
+                    this.stream_.Flush();
                 }
             }
             catch (Exception e)
@@ -497,6 +624,10 @@ namespace cca_p_mvvm
                 else if (responseMessage == string.Empty)
                 {
                     return "EMPTY";
+                }
+                else if (responseMessage == "GOOD")
+                {
+                    return "GOOD";
                 }
                 else
                 {

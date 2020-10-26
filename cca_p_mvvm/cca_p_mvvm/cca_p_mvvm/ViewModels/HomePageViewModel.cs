@@ -23,13 +23,14 @@ namespace cca_p_mvvm.ViewModels
 
             this.channel_Display_ = true;
             this.dm_Display_ = false;
+            this.users_Display_ = false;
             this.profile_Display_ = false;
 
             this.user_ = new UserViewModel();
 
             this.channel_ = new ObservableCollection<Channel>();
-
             this.user_Messages_ = new ObservableCollection<UserViewModel>();
+            this.user_List_ = new ObservableCollection<UserViewModel>();
 
             this.client_Connection_ = new ClientConnection();
 
@@ -61,9 +62,11 @@ namespace cca_p_mvvm.ViewModels
         private bool channel_Display_;
         private bool dm_Display_;
         private bool profile_Display_;
+        private bool users_Display_;
 
         private IList<Channel> channel_;
         private IList<UserViewModel> user_Messages_;
+        private IList<UserViewModel> user_List_;
 
         //LANGUAGES
         public LanguageEnglish l_Eng_ { get; private set; }
@@ -407,6 +410,20 @@ namespace cca_p_mvvm.ViewModels
             }
         }
 
+        public bool Users_Display_
+        {
+            get
+            {
+                return this.users_Display_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.users_Display_, value);
+                this.RaisePropertyChanged("Users_Display_");
+            }
+        }
+
 
 
         public IList<Channel> Channel_
@@ -431,6 +448,19 @@ namespace cca_p_mvvm.ViewModels
             }
         }
         
+        public IList<UserViewModel> User_List_
+        {
+            get
+            {
+                return this.user_List_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.user_List_, value);
+                this.RaisePropertyChanged("User_List_");
+            }
+        }
 
         private void GetChannels()
         {
@@ -454,12 +484,53 @@ namespace cca_p_mvvm.ViewModels
             }
         }
 
-        private void GetDirectMessages()
+        private void GetUserChats()
+        {
+            //MAKE A STRING ARRAY THAT WILL GATHER ALL THE USERS INFORMATION FROM THE SERVER
+            string[] allUsers = this.client_Connection_.GetAllChats(this.user_.ID_);
+
+            Console.WriteLine("A");
+            if(allUsers != null)
+            {
+                Console.WriteLine("B");
+
+                for (int i = 0; i < allUsers.Length - 1; ++i)
+                {
+                    //SEPERATE EACH USER SO WE CAN GET THEM INDIVIDUALLY
+                    string seperatingUsers = allUsers[i];
+                    string[] getUserInfo = seperatingUsers.Split(',');
+
+                    //IF A USER ID WE PULL FROM THE SERVER IS THE SAME AS THE CURRENTLY LOGGED IN USER IT WILL NOT ADD IT TO THE LIST
+                    if (Convert.ToInt32(getUserInfo[0]) != this.user_.ID_)
+                    {
+                        //SET DATA FOR THE USER
+                        UserViewModel user = new UserViewModel();
+                        user.Text_Color_ = this.color_Scheme_.Home_Text_;
+                        user.ID_ = Convert.ToInt32(getUserInfo[0]);
+                        user.First_Name_ = getUserInfo[1];
+                        user.Last_Name_ = getUserInfo[2];
+                        user.Fullname_ = user.First_Name_ + " " + user.Last_Name_;
+                        user.Bio_ = getUserInfo[3];
+                        user.Picture_ = getUserInfo[4];
+
+                        Console.WriteLine("ID: " + user.ID_ + " Fullname: " + user.Fullname_ + " Bio: " + user.Bio_ + " Picture:" + user.Picture_);
+
+                        //ADD IT INTO THE LIST
+                        this.User_Messages_.Add(user);
+                        //this.User_List_.Add(user);
+                    }
+                }
+                Console.WriteLine("C");
+
+            }
+        }
+
+        private void GetUsers()
         {
             //MAKE A STRING ARRAY THAT WILL GATHER ALL THE USERS INFORMATION FROM THE SERVER
             string[] allUsers = this.client_Connection_.GetAllUsers();
 
-            for(int i = 0; i < allUsers.Length - 1; ++i)
+            for (int i = 0; i < allUsers.Length - 1; ++i)
             {
                 //SEPERATE EACH USER SO WE CAN GET THEM INDIVIDUALLY
                 string seperatingUsers = allUsers[i];
@@ -481,7 +552,8 @@ namespace cca_p_mvvm.ViewModels
                     Console.WriteLine("ID: " + user.ID_ + " Fullname: " + user.Fullname_ + " Bio: " + user.Bio_ + " Picture:" + user.Picture_);
 
                     //ADD IT INTO THE LIST
-                    this.User_Messages_.Add(user);
+                    //this.User_Messages_.Add(user);
+                    this.User_List_.Add(user);
                 }
             }
         }
@@ -587,6 +659,51 @@ namespace cca_p_mvvm.ViewModels
             {
                 //REMOVE CURRENTLY SELECTED USER FROM THE LIST
                 this.User_Messages_.Remove(this.selected_Messages_);
+                this.client_Connection_.RemoveChat(this.selected_Messages_.ID_);
+            }
+        }
+
+
+
+        private UserViewModel selected_User_ { get; set; }
+        public UserViewModel Selected_User_
+        {
+            get
+            {
+                return this.selected_User_;
+            }
+
+            set
+            {
+                if(this.selected_User_ != value)
+                {
+                    this.selected_User_ = value;
+                    this.HandleUserSelectedItem();
+                }
+            }
+        }
+        private async void HandleUserSelectedItem()
+        {
+            //WHEN A DM IS CLICKED IT WILL DISPLAY AN ACTION SHEET GIVING YOU OPTIONS ON WHAT TO DO
+            string action = await Application.Current.MainPage.DisplayActionSheet("Event", "Close", null, "Add", "View profile");
+
+            if(action == "Add")
+            {
+                this.client_Connection_.AddNewChat(this.user_.ID_, this.Selected_User_);
+                this.User_Messages_.Add(this.Selected_User_);
+            }
+            else if(action == "View profile")
+            {
+                //CREATE PARAMETERS
+                var p = new NavigationParameters();
+
+                p.Add("target_User_", this.selected_User_);
+                p.Add("l_Eng_", this.l_Eng_);
+                p.Add("l_Jap_", this.l_Jap_);
+                p.Add("color_Scheme_", this.color_Scheme_);
+
+                //PASS PARAMETERS
+                await this.navigation_Service_.NavigateAsync("ViewUserProfilePage", p);
             }
         }
 
@@ -601,6 +718,7 @@ namespace cca_p_mvvm.ViewModels
             {
                 this.DM_Display_ = false;
                 this.Profile_Display_ = false;
+                this.Users_Display_ = false;
                 this.Channel_Display_ = true;
             }
         }
@@ -616,7 +734,9 @@ namespace cca_p_mvvm.ViewModels
             {
                 this.Channel_Display_ = false;
                 this.Profile_Display_ = false;
+                this.Users_Display_ = false;
                 this.DM_Display_ = true;
+
             }
         }
 
@@ -631,7 +751,23 @@ namespace cca_p_mvvm.ViewModels
             {
                 this.Channel_Display_ = false;
                 this.DM_Display_ = false;
+                this.Users_Display_ = false;
                 this.Profile_Display_ = true;
+            }
+        }
+
+
+
+        private DelegateCommand users_Button_Command_;
+        public DelegateCommand Users_Button_Command_ => this.users_Button_Command_ ?? (this.users_Button_Command_ = new DelegateCommand(this.UsersButton));
+        private void UsersButton()
+        {
+            if(!this.Users_Display_)
+            {
+                this.Channel_Display_ = false;
+                this.DM_Display_ = false;
+                this.Profile_Display_ = false;
+                this.Users_Display_ = true;
             }
         }
 
@@ -734,7 +870,8 @@ namespace cca_p_mvvm.ViewModels
 
                 this.color_Scheme_.SetColors();
                 this.GetChannels();
-                this.GetDirectMessages();
+                this.GetUsers();
+                this.GetUserChats();
             }
             //COMING FROM SETTINGS
             if (parameters.Count == 4)

@@ -44,6 +44,7 @@ namespace cca_p_mvvm.ViewModels
             timer.AutoReset = true;
             timer.Enabled = true;
             timer.Start();
+
         }
 
         //NAVIGATION SERVICE
@@ -67,6 +68,8 @@ namespace cca_p_mvvm.ViewModels
 
         //COLOR-SCHEMES
         public ColorScheme color_Scheme_ { get; private set; }
+
+
 
         ////TASK CANCELLATION TOKEN
         //private CancellationTokenSource tokenSource2;
@@ -312,6 +315,7 @@ namespace cca_p_mvvm.ViewModels
                 this.color_Scheme_.Is_Light_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Light_Selected_;
                 this.color_Scheme_.Is_Dark_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Dark_Selected_;
                 this.color_Scheme_.Is_Halloween_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Halloween_Selected_;
+                this.color_Scheme_.Is_Christmas_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Christmas_Selected_;
 
                 this.Chat_Frame_Label_ = this.channel_.Name_;
                 Console.WriteLine("C");
@@ -354,6 +358,7 @@ namespace cca_p_mvvm.ViewModels
                 this.color_Scheme_.Is_Light_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Light_Selected_;
                 this.color_Scheme_.Is_Dark_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Dark_Selected_;
                 this.color_Scheme_.Is_Halloween_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Halloween_Selected_;
+                this.color_Scheme_.Is_Christmas_Selected_ = parameters.GetValue<ColorScheme>("color_Scheme_").Is_Christmas_Selected_;
 
                 this.Chat_Frame_Label_ = this.target_User_.First_Name_;
 

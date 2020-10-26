@@ -27,6 +27,7 @@ namespace cca_p_mvvm.ViewModels
             this.name_Section_ = true;
             this.username_Section_ = false;
             this.password_Section_ = false;
+            this.email_Section_ = false;
             this.picture_Section_ = false;
             this.bio_Section_ = false;
 
@@ -35,9 +36,9 @@ namespace cca_p_mvvm.ViewModels
 
             this.progress_Bar_Value_ = 0.0f;
             this.progress_Current_ = 0;
-            this.progress_Max_ = 4;
+            this.progress_Max_ = 5;
         }
-
+        
         //NAVIGATION SERVICE
         private readonly INavigationService navigation_Service_;
 
@@ -64,6 +65,9 @@ namespace cca_p_mvvm.ViewModels
         private string password_Text_Changed_;
         private string password_Placeholder_Text_;
         private string password_Confirm_Text_Changed_;
+        private string email_Label_Text_;
+        private string email_Text_Changed_;
+        private string email_Placeholder_Text_;
         private string profile_Picture_Label_Text_;
         private string profile_Picture_Placeholder_Text_;
         private string profile_Picture_Text_Changed_;
@@ -83,9 +87,16 @@ namespace cca_p_mvvm.ViewModels
         private string error_Fields_Title_;
         private string error_Fields_Message_;
         private string error_Fields_Button_;
+        private string error_Username_Title_;
+        private string error_Username_Message_;
+        private string error_Username_Button_;
+        private string error_Email_Title_;
+        private string error_Email_Message_;
+        private string error_Email_Button_;
 
         private bool username_Section_;
         private bool password_Section_;
+        private bool email_Section_;
         private bool name_Section_;
         private bool picture_Section_;
         private bool bio_Section_;
@@ -318,6 +329,58 @@ namespace cca_p_mvvm.ViewModels
             {
                 this.SetProperty(ref this.password_Placeholder_Text_, value);
                 this.RaisePropertyChanged("Password_Placeholder_Text_");
+            }
+        }
+
+        public string Email_Label_Text_
+        {
+            get
+            {
+                if(string.IsNullOrEmpty(this.email_Label_Text_))
+                {
+                    return "Empty string";
+                }
+
+                return this.email_Label_Text_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.email_Label_Text_, value);
+                this.RaisePropertyChanged("Email_Label_Text_");
+            }
+        }
+
+        public string Email_Text_Changed_
+        {
+            get
+            {
+                return this.email_Text_Changed_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.email_Text_Changed_, value);
+                this.RaisePropertyChanged("Email_Text_Changed_");
+            }
+        }
+
+        public string Email_Placeholder_Text_
+        {
+            get
+            {
+                if(string.IsNullOrEmpty(this.email_Placeholder_Text_))
+                {
+                    return "Empty string";
+                }
+
+                return this.email_Placeholder_Text_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.email_Placeholder_Text_, value);
+                this.RaisePropertyChanged("Email_Placeholder_Text_");
             }
         }
 
@@ -615,6 +678,120 @@ namespace cca_p_mvvm.ViewModels
             }
         }
 
+        public string Error_Username_Title_
+        {
+            get
+            {
+                if(string.IsNullOrEmpty(this.error_Username_Title_))
+                {
+                    return "Empty string";
+                }
+
+                return this.error_Username_Title_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.error_Username_Title_, value);
+                this.RaisePropertyChanged("Error_Username_Title_");
+            }
+        }
+
+        public string Error_Username_Message_
+        {
+            get
+            {
+                if(string.IsNullOrEmpty(this.error_Username_Message_))
+                {
+                    return "Empty string";
+                }
+
+                return this.error_Username_Message_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.error_Username_Message_, value);
+                this.RaisePropertyChanged("Error_Username_Message_");
+            }
+        }
+
+        public string Error_Username_Button_
+        {
+            get
+            {
+                if(string.IsNullOrEmpty(this.error_Username_Button_))
+                {
+                    return "Empty string";
+                }
+
+                return this.error_Username_Button_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.error_Username_Button_, value);
+                this.RaisePropertyChanged("Error_Username_Button_");
+            }
+        }
+
+        public string Error_Email_Title_
+        {
+            get
+            {
+                if(string.IsNullOrEmpty(this.error_Email_Title_))
+                {
+                    return "Empty string";
+                }
+
+                return this.error_Email_Title_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.error_Email_Title_, value);
+                this.RaisePropertyChanged("Error_Email_Title_");  
+            }
+        }
+
+        public string Error_Email_Message_
+        {
+            get
+            {
+                if(string.IsNullOrEmpty(this.error_Email_Message_))
+                {
+                    return "Empty string";
+                }
+
+                return this.error_Email_Message_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.error_Email_Message_, value);
+                this.RaisePropertyChanged("Error_Email_Message_");
+            }
+        }
+
+        public string Error_Email_Button_
+        {
+            get
+            {
+                if(string.IsNullOrEmpty(this.error_Email_Button_))
+                {
+                    return "Empty string";
+                }
+
+                return this.error_Email_Button_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.error_Email_Button_, value);
+                this.RaisePropertyChanged("Error_Email_Button_");
+            }
+        }
+
         public string Cancel_Button_
         {
             get
@@ -673,6 +850,20 @@ namespace cca_p_mvvm.ViewModels
             {
                 this.SetProperty(ref this.password_Section_, value);
                 this.RaisePropertyChanged("Password_Section_");
+            }
+        }
+
+        public bool Email_Section_
+        {
+            get
+            {
+                return this.email_Section_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.email_Section_, value);
+                this.RaisePropertyChanged("Email_Section_");
             }
         }
 
@@ -789,6 +980,10 @@ namespace cca_p_mvvm.ViewModels
                 this.Password_Text_Changed_ = string.Empty;
                 this.Password_Confirm_Text_Changed_ = string.Empty;
             }
+            else if (this.Email_Section_)
+            {
+                this.Email_Text_Changed_ = string.Empty;
+            }
             else if(this.Picture_Section_)
             {
                 //CLEAR PROFILE ENTRY FIELD
@@ -817,14 +1012,8 @@ namespace cca_p_mvvm.ViewModels
             {
                 if(this.Password_Confirm_Text_Changed_ == this.Password_Text_Changed_)
                 {
-                    ////CONNECT TO SERVER
-                    //this.client_Connection_.Connect();
-
                     //SEND NEW ACCOUNT INFORMATION TO SERVER AND ADD IT TO THE D.B
                     this.client_Connection_.CreateAccount(this.First_Name_Text_Changed_, this.Last_Name_Text_Changed_, this.Username_Text_Changed_, this.Password_Confirm_Text_Changed_, this.Bio_Text_Changed_, this.Profile_Picture_Text_Changed_);
-
-                    ////AFTER CREATION CLOSE THE CONNECTION
-                    //this.client_Connection_.CloseAllConnections();
 
                     //GO BACK TO LOGIN PAGE
                     await this.navigation_Service_.GoBackAsync();
@@ -866,7 +1055,7 @@ namespace cca_p_mvvm.ViewModels
                 this.Username_Section_ = true;
 
                 //INCREASE PROGRESS BAR
-                this.Progress_Bar_Value_ += 0.25f;
+                this.Progress_Bar_Value_ += 0.2f;
                 this.progress_Current_++;
                 this.Progress_Text_ = this.progress_Text_Language_String_ + this.progress_Current_.ToString() + "/" + this.progress_Max_.ToString();
 
@@ -884,7 +1073,7 @@ namespace cca_p_mvvm.ViewModels
                     this.Password_Section_ = true;
 
                     //INCREASE PROGRESS BAR
-                    this.Progress_Bar_Value_ += 0.25f;
+                    this.Progress_Bar_Value_ += 0.2f;
                     this.progress_Current_++;
                     this.Progress_Text_ = this.progress_Text_Language_String_ + this.progress_Current_.ToString() + "/" + this.progress_Max_.ToString();
 
@@ -895,23 +1084,46 @@ namespace cca_p_mvvm.ViewModels
                 else
                 {
                     //IF USERNAME IS ALREADY TAKEN THE SHOW AN ERROR
-                    await Application.Current.MainPage.DisplayAlert("Error", "That username is already taken.", "Close");
+                    await Application.Current.MainPage.DisplayAlert(this.Error_Username_Title_, this.Error_Username_Message_, this.Error_Username_Button_);
                 }
             }
             else if(this.Password_Section_)
             {
                 //CHANGE WHICH SECTION IS TO BE DISPLAYED
                 this.Password_Section_ = false;
-                this.Picture_Section_ = true;
+                this.Email_Section_ = true;
 
                 //INCREASE PROGRESS BAR
-                this.Progress_Bar_Value_ += 0.25f;
+                this.Progress_Bar_Value_ += 0.2f;
                 this.progress_Current_++;
                 this.Progress_Text_ = this.progress_Text_Language_String_ + this.progress_Current_.ToString() + "/" + this.progress_Max_.ToString();
 
                 //CHANGE WHICH BUTTONS ARE TO BE DISPLAYED
                 this.Confirm_Button_Visibility_ = false;
                 this.Next_Button_Visibility_ = true;
+            }
+            else if (this.Email_Section_)
+            {
+                //CHECK IF EMAIL IS ALREADY TAKEN
+                if(this.client_Connection_.CheckIfEmailIsTaken(this.Email_Text_Changed_) != "EMPTY")
+                {
+                    this.Email_Section_ = false;
+                    this.Picture_Section_ = true;
+
+                    //INCREASE PROGRESS BAR
+                    this.Progress_Bar_Value_ += 0.2f;
+                    this.progress_Current_++;
+                    this.Progress_Text_ = this.progress_Text_Language_String_ + this.progress_Current_.ToString() + "/" + this.progress_Max_.ToString();
+
+                    //CHANGE WHICH BUTTONS ARE TO BE DISPLAYED
+                    this.Confirm_Button_Visibility_ = false;
+                    this.Next_Button_Visibility_ = true;
+                }
+                else
+                {
+                    //DISPLAY ERROR
+                    await Application.Current.MainPage.DisplayAlert(this.Error_Email_Title_, this.Error_Email_Message_, this.Error_Email_Button_);
+                }
             }
             else if(this.Picture_Section_)
             {
@@ -920,7 +1132,7 @@ namespace cca_p_mvvm.ViewModels
                 this.Bio_Section_ = true;
 
                 //INCREASE PROGRESS BAR
-                this.Progress_Bar_Value_ += 0.25f;
+                this.Progress_Bar_Value_ += 0.2f;
                 this.progress_Current_++;
                 this.Progress_Text_ = this.progress_Text_Language_String_ + this.progress_Current_.ToString() + "/" + this.progress_Max_.ToString();
 
@@ -950,7 +1162,7 @@ namespace cca_p_mvvm.ViewModels
                 this.Name_Section_ = true;
 
                 //INCREASE PROGRESS BAR
-                this.Progress_Bar_Value_ -= 0.25f;
+                this.Progress_Bar_Value_ -= 0.2f;
                 this.progress_Current_--;
                 this.Progress_Text_ = this.progress_Text_Language_String_ + this.progress_Current_.ToString() + "/" + this.progress_Max_.ToString();
 
@@ -965,7 +1177,21 @@ namespace cca_p_mvvm.ViewModels
                 this.Username_Section_ = true;
 
                 //DECREASE PROGRESS BAR
-                this.Progress_Bar_Value_ -= 0.25f;
+                this.Progress_Bar_Value_ -= 0.2f;
+                this.progress_Current_--;
+                this.Progress_Text_ = this.progress_Text_Language_String_ + this.progress_Current_.ToString() + "/" + this.progress_Max_.ToString();
+
+                //CHANGE WHICH BUTTONS ARE TO BE DISPLAYED
+                this.Confirm_Button_Visibility_ = false;
+                this.Next_Button_Visibility_ = true;
+            }
+            else if (this.Email_Section_)
+            {
+                this.Email_Section_ = false;
+                this.Password_Section_ = true;
+
+                //DECREASE PROGRESS BAR
+                this.Progress_Bar_Value_ -= 0.2f;
                 this.progress_Current_--;
                 this.Progress_Text_ = this.progress_Text_Language_String_ + this.progress_Current_.ToString() + "/" + this.progress_Max_.ToString();
 
@@ -977,10 +1203,10 @@ namespace cca_p_mvvm.ViewModels
             {
                 //CHANGE WHICH SECTION IS TO BE DISPLAYED
                 this.Picture_Section_ = false;
-                this.Password_Section_ = true;
+                this.Email_Section_ = true;
 
                 //DECREASE PROGRESS BAR
-                this.Progress_Bar_Value_ -= 0.25f;
+                this.Progress_Bar_Value_ -= 0.2f;
                 this.progress_Current_--;
                 this.Progress_Text_ = this.progress_Text_Language_String_ + this.progress_Current_.ToString() + "/" + this.progress_Max_.ToString();
 
@@ -995,7 +1221,7 @@ namespace cca_p_mvvm.ViewModels
                 this.Picture_Section_ = true;
 
                 //DECREASE PROGRESS BAR
-                this.Progress_Bar_Value_ -= 0.25f;
+                this.Progress_Bar_Value_ -= 0.2f;
                 this.progress_Current_--;
                 this.Progress_Text_ = this.progress_Text_Language_String_ + this.progress_Current_.ToString() + "/" + this.progress_Max_.ToString();
 
@@ -1045,6 +1271,8 @@ namespace cca_p_mvvm.ViewModels
                 this.Username_Placeholder_Text_ = this.l_Eng_.Word[ENG_WORD.CREATE_ACCOUNT_USERNAME_PLACEHOLDER];
                 this.Password_Label_Text_ = this.l_Eng_.Word[ENG_WORD.CREATE_ACCOUNT_PASSWORD_LABEL];
                 this.Password_Placeholder_Text_ = this.l_Eng_.Word[ENG_WORD.CREATE_ACCOUNT_PASSWORD_PLACEHOLDER];
+                this.Email_Label_Text_ = this.l_Eng_.Word[ENG_WORD.CREATE_ACCOUNT_EMAIL_LABEL];
+                this.Email_Placeholder_Text_ = this.l_Eng_.Word[ENG_WORD.CREATE_ACCOUNT_EMAIL_PLACEHOLDER];
                 this.Profile_Picture_Label_Text_ = this.l_Eng_.Word[ENG_WORD.CREATE_ACCOUNT_PROFILE_PICTURE_LABEL];
                 this.Profile_Picture_Placeholder_Text_ = this.l_Eng_.Word[ENG_WORD.CREATE_ACCOUNT_PROFILE_PICTURE_PLACEHOLDER];
                 this.Bio_Label_Text_ = this.l_Eng_.Word[ENG_WORD.CREATE_ACCOUNT_PROFILE_BIO_LABEL];
@@ -1061,6 +1289,12 @@ namespace cca_p_mvvm.ViewModels
                 this.Error_Fields_Title_ = this.l_Eng_.Word[ENG_WORD.CREATE_ACCOUNT_FIELDS_ERROR_TITLE];
                 this.Error_Fields_Message_ = this.l_Eng_.Word[ENG_WORD.CREATE_ACCOUNT_FIELDS_ERROR_MESSAGE];
                 this.Error_Fields_Button_ = this.l_Eng_.Word[ENG_WORD.CREATE_ACCOUNT_FIELDS_ERROR_BUTTON];
+                this.Error_Username_Title_ = this.l_Eng_.Word[ENG_WORD.CREATE_ACCOUNT_USERNAME_ERROR_TITLE];
+                this.Error_Username_Message_ = this.l_Eng_.Word[ENG_WORD.CREATE_ACCOUNT_USERNAME_ERROR_MESSAGE];
+                this.Error_Username_Button_ = this.l_Eng_.Word[ENG_WORD.CREATE_ACCOUNT_USERNAME_ERROR_BUTTON];
+                this.Error_Email_Title_ = this.l_Eng_.Word[ENG_WORD.CREATE_ACCOUNT_EMAIL_ERROR_TITLE];
+                this.Error_Email_Message_ = this.l_Eng_.Word[ENG_WORD.CREATE_ACCOUNT_EMAIL_ERROR_MESSAGE];
+                this.Error_Email_Button_ = this.l_Eng_.Word[ENG_WORD.CREATE_ACCOUNT_EMAIL_ERROR_BUTTON];
 
             }
             else if (this.l_Jap_.Is_Japanese_Selected_)
@@ -1073,6 +1307,8 @@ namespace cca_p_mvvm.ViewModels
                 this.Username_Placeholder_Text_ = this.l_Jap_.Word[JAP_WORD.CREATE_ACCOUNT_USERNAME_PLACEHOLDER];
                 this.Password_Label_Text_ = this.l_Jap_.Word[JAP_WORD.CREATE_ACCOUNT_PASSWORD_LABEL];
                 this.Password_Placeholder_Text_ = this.l_Jap_.Word[JAP_WORD.CREATE_ACCOUNT_PASSWORD_PLACEHOLDER];
+                this.Email_Label_Text_ = this.l_Jap_.Word[JAP_WORD.CREATE_ACCOUNT_EMAIL_LABEL];
+                this.Email_Placeholder_Text_ = this.l_Jap_.Word[JAP_WORD.CREATE_ACCOUNT_EMAIL_PLACEHOLDER];
                 this.Profile_Picture_Label_Text_ = this.l_Jap_.Word[JAP_WORD.CREATE_ACCOUNT_PROFILE_PICTURE_LABEL];
                 this.Profile_Picture_Placeholder_Text_ = this.l_Jap_.Word[JAP_WORD.CREATE_ACCOUNT_PROFILE_PICTURE_PLACEHOLDER];
                 this.Bio_Label_Text_ = this.l_Jap_.Word[JAP_WORD.CREATE_ACCOUNT_PROFILE_BIO_LABEL];
@@ -1089,6 +1325,12 @@ namespace cca_p_mvvm.ViewModels
                 this.Error_Fields_Title_ = this.l_Jap_.Word[JAP_WORD.CREATE_ACCOUNT_FIELDS_ERROR_TITLE];
                 this.Error_Fields_Message_ = this.l_Jap_.Word[JAP_WORD.CREATE_ACCOUNT_FIELDS_ERROR_MESSAGE];
                 this.Error_Fields_Button_ = this.l_Jap_.Word[JAP_WORD.CREATE_ACCOUNT_FIELDS_ERROR_BUTTON];
+                this.Error_Username_Title_ = this.l_Jap_.Word[JAP_WORD.CREATE_ACCOUNT_USERNAME_ERROR_TITLE];
+                this.Error_Username_Message_ = this.l_Jap_.Word[JAP_WORD.CREATE_ACCOUNT_USERNAME_ERROR_MESSAGE];
+                this.Error_Username_Button_ = this.l_Jap_.Word[JAP_WORD.CREATE_ACCOUNT_USERNAME_ERROR_BUTTON];
+                this.Error_Email_Title_ = this.l_Jap_.Word[JAP_WORD.CREATE_ACCOUNT_EMAIL_ERROR_TITLE];
+                this.Error_Email_Message_ = this.l_Jap_.Word[JAP_WORD.CREATE_ACCOUNT_EMAIL_ERROR_MESSAGE];
+                this.Error_Email_Button_ = this.l_Jap_.Word[JAP_WORD.CREATE_ACCOUNT_EMAIL_ERROR_BUTTON];
             }
         }
 

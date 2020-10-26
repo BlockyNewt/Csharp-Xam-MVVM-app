@@ -32,6 +32,8 @@ namespace cca_p_mvvm
         CREATE_ACCOUNT_USERNAME_PLACEHOLDER,
         CREATE_ACCOUNT_PASSWORD_LABEL,
         CREATE_ACCOUNT_PASSWORD_PLACEHOLDER,
+        CREATE_ACCOUNT_EMAIL_LABEL,
+        CREATE_ACCOUNT_EMAIL_PLACEHOLDER,
         CREATE_ACCOUNT_PROFILE_PICTURE_LABEL,
         CREATE_ACCOUNT_PROFILE_PICTURE_PLACEHOLDER,
         CREATE_ACCOUNT_PROFILE_BIO_LABEL,
@@ -48,6 +50,12 @@ namespace cca_p_mvvm
         CREATE_ACCOUNT_FIELDS_ERROR_TITLE,
         CREATE_ACCOUNT_FIELDS_ERROR_MESSAGE,
         CREATE_ACCOUNT_FIELDS_ERROR_BUTTON,
+        CREATE_ACCOUNT_USERNAME_ERROR_TITLE,
+        CREATE_ACCOUNT_USERNAME_ERROR_MESSAGE,
+        CREATE_ACCOUNT_USERNAME_ERROR_BUTTON,
+        CREATE_ACCOUNT_EMAIL_ERROR_TITLE,
+        CREATE_ACCOUNT_EMAIL_ERROR_MESSAGE,
+        CREATE_ACCOUNT_EMAIL_ERROR_BUTTON,
 
         HUB_FRAME_LABEL,
         HUB_CHANNEL_BUTTON,
@@ -138,6 +146,8 @@ namespace cca_p_mvvm
             this.word_.Add(ENG_WORD.CREATE_ACCOUNT_USERNAME_PLACEHOLDER, "Username...");
             this.word_.Add(ENG_WORD.CREATE_ACCOUNT_PASSWORD_LABEL, "Password");
             this.word_.Add(ENG_WORD.CREATE_ACCOUNT_PASSWORD_PLACEHOLDER, "Password...");
+            this.word_.Add(ENG_WORD.CREATE_ACCOUNT_EMAIL_LABEL, "Email");
+            this.word_.Add(ENG_WORD.CREATE_ACCOUNT_EMAIL_PLACEHOLDER, "Email...");
             this.word_.Add(ENG_WORD.CREATE_ACCOUNT_PROFILE_PICTURE_LABEL, "Profile Picture");
             this.word_.Add(ENG_WORD.CREATE_ACCOUNT_PROFILE_PICTURE_PLACEHOLDER, "URL...");
             this.word_.Add(ENG_WORD.CREATE_ACCOUNT_PROFILE_BIO_LABEL, "Bio");
@@ -154,6 +164,12 @@ namespace cca_p_mvvm
             this.word_.Add(ENG_WORD.CREATE_ACCOUNT_FIELDS_ERROR_TITLE, "Error");
             this.word_.Add(ENG_WORD.CREATE_ACCOUNT_FIELDS_ERROR_MESSAGE, "Not all fields have been filled out. Username, lastname, username, and password fields a required.");
             this.word_.Add(ENG_WORD.CREATE_ACCOUNT_FIELDS_ERROR_BUTTON, "Close");
+            this.word_.Add(ENG_WORD.CREATE_ACCOUNT_USERNAME_ERROR_TITLE, "Error");
+            this.word_.Add(ENG_WORD.CREATE_ACCOUNT_USERNAME_ERROR_MESSAGE, "That username has already been taken.");
+            this.word_.Add(ENG_WORD.CREATE_ACCOUNT_USERNAME_ERROR_BUTTON, "Close");
+            this.word_.Add(ENG_WORD.CREATE_ACCOUNT_EMAIL_ERROR_TITLE, "Error");
+            this.word_.Add(ENG_WORD.CREATE_ACCOUNT_EMAIL_ERROR_MESSAGE, "That email is already in use or the format is invalid.");
+            this.word_.Add(ENG_WORD.CREATE_ACCOUNT_EMAIL_ERROR_BUTTON, "Close");
 
             this.word_.Add(ENG_WORD.HUB_FRAME_LABEL, "Comsize Inc");
             this.word_.Add(ENG_WORD.HUB_CHANNEL_BUTTON, "Channel");
