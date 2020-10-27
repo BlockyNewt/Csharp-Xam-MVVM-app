@@ -23,6 +23,7 @@ namespace cca_p_mvvm
         SIGN_IN_LOGIN_ERROR_ALREADY_LOGGED_IN_TITLE,
         SIGN_IN_LOGIN_ERROR_ALREADY_LOGGED_IN_MESSAGE,
         SIGN_IN_LOGIN_ERROR_ALREADY_LOGGED_IN_BUTTON,
+        SIGN_IN_SAVE_USERNAME_BUTTON,
 
         CREATE_ACCOUNT_FIRST_NAME_LABEL,
         CREATE_ACCOUNT_FIRST_NAME_PLACEHOLDER,
@@ -71,6 +72,10 @@ namespace cca_p_mvvm
         HUB_DM_EVENT_PROFILE,
         HUB_DM_EVENT_DELETE,
         HUB_DM_EVENT_CANCEL,
+        HUB_USER_LABEL,
+        HUB_USER_EVENT_ADD,
+        HUB_USER_EVENT_VIEW_PROFILE,
+        HUB_USER_EVENT_BUTTON,
 
         VIEW_USER_PROFILE_FULLNAME_LABEL,
         VIEW_USER_PROFILE_BIO_LABEL,
@@ -137,6 +142,7 @@ namespace cca_p_mvvm
             this.word_.Add(ENG_WORD.SIGN_IN_LOGIN_ERROR_ALREADY_LOGGED_IN_TITLE, "Error");
             this.word_.Add(ENG_WORD.SIGN_IN_LOGIN_ERROR_ALREADY_LOGGED_IN_MESSAGE, "This account is already logged in.");
             this.word_.Add(ENG_WORD.SIGN_IN_LOGIN_ERROR_ALREADY_LOGGED_IN_BUTTON, "Close");
+            this.word_.Add(ENG_WORD.SIGN_IN_SAVE_USERNAME_BUTTON, "Save username");
 
             this.word_.Add(ENG_WORD.CREATE_ACCOUNT_FIRST_NAME_LABEL, "Firstname");
             this.word_.Add(ENG_WORD.CREATE_ACCOUNT_FIRST_NAME_PLACEHOLDER, "Firstname...");
@@ -170,7 +176,7 @@ namespace cca_p_mvvm
             this.word_.Add(ENG_WORD.CREATE_ACCOUNT_EMAIL_ERROR_TITLE, "Error");
             this.word_.Add(ENG_WORD.CREATE_ACCOUNT_EMAIL_ERROR_MESSAGE, "That email is already in use or the format is invalid.");
             this.word_.Add(ENG_WORD.CREATE_ACCOUNT_EMAIL_ERROR_BUTTON, "Close");
-
+           
             this.word_.Add(ENG_WORD.HUB_FRAME_LABEL, "Comsize Inc");
             this.word_.Add(ENG_WORD.HUB_CHANNEL_BUTTON, "Channel");
             this.word_.Add(ENG_WORD.HUB_PROFILE_BUTTON, "Profile");
@@ -181,10 +187,14 @@ namespace cca_p_mvvm
             this.word_.Add(ENG_WORD.HUB_CHANNEL_EVENT_ENTER, "Enter");
             this.word_.Add(ENG_WORD.HUB_CHANNEL_EVENT_CANCEL, "Cancel");
             this.word_.Add(ENG_WORD.HUB_DM_EVENT_CHAT, "Chat");
-            this.word_.Add(ENG_WORD.HUB_DM_BUTTON, "Messages");
+            this.word_.Add(ENG_WORD.HUB_DM_BUTTON, "Chats");
             this.word_.Add(ENG_WORD.HUB_DM_EVENT_PROFILE, "Profile");
             this.word_.Add(ENG_WORD.HUB_DM_EVENT_DELETE, "Delete");
             this.word_.Add(ENG_WORD.HUB_DM_EVENT_CANCEL, "Cancel");
+            this.word_.Add(ENG_WORD.HUB_USER_LABEL, "Users");
+            this.word_.Add(ENG_WORD.HUB_USER_EVENT_ADD, "Add");
+            this.word_.Add(ENG_WORD.HUB_USER_EVENT_VIEW_PROFILE, "View profile");
+            this.word_.Add(ENG_WORD.HUB_USER_EVENT_BUTTON, "Close");
 
             this.word_.Add(ENG_WORD.VIEW_USER_PROFILE_FULLNAME_LABEL, "Fullname");
             this.word_.Add(ENG_WORD.VIEW_USER_PROFILE_BIO_LABEL, "Bio");

@@ -24,6 +24,7 @@ namespace cca_p_mvvm
         SIGN_IN_LOGIN_ERROR_ALREADY_LOGGED_IN_TITLE,
         SIGN_IN_LOGIN_ERROR_ALREADY_LOGGED_IN_MESSAGE,
         SIGN_IN_LOGIN_ERROR_ALREADY_LOGGED_IN_BUTTON,
+        SIGN_IN_SAVE_USERNAME_BUTTON,
 
         CREATE_ACCOUNT_FIRST_NAME_LABEL,
         CREATE_ACCOUNT_FIRST_NAME_PLACEHOLDER,
@@ -72,6 +73,10 @@ namespace cca_p_mvvm
         HUB_DM_EVENT_PROFILE,
         HUB_DM_EVENT_DELETE,
         HUB_DM_EVENT_CANCEL,
+        HUB_USER_LABEL,
+        HUB_USER_EVENT_ADD,
+        HUB_USER_EVENT_VIEW_PROFILE,
+        HUB_USER_EVENT_BUTTON,
 
         VIEW_USER_PROFILE_FULLNAME_LABEL,
         VIEW_USER_PROFILE_BIO_LABEL,
@@ -139,6 +144,7 @@ namespace cca_p_mvvm
             this.word_.Add(JAP_WORD.SIGN_IN_LOGIN_ERROR_ALREADY_LOGGED_IN_TITLE, "エラー");
             this.word_.Add(JAP_WORD.SIGN_IN_LOGIN_ERROR_ALREADY_LOGGED_IN_MESSAGE, "このアカウントはもうログインしています。");
             this.word_.Add(JAP_WORD.SIGN_IN_LOGIN_ERROR_ALREADY_LOGGED_IN_BUTTON, "閉じる");
+            this.word_.Add(JAP_WORD.SIGN_IN_SAVE_USERNAME_BUTTON, "ユーザーネームをほぞんする");
 
             this.word_.Add(JAP_WORD.CREATE_ACCOUNT_FIRST_NAME_LABEL, "名");
             this.word_.Add(JAP_WORD.CREATE_ACCOUNT_FIRST_NAME_PLACEHOLDER, "名");
@@ -187,6 +193,10 @@ namespace cca_p_mvvm
             this.word_.Add(JAP_WORD.HUB_DM_EVENT_PROFILE, "プロファイルを見る");
             this.word_.Add(JAP_WORD.HUB_DM_EVENT_DELETE, "削除");
             this.word_.Add(JAP_WORD.HUB_DM_EVENT_CANCEL, "キャンセル");
+            this.word_.Add(JAP_WORD.HUB_USER_LABEL, "ユーザー");
+            this.word_.Add(JAP_WORD.HUB_USER_EVENT_ADD, "追加");
+            this.word_.Add(JAP_WORD.HUB_USER_EVENT_VIEW_PROFILE, "プロファイルを見る");
+            this.word_.Add(JAP_WORD.HUB_USER_EVENT_BUTTON, "閉じる");
 
             this.word_.Add(JAP_WORD.VIEW_USER_PROFILE_FULLNAME_LABEL, "名前");
             this.word_.Add(JAP_WORD.VIEW_USER_PROFILE_BIO_LABEL, "ステータス");

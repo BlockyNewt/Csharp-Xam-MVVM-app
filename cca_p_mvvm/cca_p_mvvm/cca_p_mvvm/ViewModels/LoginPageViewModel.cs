@@ -13,6 +13,8 @@ using Java.Util;
 using System.Collections.ObjectModel;
 using Org.Apache.Http.Cookie.Params;
 using System.Threading.Tasks;
+using System.IO;
+using Android.Provider;
 
 namespace cca_p_mvvm.ViewModels
 {
@@ -31,15 +33,24 @@ namespace cca_p_mvvm.ViewModels
             this.user_ = new UserViewModel();
 
             this.color_Scheme_ = new ColorScheme();
-            this.color_Scheme_.Is_Light_Selected_ = false;
-            this.color_Scheme_.Is_Dark_Selected_ = true;
-            this.color_Scheme_.Is_Halloween_Selected_ = false;
+            //this.color_Scheme_.Is_Light_Selected_ = false;
+            //this.color_Scheme_.Is_Dark_Selected_ = true;
+            //this.color_Scheme_.Is_Halloween_Selected_ = false;
+            //this.color_Scheme_.Is_Christmas_Selected_ = false;
+
+            this.file_Name_ = Path.Combine(Environment.GetFolderPath(System.Environment.SpecialFolder.LocalApplicationData), "settings.txt");
+
+            //File.WriteAllText(this.file_Name_, string.Empty);
+            this.ReadSettingsFromFile();
 
             this.SetLanguage();
         }
 
         //NAVIGATION SERVICE
         private readonly INavigationService navigation_Service_;
+
+        //FILE TO SAVE USERNAME THEME AND LANGAUGE SETTINGS
+        private string file_Name_;
 
         //UI VARIABLES
         private string sign_In_Frame_Label_;
@@ -56,6 +67,7 @@ namespace cca_p_mvvm.ViewModels
         private string sign_In_Login_Error_Already_Logged_In_Message_;
         private string sign_In_Login_Error_Already_Logged_In_Button_;
         private string sign_In_Create_Account_Button_;
+        private string sign_In_Save_Username_Checkbox_;
 
         private string username_Entry_Changed_Text_;
         private string password_Entry_Changed_Text_;
@@ -63,6 +75,8 @@ namespace cca_p_mvvm.ViewModels
         private string connection_Error_Title_;
         private string connection_Error_Message_;
         private string connection_Error_Button_;
+
+        private bool is_Save_Username_Checked_;
 
         //LANGUAGES
         public LanguageEnglish l_Eng_ { get; private set; }
@@ -429,7 +443,38 @@ namespace cca_p_mvvm.ViewModels
             }
         }
 
+        public bool Is_Save_Username_Checked_
+        {
+            get
+            {
+                return this.is_Save_Username_Checked_;
+            }
 
+            set
+            {
+                this.SetProperty(ref this.is_Save_Username_Checked_, value);
+                this.RaisePropertyChanged("Is_Save_Username_Checked_");
+            }
+        }
+
+        public string Sign_In_Save_Username_Checkbox_
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(this.sign_In_Save_Username_Checkbox_))
+                {
+                    return "Empty string";
+                }
+
+                return this.sign_In_Save_Username_Checkbox_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.sign_In_Save_Username_Checkbox_, value);
+                this.RaisePropertyChanged("Sign_In_Save_Username_Checkbox_");
+            }
+        }
 
 
 
@@ -490,18 +535,30 @@ namespace cca_p_mvvm.ViewModels
                                 p.Add("client_Connection_", this.client_Connection_);
                                 p.Add("color_Scheme_", this.color_Scheme_);
 
-                                //RESET USERNAME AND PASSWORD TEXT FIELDS
-                                this.Username_Entry_Changed_Text_ = string.Empty;
-                                this.Password_Entry_Changed_Text_ = string.Empty;
-
                                 if(this.client_Connection_.ChangeUserLoggedValue(this.user_.ID_, 1))
                                 {
+                                    this.SaveSettingsToFile();
+
+                                    if(!this.Is_Save_Username_Checked_)
+                                    {
+                                        //RESET USERNAME AND PASSWORD TEXT FIELDS
+                                        this.Username_Entry_Changed_Text_ = string.Empty;
+                                    }
+
+                                    this.Password_Entry_Changed_Text_ = string.Empty;
+
+
                                     //GOTO NEXT PAGE
                                     await this.navigation_Service_.NavigateAsync("HomePage", p);
                                 }
                                 else
                                 {
-                                    this.Username_Entry_Changed_Text_ = string.Empty;
+                                    if (!this.Is_Save_Username_Checked_)
+                                    {
+                                        //RESET USERNAME AND PASSWORD TEXT FIELDS
+                                        this.Username_Entry_Changed_Text_ = string.Empty;
+                                    }
+
                                     this.Password_Entry_Changed_Text_ = string.Empty;
 
                                     //CONNECTION ERROR
@@ -510,7 +567,12 @@ namespace cca_p_mvvm.ViewModels
                             }
                             else
                             {
-                                this.Username_Entry_Changed_Text_ = string.Empty;
+                                if (!this.Is_Save_Username_Checked_)
+                                {
+                                    //RESET USERNAME AND PASSWORD TEXT FIELDS
+                                    this.Username_Entry_Changed_Text_ = string.Empty;
+                                }
+
                                 this.Password_Entry_Changed_Text_ = string.Empty;
 
                                 //THIS ACCOUNT IS ALREADY LOGGED IN ERROR 
@@ -519,7 +581,12 @@ namespace cca_p_mvvm.ViewModels
                         }
                         else
                         {
-                            this.Username_Entry_Changed_Text_ = string.Empty;
+                            if (!this.Is_Save_Username_Checked_)
+                            {
+                                //RESET USERNAME AND PASSWORD TEXT FIELDS
+                                this.Username_Entry_Changed_Text_ = string.Empty;
+                            }
+
                             this.Password_Entry_Changed_Text_ = string.Empty;
 
                             //GIVE AN ERROR IF LOGIN CREDIDENTIALS CAME BACK INVALID
@@ -528,7 +595,12 @@ namespace cca_p_mvvm.ViewModels
                     }
                     else
                     {
-                        this.Username_Entry_Changed_Text_ = string.Empty;
+                        if (!this.Is_Save_Username_Checked_)
+                        {
+                            //RESET USERNAME AND PASSWORD TEXT FIELDS
+                            this.Username_Entry_Changed_Text_ = string.Empty;
+                        }
+
                         this.Password_Entry_Changed_Text_ = string.Empty;
 
                         //CONNECTION ERROR 
@@ -537,7 +609,12 @@ namespace cca_p_mvvm.ViewModels
                 }
                 else
                 {
-                    this.Username_Entry_Changed_Text_ = string.Empty;
+                    if (!this.Is_Save_Username_Checked_)
+                    {
+                        //RESET USERNAME AND PASSWORD TEXT FIELDS
+                        this.Username_Entry_Changed_Text_ = string.Empty;
+                    }
+
                     this.Password_Entry_Changed_Text_ = string.Empty;
 
                     //LOGIN CREDENTIALS ARE INCORRECT ERROR
@@ -646,7 +723,7 @@ namespace cca_p_mvvm.ViewModels
                 this.Sign_In_Login_Error_Already_Logged_In_Title_ = this.l_Eng_.Word[ENG_WORD.SIGN_IN_LOGIN_ERROR_ALREADY_LOGGED_IN_TITLE];
                 this.Sign_In_Login_Error_Already_Logged_In_Message_ = this.l_Eng_.Word[ENG_WORD.SIGN_IN_LOGIN_ERROR_ALREADY_LOGGED_IN_MESSAGE];
                 this.Sign_In_Login_Error_Already_Logged_In_Button_ = this.l_Eng_.Word[ENG_WORD.SIGN_IN_LOGIN_ERROR_ALREADY_LOGGED_IN_BUTTON];
-
+                this.Sign_In_Save_Username_Checkbox_ = this.l_Eng_.Word[ENG_WORD.SIGN_IN_SAVE_USERNAME_BUTTON];
 
                 this.connection_Error_Title_ = this.l_Eng_.Word[ENG_WORD.CONNECTION_ERROR_TITLE];
                 this.connection_Error_Message_ = this.l_Eng_.Word[ENG_WORD.CONNECTION_ERROR_MESSAGE];
@@ -668,6 +745,7 @@ namespace cca_p_mvvm.ViewModels
                 this.Sign_In_Login_Error_Already_Logged_In_Title_ = this.l_Jap_.Word[JAP_WORD.SIGN_IN_LOGIN_ERROR_ALREADY_LOGGED_IN_TITLE];
                 this.Sign_In_Login_Error_Already_Logged_In_Message_ = this.l_Jap_.Word[JAP_WORD.SIGN_IN_LOGIN_ERROR_ALREADY_LOGGED_IN_MESSAGE];
                 this.Sign_In_Login_Error_Already_Logged_In_Button_ = this.l_Jap_.Word[JAP_WORD.SIGN_IN_LOGIN_ERROR_ALREADY_LOGGED_IN_BUTTON];
+                this.Sign_In_Save_Username_Checkbox_ = this.l_Jap_.Word[JAP_WORD.SIGN_IN_SAVE_USERNAME_BUTTON];
 
                 this.connection_Error_Title_ = this.l_Jap_.Word[JAP_WORD.CONNECTION_ERROR_TITLE];
                 this.connection_Error_Message_ = this.l_Jap_.Word[JAP_WORD.CONNECTION_ERROR_MESSAGE];
@@ -695,5 +773,154 @@ namespace cca_p_mvvm.ViewModels
             }
         }
 
+        private void ReadSettingsFromFile()
+        {
+            if (File.Exists(this.file_Name_))
+            {
+                string getFromFile = File.ReadAllText(this.file_Name_);
+
+                Console.WriteLine("FILE STRING: " + getFromFile);
+                if (!string.IsNullOrEmpty(getFromFile))
+                {
+                    Console.WriteLine("ABEF");
+                    string[] settings = getFromFile.Split(';');
+                    Console.WriteLine("GEGF");
+
+                    if (!string.IsNullOrEmpty(settings[0]))
+                    {
+                        this.Is_Save_Username_Checked_ = Convert.ToBoolean(settings[0]);
+                    }
+                    Console.WriteLine("ABEFG");
+
+                    if (!string.IsNullOrEmpty(settings[1]))
+                    {
+                        this.Username_Entry_Changed_Text_ = settings[1];
+                    }
+                    Console.WriteLine("ACEF");
+
+                    if (!string.IsNullOrEmpty(settings[2]))
+                    {
+                        this.color_Scheme_.Is_Light_Selected_ = Convert.ToBoolean(settings[2]);
+                    }
+                    else
+                    {
+                        this.color_Scheme_.Is_Light_Selected_ = false;
+                    }
+                    Console.WriteLine("ADEF");
+
+                    if (!string.IsNullOrEmpty(settings[3]))
+                    {
+                        this.color_Scheme_.Is_Dark_Selected_ = Convert.ToBoolean(settings[3]);
+                    }
+                    else
+                    {
+                        this.color_Scheme_.Is_Dark_Selected_ = true;
+                    }
+                    Console.WriteLine("AEEF");
+
+                    if (!string.IsNullOrEmpty(settings[4]))
+                    {
+                        this.color_Scheme_.Is_Halloween_Selected_ = Convert.ToBoolean(settings[4]);
+                    }
+                    else
+                    {
+                        this.color_Scheme_.Is_Halloween_Selected_ = false;
+                    }
+                    Console.WriteLine("AFEF");
+
+                    if (!string.IsNullOrEmpty(settings[5]))
+                    {
+                        this.color_Scheme_.Is_Christmas_Selected_ = Convert.ToBoolean(settings[5]);
+                    }
+                    else
+                    {
+                        this.color_Scheme_.Is_Christmas_Selected_ = false;
+                    }
+                    Console.WriteLine("AEEF");
+
+                    if (!string.IsNullOrEmpty(settings[6]))
+                    {
+                        this.l_Eng_.Is_English_Selected_ = Convert.ToBoolean(settings[6]);
+                    }
+                    else
+                    {
+                        this.l_Eng_.Is_English_Selected_ = true;
+                    }
+                    Console.WriteLine("AGEF");
+
+                    if (!string.IsNullOrEmpty(settings[7]))
+                    {
+                        this.l_Jap_.Is_Japanese_Selected_ = Convert.ToBoolean(settings[7]);
+                    }
+                    else
+                    {
+                        this.l_Jap_.Is_Japanese_Selected_ = false;
+                    }
+                    Console.WriteLine("AHEF");
+
+                }
+                else
+                {
+                    Console.WriteLine("BACCE");
+
+                    this.color_Scheme_.Is_Light_Selected_ = false;
+                    this.color_Scheme_.Is_Dark_Selected_ = true;
+                    this.color_Scheme_.Is_Halloween_Selected_ = false;
+                    this.color_Scheme_.Is_Christmas_Selected_ = false;
+
+                    this.l_Eng_.Is_English_Selected_ = true;
+                    this.l_Jap_.Is_Japanese_Selected_ = false;
+
+                    this.is_Save_Username_Checked_ = false;
+                }
+            }
+            else
+            {
+                Console.WriteLine("CCAAC");
+
+                this.color_Scheme_.Is_Light_Selected_ = false;
+                this.color_Scheme_.Is_Dark_Selected_ = true;
+                this.color_Scheme_.Is_Halloween_Selected_ = false;
+                this.color_Scheme_.Is_Christmas_Selected_ = false;
+
+                this.l_Eng_.Is_English_Selected_ = true;
+                this.l_Jap_.Is_Japanese_Selected_ = false;
+
+                this.is_Save_Username_Checked_ = false;
+            }
+        }
+
+        private void SaveSettingsToFile()
+        {
+            if (File.Exists(this.file_Name_))
+            {
+                string writeToFile = string.Empty;
+                File.WriteAllText(this.file_Name_, writeToFile);
+
+                if (this.Is_Save_Username_Checked_)
+                {
+                    writeToFile += this.Is_Save_Username_Checked_.ToString() + ";";
+                    writeToFile += this.username_Entry_Changed_Text_ + ";";
+                }
+                else
+                {
+                    writeToFile += this.Is_Save_Username_Checked_.ToString() + ";";
+                    writeToFile += string.Empty + ";";
+                }
+
+                Console.WriteLine("CURRENT USERNAME: " + this.Username_Entry_Changed_Text_);
+                writeToFile += this.color_Scheme_.Is_Light_Selected_.ToString() + ";";
+                writeToFile += this.color_Scheme_.Is_Dark_Selected_.ToString() + ";";
+                writeToFile += this.color_Scheme_.Is_Halloween_Selected_.ToString() + ";";
+                writeToFile += this.color_Scheme_.Is_Christmas_Selected_.ToString() + ";";
+
+                writeToFile += this.l_Eng_.Is_English_Selected_.ToString() + ";";
+                writeToFile += this.l_Jap_.Is_Japanese_Selected_.ToString() + ";";
+
+
+                Console.WriteLine("SAVING TO FILE: " + writeToFile);
+                File.WriteAllText(this.file_Name_, writeToFile);
+            }
+        }
     }
 }

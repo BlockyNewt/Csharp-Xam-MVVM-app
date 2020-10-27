@@ -58,6 +58,10 @@ namespace cca_p_mvvm.ViewModels
         private string hub_DM_Event_Profile_;
         private string hub_DM_Event_Delete_;
         private string hub_DM_Event_Cancel_;
+        private string hub_Users_Label_;
+        private string hub_Users_Event_Add_;
+        private string hub_Users_Event_Profile_;
+        private string hub_Users_Event_Button_;
 
         private bool channel_Display_;
         private bool dm_Display_;
@@ -365,6 +369,82 @@ namespace cca_p_mvvm.ViewModels
             {
                 this.SetProperty(ref this.hub_Channel_Event_Cancel_, value);
                 this.RaisePropertyChanged("Hub_Channel_Event_Cancel_");
+            }
+        }
+
+        public string Hub_Users_Label_
+        {
+            get
+            {
+                if(string.IsNullOrEmpty(this.hub_Users_Label_))
+                {
+                    return "Empty string";
+                }
+
+                return this.hub_Users_Label_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.hub_Users_Label_, value);
+                this.RaisePropertyChanged("Hub_Users_Label_");
+            }
+        }
+
+        public string Hub_Users_Event_Add_
+        {
+            get
+            {
+                if(string.IsNullOrEmpty(this.hub_Users_Event_Add_))
+                {
+                    return "Empty string";
+                }
+
+                return this.hub_Users_Event_Add_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.hub_Users_Event_Add_, value);
+                this.RaisePropertyChanged("Hub_Users_Event_Add_");
+            }
+        }
+
+        public string Hub_Users_Event_Profile_
+        {
+            get
+            {
+                if(string.IsNullOrEmpty(this.hub_Users_Event_Profile_))
+                {
+                    return "Empty string";
+                }
+
+                return this.hub_Users_Event_Profile_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.hub_Users_Event_Profile_, value);
+                this.RaisePropertyChanged("Hub_Users_Event_Profile_");
+            }
+        }
+
+        public string Hub_Users_Event_Button_
+        {
+            get
+            {
+                if(string.IsNullOrEmpty(this.hub_Users_Event_Button_))
+                {
+                    return "Empty string";
+                }
+
+                return this.hub_Users_Event_Button_;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.hub_Users_Event_Button_, value);
+                this.RaisePropertyChanged("Hub_Users_Event_Button_");
             }
         }
 
@@ -685,14 +765,14 @@ namespace cca_p_mvvm.ViewModels
         private async void HandleUserSelectedItem()
         {
             //WHEN A DM IS CLICKED IT WILL DISPLAY AN ACTION SHEET GIVING YOU OPTIONS ON WHAT TO DO
-            string action = await Application.Current.MainPage.DisplayActionSheet("Event", "Close", null, "Add", "View profile");
+            string action = await Application.Current.MainPage.DisplayActionSheet(this.Selected_User_.First_Name_, this.Hub_Users_Event_Button_, null, this.Hub_Users_Event_Add_, this.Hub_Users_Event_Profile_);
 
-            if(action == "Add")
+            if(action == this.Hub_Users_Event_Add_)
             {
                 this.client_Connection_.AddNewChat(this.user_.ID_, this.Selected_User_);
                 this.User_Messages_.Add(this.Selected_User_);
             }
-            else if(action == "View profile")
+            else if(action == this.Hub_Users_Event_Profile_)
             {
                 //CREATE PARAMETERS
                 var p = new NavigationParameters();
@@ -936,6 +1016,10 @@ namespace cca_p_mvvm.ViewModels
                 this.Hub_DM_Event_Profile_ = this.l_Eng_.Word[ENG_WORD.HUB_DM_EVENT_PROFILE];
                 this.Hub_DM_Event_Delete_ = this.l_Eng_.Word[ENG_WORD.HUB_DM_EVENT_DELETE];
                 this.Hub_DM_Event_Cancel_ = this.l_Eng_.Word[ENG_WORD.HUB_DM_EVENT_CANCEL];
+                this.Hub_Users_Label_ = this.l_Eng_.Word[ENG_WORD.HUB_USER_LABEL];
+                this.Hub_Users_Event_Button_ = this.l_Eng_.Word[ENG_WORD.HUB_USER_EVENT_BUTTON];
+                this.Hub_Users_Event_Add_ = this.l_Eng_.Word[ENG_WORD.HUB_USER_EVENT_ADD];
+                this.Hub_Users_Event_Profile_ = this.l_Eng_.Word[ENG_WORD.HUB_USER_EVENT_VIEW_PROFILE];
             }
             else if (this.l_Jap_.Is_Japanese_Selected_)
             {
@@ -953,6 +1037,10 @@ namespace cca_p_mvvm.ViewModels
                 this.Hub_DM_Event_Profile_ = this.l_Jap_.Word[JAP_WORD.HUB_DM_EVENT_PROFILE];
                 this.Hub_DM_Event_Delete_ = this.l_Jap_.Word[JAP_WORD.HUB_DM_EVENT_DELETE];
                 this.Hub_DM_Event_Cancel_ = this.l_Jap_.Word[JAP_WORD.HUB_DM_EVENT_CANCEL];
+                this.Hub_Users_Label_ = this.l_Jap_.Word[JAP_WORD.HUB_USER_LABEL];
+                this.Hub_Users_Event_Button_ = this.l_Jap_.Word[JAP_WORD.HUB_USER_EVENT_BUTTON];
+                this.Hub_Users_Event_Add_ = this.l_Jap_.Word[JAP_WORD.HUB_USER_EVENT_ADD];
+                this.Hub_Users_Event_Profile_ = this.l_Jap_.Word[JAP_WORD.HUB_USER_EVENT_VIEW_PROFILE];
             }
         }
 
