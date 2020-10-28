@@ -871,6 +871,12 @@ namespace cca_p_mvvm.ViewModels
         }
 
 
+        private DelegateCommand logout_Button_Command_;
+        public DelegateCommand Logout_Button_Command_ => this.logout_Button_Command_ ?? (this.logout_Button_Command_ = new DelegateCommand(this.LogoutButton));
+        private void LogoutButton()
+        {
+            this.ProfileLogoutButton();
+        }
 
         private DelegateCommand profile_Edit_Button_Command_;
         public DelegateCommand Profile_Edit_Button_Command_ => this.profile_Edit_Button_Command_ ?? (this.profile_Edit_Button_Command_ = new DelegateCommand(this.ProfileEditButton));
@@ -914,6 +920,12 @@ namespace cca_p_mvvm.ViewModels
             }
         }
 
+        private DelegateCommand edit_Profile_Button_Command_;
+        public DelegateCommand Edit_Profile_Button_Command_ => this.edit_Profile_Button_Command_ ?? (this.edit_Profile_Button_Command_ = new DelegateCommand(this.EditProfileButton));
+        private void EditProfileButton()
+        {
+            ProfileEditButton();
+        }
 
 
         public void OnNavigatedFrom(INavigationParameters parameters)

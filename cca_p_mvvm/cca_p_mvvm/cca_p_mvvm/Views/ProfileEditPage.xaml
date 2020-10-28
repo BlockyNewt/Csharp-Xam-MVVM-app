@@ -20,21 +20,21 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <Label Grid.Row="1" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Picture_Label_Text_}" TextColor="{Binding color_Scheme_.Profile_Edit_Text_Secondary_}" FontSize="18"/>
+                <Label Grid.Row="1" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="2" VerticalOptions="EndAndExpand" Text="{Binding Picture_Label_Text_}" TextColor="{Binding color_Scheme_.Profile_Edit_Text_Secondary_}" FontSize="22"/>
                 <Image Grid.Row="2" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="2" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Source="{Binding user_.Picture_}"/>
 
-                <Entry Grid.Row="5" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Picture_Changed_Text_, Mode=OneWayToSource}" TextColor="{Binding color_Scheme_.Profile_Edit_Text_}" FontSize="20" Placeholder="{Binding Picture_Placeholder_}" PlaceholderColor="{Binding color_Scheme_.Profile_Edit_Text_}"/>
+                <Entry Grid.Row="5" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Picture_Changed_Text_, Mode=OneWayToSource}" TextColor="{Binding color_Scheme_.Profile_Edit_Text_}" FontSize="18" Placeholder="{Binding Picture_Placeholder_}" PlaceholderColor="{Binding color_Scheme_.Profile_Edit_Text_}"/>
 
-                <Label Grid.Row="7" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding First_Name_Label_Text_}" TextColor="{Binding color_Scheme_.Profile_Edit_Text_Secondary_}" FontSize="18"/>
-                <Entry Grid.Row="8" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding First_Name_Changed_Text_, Mode=OneWayToSource}" TextColor="{Binding color_Scheme_.Profile_Edit_Text_}" FontSize="20" Placeholder="{Binding First_Name_Placeholder_}" PlaceholderColor="{Binding color_Scheme_.Profile_Edit_Text_}"/>
+                <Label Grid.Row="6" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="2" VerticalOptions="EndAndExpand" Text="{Binding First_Name_Label_Text_}" TextColor="{Binding color_Scheme_.Profile_Edit_Text_Secondary_}" FontSize="22"/>
+                <Entry Grid.Row="7" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding First_Name_Changed_Text_, Mode=OneWayToSource}" TextColor="{Binding color_Scheme_.Profile_Edit_Text_}" FontSize="18" Placeholder="{Binding First_Name_Placeholder_}" PlaceholderColor="{Binding color_Scheme_.Profile_Edit_Text_}"/>
 
-                <Label  Grid.Row="9" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Last_Name_Label_Text_}" TextColor="{Binding color_Scheme_.Profile_Edit_Text_Secondary_}" FontSize="18"/>
-                <Entry Grid.Row="10" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Last_Name_Changed_Text_, Mode=OneWayToSource}" TextColor="{Binding color_Scheme_.Profile_Edit_Text_}" FontSize="20" Placeholder="{Binding Last_Name_Placeholder_}" PlaceholderColor="{Binding color_Scheme_.Profile_Edit_Text_}"/>
+                <Label  Grid.Row="8" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="2" VerticalOptions="EndAndExpand" Text="{Binding Last_Name_Label_Text_}" TextColor="{Binding color_Scheme_.Profile_Edit_Text_Secondary_}" FontSize="22"/>
+                <Entry Grid.Row="9" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Last_Name_Changed_Text_, Mode=OneWayToSource}" TextColor="{Binding color_Scheme_.Profile_Edit_Text_}" FontSize="18" Placeholder="{Binding Last_Name_Placeholder_}" PlaceholderColor="{Binding color_Scheme_.Profile_Edit_Text_}"/>
 
-                <Label  Grid.Row="11" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Bio_Label_Text_}" TextColor="{Binding color_Scheme_.Create_Account_Text_Secondary_}" FontSize="18"/>
-                <Editor Grid.Row="12" Grid.RowSpan="6" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Bio_Text_Changed_}" TextColor="{Binding color_Scheme_.Create_Account_Text_}" FontSize="20" Placeholder="{Binding Bio_Text_Placeholder_}" PlaceholderColor="{Binding color_Scheme_.Create_Account_Text_}}" MaxLength="255"/>
+                <Label  Grid.Row="10" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="2" VerticalOptions="EndAndExpand" Text="{Binding Bio_Label_Text_}" TextColor="{Binding color_Scheme_.Create_Account_Text_Secondary_}" FontSize="22"/>
+                <Editor Grid.Row="11" Grid.RowSpan="6" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Bio_Text_Changed_}" TextColor="{Binding color_Scheme_.Create_Account_Text_}" FontSize="18" Placeholder="{Binding Bio_Text_Placeholder_}" PlaceholderColor="{Binding color_Scheme_.Create_Account_Text_}}" MaxLength="255"/>
 
-                <Button Grid.Row="19" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="1" Text="{Binding Confirm_Button_}" TextColor="{Binding color_Scheme_.Profile_Edit_Text_Secondary_}" BackgroundColor="{Binding color_Scheme_.Profile_Edit_Button_}" Command="{Binding Profile_Edit_Confirm_Button_Command_}"/>
+                <Button Grid.Row="19" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="1" VerticalOptions="EndAndExpand" Text="{Binding Confirm_Button_}" TextColor="{Binding color_Scheme_.Profile_Edit_Text_Secondary_}" BackgroundColor="{Binding color_Scheme_.Profile_Edit_Button_}" Command="{Binding Profile_Edit_Confirm_Button_Command_}"/>
                 <Button Grid.Row="19" Grid.RowSpan="1" Grid.Column="2" Grid.ColumnSpan="1" Text="{Binding Cancel_Button_}" TextColor="{Binding color_Scheme_.Profile_Edit_Text_Secondary_}" BackgroundColor="{Binding color_Scheme_.Profile_Edit_Button_}" Command="{Binding Profile_Edit_Cancel_Button_Command_}"/>
 
             </Grid>
