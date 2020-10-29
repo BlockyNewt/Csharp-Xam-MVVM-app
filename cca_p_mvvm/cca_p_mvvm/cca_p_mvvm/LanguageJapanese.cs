@@ -144,7 +144,7 @@ namespace cca_p_mvvm
             this.word_.Add(JAP_WORD.SIGN_IN_LOGIN_ERROR_ALREADY_LOGGED_IN_TITLE, "エラー");
             this.word_.Add(JAP_WORD.SIGN_IN_LOGIN_ERROR_ALREADY_LOGGED_IN_MESSAGE, "このアカウントはもうログインしています。");
             this.word_.Add(JAP_WORD.SIGN_IN_LOGIN_ERROR_ALREADY_LOGGED_IN_BUTTON, "閉じる");
-            this.word_.Add(JAP_WORD.SIGN_IN_SAVE_USERNAME_BUTTON, "ユーザーネームをほぞんする");
+            this.word_.Add(JAP_WORD.SIGN_IN_SAVE_USERNAME_BUTTON, "ユーザーネームを保存する");
 
             this.word_.Add(JAP_WORD.CREATE_ACCOUNT_FIRST_NAME_LABEL, "名");
             this.word_.Add(JAP_WORD.CREATE_ACCOUNT_FIRST_NAME_PLACEHOLDER, "名");

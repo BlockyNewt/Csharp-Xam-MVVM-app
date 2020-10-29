@@ -11,7 +11,7 @@
         "dependencies": {
           "NETStandard.Library": "2.0.3",
           "Newtonsoft.Json": "12.0.3",
-          "Prism.DryIoc.Forms": "7.2.0.1422",
+          "Prism.DryIoc.Forms": "8.0.0.1909",
           "Xam.Plugins.Forms.ImageCircle": "3.0.0.5",
           "Xamarin.Essentials.Interfaces": "1.5.3.2",
           "Xamarin.Forms": "4.8.0.1560",
@@ -21,14 +21,14 @@
           "cca_p_mvvm.dll": {}
         }
       },
-      "DryIoc.dll/4.0.7": {
+      "DryIoc.dll/4.5.0": {
         "dependencies": {
           "System.Reflection.Emit.Lightweight": "4.3.0"
         },
         "runtime": {
           "lib/netstandard2.0/DryIoc.dll": {
-            "assemblyVersion": "4.0.7.0",
-            "fileVersion": "4.0.7.0"
+            "assemblyVersion": "4.5.0.0",
+            "fileVersion": "4.5.0.0"
           }
         }
       },
@@ -47,35 +47,35 @@
           }
         }
       },
-      "Prism.Core/7.2.0.1422": {
+      "Prism.Core/8.0.0.1909": {
         "runtime": {
           "lib/netstandard2.0/Prism.dll": {
-            "assemblyVersion": "7.2.0.1422",
-            "fileVersion": "7.2.0.1422"
+            "assemblyVersion": "8.0.0.1909",
+            "fileVersion": "8.0.0.1909"
           }
         }
       },
-      "Prism.DryIoc.Forms/7.2.0.1422": {
+      "Prism.DryIoc.Forms/8.0.0.1909": {
         "dependencies": {
-          "DryIoc.dll": "4.0.7",
-          "Prism.Forms": "7.2.0.1422"
+          "DryIoc.dll": "4.5.0",
+          "Prism.Forms": "8.0.0.1909"
         },
         "runtime": {
           "lib/netstandard2.0/Prism.DryIoc.Forms.dll": {
-            "assemblyVersion": "7.2.0.1422",
-            "fileVersion": "7.2.0.1422"
+            "assemblyVersion": "8.0.0.1909",
+            "fileVersion": "8.0.0.1909"
           }
         }
       },
-      "Prism.Forms/7.2.0.1422": {
+      "Prism.Forms/8.0.0.1909": {
         "dependencies": {
-          "Prism.Core": "7.2.0.1422",
+          "Prism.Core": "8.0.0.1909",
           "Xamarin.Forms": "4.8.0.1560"
         },
         "runtime": {
           "lib/netstandard2.0/Prism.Forms.dll": {
-            "assemblyVersion": "7.2.0.1422",
-            "fileVersion": "7.2.0.1422"
+            "assemblyVersion": "8.0.0.1909",
+            "fileVersion": "8.0.0.1909"
           }
         }
       },
@@ -224,12 +224,12 @@
       "serviceable": false,
       "sha512": ""
     },
-    "DryIoc.dll/4.0.7": {
+    "DryIoc.dll/4.5.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-CHSWiSNf0tTpnHFt+DPB8mzgQMM9PbaFk7DP4g70+kTXsAS7fQlUI/yW4S+b6COOYsVQ+FPhxAw9NMU/2PGE7Q==",
-      "path": "dryioc.dll/4.0.7",
-      "hashPath": "dryioc.dll.4.0.7.nupkg.sha512"
+      "sha512": "sha512-FMwI/UHyc8utEwInluduwVcdYEocbuAtNjW2bCAdWnhYsaIhlIihotDh5PYoyUn/Ms4+U7QbGdE2MwR3wzxQgg==",
+      "path": "dryioc.dll/4.5.0",
+      "hashPath": "dryioc.dll.4.5.0.nupkg.sha512"
     },
     "Microsoft.NETCore.Platforms/1.1.0": {
       "type": "package",
@@ -259,26 +259,26 @@
       "path": "newtonsoft.json/12.0.3",
       "hashPath": "newtonsoft.json.12.0.3.nupkg.sha512"
     },
-    "Prism.Core/7.2.0.1422": {
+    "Prism.Core/8.0.0.1909": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-U6tZ4Iq+ELyK5PedRC6E20caZXXTmTYiw5evpv0M3WcfKgih9H5G5LDBlDl+65eC5Vb4lnOaUCAtckdEl2MRxA==",
-      "path": "prism.core/7.2.0.1422",
-      "hashPath": "prism.core.7.2.0.1422.nupkg.sha512"
+      "sha512": "sha512-Ri+iSFvJiSKYdui7qtxi3uH9NImSZ8Jl/nOosxScSJseFwAc8Lz63JLXoqSAQglcX13DzZcAMzpKNuA9rCFiJg==",
+      "path": "prism.core/8.0.0.1909",
+      "hashPath": "prism.core.8.0.0.1909.nupkg.sha512"
     },
-    "Prism.DryIoc.Forms/7.2.0.1422": {
+    "Prism.DryIoc.Forms/8.0.0.1909": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Mc35ZkZcLVgZg3sOwQPwlu2paylHO6UEXhWU9gtdwDekKGTj9nXwC4yAi9p51jUMoHZwPr34OXfnnEOl5VO7SA==",
-      "path": "prism.dryioc.forms/7.2.0.1422",
-      "hashPath": "prism.dryioc.forms.7.2.0.1422.nupkg.sha512"
+      "sha512": "sha512-qzLgiIFP7YgfTwlbW2QRj15nwDJ3t3uvQHMxOjUMgKDnHFjBt6Gkb6drfL1W3kJVe//D7tLf9fWUXSYIo6CkXg==",
+      "path": "prism.dryioc.forms/8.0.0.1909",
+      "hashPath": "prism.dryioc.forms.8.0.0.1909.nupkg.sha512"
     },
-    "Prism.Forms/7.2.0.1422": {
+    "Prism.Forms/8.0.0.1909": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-wrSjIoSp2o8W0JdHx1f5K7pM48lSA2yraQ+QRjl5PLRPs5FhzMwhOA2G1YoD0mhE1WzwzJoBBMnDfDaoFudmyQ==",
-      "path": "prism.forms/7.2.0.1422",
-      "hashPath": "prism.forms.7.2.0.1422.nupkg.sha512"
+      "sha512": "sha512-2uIqQjggiURO4CKJzH+gYHkbuKDtVQiSyoUIdvVRx+hFYyU0cwDG7uzB9EBQwTZMk3R8/ulF0pXbQg2aoMnGdA==",
+      "path": "prism.forms/8.0.0.1909",
+      "hashPath": "prism.forms.8.0.0.1909.nupkg.sha512"
     },
     "System.IO/4.3.0": {
       "type": "package",

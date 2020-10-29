@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Xamarin.Forms;
+using Xamarin.Android;
+using Android.App;
 
 namespace cca_p_mvvm.ViewModels
 {

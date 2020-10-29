@@ -16,7 +16,6 @@ C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvv
 C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\bin\Debug\com.companyname.appname-Signed.apk.idsig
 C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\bin\Debug\cca_p_mvvm.dll
 C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\bin\Debug\cca_p_mvvm.pdb
-C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\XamlC.stamp
 C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\cca_p_mvvm.Android.csproj.CopyComplete
 C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\cca_p_mvvm.Android.dll
 C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\cca_p_mvvm.Android.pdb
@@ -72,7 +71,6 @@ C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvv
 C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\android\assets\netstandard.dll
 C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\android\assets\Newtonsoft.Json.dll
 C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\android\assets\Prism.dll
-C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\android\assets\Prism.dll.mdb
 C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\android\assets\Prism.DryIoc.Forms.dll
 C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\android\assets\Prism.DryIoc.Forms.pdb
 C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\android\assets\Prism.Forms.dll
@@ -538,3 +536,7 @@ C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvv
 C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\stamp\_ResolveLibraryProjectImports.stamp
 C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\res\drawable\logout_icon.png
 C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\res\drawable\edit_icon.png
+C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\android\assets\Prism.pdb
+C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\android\src\crc643f46942d9dd1fff9\DragAndDropGestureHandler.java
+C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\android\src\crc643f46942d9dd1fff9\GradientStrokeDrawable.java
+C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\android\src\crc643f46942d9dd1fff9\GradientStrokeDrawable_GradientShaderFactory.java
