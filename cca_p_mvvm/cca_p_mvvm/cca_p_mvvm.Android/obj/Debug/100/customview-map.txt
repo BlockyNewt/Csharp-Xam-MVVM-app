@@ -40,7 +40,6 @@ layer-list;obj\Debug\100\res\drawable\splash_screen.xml
 LinearLayout;C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\lp\44\jl\res\layout\bottomtablayout.xml
 paths;C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\lp\43\jl\res\xml\xamarin_essentials_fileprovider_file_paths.xml
 resources;C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\lp\44\jl\res\values\attrs.xml
-resources;C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\lp\44\jl\res\values\strings.xml
 resources;C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\lp\44\jl\res\values\styles.xml
 resources;obj\Debug\100\res\values\colors.xml
 resources;obj\Debug\100\res\values\strings.xml
@@ -49,7 +48,6 @@ set;C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p
 set;C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\lp\44\jl\res\anim\enterfromright.xml
 set;C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\lp\44\jl\res\anim\exittoleft.xml
 set;C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\lp\44\jl\res\anim\exittoright.xml
-string;C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\lp\44\jl\res\values\strings.xml
 string;obj\Debug\100\res\values\strings.xml
 style;C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\lp\44\jl\res\values\styles.xml
 style;obj\Debug\100\res\values\styles.xml

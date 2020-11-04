@@ -724,6 +724,7 @@ namespace cca_p_mvvm.ViewModels
             //SET LANGUAGE BASED ON WHICH ONE IS CURRENTLY ACTIVE
             if (this.l_Eng_.Is_English_Selected_)
             {
+                Console.WriteLine("ENGLISH IS SELECTED FOR SETTINGS");
                 this.Setting_Frame_Label_ = this.l_Eng_.Word[ENG_WORD.SETTING_FRAME_LABEL];
                 this.Setting_Language_Label_ = this.l_Eng_.Word[ENG_WORD.SETTING_LANGUAGE_LABEL];
                 this.Setting_Radio_ENG_Button_ = this.l_Eng_.Word[ENG_WORD.SETTING_RADIO_ENG_BUTTON];
@@ -749,6 +750,8 @@ namespace cca_p_mvvm.ViewModels
             }
             else if (this.l_Jap_.Is_Japanese_Selected_)
             {
+                Console.WriteLine("JAPANESE IS SELECTED FOR SETTINGS");
+
                 this.Setting_Frame_Label_ = this.l_Jap_.Word[JAP_WORD.SETTING_FRAME_LABEL];
                 this.Setting_Language_Label_ = this.l_Jap_.Word[JAP_WORD.SETTING_LANGUAGE_LABEL];
                 this.Setting_Radio_ENG_Button_ = this.l_Jap_.Word[JAP_WORD.SETTING_RADIO_ENG_BUTTON];

@@ -1,4 +1,3 @@
-C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\obj\Debug\netstandard2.0\cca_p_mvvm.csprojAssemblyReference.cache
 C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\obj\Debug\netstandard2.0\App.xaml.g.cs
 C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\obj\Debug\netstandard2.0\Views\ChatPage.xaml.g.cs
 C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\obj\Debug\netstandard2.0\Views\CreateAccountPage.xaml.g.cs
@@ -20,3 +19,4 @@ C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvv
 C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\obj\Debug\netstandard2.0\cca_p_mvvm.csproj.CopyComplete
 C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\obj\Debug\netstandard2.0\cca_p_mvvm.csproj.CoreCompileInputs.cache
 C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\obj\Debug\netstandard2.0\XamlC.stamp
+C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\obj\Debug\netstandard2.0\cca_p_mvvm.csprojAssemblyReference.cache

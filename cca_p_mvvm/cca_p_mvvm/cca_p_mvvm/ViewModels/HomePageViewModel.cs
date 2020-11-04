@@ -662,7 +662,7 @@ namespace cca_p_mvvm.ViewModels
         private async void HandleChannelSelectedItem()
         {
             //WHEN A CHANNEL IS CLICKED IT WILL DISPLAY AN ACTION SHEET GIVING YOU OPTIONS ON WHAT YOU CAN DO
-            string action = await Application.Current.MainPage.DisplayActionSheet(this.selected_Channel_.Name_, this.Hub_Channel_Event_Cancel_, null, this.Hub_Channel_Event_Enter_);
+            string action = await Xamarin.Forms.Application.Current.MainPage.DisplayActionSheet(this.selected_Channel_.Name_, this.Hub_Channel_Event_Cancel_, null, this.Hub_Channel_Event_Enter_);
 
             //IF YOU CLICK THE ENTER ACTION THEN GO INTO A CHAT ROOM
             if (action == this.Hub_Channel_Event_Enter_)
@@ -704,7 +704,7 @@ namespace cca_p_mvvm.ViewModels
         private async void HandleDirectMessageSelectedItem()
         {
             //WHEN A DM IS CLICKED IT WILL DISPLAY AN ACTION SHEET GIVING YOU OPTIONS ON WHAT TO DO
-            string action = await Application.Current.MainPage.DisplayActionSheet(this.selected_Messages_.First_Name_, this.Hub_DM_Event_Cancel_, null, this.Hub_DM_Event_Chat_, this.Hub_DM_Event_Profile_, this.Hub_DM_Event_Delete_);
+            string action = await Xamarin.Forms.Application.Current.MainPage.DisplayActionSheet(this.selected_Messages_.First_Name_, this.Hub_DM_Event_Cancel_, null, this.Hub_DM_Event_Chat_, this.Hub_DM_Event_Profile_, this.Hub_DM_Event_Delete_);
 
             //IF YOU CLICK THE CHAT ACTION, YOU WILL THEN BE BROUGHT TO A CHAT PAGE WITH THE CURRENTLY SELECTED USER
             if (action == this.Hub_DM_Event_Chat_)
@@ -767,8 +767,8 @@ namespace cca_p_mvvm.ViewModels
         private async void HandleUserSelectedItem()
         {
             //WHEN A DM IS CLICKED IT WILL DISPLAY AN ACTION SHEET GIVING YOU OPTIONS ON WHAT TO DO
-            string action = await Application.Current.MainPage.DisplayActionSheet(this.Selected_User_.First_Name_, this.Hub_Users_Event_Button_, null, this.Hub_Users_Event_Add_, this.Hub_Users_Event_Profile_);
-
+            string action = await Xamarin.Forms.Application.Current.MainPage.DisplayActionSheet(this.Selected_User_.First_Name_, this.Hub_Users_Event_Button_, null, this.Hub_Users_Event_Add_, this.Hub_Users_Event_Profile_);
+           
             if(action == this.Hub_Users_Event_Add_)
             {
                 this.client_Connection_.AddNewChat(this.user_.ID_, this.Selected_User_);

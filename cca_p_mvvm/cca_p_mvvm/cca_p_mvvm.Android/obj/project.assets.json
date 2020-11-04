@@ -929,7 +929,7 @@
           "lib/netstandard2.0/Essential.Interfaces.dll": {}
         }
       },
-      "Xamarin.Forms/4.8.0.1560": {
+      "Xamarin.Forms/4.7.0.1239": {
         "type": "package",
         "dependencies": {
           "Xamarin.AndroidX.Browser": "1.0.0.1",
@@ -1986,10 +1986,10 @@
         "xamarin.essentials.interfaces.nuspec"
       ]
     },
-    "Xamarin.Forms/4.8.0.1560": {
-      "sha512": "uWw6knrT26YOI+vZXB8YvYAEimycokY0qN58u++Rb7Y4tcWm/Fzn6UWaGaTCY1VppTXA1JrQMsb5vxBvoyYFhg==",
+    "Xamarin.Forms/4.7.0.1239": {
+      "sha512": "vGtrCFHo/eEIDPk0yHsktW1xl4rt+KbTab2ciPbsU7tlI5x88aspH9IJlfybh5ejCFhRYYpNr8+uB9vX08bsuA==",
       "type": "package",
-      "path": "xamarin.forms/4.8.0.1560",
+      "path": "xamarin.forms/4.7.0.1239",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2255,7 +2255,6 @@
         "lib/uap10.0.14393/Xamarin.Forms.Platform.UAP/PickerStyle.xaml",
         "lib/uap10.0.14393/Xamarin.Forms.Platform.UAP/PromptDialog.xaml",
         "lib/uap10.0.14393/Xamarin.Forms.Platform.UAP/Resources.xaml",
-        "lib/uap10.0.14393/Xamarin.Forms.Platform.UAP/Shell/ShellPageWrapper.xaml",
         "lib/uap10.0.14393/Xamarin.Forms.Platform.UAP/SliderStyle.xaml",
         "lib/uap10.0.14393/Xamarin.Forms.Platform.UAP/StepperControl.xaml",
         "lib/uap10.0.14393/Xamarin.Forms.Platform.UAP/TabbedPageStyle.xaml",
@@ -2288,7 +2287,6 @@
         "lib/uap10.0.16299/Xamarin.Forms.Platform.UAP/PickerStyle.xaml",
         "lib/uap10.0.16299/Xamarin.Forms.Platform.UAP/PromptDialog.xaml",
         "lib/uap10.0.16299/Xamarin.Forms.Platform.UAP/Resources.xaml",
-        "lib/uap10.0.16299/Xamarin.Forms.Platform.UAP/Shell/ShellPageWrapper.xaml",
         "lib/uap10.0.16299/Xamarin.Forms.Platform.UAP/Shell/ShellStyles.xaml",
         "lib/uap10.0.16299/Xamarin.Forms.Platform.UAP/SliderStyle.xaml",
         "lib/uap10.0.16299/Xamarin.Forms.Platform.UAP/StepperControl.xaml",
@@ -2298,7 +2296,7 @@
         "lib/uap10.0.16299/Xamarin.Forms.Xaml.dll",
         "lib/uap10.0.16299/Xamarin.Forms.Xaml.pdb",
         "lib/uap10.0.16299/Xamarin.Forms.Xaml.xml",
-        "xamarin.forms.4.8.0.1560.nupkg.sha512",
+        "xamarin.forms.4.7.0.1239.nupkg.sha512",
         "xamarin.forms.nuspec"
       ]
     },
@@ -2330,7 +2328,7 @@
     "MonoAndroid,Version=v10.0": [
       "Prism.DryIoc.Forms >= 8.0.0.1909",
       "Xamarin.Essentials.Interfaces >= 1.5.3.2",
-      "Xamarin.Forms >= 4.8.0.1560",
+      "Xamarin.Forms >= 4.7.0.1239",
       "cca_p_mvvm >= 1.0.0"
     ]
   },
@@ -2386,10 +2384,32 @@
           },
           "Xamarin.Forms": {
             "target": "Package",
-            "version": "[4.8.0.1560, )"
+            "version": "[4.7.0.1239, )"
           }
         }
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1605",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Detected package downgrade: Xamarin.Forms from 4.8.0.1560 to 4.7.0.1239. Reference the package directly from the project to select a different version. \r\n cca_p_mvvm.Android -> cca_p_mvvm -> Xamarin.Forms (>= 4.8.0.1560) \r\n cca_p_mvvm.Android -> Xamarin.Forms (>= 4.7.0.1239)",
+      "libraryId": "Xamarin.Forms",
+      "targetGraphs": [
+        "MonoAndroid,Version=v10.0"
+      ]
+    },
+    {
+      "code": "NU1605",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Detected package downgrade: Xamarin.Forms from 4.8.0.1364 to 4.7.0.1239. Reference the package directly from the project to select a different version. \r\n cca_p_mvvm.Android -> Prism.DryIoc.Forms 8.0.0.1909 -> Prism.Forms 8.0.0.1909 -> Xamarin.Forms (>= 4.8.0.1364) \r\n cca_p_mvvm.Android -> Xamarin.Forms (>= 4.7.0.1239)",
+      "libraryId": "Xamarin.Forms",
+      "targetGraphs": [
+        "MonoAndroid,Version=v10.0"
+      ]
+    }
+  ]
 }

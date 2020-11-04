@@ -536,7 +536,5 @@ C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvv
 C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\stamp\_ResolveLibraryProjectImports.stamp
 C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\res\drawable\logout_icon.png
 C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\res\drawable\edit_icon.png
+C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\XamlC.stamp
 C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\android\assets\Prism.pdb
-C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\android\src\crc643f46942d9dd1fff9\DragAndDropGestureHandler.java
-C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\android\src\crc643f46942d9dd1fff9\GradientStrokeDrawable.java
-C:\Users\S-03\source\repos\BlockyNewt\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm\cca_p_mvvm.Android\obj\Debug\100\android\src\crc643f46942d9dd1fff9\GradientStrokeDrawable_GradientShaderFactory.java
