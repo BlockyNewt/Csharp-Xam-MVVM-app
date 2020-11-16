@@ -576,7 +576,7 @@ namespace cca_p_mvvm.ViewModels
                                 this.Password_Entry_Changed_Text_ = string.Empty;
 
                                 //THIS ACCOUNT IS ALREADY LOGGED IN ERROR 
-                                await Application.Current.MainPage.DisplayAlert(this.Sign_In_Login_Error_Already_Logged_In_Title_, this.Sign_In_Login_Error_Already_Logged_In_Message_, this.Sign_In_Login_Error_Already_Logged_In_Message_);
+                                await Application.Current.MainPage.DisplayAlert(this.Sign_In_Login_Error_Already_Logged_In_Title_, this.Sign_In_Login_Error_Already_Logged_In_Message_, this.Sign_In_Login_Error_Already_Logged_In_Button_);
                             }
                         }
                         else

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using Xamarin.Essentials;
 
 namespace cca_p_mvvm.ViewModels
 {
@@ -16,7 +17,7 @@ namespace cca_p_mvvm.ViewModels
         {
             get
             {
-                if(string.IsNullOrEmpty(this.message_))
+                if (string.IsNullOrEmpty(this.message_))
                 {
                     return "Empty string";
                 }
@@ -35,7 +36,7 @@ namespace cca_p_mvvm.ViewModels
         {
             get
             {
-                if(string.IsNullOrEmpty(this.sender_Name_))
+                if (string.IsNullOrEmpty(this.sender_Name_))
                 {
                     return "Empty string";
                 }
@@ -50,6 +51,58 @@ namespace cca_p_mvvm.ViewModels
             }
         }
 
+
+        private DelegateCommand tap_Command_;
+        public DelegateCommand Tap_Command_ => this.tap_Command_ ?? (this.tap_Command_ = new DelegateCommand(OnTap));
+        private async void OnTap()
+        {
+            string[] getUrl = this.message_.Split(' ');
+            string urlOne = string.Empty;
+            string urlTwo = string.Empty;
+            string urlThree = string.Empty;
+            for (int i = 0; i < getUrl.Length; ++i)
+            {
+                Console.WriteLine("WORD: " + getUrl[i]);
+
+                if (getUrl[i].Contains("https://"))
+                {
+                    if(urlOne.Length == 0 && urlOne != getUrl[i])
+                    {
+                        urlOne = getUrl[i];
+                        Console.Write("URL ONE: " + urlOne); 
+                    }
+                    else if(string.IsNullOrEmpty(urlTwo))
+                    {
+                        urlTwo = getUrl[i];
+                        Console.Write("URL TWO: " + urlTwo);
+
+                    }
+                    else if (string.IsNullOrEmpty(urlThree))
+                    {
+                        urlThree = getUrl[i];
+                        Console.Write("URL THREE: " + urlThree);
+                    }
+                }
+            }
+
+            if(!string.IsNullOrEmpty(urlOne))
+            {
+                string action = await Xamarin.Forms.Application.Current.MainPage.DisplayActionSheet("Link", "Close", null, urlOne, urlTwo, urlThree);
+
+                if(action == urlOne)
+                {
+                    await Browser.OpenAsync(urlOne);
+                }
+                else if (action == urlTwo)
+                {
+                    await Browser.OpenAsync(urlTwo);
+                }
+                else if (action == urlThree)
+                {
+                    await Browser.OpenAsync(urlThree);
+                }
+            }
+        }
 
         //COLORS FOR APP THEME
         private Color text_Color_;

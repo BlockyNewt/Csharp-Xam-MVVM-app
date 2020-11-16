@@ -14,6 +14,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Timers;
 using Java.Lang;
+using Xamarin.Essentials;
 
 namespace cca_p_mvvm.ViewModels
 {
@@ -44,7 +45,6 @@ namespace cca_p_mvvm.ViewModels
             timer.AutoReset = true;
             timer.Enabled = true;
             timer.Start();
-
         }
 
         //NAVIGATION SERVICE
@@ -168,6 +168,35 @@ namespace cca_p_mvvm.ViewModels
 
 
 
+        private Message selected_Chat_Message_ { get; set; }
+        public Message Selected_Channel_Message_
+        {
+            get
+            {
+                return this.selected_Chat_Message_;
+            }
+
+            set
+            {
+                if (this.selected_Chat_Message_ != value)
+                {
+                    this.selected_Chat_Message_ = value;
+                    this.HandleChannelSelectedMessage();
+                }
+            }
+        }
+        private async void HandleChannelSelectedMessage()
+        {
+            //COPY TEXT ON CHAT MESSAGE CLICK
+            await Clipboard.SetTextAsync(this.selected_Chat_Message_.Message_);
+
+            string copiedText = await Clipboard.GetTextAsync();
+        }
+
+ 
+        /*
+            PROBABLY DONT NEED THIS ANYMORE
+         */
         //private Task task;
         //async void GetFuckingMessages()
         //{

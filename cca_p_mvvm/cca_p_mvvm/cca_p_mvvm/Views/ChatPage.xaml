@@ -23,12 +23,13 @@
                 <ImageButton Grid.Row="0" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="1" HorizontalOptions="Start"  Source="back_Button" BackgroundColor="Transparent" WidthRequest="40" HeightRequest="40" Command="{Binding Back_Button_Command_}"/>
                 <Label       Grid.Row="0" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="1" HorizontalOptions="Center" Text="{Binding Chat_Frame_Label_}" TextColor="{Binding color_Scheme_.Chat_Text_}" FontSize="24" />
                 <ImageButton Grid.Row="0" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="1" HorizontalOptions="End"  Source="reload_Button" BackgroundColor="Transparent" WidthRequest="40" HeightRequest="40" Command="{Binding Refresh_Button_Command_}"/>
-            
+
+
             </Grid>
         </Frame>
 
         <!--MESSAGES-->
-        <ListView ItemsSource="{Binding Messages_List_}" HasUnevenRows="True" >
+        <ListView ItemsSource="{Binding Messages_List_}" HasUnevenRows="True" SelectedItem="{Binding Selected_Channel_Message_}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -43,8 +44,12 @@
                             </Grid.ColumnDefinitions>
                             
                             <Label Grid.Row="1" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="1" Text="{Binding Sender_Name_}" TextColor="{Binding Text_Color_}" FontSize="20"/>
-                            <Label Grid.Row="2" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="1" Text="{Binding Message_}" TextColor="{Binding Text_Secondary_Color_}" FontSize="16" Padding="5"/>
-                            
+                            <Label Grid.Row="2" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="1" Text="{Binding Message_}" TextColor="{Binding Text_Secondary_Color_}" FontSize="16" Padding="5">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Tap_Command_}" NumberOfTapsRequired="1"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
