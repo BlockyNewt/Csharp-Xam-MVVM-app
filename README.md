@@ -13,3 +13,6 @@ Mechanics in the app
 9. Sending links
 10. Changing the apps language between English and Japanese
 11. Database is used with the server when collecting and sending data to the client side.
+
+
+Server link -> https://github.com/BlockyNewt/Csharp-Xam-MVVM-server
