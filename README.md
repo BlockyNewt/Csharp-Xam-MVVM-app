@@ -2,7 +2,7 @@
 
 A simple communications app using C# and Xamarin to allow cross platform between Apple and Android devices. I utilized the C# prism framework and MVVM (Model View Viewmodel) design when creating this app.
 
-Mechanics in the app
+App features
 1. Login
 3. Account creation
 4. Relays account creation information to server to check if account name and or email address is already in use before creation
